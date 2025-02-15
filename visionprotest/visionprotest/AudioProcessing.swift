@@ -5,43 +5,40 @@ struct AudioProcessing: View {
     @StateObject private var audioProcessor = AudioProcessor()
     
     // Example multiline description text.
-    let descriptionText = """
-    this is a cool project
-    the project is very cool
-    the project is insanely cool
+    let name = "Isaac Newton"
+    let headline = "Scientist / Physicist"
+    let experiences = """
+    Principal • Menlo Ventures
+    Engineering Fellow • Kleiner Perkins
+    Engineering Fellow • Kleiner Perkins
     """
+    let experienceDescription = "Experience Description Example Experience Description Example Experience Description Example Experience Description Example Experience Description Example Example"
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Name placeholder at the top (centered)
-                VStack {
-                    Text("Name Placeholder")
-                        .font(.system(size: 50, weight: .bold, design: .rounded))
-                        .padding(.top, geometry.safeAreaInsets.top + 20)
-                    Spacer()
-                }
                 
-                // Description placeholder on the left side as a bullet list.
                 HStack {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            BulletDescriptionView(descriptionText: descriptionText)
-                            Spacer()
-                        }
+                    VStack(alignment: .leading) {
+                        ProfileDescriptionView(name: name, headline: headline, experiences: experiences, experienceDescription: experienceDescription)
                         Spacer()
                     }
                     Spacer()
                 }
                 
-                // Microphone button on the right side.
+                
                 HStack {
                     Spacer()
                     VStack {
                         Spacer()
                         Button(action: {
                             print("taking picture of person")
+                            for family in UIFont.familyNames.sorted() {
+                                print("Family: \(family)")
+                                for name in UIFont.fontNames(forFamilyName: family).sorted() {
+                                    print("  - \(name)")
+                                }
+                            }
                         }) {
                             Image(systemName: "camera")
                                 .resizable()
@@ -53,7 +50,9 @@ struct AudioProcessing: View {
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
+                        
                         Spacer()
+                        
                         Button(action: {
                             if audioProcessor.isRecording {
                                 audioProcessor.stopRecording()
@@ -71,6 +70,7 @@ struct AudioProcessing: View {
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
+                        
                         Spacer()
                     }
                 }
@@ -80,34 +80,67 @@ struct AudioProcessing: View {
             audioProcessor.setupAudioSession()
         }
     }
+
 }
 
-struct BulletDescriptionView: View {
-    let descriptionText: String
-    
-    // Splitting the text into bullet points based on "\n"
+struct ProfileDescriptionView: View {
+    let name: String
+    let headline: String
+    let experiences: String
+    let experienceDescription: String
     var bulletPoints: [String] {
-        descriptionText.components(separatedBy: "\n").filter { !$0.isEmpty }
+        experiences.components(separatedBy: "\n").filter { !$0.isEmpty }
     }
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            ForEach(bulletPoints, id: \.self) { statement in
-                HStack(alignment: .top, spacing: 4) {
-                    Text("•")
-                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                    Text(statement)
-                        .font(.system(size: 40, weight: .bold, design: .rounded))
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 8) {
+                
+                Text(name)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
+                    .padding(.bottom, 5)
+                
+                Text("Headline")
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
+                
+                Text(headline)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    .padding(.leading, 20)
+                
+                Text("Experiences")
+                    .foregroundColor(.black)
+                    .font(.system(size: 30, weight: .semibold, design: .default))
+                
+                
+                ForEach(bulletPoints, id: \.self) { statement in
+                    DisclosureGroup {
+                        
+                        Text(experienceDescription)
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                            .padding(.leading, 13)
+                            
+                    } label: {
+                        Text(statement)
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    }
+                    .foregroundColor(.black)
                 }
             }
+            .frame(width: 500)
+            .padding(.top, 40)
+            .padding(.trailing, 40)
+            .padding(.bottom, 40)
+            .padding(.leading, 25)
+            .background(
+                RoundedRectangle(cornerRadius: 30)
+                    .fill(Color(hex: "E2E2E2E2").opacity(0.6))
+            )
         }
-        .frame(width: 400)
-        .padding(8)
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color.gray.opacity(0.4))
-        )
-        .padding(.leading, 20)
     }
 }
 
@@ -116,13 +149,13 @@ class AudioProcessor: ObservableObject {
     private var inputNode: AVAudioInputNode?
     private var audioFormat: AVAudioFormat?
     private var isAudioSessionConfigured = false
-    private var audioFile: AVAudioFile? // For writing audio data
-    private var fileURL: URL?          // Stores the file URL for logging
+    private var audioFile: AVAudioFile?
+    private var fileURL: URL?
     
     @Published var isRecording = false
     @Published var audioLevel: Float = 0.0
     
-    // Set these to the URL of your FastAPI endpoints.
+    
     private let uploadURLString = "http://127.0.0.1:8000/upload_samples"
     private let finalizeString = "http://127.0.0.1:8000/finalize"
     
@@ -149,7 +182,6 @@ class AudioProcessor: ObservableObject {
         self.inputNode = inputNode
         self.audioFormat = format
         
-        // Determine a writable directory based on the platform.
         #if os(visionOS)
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         #elseif os(macOS)
@@ -291,5 +323,47 @@ class AudioProcessor: ObservableObject {
 struct AudioProcessing_Preview: PreviewProvider {
     static var previews: some View {
         AudioProcessing()
+    }
+}
+
+
+extension Color {
+
+    init(hex: String) {
+        
+        let sanitizedHex = hex
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "#", with: "")
+
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: sanitizedHex).scanHexInt64(&rgbValue)
+
+        let r, g, b, a: UInt64
+        switch sanitizedHex.count {
+        case 6:
+            r = (rgbValue >> 16) & 0xFF
+            g = (rgbValue >> 8) & 0xFF
+            b = rgbValue & 0xFF
+            a = 0xFF
+        case 8:
+            r = (rgbValue >> 24) & 0xFF
+            g = (rgbValue >> 16) & 0xFF
+            b = (rgbValue >> 8) & 0xFF
+            a = rgbValue & 0xFF
+        default:
+            r = 255
+            g = 255
+            b = 255
+            a = 255
+        }
+
+        self.init(
+            .sRGB,
+            red:   Double(r) / 255,
+            green: Double(g) / 255,
+            blue:  Double(b) / 255,
+            opacity: Double(a) / 255
+        )
     }
 }
