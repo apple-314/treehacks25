@@ -10,17 +10,16 @@ import time
 start_time = time.time()
 
 # Load a pre-trained sentence transformer model. This model's output vectors are of size 384
-model = SentenceTransformer('all-MiniLM-L6-v2')
-
 db = VectorDatabase()
 db.create_connection()
 
 db.delete_schema("JamesChen")
 
 data = {
-    "conv_id" : 0,
-    "time_stamp" : str(datetime.now().replace(microsecond=0)),
-    "transcript" : """Hey, have you heard about LangChain? It’s a framework for building AI-powered applications using large language models.
+    "time_stamp" : str(datetime.now().replace(microsecond=0))
+}
+
+text_langchain = """Hey, have you heard about LangChain? It’s a framework for building AI-powered applications using large language models.
 Yeah, I’ve come across it. It’s mainly used for chaining multiple AI components together, right? I think it helps developers create more sophisticated AI agents.
 Exactly! It’s designed to integrate language models with external tools like databases, APIs, and even search engines. The cool thing is that it allows developers to build more intelligent and context-aware applications instead of just making a simple chatbot.
 That makes sense. So, instead of just taking input and generating an output in isolation, LangChain helps maintain context and reasoning across multiple steps?
@@ -55,51 +54,89 @@ I’d love to try building something with it. Where do you recommend getting sta
 The official LangChain documentation is a great place to start. They provide tutorials, examples, and detailed explanations of each component. There are also YouTube videos and open-source projects on GitHub that show how to implement different use cases.
 Sounds good! Maybe I’ll start with a simple chatbot and then try building a more complex agent that integrates external data sources.
 That’s a great approach. Let me know if you need any help!"""
+
+text_ar_vr_tech = """Have you been keeping up with the latest advancements in AR and VR? It feels like the technology is evolving at an incredible pace.
+Absolutely! It’s fascinating to see how AR and VR are moving beyond just gaming and entertainment. Companies are now using them for everything from training simulations to medical applications.
+Yeah, and with the rise of mixed reality headsets like Apple’s Vision Pro and Meta’s Quest, the line between AR and VR is starting to blur. These headsets are combining both worlds in a way that feels more immersive than ever.
+Exactly. The idea of mixed reality—where digital elements interact with the real world—feels like the logical next step. Instead of switching between AR and VR, users can transition seamlessly between both. It opens up so many possibilities for work, education, and communication.
+I think one of the biggest shifts we’re seeing is how AR and VR are integrating into professional environments. Remote work, for example, could be completely transformed with virtual offices and interactive collaboration spaces.
+That’s true. I read about companies already experimenting with VR meetings where people wear headsets and feel like they’re in the same room. It adds a level of presence that video calls can’t really replicate.
+And it’s not just offices. Industries like healthcare and manufacturing are leveraging AR and VR in ways that are incredibly practical. Surgeons are using AR overlays during procedures to get real-time guidance, and factory workers are using AR glasses to receive instructions without needing to check a manual.
+The medical applications are particularly impressive. Training medical students with VR simulations allows them to practice procedures in a risk-free environment. That kind of hands-on experience is invaluable, especially for complex surgeries.
+It’s also making education more engaging in general. Imagine history lessons where students can walk through ancient cities in VR or science classes where they can interact with molecules in 3D space. Learning could become so much more interactive.
+Definitely! It reminds me of how museums and cultural institutions are adopting AR to enhance exhibits. Instead of just reading about historical artifacts, you could see holographic recreations or get additional layers of information through an AR headset or even just a phone.
+One of the challenges, though, is the hardware. While we’ve come a long way from the bulky headsets of the past, AR and VR devices are still a bit too expensive and uncomfortable for mainstream daily use.
+Yeah, affordability is a big issue. Meta’s Quest lineup is probably the most accessible in terms of price, but even then, it’s not something everyone can just buy on a whim. The real breakthrough will come when these devices become as lightweight and affordable as a pair of glasses.
+That’s why companies are working so hard on AR glasses. Devices like the HoloLens and Magic Leap are pushing towards that vision, but we’re still not quite there in terms of sleekness and practicality for everyday use.
+Battery life is another problem. Current AR and VR headsets don’t last long before they need a recharge, and nobody wants to be tethered to a power source all the time.
+True. But processing power is also a limitation. Many high-end VR experiences still require a powerful PC or a cloud connection, which isn’t ideal for true mobility. Standalone headsets are improving, but they’re not at the level of dedicated hardware yet.
+I think cloud computing and 5G will help with that. If rendering can be done remotely and streamed to the headset with ultra-low latency, we won’t need powerful processors built into the devices themselves.
+That’s a good point. Cloud rendering could significantly reduce the cost and weight of headsets since they won’t need as much built-in processing power. But that depends on widespread high-speed internet access, which is still a challenge in some areas.
+Another area I find interesting is haptics. Right now, VR mainly engages our vision and hearing, but haptic gloves and bodysuits are adding a sense of touch. Imagine being able to actually "feel" virtual objects in a realistic way.
+Yeah, that’s where things get really futuristic. Full-body haptic feedback could make VR experiences so immersive that they feel indistinguishable from reality. Gaming would be incredible, but it could also revolutionize training simulations for firefighters, soldiers, or rescue teams.
+I wonder if we’ll ever reach a point where AR and VR become as common as smartphones. Right now, it still feels like something you use occasionally rather than a daily necessity.
+I think it’s a matter of time. Once AR glasses become lightweight and stylish enough to wear all day, they could replace smartphones entirely. Instead of looking at a screen, you’d just see your digital world overlaid onto reality.
+That would change everything. Imagine walking around and getting real-time translations of signs in a foreign country, or seeing restaurant reviews floating above places as you pass by. Even things like navigation would be completely transformed.
+There’s definitely potential for that, but there are also concerns. Privacy is a big issue—if everyone is wearing AR glasses, what happens to personal space and consent? Will people be constantly recorded without their knowledge?
+That’s a valid concern. We already see debates about smart glasses with cameras, like Ray-Ban’s partnership with Meta. It’s convenient, but also raises ethical questions about surveillance and data collection.
+And then there’s the question of how much digital augmentation is too much. If AR becomes our primary interface, will we ever truly disconnect from the digital world?
+It’s a double-edged sword. On one hand, AR and VR can enhance how we work, learn, and connect. On the other hand, if it replaces real-world interactions too much, we might lose something valuable.
+It’s definitely something to think about. But no matter what, it’s clear that AR and VR are shaping the future in ways we’re only beginning to understand. The next decade will be fascinating to watch.
+Absolutely. Whether it’s for entertainment, work, or social interaction, these technologies are going to redefine how we experience the world. I can’t wait to see where it all goes."""
+
+# conv_id = data["conv_id"]
+# time_stamp = data["time_stamp"]
+# transcript = data["transcript"]
+# min_length = 256 # characters
+
+# df = pd.DataFrame(columns=["conv_id", "index_in_conv", "time_stamp", "sentence"])
+
+# def split_transcript(text, min_length):
+#     sentences = re.split(r'([.!?])', text)  # Keep punctuation with split
+#     chunks = []
+#     current_chunk = ""
+
+#     for i in range(0, len(sentences) - 1, 2):  # Process sentences in pairs (sentence + punctuation)
+#         sentence = sentences[i].strip() + sentences[i + 1]  # Reattach punctuation
+
+#         if len(current_chunk) + len(sentence) >= min_length:
+#             if current_chunk:
+#                 chunks.append(current_chunk.strip())  # Store current chunk
+#             current_chunk = sentence  # Start new chunk
+#         else:
+#             current_chunk += " " + sentence  # Append sentence to current chunk
+
+#     if current_chunk:  # Add any remaining text as last chunk
+#         chunks.append(current_chunk.strip())
+
+#     return chunks
+
+# chunks = split_transcript(transcript, min_length)
+# for chunk in chunks:
+#     df.loc[len(df)] = [conv_id, len(df), time_stamp, chunk]
+#     print(df.iloc[-1])
+
+# # embeddings
+# print("starting embedding calculation")
+# embeddings = model.encode(df['sentence'].tolist(), normalize_embeddings=True)
+# df['sentence_vector'] = embeddings.tolist()
+
+# # pushing to server
+# print("adding stuff to server")
+
+# db.write_data_many_df("JamesChen", "Conversation", df, True)
+
+# print(f"time: {time.time() - start_time}")
+
+start = time.time()
+db.add_text_to_table("JamesChen", "Conversation", text_langchain, 256, data)
+
+data = {
+    "time_stamp" : str(datetime.now().replace(microsecond=0))
 }
+db.add_text_to_table("JamesChen", "Conversation", text_ar_vr_tech, 256, data)
 
-conv_id = data["conv_id"]
-time_stamp = data["time_stamp"]
-transcript = data["transcript"]
-min_length = 256 # characters
-
-df = pd.DataFrame(columns=["conv_id", "index_in_conv", "time_stamp", "sentence"])
-
-def split_transcript(text, min_length):
-    sentences = re.split(r'([.!?])', text)  # Keep punctuation with split
-    chunks = []
-    current_chunk = ""
-
-    for i in range(0, len(sentences) - 1, 2):  # Process sentences in pairs (sentence + punctuation)
-        sentence = sentences[i].strip() + sentences[i + 1]  # Reattach punctuation
-
-        if len(current_chunk) + len(sentence) >= min_length:
-            if current_chunk:
-                chunks.append(current_chunk.strip())  # Store current chunk
-            current_chunk = sentence  # Start new chunk
-        else:
-            current_chunk += " " + sentence  # Append sentence to current chunk
-
-    if current_chunk:  # Add any remaining text as last chunk
-        chunks.append(current_chunk.strip())
-
-    return chunks
-
-chunks = split_transcript(transcript, min_length)
-for chunk in chunks:
-    df.loc[len(df)] = [conv_id, len(df), time_stamp, chunk]
-    print(df.iloc[-1])
-
-# embeddings
-print("starting embedding calculation")
-embeddings = model.encode(df['sentence'].tolist(), normalize_embeddings=True)
-df['sentence_vector'] = embeddings.tolist()
-
-# pushing to server
-print("adding stuff to server")
-
-db.write_data_many_df("JamesChen", "Conversation", df, True)
-
-print(f"time: {time.time() - start_time}")
+print(f"time: {time.time() - start}")
 
 while True:
     continue
