@@ -14,6 +14,26 @@ from io import BytesIO
 import face_recognition
 import numpy as np
 
+def format_info(about, experiences, education):
+    lines = ["ABOUT:", "------------", about, ""]
+
+    lines.append("EXPERIENCES")
+    for exp in experiences:
+        lines.append("--------------")
+        for l in exp:
+            lines.append(l)
+        lines.append("")
+
+    lines.append("EDUCATION")
+    for edu in education:
+        lines.append("--------------")
+        for l in edu:
+            lines.append(l)
+        lines.append("")
+
+    s = "\n".join(lines)[:-1]
+    return s
+
 def get_info(client, link):
     client.get(link)
     time.sleep(1)
@@ -111,9 +131,10 @@ def get_info(client, link):
 
     return about, experiences, education
 
-def scrape(fn, ln):
+def scrape(fn, ln, headless = True):
     options = Options()
-    # options.add_argument('--headless')
+    if headless:
+        options.add_argument('--headless')
     options.add_argument('--disable-gpu')
 
     client = webdriver.Chrome(options=options)
@@ -198,25 +219,8 @@ def scrape(fn, ln):
 
 # img, link = scrape("James", "Chen")
 img, link, about, experiences, education = scrape("Kaival", "Shah")
-print(f"\n\n{link}")
 
-print("ABOUT:")
-print("------------")
-print(about)
-print()
+s = format_info(about, experiences, education)
+print(s)
 
-print("EXPERIENCE")
-for exp in experiences:
-    print("--------------")
-    for l in exp:
-        print(l)
-    print()
-
-print("EDUCATION")
-for edu in education:
-    print("--------------")
-    for l in edu:
-        print(l)
-    print()
-
-img.show()
+# img.show()
