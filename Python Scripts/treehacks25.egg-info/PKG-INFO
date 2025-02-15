@@ -1,0 +1,12 @@
+Metadata-Version: 2.2
+Name: treehacks25
+Version: 0.1.0
+Summary: TreeHacks 2025 Project
+Requires-Python: >=3.8
+Requires-Dist: fastapi
+Requires-Dist: pydantic
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: openai-whisper
+Requires-Dist: opencv-python
+Requires-Dist: mss

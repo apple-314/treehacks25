@@ -32,13 +32,9 @@ struct AudioProcessing: View {
                     VStack {
                         Spacer()
                         Button(action: {
-                            print("taking picture of person")
-                            for family in UIFont.familyNames.sorted() {
-                                print("Family: \(family)")
-                                for name in UIFont.fontNames(forFamilyName: family).sorted() {
-                                    print("  - \(name)")
-                                }
-                            }
+//                            implement it here!
+                            print("taking a picture of the person")
+                            NetworkManager.captureGesture()
                         }) {
                             Image(systemName: "camera")
                                 .resizable()
