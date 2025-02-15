@@ -42,6 +42,9 @@ class AudioProcessor: ObservableObject {
     @Published var isRecording = false
     @Published var audioLevel: Float = 0.0
     
+    // Set this to the URL of your FastAPI endpoint.
+    private let uploadURLString = "http://127.0.0.1:8000/upload_samples"
+    
     func setupAudioSession() {
         let session = AVAudioSession.sharedInstance()
         do {
@@ -70,6 +73,8 @@ class AudioProcessor: ObservableObject {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         #elseif os(macOS)
         let directory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        #else
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         #endif
         
         let fileName = "recording.wav"
@@ -82,7 +87,6 @@ class AudioProcessor: ObservableObject {
                 try FileManager.default.removeItem(at: fileURL)
             }
             // Create an AVAudioFile for writing.
-            // The file type is inferred from the .wav extension.
             audioFile = try AVAudioFile(forWriting: fileURL,
                                         settings: format.settings,
                                         commonFormat: .pcmFormatFloat32,
@@ -134,9 +138,47 @@ class AudioProcessor: ObservableObject {
             self.audioLevel = level
         }
         
-        // Print the first 10 samples to the console
-        let sampleValues = channelDataArray.prefix(10).map { String(format: "%.5f", $0) }
+        // Print every audio sample to the console.
+        let sampleValues = channelDataArray.map { String(format: "%.5f", $0) }
         print("📊 Audio Samples: [\(sampleValues.joined(separator: ", "))]")
+        
+        // Send samples to the FastAPI endpoint.
+        sendSamplesToServer(samples: channelDataArray)
+    }
+    
+    /// Sends the given array of audio samples to the FastAPI /upload_samples endpoint.
+    private func sendSamplesToServer(samples: [Float]) {
+        guard let url = URL(string: uploadURLString) else {
+            print("Invalid upload URL.")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonPayload: [String: Any] = ["samples": samples]
+        
+        do {
+            let data = try JSONSerialization.data(withJSONObject: jsonPayload, options: [])
+            request.httpBody = data
+        } catch {
+            print("Error converting samples to JSON: \(error)")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error uploading samples: \(error)")
+            } else if let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode != 200 {
+                print("Server returned status code: \(httpResponse.statusCode)")
+            } else {
+                print("Successfully uploaded \(samples.count) samples.")
+            }
+        }
+        
+        task.resume()
     }
 }
 
