@@ -1,5 +1,7 @@
 import os
 import time
+import re
+import pandas as pd
 
 import iris
 from sentence_transformers import SentenceTransformer
@@ -38,13 +40,15 @@ class VectorDatabase:
 
         # private dictionary with SQL table format for different table types
         self._table_defs = {
-            "LinkedIn" : "(type VARCHAR(255), description VARCHAR(2000), description_vector VECTOR(DOUBLE, 384))",
-            "Conversation" : "(conv_id INT, index_in_conv INT, time_stamp DATETIME, sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))"
+            "LinkedIn" : "(type VARCHAR(255), description VARCHAR(2000))",
+            "Conversation" : "(text_id INT, index INT, time_stamp DATETIME, sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
+            "Documents" : "(text_id INT, index INT, title VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))"
         }
 
         self._table_entry_types = {
-            "LinkedIn" : ["type", "description", "description_vector"],
-            "Conversation" : ["conv_id", "index_in_conv", "time_stamp", "sentence", "sentence_vector"]
+            "LinkedIn" : ["type", "description"],
+            "Conversation" : ["text_id", "index", "time_stamp", "sentence", "sentence_vector"],
+            "Documents" : ["text_id", "index", "title", "sentence", "sentence_vector"]
         }
 
     def _execute_query(self, query, params=None):
@@ -58,10 +62,17 @@ class VectorDatabase:
         else:
             # execute query with parameters
             try:
-                self._cursor.executemany(query, params)
+                self._cursor.execute(query, params)
             except:
                 print(f"error in query {query} with params {params}")
-       
+    
+    def _execute_many_query(self, query, params):
+        # execute an SQL query safely
+        try:
+            self._cursor.executemany(query, params)
+        except:
+            print(f"error in query {query} with params {params}")
+           
     # create and remove schemas and tables
     def create_schema(self, schema_name):
         # create a schema if it doesn’t exist
@@ -102,7 +113,7 @@ class VectorDatabase:
         params_list = [data_dict[c] for c in self._table_entry_types[table_name]]
         params = [tuple(params_list)]
 
-        self._execute_query(query, params)
+        self._execute_many_query(query, params)
     
     def write_data_many_df(self, schema_name, table_name, df, vec=False):
         self.create_schema(schema_name)
@@ -116,7 +127,11 @@ class VectorDatabase:
         else:
             placeholders = ",".join(["?"] * (len(self._table_entry_types[table_name])))
         
-        query = f"Insert into {schema_name}.{table_name} ({columns}) values ({placeholders})"
+        query = f"""
+            INSERT INTO {schema_name}.{table_name}
+            ({columns})
+            VALUES ({placeholders})
+        """
         
         data = []
         for index, row in df.iterrows():
@@ -125,7 +140,7 @@ class VectorDatabase:
                 tmp[-1] = str(tmp[-1])
             data.append(tuple(tmp))
         
-        self._execute_query(query, data)
+        self._execute_many_query(query, data)
     
     def read_data(self, schema_name, table_name, condition="TRUE"):
         # read data from the vector database based on a condition
@@ -155,3 +170,72 @@ class VectorDatabase:
 
         self._cursor.execute(query, [k, str(search_vec)])
         return self._cursor.fetchall()
+    
+    # get entries which match a particular column
+    def get_entries_w_col_match(self, schema_name, table_name, col_name, val):
+        query = f"""
+            SELECT * FROM {schema_name}.{table_name}
+            WHERE {col_name} = '{val}'
+        """
+        self._cursor.execute(query)
+        return self._cursor.fetchall()
+    
+    # functions specific to tables storing text and vector embeddings
+    def text_to_chunks(self, text, min_length):
+        sentences = re.split(r'([.!?])', text)  # Keep punctuation with split
+        chunks = []
+        current_chunk = ""
+
+        for i in range(0, len(sentences) - 1, 2):  # Process sentences in pairs (sentence + punctuation)
+            sentence = sentences[i].strip() + sentences[i + 1]  # Reattach punctuation
+
+            if len(current_chunk) + len(sentence) >= min_length:
+                if current_chunk:
+                    chunks.append(current_chunk.strip())  # Store current chunk
+                current_chunk = sentence  # Start new chunk
+            else:
+                current_chunk += " " + sentence  # Append sentence to current chunk
+
+        if current_chunk:  # Add any remaining text as last chunk
+            chunks.append(current_chunk.strip())
+
+        return chunks
+    
+    def add_text_to_table(self, schema_name, table_name, text, min_length, def_params):
+        self.create_schema(schema_name)
+        self.create_table(schema_name, table_name)
+
+        df = pd.DataFrame(columns=self._table_entry_types[table_name][:-1])
+        chunks = self.text_to_chunks(text, min_length)
+        
+        query = f"SELECT COUNT(*) FROM {schema_name}.{table_name}"
+        self._execute_query(query)
+        ret = self._cursor.fetchall()[0][0]
+
+        text_id = 0
+        if ret != 0:
+            query = f"""
+                SELECT TOP ? text_id
+                FROM {schema_name}.{table_name}
+                ORDER BY text_id DESC
+            """
+            self._execute_query(query, [1])
+            text_id = self._cursor.fetchall()[0][0] + 1
+
+        for chunk in chunks:
+            tmp = []
+            for x in self._table_entry_types[table_name][:-1]:
+                if x == "text_id":
+                    tmp.append(text_id)
+                elif x == "index":
+                    tmp.append(len(df))
+                elif x == "sentence":
+                    tmp.append(chunk)
+                else:
+                    tmp.append(def_params[x])
+
+            df.loc[len(df)] = tmp
+        
+        embeddings = self._model.encode(df['sentence'].tolist(), normalize_embeddings=True)
+        df['sentence_vector'] = embeddings.tolist()
+        self.write_data_many_df(schema_name, table_name, df, True)
