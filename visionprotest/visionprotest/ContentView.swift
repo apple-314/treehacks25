@@ -1,14 +1,6 @@
-//
-//  ContentView.swift
-//  visionprotest
-//
-//  Created by Kaival Shah on 2/14/25.
-//
-
 import SwiftUI
 import RealityKit
 import RealityKitContent
-import AVFoundation
 
 struct ContentView: View {
     var body: some View {
@@ -19,9 +11,7 @@ struct ContentView: View {
             Text("Vision pro test")
         }
         .padding()
+        .background(.clear)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-}
-
-#Preview(windowStyle: .automatic) {
-    ContentView()
 }

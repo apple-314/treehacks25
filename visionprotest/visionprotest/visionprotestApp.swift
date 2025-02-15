@@ -1,10 +1,4 @@
 //
-//  visionprotestApp.swift
-//  visionprotest
-//
-//  Created by Kaival Shah on 2/14/25.
-//
-
 import SwiftUI
 
 @main
@@ -14,5 +8,7 @@ struct visionprotestApp: App {
 //            ContentView()
             AudioProcessing()
         }
+        .windowStyle(.plain)
+        .defaultSize(width: .infinity, height: .infinity)
     }
 }
