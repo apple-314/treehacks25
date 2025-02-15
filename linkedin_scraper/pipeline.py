@@ -14,72 +14,102 @@ from io import BytesIO
 import face_recognition
 import numpy as np
 
-# def get_info(client, link):
-#     client.get(link)
-#     client.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-#     WebDriverWait(client, 10).until(
-#         EC.presence_of_element_located((By.TAG_NAME, "body"))  # Adjust the condition based on required elements
-#     )
-#     time.sleep(3)
-#     soup = str(BeautifulSoup(client.page_source , "lxml"))
-#     print(soup)
-#     input()
-
 def get_info(client, link):
-    """
-    Loads the LinkedIn profile at 'link', waits for key elements to load,
-    clicks any "see more" buttons to expand hidden sections, and scrolls
-    incrementally to ensure dynamic content is loaded. Returns the full HTML.
-    """
     client.get(link)
-    
-    # Wait for the profile's top card to be present (adjust XPath if needed)
-    WebDriverWait(client, 15).until(
-        EC.presence_of_element_located((By.XPATH, '//div[contains(@class, "pv-top-card")]'))
-    )
-    time.sleep(2)
-    
-    # Click any "see more" buttons that are immediately visible
-    try:
-        see_more_buttons = client.find_elements(By.XPATH, '//button[contains(@aria-label, "see more")]')
-        for btn in see_more_buttons:
-            try:
-                client.execute_script("arguments[0].click();", btn)
-                time.sleep(1)
-            except Exception as e:
-                print(f"Error clicking 'see more' button: {e}")
-    except Exception as e:
-        print(f"Error finding 'see more' buttons: {e}")
-    
-    # Incrementally scroll to the bottom to load lazy-loaded content
-    scroll_pause_time = 2
-    last_height = client.execute_script("return document.body.scrollHeight")
-    while True:
-        client.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(scroll_pause_time)
-        
-        # Optionally, try clicking any new "see more" buttons during scroll
-        try:
-            see_more_buttons = client.find_elements(By.XPATH, '//button[contains(@aria-label, "see more")]')
-            for btn in see_more_buttons:
-                try:
-                    client.execute_script("arguments[0].click();", btn)
-                    time.sleep(1)
-                except Exception as e:
-                    print(f"Error clicking 'see more' button during scroll: {e}")
-        except Exception as e:
-            print(f"Error during scroll while searching for buttons: {e}")
-        
-        new_height = client.execute_script("return document.body.scrollHeight")
-        if new_height == last_height:
-            break
-        last_height = new_height
-
-    # Allow any final dynamic content to load
-    time.sleep(2)
+    time.sleep(1)
     soup = str(BeautifulSoup(client.page_source , "lxml"))
-    print(soup)
-    input()
+
+    # with open("out.txt", "w") as f:
+    #     f.write(soup)
+
+
+    # -----
+    # ABOUT
+    # -----
+
+    about = ""
+    about_start = '''<span aria-hidden="true"><!-- -->About'''
+    s = soup.find(about_start) + len(about_start)
+    if (s != -1):
+        about_item = soup.find('''aria-hidden="true">''', s)
+        about_end = soup.find("</span>", about_item)
+        about = soup[about_item+19:about_end].replace("amp;", "").replace("<!-- -->", "").replace("<br/>", "\n")
+
+    # -----------
+    # EXPERIENCES
+    # -----------
+
+    exp_start = '''<span aria-hidden="true"><!-- -->Experience'''
+    item_start = '''<div class="display-flex align-items-center mr1 t-bold">'''
+    field_start = '''aria-hidden="true">'''
+    exp_end = '''<svg aria-hidden="true"'''
+
+    s = soup.find(exp_start) + len(exp_start)
+    fields = [m.start() for m in re.finditer(field_start, soup)]
+    fields.append(100000000)
+    items = [m.start() for m in re.finditer(item_start, soup)]
+    e = soup.find(exp_end, s)
+
+    cur_item = 0
+    done = False
+
+    experiences = []
+
+    if s != -1:
+        for i in range(len(items) - 1):
+            if (items[i] < s or items[i] > e):
+                continue
+                
+            cur_experience = []
+
+            for j in range(len(fields)):
+                if (fields[j] < items[i] or fields[j] > items[i+1] or fields[j] > e):
+                    continue
+
+                field_end = soup.find("</span>", fields[j])
+                processed_field = soup[fields[j]+19:field_end].replace("amp;", "").replace("<!-- -->", "").replace("<br/>", "\n")
+                cur_experience.append(processed_field)
+
+            experiences.append(cur_experience)
+
+    # -----------
+    # EDUCATION
+    # -----------
+
+    edu_start = '''<span aria-hidden="true"><!-- -->Education'''
+    item_start = '''<div class="display-flex align-items-center mr1 hoverable-link-text t-bold">'''
+    field_start = '''aria-hidden="true">'''
+    edu_end = '''<svg aria-hidden="true"'''
+
+    s = soup.find(edu_start) + len(edu_start)
+    fields = [m.start() for m in re.finditer(field_start, soup)]
+    fields.append(100000000)
+    items = [m.start() for m in re.finditer(item_start, soup)]
+    e = soup.find(edu_end, s)
+
+    cur_item = 0
+    done = False
+
+    education = []
+
+    if s != -1:
+        for i in range(len(items) - 1):
+            if (items[i] < s or items[i] > e):
+                continue
+                
+            cur_edu = []
+
+            for j in range(len(fields)):
+                if (fields[j] < items[i] or fields[j] > items[i+1] or fields[j] > e):
+                    continue
+
+                field_end = soup.find("</span>", fields[j])
+                processed_field = soup[fields[j]+19:field_end].replace("amp;", "").replace("<!-- -->", "").replace("<br/>", "\n")
+                cur_edu.append(processed_field)
+
+            education.append(cur_edu)
+
+    return about, experiences, education
 
 def scrape(fn, ln):
     options = Options()
@@ -142,7 +172,7 @@ def scrape(fn, ln):
             pfp = soup[s2:e2].replace("amp;", "")
 
             profiles.append([pf, pfp])
-            print(profiles[-1])
+            # print(profiles[-1])
 
             response = requests.get(pfp)
             orig_img = Image.open(BytesIO(response.content)).convert("RGB")
@@ -163,10 +193,30 @@ def scrape(fn, ln):
                     name = known_face_names[best_match_index]
 
                 if name != "Unknown":
-                    get_info(client, pf)
-                    return orig_img, pf
+                    about, experiences, education = get_info(client, pf)
+                    return orig_img, pf, about, experiences, education
 
 # img, link = scrape("James", "Chen")
-img, link = scrape("Kaival", "Shah")
-# print(f"\n\n{link}")
-# img.show()
+img, link, about, experiences, education = scrape("Kaival", "Shah")
+print(f"\n\n{link}")
+
+print("ABOUT:")
+print("------------")
+print(about)
+print()
+
+print("EXPERIENCE")
+for exp in experiences:
+    print("--------------")
+    for l in exp:
+        print(l)
+    print()
+
+print("EDUCATION")
+for edu in education:
+    print("--------------")
+    for l in edu:
+        print(l)
+    print()
+
+img.show()
