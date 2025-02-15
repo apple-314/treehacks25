@@ -23,10 +23,8 @@ from io import BytesIO
 
 app = FastAPI()
 
-# Global list to store audio samples sent from Swift
 accumulated_samples: List[float] = []
 
-# Initialize Whisper model (this will download it the first time)
 model = whisper.load_model("base")
 
 class AudioSamples(BaseModel):
@@ -106,16 +104,13 @@ async def capture_gesture(data: dict):
     The payload should be a JSON object like:
     { "timestamp": "2025-02-15T10:30:45Z" }
     """
-    # Initialize timestamps list if it doesn't exist
     if not hasattr(app, 'timestamps'):
         app.timestamps = []
-    
-    # Store the timestamp
+
     app.timestamps.append(data["timestamp"])
-    
-    # Capture and save screenshot
+
     screenshot_file = capture_single_screenshot()
-    orig_img, pf, about, experiences, education = await scrape("Kaival", "Shah", screenshot_file)
+    orig_img, pf, about, experiences, education = await scrape("James", "Chen", screenshot_file)
     
     if pf is None:
         return {

@@ -1,10 +1,9 @@
 import SwiftUI
 
 class NetworkManager {
-    static func captureGesture() {
-        // URL of your FastAPI endpoint for capturing gestures
+    static func captureGesture(completion: @escaping (Result<Profile, Error>) -> Void) {
         guard let url = URL(string: "http://127.0.0.1:8000/capture_gesture") else {
-            print("Invalid URL")
+            completion(.failure(URLError(.badURL)))
             return
         }
         
@@ -12,7 +11,6 @@ class NetworkManager {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // Generate a timestamp in ISO8601 format.
         let timestamp = ISO8601DateFormatter().string(from: Date())
         let body: [String: String] = ["timestamp": timestamp]
         
@@ -21,18 +19,32 @@ class NetworkManager {
             request.httpBody = jsonData
         } catch {
             print("Error creating JSON data: \(error)")
+            completion(.failure(error))
             return
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error capturing gesture: \(error)")
+                completion(.failure(error))
                 return
             }
-            
-            if let data = data,
-               let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) {
-                print("API Response: \(jsonResponse)")
+            guard let data = data else {
+                let error = URLError(.badServerResponse)
+                completion(.failure(error))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let captureResponse = try decoder.decode(CaptureResponse.self, from: data)
+                print("API Response Message: \(captureResponse.message)")
+                completion(.success(captureResponse.profile))
+            } catch {
+                print("Error decoding JSON: \(error)")
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Raw JSON: \(jsonString)")
+                }
+                completion(.failure(error))
             }
         }.resume()
     }
