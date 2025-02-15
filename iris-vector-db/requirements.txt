@@ -15,3 +15,7 @@ setuptools
 fastapi
 pyngrok
 uvicorn
+opencv-python
+face_recognition
+selenium
+lxml

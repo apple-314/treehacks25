@@ -144,7 +144,7 @@ class VectorDatabase:
         self._cursor.close()
         self._conn.close()
 
-    # get top k queries matching some search phrase
+    # get top k entries matching some search phrase
     def vector_search(self, schema_name, table_name, search_phrase, k):
         search_vec = self._model.encode(search_phrase, normalize_embeddings=True).tolist()
         query = f"""

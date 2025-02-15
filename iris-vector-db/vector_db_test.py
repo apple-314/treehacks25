@@ -21,17 +21,15 @@ db.create_table(schema_name, table_name)
 # Insert data
 data = {
     "type" : "Experience",
-    "title" : "Engineer",
-    "description" : "built cool stuff"
+    "description" : "Engineer\nbuilt cool stuff",
 }
-db.write_data(schema_name, table_name, data)
+db.write_data_dict(schema_name, table_name, data)
 
 data = {
     "type" : "Bio",
-    "title" : "",
-    "description" : "love to build cool stuff"
+    "description" : "love to build cool stuff",
 }
-db.write_data(schema_name, table_name, data)
+db.write_data_dict(schema_name, table_name, data)
 
 # Read data
 results = db.read_data(schema_name, table_name)
