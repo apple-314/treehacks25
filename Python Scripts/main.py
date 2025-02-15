@@ -3,11 +3,16 @@ from pydantic import BaseModel
 from typing import List
 import numpy as np
 from scipy.io.wavfile import write
+import whisper
+import os
 
 app = FastAPI()
 
 # Global list to store audio samples sent from Swift
 accumulated_samples: List[float] = []
+
+# Initialize Whisper model (this will download it the first time)
+model = whisper.load_model("base")
 
 class AudioSamples(BaseModel):
     samples: List[float]
@@ -48,10 +53,15 @@ async def finalize_audio():
     # Write the audio data to a WAV file.
     write(output_file, sample_rate, audio_int16)
 
-    # Optionally clear the accumulator after finalizing the WAV file.
-    sample_count = len(audio_int16)
-    accumulated_samples = []
+    # Transcribe the audio using Whisper
+    try:
+        result = model.transcribe(output_file)
+        transcription = result["text"].strip()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Transcription failed: {str(e)}")
+    finally:
+        # Clear the accumulator after finalizing
+        accumulated_samples.clear()
 
-    return {
-        "message": f"WAV file saved as '{output_file}' with {sample_count} samples at {sample_rate} Hz."
-    }
+    print(transcription)
+    return {"transcription": transcription}
