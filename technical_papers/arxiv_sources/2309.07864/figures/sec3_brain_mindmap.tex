@@ -1,0 +1,98 @@
+\begin{figure*}[!ht]
+\scriptsize
+    \begin{adjustbox}{width=\textwidth}
+        \begin{forest}
+        for tree={
+                forked edges,
+                grow'=0,
+                draw,
+                rounded corners,
+                node options={align=center},
+                text width=2.7cm,
+                s sep=6pt,
+                calign=edge midpoint, 
+            },
+                [Brain, fill=gray!45, parent
+                    [Natural Language Interaction \S\ref{sec:Natural Language Interaction},  for tree={brain}
+                        [High-quality generation, brain
+                            [{Bang et al. \cite{DBLP:journals/corr/abs-2302-04023}, Fang et al. \cite{DBLP:journals/corr/abs-2304-01746}, Lin et al. \cite{DBLP:journals/corr/abs-2305-13711}, Lu et al. \cite{DBLP:conf/eacl/LuZZWY23}, etc.}, brain_work]
+                        ]
+                        [Deep understanding, brain
+                            [{Buehler et al. \cite{DBLP:journals/corr/abs-2109-01355}, Lin et al. \cite{DBLP:conf/acl/LinFKD22}, Shapira et al. \cite{DBLP:journals/corr/abs-2305-14763}, etc.}, brain_work]
+                        ]
+                    ]
+                    [Knowledge \S\ref{sec:knowledge},   brain
+                        [Knowledge in LLM-based agent,  brain
+                            [Pretrain model, brain
+                                [{Hill et al. \cite{DBLP:conf/naacl/HillCK16}, Collobert et al. \cite{DBLP:journals/jmlr/CollobertWBKKK11}, Kaplan et al. \cite{DBLP:journals/corr/abs-2001-08361}, Roberts et al. \cite{DBLP:conf/emnlp/RobertsRS20}, Tandon et al.  \cite{DBLP:journals/sigmod/TandonVM17}, etc.}, brain_work] 
+                            ]
+                            [Linguistic knowledge, brain
+                                [{Vulic et al. \cite{DBLP:conf/emnlp/VulicPLGK20}, Hewitt et al. \cite{DBLP:conf/naacl/HewittM19}, Rau et al. \cite{DBLP:journals/ipm/RauJZ89}, Yang et al. \cite{DBLP:conf/dasfaa/YangCCHL16}, Beloucif et al. \cite{DBLP:conf/emnlp/BeloucifB21}, Zhang et al. \cite{DBLP:journals/corr/abs-2103-03125}, Bang et al. \cite{DBLP:journals/corr/abs-2302-04023}, etc.}, brain_work] 
+                            ]
+                            [Commensense knowledge, brain
+                                [{Safavi et al. \cite{DBLP:conf/emnlp/SafaviK21}, Jiang et al. \cite{DBLP:journals/tacl/JiangXAN20}, Madaan \cite{DBLP:conf/emnlp/MadaanZ0YN22}, etc.}, brain_work] 
+                            ]
+                            [Actionable knowledge, brain
+                                [{Xu et al. \cite{DBLP:conf/pldi/Xu0NH22}, Cobbe et al. \cite{DBLP:journals/corr/abs-2110-14168}, Thirunavukarasu et al. \cite{thirunavukarasu2023large}, Lai et al. \cite{DBLP:conf/icml/Lai0WZZZYFWY23}, Madaan et al. \cite{DBLP:conf/emnlp/MadaanZ0YN22}, etc.}, brain_work] 
+                            ]
+                        ]
+                        [Potential issues of knowledge,  brain
+                            [Edit wrong and outdated knowledge,  brain
+                                [{AlKhamissi et al. \cite{DBLP:journals/corr/abs-2204-06031}, Kemker et al. \cite{DBLP:conf/aaai/KemkerMAHK18}, Cao et al. \cite{DBLP:conf/emnlp/CaoAT21}, Yao et al. \cite{DBLP:journals/corr/abs-2305-13172}, Mitchell et al. \cite{DBLP:conf/icml/MitchellLBMF22}, etc.}, brain_work] 
+                            ]
+                            [Mitigate hallucination,  brain
+                                [{Manakul et al. \cite{DBLP:journals/corr/abs-2303-08896}, Qin et al. \cite{DBLP:journals/corr/abs-2304-08354}, Li et al. \cite{DBLP:journals/corr/abs-2305-14623}, Gou et al. \cite{DBLP:journals/corr/abs-2305-11738}, etc.}, brain_work]
+                            ]
+                        ]
+                    ]
+                    [Memory \S\ref{sec:memory}, brain
+                        [Memory capability,  brain
+                            [Raising the length limit of Transformers, brain
+                                [{BART \cite{DBLP:conf/acl/LewisLGGMLSZ20}, Park et al. \cite{DBLP:conf/acl/ParkVS22}, LongT5 \cite{DBLP:conf/naacl/GuoAUONSY22}, CoLT5 \cite{DBLP:journals/corr/abs-2303-09752}, Ruoss et al. \cite{DBLP:conf/acl/RuossDGGCBLV23}, etc. }, brain_work]
+                            ]
+                            [Summarizing memory, brain
+                                [{Generative Agents \cite{DBLP:journals/corr/abs-2304-03442}, SCM \cite{DBLP:journals/corr/abs-2304-13343}, Reflexion \cite{DBLP:journals/corr/abs-2303-11366}, Memorybank \cite{DBLP:journals/corr/abs-2305-10250}, ChatEval \cite{DBLP:journals/corr/abs-2308-07201}, etc.}, brain_work]
+                            ]
+                            [Compressing memories with vectors or data structures, brain
+                                [{ChatDev \cite{DBLP:journals/corr/abs-2307-07924}, GITM \cite{DBLP:journals/corr/abs-2305-17144}, RET-LLM \cite{DBLP:journals/corr/abs-2305-14322}, AgentSims \cite{DBLP:journals/corr/abs-2308-04026}, ChatDB \cite{DBLP:journals/corr/abs-2306-03901}, etc.}, brain_work]
+                            ]                          
+                        ]
+                        [Memory retrieval,  brain
+                            [Automated retrieval, brain
+                                [{Generative Agents \cite{DBLP:journals/corr/abs-2304-03442}, Memorybank \cite{DBLP:journals/corr/abs-2305-10250}, AgentSims \cite{DBLP:journals/corr/abs-2308-04026}, etc.}, brain_work]
+                            ]
+                            [Interactive retrieval, brain
+                                [{Memory Sandbox\cite{DBLP:journals/corr/abs-2308-01542}, ChatDB \cite{DBLP:journals/corr/abs-2306-03901}, etc.}, brain_work]
+                            ]
+                        ]
+                    ]
+                    [Reasoning \& Planning  \S\ref{sec:reasoning and planning},  brain
+                        [Reasoning, brain
+                            [{CoT \cite{DBLP:conf/nips/Wei0SBIXCLZ22}, Zero-shot-CoT \cite{DBLP:conf/nips/KojimaGRMI22}, Self-Consistency \cite{DBLP:conf/iclr/0002WSLCNCZ23}, Self-Polish \cite{DBLP:journals/corr/abs-2305-14497}, Selection-Inference \cite{DBLP:conf/iclr/CreswellSH23}, Self-Refine \cite{DBLP:journals/corr/abs-2303-17651}, etc.}, brain_work]
+                        ]
+                        [Planing, brain
+                            [Plan formulation, brain
+                                [{Least-to-Most \cite{DBLP:conf/iclr/ZhouSHWS0SCBLC23}, SayCan \cite{DBLP:conf/corl/IchterBCFHHHIIJ22}, HuggingGPT \cite{DBLP:journals/corr/abs-2303-17580}, ToT \cite{DBLP:journals/corr/abs-2305-10601}, PET \cite{DBLP:journals/corr/abs-2305-02412}, DEPS \cite{DBLP:journals/corr/abs-2302-01560}, RAP \cite{DBLP:journals/corr/abs-2305-14992}, SwiftSage \cite{DBLP:journals/corr/abs-2305-17390}, LLM+P \cite{DBLP:journals/corr/abs-2304-11477}, MRKL \cite{DBLP:journals/corr/abs-2205-00445}, etc.}, brain_work]  
+                            ]
+                            [Plan reflection, brain
+                                [{LLM-Planner \cite{DBLP:journals/corr/abs-2212-04088}, Inner Monologue \cite{DBLP:conf/corl/HuangXXCLFZTMCS22}, ReAct \cite{DBLP:conf/iclr/YaoZYDSN023}, ChatCoT \cite{DBLP:journals/corr/abs-2305-14323}, AI Chains \cite{DBLP:conf/chi/WuTC22}, Voyager \cite{DBLP:journals/corr/abs-2305-16291}, Zhao et al. \cite{DBLP:journals/corr/abs-2303-08268}, SelfCheck \cite{DBLP:journals/corr/abs-2308-00436}, etc.}, brain_work]  
+                            ]
+                        ]
+                    ]
+                    [Transferability \& Generalization \S\ref{sec:transferability and generalization},  brain
+                        [Unseen task generalization, brain
+                            [{T0 \cite{DBLP:conf/iclr/SanhWRBSACSRDBX22}, FLAN \cite{DBLP:conf/iclr/WeiBZGYLDDL22}, InstructGPT \cite{DBLP:conf/nips/Ouyang0JAWMZASR22}, Chung et al. \cite{DBLP:journals/corr/abs-2210-11416}, etc.}, brain_work]
+                        ]
+                        [In-context learning, brain
+                            [{GPT-3 \cite{DBLP:conf/nips/BrownMRSKDNSSAA20}, Wang et al. \cite{DBLP:conf/cvpr/WangWCS023}, Wang et al. \cite{DBLP:journals/corr/abs-2301-02111}, Dong et al. \cite{DBLP:journals/corr/abs-2301-00234}, etc.}, brain_work]
+                        ]
+                        [Continual learning, brain
+                            [{Ke et al. \cite{Ke2022ContinualLO}, Wang et al. \cite{Wang2023ACS}, Razdaibiedina et al. \cite{razdaibiedina2023progressive}, Voyager \cite{DBLP:journals/corr/abs-2305-16291}, etc.}, brain_work]
+                        ]
+                    ]   
+                ]
+        \end{forest}
+    \end{adjustbox} 
+    \caption{Typology of the brain module. }
+    \label{fig:sec3_mindmap_brain}
+\end{figure*}

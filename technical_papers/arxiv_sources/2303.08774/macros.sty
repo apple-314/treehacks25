@@ -1,0 +1,20 @@
+\makeatletter
+\long\def\@makecaption#1#2{
+  \vskip 0.8ex
+  \setbox\@tempboxa\hbox{\small {\bf #1:} #2}
+  \parindent 1.5em  %% How can we use the global value of this???
+  \dimen0=\hsize
+  \advance\dimen0 by -3em
+  \ifdim \wd\@tempboxa >\dimen0
+  \hbox to \hsize{
+    \parindent 0em
+    \hfil 
+    \parbox{\dimen0}{\def\baselinestretch{0.96}\small
+      {\bf #1.} #2
+      %%\unhbox\@tempboxa
+    } 
+    \hfil}
+  \else \hbox to \hsize{\hfil \box\@tempboxa \hfil}
+  \fi
+}
+\makeatother

@@ -1,0 +1,236 @@
+\usepackage{times,wrapfig,amsmath,amsfonts,bm,color,enumitem,algorithm,algpseudocode}
+
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{pbox}
+
+\newcommand\tTab{\rule{0pt}{2.5ex}}       % Top strut
+\newcommand\bTab{\rule[-1.5ex]{0pt}{0pt}} % Bottom strut
+
+\newcommand{\w}{\ensuremath{\mathbf{w}}}
+\newcommand{\W}{\ensuremath{\mathbf{W}}}
+\renewcommand{\u}{\ensuremath{\mathbf{u}}}
+\renewcommand{\v}{\ensuremath{\mathbf{v}}}
+\newcommand{\x}{\ensuremath{\mathbf{x}}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}} \:}
+\newcommand{\argmax}[1]{\underset{#1}{\mathrm{argmax}} \:}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\gb}[1]{\boldsymbol{#1}}
+\newcommand{\hinge}[1]{\left[#1\right]_+}
+
+\newcommand{\valpha}{\gb{\alpha}}
+\newcommand{\vtheta}{\gb{\theta}}
+\newcommand{\vmu}{\gb{\mu}}
+\newcommand{\vnu}{\gb{\nu}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\proj}{P}
+
+\newcommand{\lnd}[1]{\ln\left(\frac{#1}{\delta}\right)}
+\newcommand{\slnd}[1]{\ln({#1}/{\delta})}
+
+\newcommand{\one}[1]{\left[\!\left[ #1 \right]\!\right]}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+
+\newcommand{\etal}{{\it et al}}
+
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\abs}[1]{\left\lvert{#1}\right\rvert}
+\newcommand{\vnorm}[1]{\left\lVert{#1}\right\rVert} % vector norm
+\newcommand{\mnorm}[1]{\left\lVert{#1}\right\rVert} % matrix norm
+\newcommand{\loss}[2]{\ell({#1};{#2})}
+\newcommand{\regzr}[1]{R({#1})} % regularizer
+\newcommand{\generr}[1]{\ell({#1})} % generalization error of a predictor
+\newcommand{\emperr}[1]{{\hat{\ell}}({#1})}
+
+\newcommand{\wml}{\hat{w}} % w minimizing training regularized objective
+\newcommand{\waprox}{w^*} % w minimizing regularized gen error
+\newcommand{\walg}{\tilde{w}} % output of algorithm
+
+\newcommand{\optacc}{\epsilon_{\text{acc}}}
+\newcommand{\apperr}{\epsilon_{\text{aprx}}}
+\newcommand{\esterr}{\epsilon_{\text{est}}}
+\newcommand{\opterr}{\epsilon_{\text{opt}}}
+
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\trace}{\operatorname{trace}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\conv}{\operatorname{conv}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\GG}{\mathcal{G}}
+
+\newcommand{\ceil}[1]{\lceil #1\rceil}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+
+\newcommand{\mip}[2]{{\left\langle{#1},{#2}\right\rangle}}
+
+
+\newcommand{\defeq}{\triangleq}
+
+
+\mathchardef\hyphen="2D
+
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{pbox}
+
+\newcommand{\T}{^\top}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\EE}{\mathbb{E}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{Def}{Definition}
+\newtheorem{note}{Note}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+\newcommand{\mathA}{\mathbb{A}}
+\newcommand{\mathB}{\mathbb{B}}
+\newcommand{\mathC}{\mathbb{C}}
+\newcommand{\mathD}{\mathbb{D}}
+\newcommand{\mathE}{\mathbb{E}}
+\newcommand{\mathF}{\mathbb{F}}
+\newcommand{\mathG}{\mathbb{G}}
+\newcommand{\mathH}{\mathbb{H}}
+\newcommand{\mathI}{\mathbb{I}}
+\newcommand{\mathJ}{\mathbb{J}}
+\newcommand{\mathK}{\mathbb{K}}
+\newcommand{\mathL}{\mathbb{L}}
+\newcommand{\mathM}{\mathbb{M}}
+\newcommand{\mathN}{\mathbb{N}}
+\newcommand{\mathO}{\mathbb{O}}
+\newcommand{\mathP}{\mathbb{P}}
+\newcommand{\mathQ}{\mathbb{Q}}
+\newcommand{\mathR}{\mathbb{R}}
+\newcommand{\mathS}{\mathbb{S}}
+\newcommand{\mathT}{\mathbb{T}}
+\newcommand{\mathU}{\mathbb{U}}
+\newcommand{\mathV}{\mathbb{V}}
+\newcommand{\mathW}{\mathbb{W}}
+\newcommand{\mathX}{\mathbb{X}}
+\newcommand{\mathY}{\mathbb{Y}}
+\newcommand{\mathZ}{\mathbb{Z}}
+
+\newcommand{\veca}{\mathbf{a}}
+\newcommand{\vecd}{\mathbf{d}}
+\newcommand{\vece}{\mathbf{e}}
+\newcommand{\vecf}{\mathbf{f}}
+\newcommand{\vecg}{\mathbf{g}}
+\newcommand{\vech}{\mathbf{h}}
+\newcommand{\veci}{\mathbf{i}}
+\newcommand{\vecj}{\mathbf{j}}
+\newcommand{\veck}{\mathbf{k}}
+\newcommand{\vecl}{\mathbf{l}}
+\newcommand{\vecm}{\mathbf{m}}
+\newcommand{\vecn}{\mathbf{n}}
+\newcommand{\veco}{\mathbf{o}}
+\newcommand{\vecp}{\mathbf{p}}
+\newcommand{\vecq}{\mathbf{q}}
+\newcommand{\vecr}{\mathbf{r}}
+\newcommand{\vecs}{\mathbf{s}}
+\newcommand{\vect}{\mathbf{t}}
+\newcommand{\vecu}{\mathbf{u}}
+\newcommand{\vecv}{\mathbf{v}}
+\newcommand{\vecw}{\mathbf{w}}
+\newcommand{\vecx}{\mathbf{x}}
+\newcommand{\vecy}{\mathbf{y}}
+\newcommand{\vecz}{\mathbf{z}}
+
+\newcommand{\numinputs}{d}
+\newcommand{\numoutputs}{k}
+\newcommand{\numhiddens}{H}
+\newcommand{\mU}{\boldsymbol{U}}
+\newcommand{\mV}{\boldsymbol{V}}
+\newcommand{\mW}{\boldsymbol{W}}
+\newcommand{\rect}{\text{rect}}
+\newcommand{\gpath}{\text{path}}
+\newcommand{\layer}{\text{layer}}
+\newcommand{\DAG}{\text{DAG}}
+\newcommand{\dout}{d_\text{out}}
+\newcommand{\din}{d_\text{in}}
+\newcommand{\vin}{v_{\textrm{in}}}
+\newcommand{\vout}{v_{\textrm{out}}}
+\newcommand{\relu}{\sigma_{\textsc{relu}}}
+\newcommand{\gnorm}[1]{\norm{#1}}
+\newcommand{\mugeom}{\mu^{\textit{geo}}}
+\newcommand{\pathr}{\phi}
+\newcommand{\convexnn}{\nu}
+\newcommand{\net}{{\rm net}}
+\newcommand{\removed}[1]{}
+\newcommand{\natinote}[1]{{\Large [[ {\color{red} {#1} -- Nati} ]]}}
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\In}{\text{in}}
+\newcommand{\Out}{\text{out}}
+\newcommand{\vecX}{\mathbf{x}}
+\newcommand{\vecH}{\mathbf{h}}
+\newcommand{\vecW}{\mathbf{w}}
+\newcommand{\vecY}{\mathbf{y}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\vh}{{\vec h}}
+\newcommand{\vw}{{\vec w}}
+\newcommand{\vx}{{\vec x}}
+\newcommand{\vz}{{\vec z}}
+\newcommand{\vphi}{\boldsymbol{\phi}}
+\newcommand{\vpi}{\boldsymbol{\pi}}
+\newcommand{\vecGam}{\boldsymbol{\gamma}}
+\newcommand{\vecDelta}{\boldsymbol{\Delta}}
+\newcommand{\vecb}{\vec b}
+\newcommand{\vecc}{\vec c}
+\newcommand{\tV}{\widetilde{V}}
+\newcommand{\tW}{\widetilde{\vec W}}
+\newcommand{\tH}{\widetilde{\vec h}}
+\arraycolsep=2pt
+
+\newcommand{\margin}{\text{margin}}
+\newcommand{\hatl}{\widehat{L}}
+\newcommand{\eps}{\boldsymbol{\nu}}
+\newcommand{\err}{Err}
+\newcommand{\error}{\epsilon}
+\newcommand{\hatD}{\widehat{D}}
+\newcommand{\sh}{\text{Sh}}

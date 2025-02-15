@@ -1,0 +1,15 @@
+\section{Discriminative capabilities}
+\label{sec:discriminative}
+
+
+Discrimination is a component of intelligence that allows an agent to make distinctions between different stimuli, concepts, and situations. This ability, in turn, enables the agent to understand and respond to various aspects of their environment in a more effective manner. For example, the ability to discriminate between different types of foods can help an animal identify which are safe to eat and which could be poisonous. Overall, the ability to discriminate is important because it allows one to make more accurate judgments and decisions, which is a crucial component of intelligence. We also stress that through this paper, we have discussed the generative capabilities of \DV. It is often assumed that stronger generative capabilities only refines discriminative capabilities.
+
+In this section, we first motivate \DV's discriminative prowess by describing its performance identifying personally identifiable information in sentences. We then proceed to discuss how {\DV} is adept at answering challenging questions (that may result in misconceptions) when compared to its contemporaries. {\DV} is also able to understand why a (model generated) answer is closer to the ``gold'' answer; these explanations are mostly sound. By doing so, it is able to determine which answer in a pair is closer to the gold answer, and this determination reasonably aligns with a human performing the same task. 
+
+Throughout this section, when we refer to GPT-3, we refer to the model \texttt{text-davinci-002}; this model is instruction fine-tuned.
+
+
+\paragraph{Important Disclaimer:} As explained in the Introduction (see footnote 1 for example) our experiments were run on an early version of GPT-4. In particular all quantitative results will be different on the final version of GPT-4, although the general trends remain the same. We provide numbers here for illustration purpose only, the definitive benchmark results can be found in OpenAI's technical report \cite{gpt4}.
+
+\input{contents/7.1_pii}
+\input{contents/7.2_misconceptions}

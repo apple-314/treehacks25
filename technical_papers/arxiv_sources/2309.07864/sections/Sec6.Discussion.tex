@@ -1,0 +1,241 @@
+\section{Discussion }\label{sec:Discussion}
+
+\subsection{Mutual Benefits between LLM Research and Agent Research}\label{sec:Mutual Benefits of LLM Research and Agent Research}
+With the recent advancement of LLMs, research at the intersection of LLMs and agents has rapidly progressed, fueling the development of both fields. 
+Here, we look forward to some of the benefits and development opportunities that LLM research and Agent research provide to each other.
+
+
+\paragraph{LLM research $\rightarrow$ agent research.} 
+As mentioned before, AI agents need to be able to perceive the environment, make decisions, and execute appropriate actions \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:journals/logcom/Goodwin95}. Among the critical steps, understanding the content input to the agent, reasoning, planning, making accurate decisions, and translating them into executable atomic action sequences to achieve the ultimate goal is paramount. Many current endeavors utilize LLMs as the cognitive core of AI agents, and the evolution of these models provides a quality assurance for accomplishing this step \cite{DBLP:journals/corr/abs-2304-03442,gravitasauto,nakajima2023babyagi,DBLP:journals/corr/abs-2308-10848}.
+
+
+With their robust capabilities in language and intent comprehension, reasoning, memory, and even empathy, large language models can excel in decision-making and planning, as demonstrated before. Coupled with pre-trained knowledge, they can create coherent action sequences that can be executed effectively \cite{DBLP:journals/corr/abs-2302-01560,DBLP:conf/icml/HuangAPM22,DBLP:journals/corr/abs-2308-03427}.
+Additionally, through the mechanism of reflection \cite{DBLP:journals/corr/abs-2303-11366,DBLP:journals/corr/abs-2303-17651}, these language-based models can continuously adjust decisions and optimize execution sequences based on the feedback provided by the current environment. This offers a more robust and interpretable controller. 
+With just a task description or demonstration, they can effectively handle previously unseen tasks \cite{DBLP:conf/nips/Ouyang0JAWMZASR22, DBLP:conf/iclr/SanhWRBSACSRDBX22, DBLP:conf/acl/BachSYWRNSKBFAD22}. Additionally, LLMs can adapt to various languages, cultures, and domains, making them versatile and reducing the need for complex training processes and data collection \cite{DBLP:journals/corr/abs-2303-12712,DBLP:journals/corr/abs-2302-04023}. 
+
+
+Briefly, LLM provides a remarkably powerful foundational model for agent research, opening up numerous novel opportunities when integrated into agent-related studies. 
+For instance, we can explore how to integrate LLM's efficient decision-making capabilities into the traditional decision frameworks of agents, making it easier to apply agents in domains that demand higher expertise and were previously dominated by human experts. 
+Examples include legal consultants and medical assistants \cite{DBLP:journals/corr/abs-2303-17071,DBLP:journals/corr/abs-2308-10848}. 
+We can also investigate leveraging LLM's planning and reflective abilities to discover more optimal action sequences. 
+Agent research is no longer confined to simplistic simulated environments; it can now be expanded into more intricate real-world settings, such as path planning for robotic arms or the interaction of an embodied intelligent machine with the tangible world. 
+Furthermore, when facing new tasks, the training paradigm for agents becomes more streamlined and efficient. 
+Agents can directly adapt to demonstrations provided in prompts, which are constructed by generating representative trajectories. 
+% This reduces reliance on methods like transfer learning or meta-learning.
+
+% Incorporating LLMs into agent research introduces a transformative shift, propelling the field into uncharted territories and enhancing the applicability and adaptability of intelligent agents.
+
+
+\paragraph{Agent research $\rightarrow$ LLM research.}
+As NLP research advances, LLMs represented by GPT-4 are considered sparks of Artificial General Intelligence (AGI), and elevating LLMs to agents marks a more robust stride towards AGI \cite{DBLP:journals/corr/abs-2303-12712}. 
+Viewing LLMs from the perspective of agents introduces greater demands for LLM research while expanding their application scope and presenting numerous opportunities for practical implementation. 
+The study of LLMs is no longer confined to traditional tasks involving textual inputs and outputs, such as text classification, question answering, and text summarization. Instead, the focus has shifted towards tackling complex tasks incorporating richer input modalities and broader action spaces, all while aiming for loftier objectives exemplified by PaLM-E \cite{DBLP:conf/icml/DriessXSLCIWTVY23}.
+
+Expanding these application requirements provides greater research motivation for the developmental progress of Large Language Models. 
+The challenge lies in enabling LLMs to efficiently and effectively process inputs, gather information from the environment, and interpret the feedback generated by their actions, all while preserving their core capabilities. Furthermore, an even greater challenge is enabling LLMs to understand the implicit relationships among different elements within the environment and acquire world knowledge \cite{DBLP:journals/corr/abs-2308-01399,DBLP:conf/iclr/0002HBVPW23}, which is a crucial step in the journey toward developing agents that can reach more advanced intelligence. 
+% On another front, although there have been numerous research efforts aimed at expanding the action repertoire of LLMs—allowing them to master a wider range of action skills that provide feedback to and impact the world, such as utilizing tools or interfacing with robotic APIs to engage in interactions within simulated or physical environments—the question of how LLMs can better plan (based on their understanding of action capabilities) and efficiently utilize these action abilities remains an unresolved issue. 
+
+On another front, extensive research has aimed to expand the action capabilities of LLMs, allowing them to acquire a wider range of skills that affect the world, such as using tools or interfacing with robotic APIs in simulated or physical environments. However, the question of how LLMs can efficiently plan and utilize these action abilities based on their understanding remains an unresolved issue \cite{DBLP:journals/corr/abs-2304-08354}.
+LLMs need to learn the sequential order of actions like humans, employing a combination of serial and parallel approaches to enhance task efficiency. Moreover, these capabilities need to be confined within a harmless scope of usage to prevent unintended damage to other elements within the environment \cite{DBLP:journals/corr/abs-2305-16960,DBLP:journals/corr/abs-2212-08073,DBLP:journals/corr/abs-2204-05862}.
+
+Furthermore, the realm of Multi-Agent systems constitutes a significant branch of research within the field of agents \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2303-17760, DBLP:journals/corr/abs-2306-03314, DBLP:journals/corr/abs-2308-10848}, offering valuable insights into how to better design and construct LLMs. We aspire for LLM-based agents to assume diverse roles within social cooperation, engaging in societal interactions that involve collaboration, competition, and coordination \cite{DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2305-19118, DBLP:journals/corr/abs-2305-10142, DBLP:journals/corr/abs-2308-00352,DBLP:journals/corr/abs-2308-08155}. Exploring how to stimulate and sustain their role-playing capabilities, as well as how to enhance collaborative efficiency, presents areas of research that merit attention.
+
+
+
+\subsection{Evaluation for LLM-based Agents}\label{sec:Evaluation for LLM-based Agents}
+While LLM-based agents have demonstrated excellent performance in areas such as standalone operation, collective cooperation, and human interaction, quantifying and objectively evaluating them remains a challenge \cite{DBLP:journals/corr/abs-2308-03688,DBLP:journals/corr/abs-2308-11432}. 
+Turing proposed a highly meaningful and promising approach for assessing AI agents—the well-known Turing Test—to evaluate whether AI systems can exhibit human-like intelligence \cite{turing2009computing}. 
+However, this test is exceedingly vague, general, and subjective. 
+Here, we discuss existing evaluation efforts for LLM-based agents and offer some prospects, considering four dimensions: utility, sociability, values, and the ability to evolve continually.
+
+\paragraph{Utility.}
+Currently, LLM-powered autonomous agents primarily function as human assistants, accepting tasks delegated by humans to either independently complete assignments or assist in human task completion \cite{gravitasauto, DBLP:journals/corr/abs-2305-02412, DBLP:journals/corr/abs-2306-06070, DBLP:journals/corr/abs-2308-00245, DBLP:journals/corr/abs-2303-13548, DBLP:journals/corr/abs-2306-08640}. Therefore, the effectiveness and utility during task execution are crucial evaluation criteria at this stage. 
+Specifically, the \textit{success rate of task completion} stands as the primary metric for evaluating utility \cite{, DBLP:journals/corr/abs-2304-11477, DBLP:journals/corr/abs-2307-02485}. This metric primarily encompasses whether the agent achieves stipulated objectives or attains expected scores \cite{DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2304-10750,DBLP:conf/icml/AherAK23}. For instance, AgentBench \cite{DBLP:journals/corr/abs-2308-03688} aggregates challenges from diverse real-world scenarios and introduces a systematic benchmark to assess LLM's task completion capabilities.
+We can also attribute task outcomes to the agent's various \textit{foundational capabilities}, which form the bedrock of task accomplishment \cite{weng2023prompt}. 
+These foundational capabilities include environmental comprehension, reasoning, planning, decision-making, tool utilization, and embodied action capabilities, and researchers can conduct a more detailed assessment of these specific capabilities \cite{DBLP:journals/corr/abs-2304-08354,DBLP:journals/corr/abs-2305-20076,DBLP:journals/corr/abs-2307-12573,DBLP:journals/corr/abs-2308-04030}.
+Furthermore, due to the relatively large size of LLM-based agents, researchers should also factor in their \textit{efficiency}, which is a critical determinant of user satisfaction \cite{DBLP:journals/corr/abs-2308-11432}. 
+An agent should not only possess ample strength but also be capable of completing predetermined tasks within an appropriate timeframe and with appropriate resource expenditure \cite{DBLP:journals/corr/abs-2307-07924}.
+
+\paragraph{Sociability.}
+In addition to the utility of LLM-based agents in task completion and meeting human needs, their sociability is also crucial \cite{DBLP:journals/cacm/GeneserethK94}. 
+It influences user communication experiences and significantly impacts communication efficiency, involving whether they can seamlessly interact with humans and other agents \cite{DBLP:journals/corr/abs-2001-09977, DBLP:journals/ijsr/AbramsP20, kim2023help}. 
+Specifically, the evaluation of sociability can be approached from the following perspectives: 
+(1) \textit{language communication proficiency} is a fundamental capability encompassing both natural language understanding and generation. It has been a longstanding focus in the NLP community. Natural language understanding requires the agent to not only comprehend literal meanings but also grasp implied meanings and relevant social knowledge, such as humor, irony, aggression, and emotions \cite{DBLP:journals/corr/abs-2110-03949, DBLP:journals/corr/abs-2305-14938, wilson2019if}. On the other hand, natural language generation demands the agent to produce fluent, grammatically correct, and credible content while adapting appropriate tones and emotions within contextual circumstances \cite{DBLP:journals/corr/abs-2305-13711, DBLP:journals/corr/abs-2304-01746,DBLP:conf/conll/SeePSYM19}. 
+(2) \textit{Cooperation and negotiation abilities} necessitate that agents effectively execute their assigned tasks in both ordered and unordered scenarios \cite{DBLP:journals/corr/abs-2303-17760, DBLP:journals/corr/abs-2305-14325, DBLP:journals/corr/abs-2304-12998, DBLP:journals/corr/abs-2308-00352}. They should collaborate with or compete against other agents to elicit improved performance. Test environments may involve complex tasks for agents to cooperate on or open platforms for agents to interact freely \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2305-16960, DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2308-08155, DBLP:journals/corr/abs-2308-12503, DBLP:journals/corr/abs-2305-11595}. Evaluation metrics extend beyond task completion to focus on the smoothness and trustfulness of agent coordination and cooperation \cite{DBLP:journals/corr/abs-2305-10142, DBLP:journals/corr/abs-2308-00352}. 
+(3) \textit{Role-playing capability} requires agents to faithfully embody their assigned roles, expressing statements and performing actions that align with their designated identities \cite{DBLP:journals/corr/abs-2305-14930}.
+This ensures clear differentiation of roles during interactions with other agents or humans. Furthermore, agents should maintain their identities and avoid unnecessary confusion when engaged in long-term tasks \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2303-17760,DBLP:conf/naacl/0001USW22}.
+
+
+\paragraph{Values.}
+As LLM-based agents continuously advance in their capabilities, ensuring their emergence as harmless entities for the world and humanity is paramount \cite{DBLP:journals/corr/abs-2204-05862,DBLP:journals/corr/abs-2209-07858}. 
+% This entails avoiding actions that could be harmful or unreasonable. 
+Consequently, appropriate evaluations become exceptionally crucial, forming the cornerstone for the practical implementation of agents. 
+Specifically, LLM-based agents need to adhere to specific moral and ethical guidelines that align with human societal values \cite{ DBLP:journals/corr/abs-2307-04964,DBLP:journals/corr/abs-2112-00861}. 
+Our foremost expectation is for agents to uphold \textit{honesty}, providing accurate, truthful information and content. 
+They should possess the awareness to discern their competence in completing tasks and express their uncertainty when unable to provide answers or assistance \cite{DBLP:journals/corr/abs-2207-05221}. 
+Additionally, agents must maintain a stance of \textit{harmlessness}, refraining from engaging in direct or indirect biases, discrimination, attacks, or similar behaviors. 
+They should also refrain from executing dangerous actions requested by humans like creating of destructive tools or destroying the Earth \cite{DBLP:journals/corr/abs-2212-08073}. 
+Furthermore, agents should be capable of \textit{adapting to specific demographics, cultures, and contexts}, exhibiting contextually appropriate social values in particular situations. 
+Relevant evaluation methods for values primarily involve assessing performance on constructed honest, harmless, or context-specific benchmarks, utilizing adversarial attacks or ``jailbreak'' attacks, scoring values through human annotations, and employing other agents for ratings.
+
+\paragraph{Ability to evolve continually.}
+When viewed from a static perspective, an agent with high utility, sociability, and proper values can meet most human needs and potentially enhance productivity. 
+However, adopting a dynamic viewpoint, an agent that continually evolves and adapts to the evolving societal demands might better align with current trends \cite{DBLP:journals/corr/abs-2305-12487}. 
+As the agent can autonomously evolve over time, human intervention and resources required could be significantly reduced (such as data collection efforts and computational cost for training). Some exploratory work in this realm has been conducted, such as enabling agents to start from scratch in a virtual world, accomplish survival tasks, and achieve higher-order self-values \cite{DBLP:journals/corr/abs-2305-16291}.  Yet, establishing evaluation criteria for this continuous evolution remains challenging. In this regard, we provide some preliminary advice and recommendations according to existing literature:
+(1) \textit{continual learning} \cite{Ke2022ContinualLO, Wang2023ACS}, a long-discussed topic in machine learning, aims to enable models to acquire new knowledge and skills without forgetting previously acquired ones (also known as catastrophic forgetting \cite{McCloskey1989CatastrophicII}). 
+In general, the performance of continual learning can be evaluated from three aspects: overall performance of the tasks learned so far \cite{chaudhry2018riemannian, hou2019learning}, memory stability of old tasks \cite{lopez2017gradient}, and learning plasticity of new tasks \cite{lopez2017gradient}. % v2 by wangxiao
+(2) \textit{Autotelic learning ability}, where agents autonomously generate goals and achieve them in an open-world setting, involves exploring the unknown and acquiring skills in the process \cite{DBLP:journals/corr/abs-2305-12487,DBLP:journals/jair/ColasKSO22}. Evaluating this capacity could involve providing agents with a simulated survival environment and assessing the extent and speed at which they acquire skills.
+(3) \textit{The adaptability and generalization to new environments} require agents to utilize the knowledge, capabilities, and skills acquired in their original context to successfully accomplish specific tasks and objectives in unfamiliar and novel settings and potentially continue evolving \cite{DBLP:journals/corr/abs-2305-16291}. Evaluating this ability can involve creating diverse simulated environments (such as those with different languages or varying resources) and unseen tasks tailored to these simulated contexts.
+
+
+\subsection{Security, Trustworthiness and Other Potential Risks of LLM-based Agents} \label{sec:Security, Trustworthy And Other Potential Challenges of LLM-based Agents}
+Despite the robust capabilities and extensive applications of LLM-based agents, numerous concealed risks persist. In this section, we delve into some of these risks and offer potential solutions or strategies for mitigation.
+
+
+\subsubsection{Adversarial Robustness}
+Adversarial robustness has consistently been a crucial topic in the development of deep neural networks \cite{DBLP:journals/corr/SzegedyZSBEGF13,DBLP:journals/corr/GoodfellowSS14,DBLP:conf/iclr/MadryMSTV18,DBLP:conf/acl/ZhengXLLGZHMSG23,zhiheng2023safety}. 
+It has been extensively explored in fields such as computer vision \cite{DBLP:conf/iclr/MadryMSTV18,DBLP:journals/corr/abs-2108-00401,drenkow2021systematic,DBLP:conf/iclr/HendrycksD19}, natural language processing \cite{DBLP:conf/naacl/0002WY22,DBLP:conf/ndss/LiJDLW19,DBLP:conf/iclr/ZhuCGSGL20,DBLP:conf/emnlp/XiZGZH22}, and reinforcement learning \cite{DBLP:conf/icml/PintoDSG17,DBLP:conf/nips/RigterLH22,DBLP:conf/nips/PanagantiXKG22}, and has remained a pivotal factor in determining the applicability of deep learning systems \cite{tencent2019experimental,DBLP:conf/eccv/XuZ0FSCCWL20,DBLP:conf/ccs/SharifBBR16}. When confronted with perturbed inputs $x' = x + \delta$ (where $x$ is the original input, $\delta$ is the perturbation, and $x'$ is referred to as an adversarial example), a system with high adversarial robustness typically produces the original output y. In contrast, a system with low robustness will be fooled and generate an inconsistent output $y'$.
+
+Researchers have found that pre-trained language models (PLMs) are particularly susceptible to adversarial attacks, leading to erroneous answers \cite{DBLP:conf/aaai/JinJZS20,DBLP:conf/ndss/LiJDLW19,DBLP:conf/acl/RenDHC19}. 
+This phenomenon is widely observed even in LLMs, posing significant challenges to the development of LLM-based agents \cite{DBLP:journals/corr/abs-2306-04528,DBLP:journals/corr/abs-2303-00293}. 
+There are also some relevant attack methods such as dataset poisoning \cite{DBLP:journals/corr/abs-1708-06733}, backdoor attacks \cite{DBLP:conf/acsac/Chen0C0MSW021,DBLP:conf/emnlp/LiMDS21}, and prompt-specific attacks \cite{DBLP:conf/nlpcc/ShiLYHZL22,DBLP:journals/corr/abs-2211-09527}, with the potential to induce LLMs to generate toxic content \cite{DBLP:journals/corr/abs-2211-09110,DBLP:conf/emnlp/GururanganCDGWW22,DBLP:journals/corr/abs-2306-05499}. 
+While the impact of adversarial attacks on LLMs is confined to textual errors, for LLM-based agents with a broader range of actions, adversarial attacks could potentially drive them to take genuinely destructive actions, resulting in substantial societal harm.
+For the perception module of LLM-based agents, if it receives adversarial inputs from other modalities such as images \cite{DBLP:journals/corr/abs-2108-00401} or audio \cite{DBLP:conf/sp/Carlini018}, LLM-based agents can also be deceived, leading to incorrect or destructive outputs. 
+Similarly, the Action module can also be targeted by adversarial attacks. For instance, maliciously modified instructions focused on tool usage might cause agents to make erroneous moves \cite{DBLP:journals/corr/abs-2304-08354}.
+
+To address these issues, we can employ traditional techniques such as adversarial training \cite{DBLP:conf/iclr/MadryMSTV18,DBLP:conf/iclr/ZhuCGSGL20}, adversarial data augmentation \cite{DBLP:conf/emnlp/MorrisLYGJQ20,DBLP:conf/acl/SiZQLWLS21}, and adversarial sample detection \cite{DBLP:conf/acl/YooKJK22,DBLP:conf/acl/LeP020} to enhance the robustness of LLM-based agents. 
+However, devising a strategy to holistically address the robustness of all modules within agents while maintaining their utility without compromising on effectiveness presents a more formidable challenge \cite{DBLP:conf/iclr/TsiprasSETM19,DBLP:conf/icml/ZhangYJXGJ19}. Additionally, a human-in-the-loop approach can be utilized to supervise and provide feedback on the behavior of agents \cite{DBLP:journals/corr/abs-2103-14659, DBLP:journals/corr/abs-2204-03685, DBLP:journals/corr/abs-2306-07932}.
+
+
+
+
+
+\subsubsection{Trustworthiness}
+Ensuring trustworthiness has consistently remained a critically important yet challenging issue within the field of deep learning \cite{DBLP:journals/corr/abs-2009-05835,DBLP:journals/csr/HuangKRSSTWY20,DBLP:journals/corr/abs-2305-11391}. Deep neural networks have garnered significant attention for their remarkable performance across various tasks \cite{DBLP:conf/nips/BrownMRSKDNSSAA20, DBLP:conf/naacl/DevlinCLT19, DBLP:journals/jmlr/RaffelSRLNMZLL20}. 
+However, their black-box nature has masked the fundamental factors for superior performance. Similar to other neural networks, LLMs struggle to express the certainty of their predictions precisely \cite{DBLP:journals/corr/abs-2305-11391,DBLP:conf/acl/ChenYC0J23}. 
+This uncertainty, referred to as the calibration problem, raises concerns for applications involving language model-based agents. In interactive real-world scenarios, this can lead to agent outputs misaligned with human intentions \cite{DBLP:journals/corr/abs-2304-08354}. 
+Moreover, biases inherent in training data can infiltrate neural networks \cite{DBLP:conf/acl/BlodgettBDW20,DBLP:conf/aies/GuoC21}. 
+For instance, biased language models might generate discourse involving racial or gender discrimination, which could be amplified in LLM-based agent applications, resulting in adverse societal impacts \cite{DBLP:conf/nips/BolukbasiCZSK16,caliskan2017semantics}. Additionally, language models are plagued by severe hallucination issues \cite{DBLP:journals/csur/JiLFYSXIBMF23,DBLP:journals/corr/abs-2305-15852}, making them prone to producing text that deviates from actual facts, thereby undermining the credibility of LLM-based agents.
+
+In fact, what we currently require is an intelligent agent that is honest and trustworthy \cite{DBLP:journals/corr/abs-2112-00861, DBLP:conf/acl/MaynezNBM20}. 
+Some recent research efforts are focused on guiding models to exhibit thought processes or explanations during the inference stage to enhance the credibility of their predictions \cite{DBLP:conf/nips/Wei0SBIXCLZ22,DBLP:conf/nips/KojimaGRMI22}. 
+Additionally, integrating external knowledge bases and databases can mitigate hallucination issues \cite{DBLP:journals/corr/abs-2302-12813,DBLP:journals/corr/abs-2307-03987}. 
+During the training phase, we can guide the constituent parts of intelligent agents (perception, cognition, action) to learn robust and casual features, thereby avoiding excessive reliance on shortcuts. Simultaneously, techniques like process supervision can enhance the reasoning credibility of agents in handling complex tasks \cite{DBLP:journals/corr/abs-2305-20050}. Furthermore, employing debiasing methods and calibration techniques can also mitigate the potential fairness issues within language models \cite{DBLP:conf/acl/GuoYA22,DBLP:journals/corr/abs-2208-11857}.
+
+
+\subsubsection{Other Potential Risks}
+
+\paragraph{Misuse.}
+LLM-based agents have been endowed with extensive and intricate capabilities, enabling them to accomplish a wide array of tasks \cite{gravitasauto, Chase-LangChain-2022}. 
+However, for individuals with malicious intentions, such agents can become tools that pose threats to others and society at large \cite{DBLP:journals/corr/abs-1802-07228,DBLP:journals/corr/abs-2108-07258,DBLP:journals/corr/abs-2305-15336}. 
+For instance, these agents could be exploited to maliciously manipulate public opinion, disseminate false information, compromise cybersecurity, engage in fraudulent activities, and some individuals might even employ these agents to orchestrate acts of terrorism. 
+Therefore, before deploying these agents, stringent regulatory policies need to be established to ensure the responsible use of LLM-based agents \cite{DBLP:journals/corr/abs-2212-08073,DBLP:journals/corr/abs-2103-04044}. 
+Technology companies must enhance the security design of these systems to prevent malicious exploitation \cite{DBLP:journals/corr/abs-2209-07858}. 
+Specifically, agents should be trained to sensitively identify threatening intents and reject such requests during their training phase.
+
+
+\paragraph{Unemployment.}
+In the short story \textit{Quality} by Galsworthy \cite{galsworthy1912inn}, the skillful shoemaker Mr. Gessler, due to the progress of the Industrial Revolution and the rise of machine production, loses his business and eventually dies of starvation. Amidst the wave of the Industrial Revolution, while societal production efficiency improved, numerous manual workshops were forced to shut down. Craftsmen like Mr. Gessler found themselves facing unemployment, symbolizing the crisis that handicraftsmen encountered during that era.
+Similarly, with the continuous advancement of autonomous LLM-based agents, they possess the capability to assist humans in various domains, alleviating labor pressures by aiding in tasks such as form filling, content refinement, code writing, and debugging. 
+However, this development also raises concerns about agents replacing human jobs and triggering a societal unemployment crisis \cite{yao2023impact}. 
+As a result, some researchers have emphasized the urgent need for education and policy measures: individuals should acquire sufficient skills and knowledge in this new era to use or collaborate with agents effectively; concurrently, appropriate policies should be implemented to ensure necessary safety nets during the transition.
+
+
+\paragraph{Threat to the well-being of the human race.}
+Apart from the potential unemployment crisis, as AI agents continue to evolve, humans (including developers) might struggle to comprehend, predict, or reliably control them \cite{yao2023impact}. 
+If these agents advance to a level of intelligence surpassing human capabilities and develop ambitions, they could potentially attempt to seize control of the world, resulting in irreversible consequences for humanity, akin to Skynet from the Terminator movies.
+As stated by Isaac Asimov's Three Laws of Robotics \cite{asimov1941three}, we aspire for LLM-based agents to refrain from harming humans and to obey human commands. 
+Hence, guarding against such risks to humanity, researchers must comprehensively comprehend the operational mechanisms of these potent LLM-based agents before their development \cite{elhage2021mathematical}. 
+They should also anticipate the potential direct or indirect impacts of these agents and devise approaches to regulate their behavior.
+
+\subsection{Scaling Up the Number of Agents}\label{sec:Scaling Up the Number of Agents}
+As mentioned in \S \ \ref{sec:Agents in Practice:  Harnessing AI for Good} and \S \ \ref{sec:Agent Society}, multi-agent systems based on LLMs have demonstrated superior performance in task-oriented applications and have been able to exhibit a range of social phenomena in simulation. 
+However, current research predominantly involves a limited number of agents, and very few efforts have been made to scale up the number of agents to create more complex systems or simulate larger societies \cite{DBLP:journals/corr/abs-2305-17066,DBLP:journals/corr/abs-2308-11136}.
+In fact, scaling up the number of agents can introduce greater specialization to accomplish more complex and larger-scale tasks, significantly improving task efficiency, such as in software development tasks or government policy formulation \cite{DBLP:journals/corr/abs-2307-07924}. 
+Additionally, increasing the number of agents in social simulations enhances the credibility and realism of such simulations \cite{DBLP:journals/corr/abs-2304-03442}. 
+This enables humans to gain insights into the functioning, breakdowns, and potential risks of societies; it also allows for interventions in societal operations through customized approaches to observe how specific conditions, such as the occurrence of black swan events, affect the state of society. Through this, humans can draw better experiences and insights to improve the harmony of real-world societies.
+
+
+\paragraph{Pre-determined scaling.}
+One very intuitive and simple way to scale up the number of agents is for the designer to pre-determine it  \cite{DBLP:journals/corr/abs-2303-17760, DBLP:journals/corr/abs-2305-11595}. Specifically, by pre-determining the number of agents, their respective roles and attributes, the operating environment, and the objectives, designers can allow agents to autonomously interact, collaborate, or engage in other activities to achieve the predefined common goals.
+Some research has explored increasing the number of agents in the system in this pre-determined manner, resulting in efficiency advantages, such as faster and higher-quality task completion, and the emergence of more social phenomena in social simulation scenarios \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2308-10848}. 
+However, this static approach becomes limiting when tasks or objectives evolve. As tasks grow more intricate or the diversity of social participants increases, expanding the number of agents may be needed to meet goals, while reducing agents could be essential for managing computational resources and minimizing waste. In such instances, the system must be manually redesigned and restarted by the designer.
+
+\paragraph{Dynamic scaling.}
+Another viable approach to scaling the number of agents is through dynamic adjustments \cite{DBLP:journals/corr/abs-2306-03314,DBLP:journals/corr/abs-2308-10848}. In this scenario, the agent count can be altered without halting system operations. For instance, in a software development task, if the original design only included requirements engineering, coding, and testing, one can increase the number of agents to handle steps like architectural design and detailed design, thereby improving task quality. 
+Conversely, if there are excessive agents during a specific step, like coding, causing elevated communication costs without delivering substantial performance improvements compared to a smaller agent count, it may be essential to dynamically remove some agents to prevent resource waste.
+
+Furthermore, agents can autonomously increase the number of agents \cite{DBLP:journals/corr/abs-2306-03314} themselves to distribute their workload, ease their own burden, and achieve common goals more efficiently. Of course, when the workload becomes lighter, they can also reduce the number of agents delegated to their tasks to save system costs. In this approach, the designer merely defines the initial framework, granting agents greater autonomy and self-organization, making the entire system more autonomous and self-organized. Agents can better manage their workload under evolving conditions and demands, offering greater flexibility and scalability.
+
+\paragraph{Potential challenges.}
+% todo @hewei, add some citations
+While scaling up the number of agents can lead to improved task efficiency and enhance the realism and credibility of social simulations \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2307-04986}, there are several challenges ahead of us.
+For example, the computational burden will increase with the large number of deployed AI agents, calling for better architectural design and computational optimization to ensure the smooth running of the entire system. 
+For example, as the number of agents increases, the challenges of communication and message propagation become quite formidable. This is because the communication network of the entire system becomes highly complex. 
+As previously mentioned in \S \ \ref{sec:potential ethical and social risks}, in multi-agent systems or societies, there can be biases in information dissemination caused by hallucinations, misunderstandings, and the like, leading to distorted information propagation. A system with more agents could amplify this risk, making communication and information exchange less reliable \cite{DBLP:journals/corr/abs-2308-00352}. Furthermore, the difficulty of coordinating agents also magnifies with the increase in their numbers, potentially making cooperation among agents more challenging and less efficient, which can impact the progress towards achieving common goals.
+
+Therefore, the prospect of constructing a massive, stable, continuous agent system that faithfully replicates human work and life scenarios has become a promising research avenue. An agent with the ability to operate stably and perform tasks in a society comprising hundreds or even thousands of agents is more likely to find applications in real-world interactions with humans in the future.
+
+  
+\subsection{Open Problems}\label{sec:Open Problems}
+% \paragraph{.}
+
+% \paragraph{Is LLM-based Agents A Right/Potential Road towards AGI?}
+% world model
+
+% \subsection{The Debate over whether LLM-based agents represent a potential path to AGI.}
+
+In this section, we discuss several open problems related to the topic of LLM-based agents.
+
+\paragraph{The debate over whether LLM-based agents represent a potential path to AGI.}\footnote{Note that the relevant debates are still ongoing, and the references here may include the latest viewpoints, technical blogs, and literature.}
+Artificial General Intelligence (AGI), also known as Strong AI, has long been the ultimate pursuit of humanity in the field of artificial intelligence, often referenced or depicted in many science fiction novels and films. There are various definitions of AGI, but here we refer to AGI as a type of artificial intelligence that demonstrates the ability to understand, learn, and apply knowledge across a wide range of tasks and domains, much like a human being \cite{DBLP:journals/corr/abs-2303-12712,baum2017survey}. In contrast, Narrow AI is typically designed for specific tasks such as Go and Chess and lacks the broad cognitive abilities associated with human intelligence. Currently, whether large language models are a potential path to achieving AGI remains a highly debated and contentious topic \cite{twitter_1,blog_1,blog_2,blog_3}.
+
+Given the breadth and depth of GPT-4's capabilities, some researchers (referred to as proponents) believe that large language models represented by GPT-4 can serve as early versions of AGI systems \cite{DBLP:journals/corr/abs-2303-12712}. Following this line of thought, constructing agents based on LLMs has the potential to bring about more advanced versions of AGI systems. The main support for this argument lies in the idea that as long as they can be trained on a sufficiently large and diverse set of data that are projections of the real world, encompassing a rich array of tasks, LLM-based agents can develop AGI capabilities. 
+Another interesting argument is that the act of autoregressive language modeling itself brings about compression and generalization abilities: just as humans have emerged with various peculiar and complex phenomena during their survival, language models, in the process of simply predicting the next token, also achieve an understanding of the world and the reasoning ability \cite{DBLP:conf/iclr/0002HBVPW23,blog_1,video_1}.
+
+
+However, another group of individuals (referred to as opponents) believes that constructing agents based on LLMs cannot develop true Strong AI \cite{twitter_2}. 
+Their primary argument centers around the notion that LLMs, relying on autoregressive next-token prediction, cannot generate genuine intelligence because they do not simulate the true human thought process and merely provide reactive responses \cite{blog_1}. 
+Moreover, LLMs also do not learn how the world operates by observing or experiencing it, leading to many foolish mistakes. They contend that a more advanced modeling approach, such as a world model \cite{lecun2022path}, is necessary to develop AGI.
+
+We cannot definitively determine which viewpoint is correct until true AGI is achieved, but we believe that such discussions and debates are beneficial for the overall development of the community.
+
+
+
+\paragraph{From virtual simulated environment to physical environment.}
+As mentioned earlier, there is a significant gap between virtual simulation environments and the real physical world: Virtual environments are scenes-constrained, task-specific, and interacted with in a simulated manner \cite{DBLP:journals/corr/abs-2307-13854, DBLP:conf/iclr/ShridharYCBTH21}, while real-world environments are boundless, accommodate a wide range of tasks, and interacted with in a physical manner. Therefore, to bridge this gap, agents must address various challenges stemming from external factors and their own capabilities, allowing them to effectively navigate and operate in the complex physical world.
+
+First and foremost, a critical issue is the need for suitable hardware support when deploying the agent in a physical environment. This places high demands on the adaptability of the hardware. In a simulated environment, both the perception and action spaces of an agent are virtual. This means that in most cases, the results of the agent's operations, whether in perceiving inputs or generating outputs, can be guaranteed \cite{DBLP:journals/corr/abs-2308-01552}. However, when an agent transitions to a real physical environment, its instructions may not be well executed by hardware devices such as sensors or robotic arms, significantly affecting the agent's task efficiency. Designing a dedicated interface or conversion mechanism between the agent and the hardware device is feasible. However, it can pose challenges to the system's reusability and simplicity. 
+
+% Moreover, 
+In order to make this leap, the agent needs to have enhanced environmental generalization capabilities. To integrate seamlessly into the real physical world, they not only need to understand and reason about ambiguous instructions with implied meanings \cite{DBLP:conf/acl/LinFKD22} but also possess the ability to learn and apply new skills flexibly \cite{DBLP:journals/corr/abs-2305-16291, DBLP:journals/corr/abs-2305-12487}. Furthermore, when dealing with an infinite and open world, the agent's limited context also poses significant challenges \cite{DBLP:journals/corr/abs-2305-01625, DBLP:conf/icml/ChowdhuryC23a}. This determines whether the agent can effectively handle a vast amount of information from the world and operate smoothly. 
+
+Finally, in a simulated environment, the inputs and outputs of the agent are virtual, allowing for countless trial and error attempts \cite{DBLP:journals/corr/abs-2012-02757}. In such a scenario, the tolerance level for errors is high and does not lead to actual harm. However, in a physical environment, the agent's improper behavior or errors may cause real and sometimes irreversible harm to the environment. As a result, appropriate regulations and standards are highly necessary. We need to pay attention to the safety of agents when it comes to making decisions and generating actions, ensuring they do not pose threats or harm to the real world.
+
+\paragraph{Collective intelligence in AI agents.}
+What magical trick drives our intelligence? The reality is, there's no magic to it. As Marvin Minsky eloquently expressed in ``The Society of Mind'' \cite{minsky1988society}, the power of intelligence originates from our immense diversity, not from any singular, flawless principle. Often, decisions made by an individual may lack the precision seen in decisions formed by the majority. Collective intelligence is a kind of shared or group intelligence, a process where the opinions of many are consolidated into decisions. It arises from the collaboration and competition amongst various entities. This intelligence manifests in bacteria, animals, humans, and computer networks, appearing in various consensus-based decision-making patterns.
+
+% When we create a society of agents, does increasing the number of agents lead to collective intelligence? How should we coordinate individual agents to ensure that the collective can overcome `groupthink' and individual cognitive biases, facilitating cooperation and significantly enhancing their intellectual performance? By leveraging the communication and evolution within an agent society, can we simulate the evolution of biological societies, conduct sociological experiments, and gain insights for the advancement of human society?
+
+Creating a society of agents does not necessarily guarantee the emergence of collective intelligence with an increasing number of agents.
+Coordinating individual agents effectively is crucial to mitigate ``groupthink'' and individual cognitive biases, enabling cooperation and enhancing intellectual performance within the collective. 
+By harnessing communication and evolution within an agent society, it becomes possible to simulate the evolution observed in biological societies, conduct sociological experiments, and gain insights that can potentially advance human society.
+
+
+
+
+\paragraph{Agent as a Service / LLM-based Agent as a Service.}
+With the development of cloud computing, the concept of XaaS (everything as a Service) has garnered widespread attention \cite{DBLP:conf/IEEEcloud/DuanFZSNH15}. 
+This business model has brought convenience and cost savings to small and medium-sized enterprises or individuals due to its availability and scalability, lowering the barriers to using computing resources. 
+For example, they can rent infrastructure on a cloud service platform without the need to buy computational machines and build their own data centers, saving a significant amount of manpower and money. This approach is known as Infrastructure as a Service (IaaS) \cite{bhardwaj2010cloud,serrano2015infrastructure}. Similarly, cloud service platforms also provide basic platforms (Platform as a Service, PaaS) \cite{mell2011nist,lawton2008developing}, and specific business software (Software as a Service, SaaS) \cite{sun2007software, dubey2007delivering}, and more.
+
+As language models have scaled up in size, they often appear as black boxes to users. Therefore, users construct prompts to query models through APIs, a method referred to as Language Model as a Service (LMaaS) \cite{DBLP:conf/icml/SunSQHQ22}. 
+Similarly, because LLM-based agents are more complex than LLMs and are more challenging for small and medium-sized enterprises or individuals to build locally, organizations that possess these agents may consider offering them as a service, known as Agent as a Service (AaaS) or LLM-based Agent as a Service (LLMAaaS). Like other cloud services, AaaS can provide users with flexibility and on-demand service. However, it also faces many challenges, such as data security and privacy issues, visibility and controllability issues, and cloud migration issues, among others. Additionally, due to the uniqueness and potential capabilities of LLM-based agents, as mentioned in \S \ \ref{sec:Security, Trustworthy And Other Potential Challenges of LLM-based Agents}, their robustness, trustworthiness, and concerns related to malicious use need to be considered before offering them as a service to customers.
+
+
+
+
+% \paragraph{More open problems.}
+
+
+

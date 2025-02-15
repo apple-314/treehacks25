@@ -1,0 +1,343 @@
+\begin{thebibliography}{10}\itemsep=-1pt
+
+\bibitem{aka2021measuring}
+Osman Aka, Ken Burke, Alex B{\"a}uerle, Christina Greer, and Margaret Mitchell.
+\newblock Measuring model biases in the absence of ground truth.
+\newblock {\em arXiv preprint arXiv:2103.03417}, 2021.
+
+\bibitem{Barbu2019ObjectNetAL}
+Andrei Barbu, D. Mayo, Julian Alverio, William Luo, Christopher Wang, Dan
+  Gutfreund, J. Tenenbaum, and Boris Katz.
+\newblock Objectnet: A large-scale bias-controlled dataset for pushing the
+  limits of object recognition models.
+\newblock In {\em NeurIPS}, 2019.
+
+\bibitem{bello2021revisiting}
+Irwan Bello, William Fedus, Xianzhi Du, Ekin~D Cubuk, Aravind Srinivas,
+  Tsung-Yi Lin, Jonathon Shlens, and Barret Zoph.
+\newblock Revisiting resnets: Improved training and scaling strategies.
+\newblock {\em arXiv preprint arXiv:2103.07579}, 2021.
+
+\bibitem{beyer2020imagenet}
+Lucas Beyer, Olivier~J. Hénaff, Alexander Kolesnikov, Xiaohua Zhai, and Aäron
+  van~den Oord.
+\newblock Are we done with imagenet?
+\newblock {\em arXiv preprint arXiv:2006.07159}, 2020.
+
+\bibitem{big_vision}
+Lucas Beyer, Xiaohua Zhai, and Alexander Kolesnikov.
+\newblock Big vision.
+\newblock \url{https://github.com/google-research/big_vision}, 2022.
+
+\bibitem{gpt3}
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared~D Kaplan, Prafulla
+  Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+  Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon
+  Child, Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens Winter, Chris
+  Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess,
+  Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever,
+  and Dario Amodei.
+\newblock Language models are few-shot learners.
+\newblock In {\em NeurIPS}, 2020.
+
+\bibitem{brown2020language}
+Tom~B Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla
+  Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+  et~al.
+\newblock Language models are few-shot learners.
+\newblock {\em arXiv preprint arXiv:2005.14165}, 2020.
+
+\bibitem{carion2020endtoend}
+Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander
+  Kirillov, and Sergey Zagoruyko.
+\newblock End-to-end object detection with transformers.
+\newblock {\em arXiv preprint arXiv:2005.12872}, 2020.
+
+\bibitem{dino}
+Mathilde Caron, Hugo Touvron, Ishan Misra, Herv{\'{e}} J{\'{e}}gou, Julien
+  Mairal, Piotr Bojanowski, and Armand Joulin.
+\newblock Emerging properties in self-supervised vision transformers.
+\newblock {\em CoRR}, abs/2104.14294, 2021.
+
+\bibitem{chen2020big}
+Ting Chen, Simon Kornblith, Kevin Swersky, Mohammad Norouzi, and Geoffrey
+  Hinton.
+\newblock Big self-supervised models are strong semi-supervised learners.
+\newblock {\em arXiv preprint arXiv:2006.10029}, 2020.
+
+\bibitem{cordonnier2020}
+Jean-Baptiste Cordonnier, Andreas Loukas, and Martin Jaggi.
+\newblock On the relationship between self-attention and convolutional layers.
+\newblock In {\em ICLR}, 2020.
+
+\bibitem{cortes1995support}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock {\em Machine learning}, 1995.
+
+\bibitem{coatnet}
+Zihang Dai, Hanxiao Liu, Quoc~V. Le, and Mingxing Tan.
+\newblock Coatnet: Marrying convolution and attention for all data sizes.
+\newblock {\em CoRR}, abs/2106.04803, 2021.
+
+\bibitem{imagenet}
+J. {Deng}, W. {Dong}, R. {Socher}, L. {Li}, {Kai Li}, and {Li Fei-Fei}.
+\newblock Imagenet: A large-scale hierarchical image database.
+\newblock In {\em CVPR}, 2009.
+
+\bibitem{devlin2019bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem{dosovitskiy2020}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
+  Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg
+  Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby.
+\newblock {An Image is Worth 16x16 Words: Transformers for Image Recognition at
+  Scale}.
+\newblock In {\em ICLR}, 2021.
+
+\bibitem{grill2020bootstrap}
+Jean-Bastien Grill, Florian Strub, Florent Altché, Corentin Tallec, Pierre~H.
+  Richemond, Elena Buchatskaya, Carl Doersch, Bernardo~Avila Pires,
+  Zhaohan~Daniel Guo, Mohammad~Gheshlaghi Azar, Bilal Piot, Koray Kavukcuoglu,
+  Rémi Munos, and Michal Valko.
+\newblock Bootstrap your own latent: A new approach to self-supervised
+  learning.
+\newblock {\em arXiv preprint arXiv:2006.07733}, 2020.
+
+\bibitem{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em CVPR}, 2016.
+
+\bibitem{henighan2020scaling}
+Tom Henighan, Jared Kaplan, Mor Katz, Mark Chen, Christopher Hesse, Jacob
+  Jackson, Heewoo Jun, Tom~B Brown, Prafulla Dhariwal, Scott Gray, et~al.
+\newblock Scaling laws for autoregressive generative modeling.
+\newblock {\em arXiv preprint arXiv:2010.14701}, 2020.
+
+\bibitem{gpipe}
+Yanping Huang, Youlong Cheng, Ankur Bapna, Orhan Firat, Dehao Chen, Mia Chen,
+  HyoukJoong Lee, Jiquan Ngiam, Quoc~V Le, Yonghui Wu, and zhifeng Chen.
+\newblock Gpipe: Efficient training of giant neural networks using pipeline
+  parallelism.
+\newblock In {\em NeurIPS}, 2019.
+
+\bibitem{jia2021scaling}
+Chao Jia, Yinfei Yang, Ye Xia, Yi-Ting Chen, Zarana Parekh, Hieu Pham, Quoc~V.
+  Le, Yunhsuan Sung, Zhen Li, and Tom Duerig.
+\newblock Scaling up visual and vision-language representation learning with
+  noisy text supervision.
+\newblock {\em arXiv preprint arXiv:2102.05918}, 2021.
+
+\bibitem{kaplan2020scaling}
+Jared Kaplan, Sam McCandlish, Tom Henighan, Tom~B Brown, Benjamin Chess, Rewon
+  Child, Scott Gray, Alec Radford, Jeffrey Wu, and Dario Amodei.
+\newblock Scaling laws for neural language models.
+\newblock {\em arXiv preprint arXiv:2001.08361}, 2020.
+
+\bibitem{kolesnikov2019big}
+Alexander Kolesnikov, Lucas Beyer, Xiaohua Zhai, J. Puigcerver, Jessica Yung,
+  S. Gelly, and N. Houlsby.
+\newblock {Big Transfer (BiT): General Visual Representation Learning}.
+\newblock In {\em ECCV}, 2020.
+
+\bibitem{cifar}
+Alex Krizhevsky.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, 2009.
+
+\bibitem{lee2019set}
+Juho Lee, Yoonho Lee, Jungtaek Kim, Adam Kosiorek, Seungjin Choi, and Yee~Whye
+  Teh.
+\newblock Set transformer: A framework for attention-based
+  permutation-invariant neural networks.
+\newblock In {\em ICML}, 2019.
+
+\bibitem{gshard}
+Dmitry Lepikhin, HyoukJoong Lee, Yuanzhong Xu, Dehao Chen, Orhan Firat, Yanping
+  Huang, Maxim Krikun, Noam Shazeer, and Zhifeng Chen.
+\newblock Gshard: Scaling giant models with conditional computation and
+  automatic sharding.
+\newblock {\em arXiv preprint arXiv:2006.16668}, 2020.
+
+\bibitem{instagram}
+Dhruv Mahajan, Ross Girshick, Vignesh Ramanathan, Kaiming He, Manohar Paluri,
+  Yixuan Li, Ashwin Bharambe, and Laurens van~der Maaten.
+\newblock Exploring the limits of weakly supervised pretraining.
+\newblock In {\em ECCV}, September 2018.
+
+\bibitem{pets}
+Omkar~M. Parkhi, Andrea Vedaldi, Andrew Zisserman, and C.~V. Jawahar.
+\newblock Cats and dogs.
+\newblock In {\em CVPR}, 2012.
+
+\bibitem{pham2020meta}
+Hieu Pham, Zihang Dai, Qizhe Xie, Minh-Thang Luong, and Quoc~V. Le.
+\newblock Meta pseudo labels.
+\newblock {\em arXiv preprint arXiv:2003.10580}, 2020.
+
+\bibitem{polyak}
+B.~T. Polyak and A.~B. Juditsky.
+\newblock Acceleration of stochastic approximation by averaging.
+\newblock {\em SIAM Journal on Control and Optimization}, 30(4):838--855, 1992.
+
+\bibitem{radford2021learning}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock {\em arXiv preprint arXiv:2103.00020}, 2021.
+
+\bibitem{zero_optimizer}
+Samyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, and Yuxiong He.
+\newblock Zero: memory optimizations toward training trillion parameter models.
+\newblock In Christine Cuicchi, Irene Qualters, and William~T. Kramer, editors,
+  {\em Proceedings of the International Conference for High Performance
+  Computing, Networking, Storage and Analysis, {SC} 2020, Virtual Event /
+  Atlanta, Georgia, USA, November 9-19, 2020}, page~20. {IEEE/ACM}, 2020.
+
+\bibitem{recht2019imagenet}
+Benjamin Recht, Rebecca Roelofs, Ludwig Schmidt, and Vaishaal Shankar.
+\newblock Do imagenet classifiers generalize to imagenet?
+\newblock {\em arXiv preprint arXiv:1902.10811}, 2019.
+
+\bibitem{ILSVRC15}
+Olga Russakovsky, Jia Deng, Hao Su, Jonathan Krause, Sanjeev Satheesh, Sean Ma,
+  Zhiheng Huang, Andrej Karpathy, Aditya Khosla, Michael Bernstein,
+  Alexander~C. Berg, and Li Fei-Fei.
+\newblock {ImageNet Large Scale Visual Recognition Challenge}.
+\newblock {\em IJCV}, 115(3):211--252, 2015.
+
+\bibitem{adafactor}
+Noam Shazeer and Mitchell Stern.
+\newblock Adafactor: Adaptive learning rates with sublinear memory cost.
+\newblock In {\em ICML}, 2018.
+
+\bibitem{srinivas2021bottleneck}
+Aravind Srinivas, Tsung-Yi Lin, Niki Parmar, Jonathon Shlens, Pieter Abbeel,
+  and Ashish Vaswani.
+\newblock Bottleneck transformers for visual recognition.
+\newblock {\em arXiv preprint arXiv:2101.11605}, 2021.
+
+\bibitem{sun2017unreasonable}
+Chen Sun, Abhinav Shrivastava, Saurabh Singh, and Abhinav Gupta.
+\newblock {Revisiting Unreasonable Effectiveness of Data in Deep Learning Era}.
+\newblock {\em ICCV}, Oct 2017.
+
+\bibitem{efficientnet}
+Mingxing Tan and Quoc Le.
+\newblock {E}fficient{N}et: Rethinking model scaling for convolutional neural
+  networks.
+\newblock In {\em ICML}, 2019.
+
+\bibitem{efficientnet_v2}
+Mingxing Tan and Quoc~V. Le.
+\newblock Efficientnetv2: Smaller models and faster training.
+\newblock In Marina Meila and Tong Zhang, editors, {\em Proceedings of the 38th
+  International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021,
+  Virtual Event}, volume 139 of {\em Proceedings of Machine Learning Research},
+  pages 10096--10106. {PMLR}, 2021.
+
+\bibitem{adam_1bit}
+Hanlin Tang, Shaoduo Gan, Ammar~Ahmad Awan, Samyam Rajbhandari, Conglong Li,
+  Xiangru Lian, Ji Liu, Ce Zhang, and Yuxiong He.
+\newblock 1-bit adam: Communication efficient large-scale training with adam's
+  convergence speed.
+\newblock In Marina Meila and Tong Zhang, editors, {\em Proceedings of the 38th
+  International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021,
+  Virtual Event}, volume 139 of {\em Proceedings of Machine Learning Research},
+  pages 10118--10129. {PMLR}, 2021.
+
+\bibitem{touvron2020training}
+Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre
+  Sablayrolles, and Herv{\'e} J{\'e}gou.
+\newblock Training data-efficient image transformers \& distillation through
+  attention.
+\newblock {\em arXiv preprint arXiv:2012.12877}, 2020.
+
+\bibitem{cait}
+Hugo Touvron, Matthieu Cord, Alexandre Sablayrolles, Gabriel Synnaeve, and
+  Herv{\'{e}} J{\'{e}}gou.
+\newblock Going deeper with image transformers.
+\newblock {\em CoRR}, abs/2103.17239, 2021.
+
+\bibitem{touvron2020fixing}
+Hugo Touvron, Andrea Vedaldi, Matthijs Douze, and Hervé Jégou.
+\newblock Fixing the train-test resolution discrepancy.
+\newblock {\em arXiv preprint arXiv:1906.06423}, 2020.
+
+\bibitem{vaswani2021scaling}
+Ashish Vaswani, Prajit Ramachandran, Aravind Srinivas, Niki Parmar, Blake
+  Hechtman, and Jonathon Shlens.
+\newblock Scaling local self-attention for parameter efficient visual
+  backbones.
+\newblock {\em arXiv preprint arXiv:2103.12731}, 2021.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em arXiv preprint arXiv:1706.03762}, 2017.
+
+\bibitem{wang2021pyramid}
+Wenhai Wang, Enze Xie, Xiang Li, Deng-Ping Fan, Kaitao Song, Ding Liang, Tong
+  Lu, Ping Luo, and Ling Shao.
+\newblock Pyramid vision transformer: A versatile backbone for dense prediction
+  without convolutions.
+\newblock {\em arXiv preprint arXiv:2102.12122}, 2021.
+
+\bibitem{cub}
+P. Welinder, S. Branson, T. Mita, C. Wah, F. Schroff, S. Belongie, and P.
+  Perona.
+\newblock {Caltech-UCSD Birds 200}.
+\newblock Technical Report CNS-TR-2010-001, California Institute of Technology,
+  2010.
+
+\bibitem{resnet_strikes}
+Ross Wightman, Hugo Touvron, and Herv{\'{e}} J{\'{e}}gou.
+\newblock Resnet strikes back: An improved training procedure in timm.
+\newblock {\em CoRR}, abs/2110.00476, 2021.
+
+\bibitem{xie2019selftraining}
+Qizhe Xie, Minh-Thang Luong, Eduard Hovy, and Quoc~V. Le.
+\newblock Self-training with noisy student improves imagenet classification.
+\newblock {\em arXiv preprint arXiv:1911.04252}, 2019.
+
+\bibitem{noisystudent}
+Qizhe Xie, Minh-Thang Luong, Eduard Hovy, and Quoc~V. Le.
+\newblock Self-training with noisy student improves imagenet classification.
+\newblock In {\em CVPR}, June 2020.
+
+\bibitem{yuan2021tokens}
+Li Yuan, Yunpeng Chen, Tao Wang, Weihao Yu, Yujun Shi, Zihang Jiang, Francis~EH
+  Tay, Jiashi Feng, and Shuicheng Yan.
+\newblock Tokens-to-token vit: Training vision transformers from scratch on
+  imagenet.
+\newblock {\em arXiv preprint arXiv:2101.11986}, 2021.
+
+\bibitem{zhai2019s4l}
+Xiaohua Zhai, Avital Oliver, Alexander Kolesnikov, and Lucas Beyer.
+\newblock S4l: Self-supervised semi-supervised learning.
+\newblock In {\em ICCV}, pages 1476--1485, 2019.
+
+\bibitem{zhai2019largescale}
+Xiaohua Zhai, Joan Puigcerver, Alexander Kolesnikov, Pierre Ruyssen, Carlos
+  Riquelme, Mario Lucic, Josip Djolonga, Andre~Susano Pinto, Maxim Neumann,
+  Alexey Dosovitskiy, Lucas Beyer, Olivier Bachem, Michael Tschannen, Marcin
+  Michalski, Olivier Bousquet, Sylvain Gelly, and Neil Houlsby.
+\newblock A large-scale study of representation learning with the visual task
+  adaptation benchmark.
+\newblock {\em arXiv preprint arXiv:1910.04867}, 2019.
+
+\bibitem{deepvit}
+Daquan Zhou, Bingyi Kang, Xiaojie Jin, Linjie Yang, Xiaochen Lian, Qibin Hou,
+  and Jiashi Feng.
+\newblock Deepvit: Towards deeper vision transformer.
+\newblock {\em CoRR}, abs/2103.11886, 2021.
+
+\end{thebibliography}

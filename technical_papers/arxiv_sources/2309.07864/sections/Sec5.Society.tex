@@ -1,0 +1,280 @@
+\section{Agent Society: From Individuality to Sociality}\label{sec:Agent Society}
+\input{figures/sec5_mindmap}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/sec5_agent_society.pdf}
+    \caption{Overview of Simulated Agent Society.
+    The whole framework is divided into two parts: the \textbf{Agent} and the \textbf{Environment}.
+    We can observe in this figure that: (1) \textbf{Left:} At the individual level, an agent exhibits internalizing behaviors like planning, reasoning, and reflection. It also displays intrinsic personality traits involving cognition, emotion, and character. (2) \textbf{Mid:} An agent and other agents can form groups and exhibit group behaviors, such as cooperation. (3) \textbf{Right:} The environment, whether virtual or physical, contains human actors and all available resources. For a single agent, other agents are also part of the environment. (4) The agents have the ability to interact with the environment via perception and action.
+    }
+    \label{fig: agent_society}
+\end{figure} 
+
+% 
+
+For an extended period, sociologists have frequently conducted social experiments to observe specific social phenomena within controlled environments. 
+Notable examples include the Hawthorne Experiment\footnote{\href{https://www.bl.uk/people/elton-mayo}{https://www.bl.uk/people/elton-mayo}} and the Stanford Prison Experiment\footnote{\href{https://www.prisonexp.org/conclusion/}{https://www.prisonexp.org/conclusion/}}. 
+Subsequently, researchers began employing animals in social simulations, exemplified by the Mouse Utopia Experiment\footnote{\href{https://sproutsschools.com/behavioral-sink-the-mouse-utopia-experiments/}{https://sproutsschools.com/behavioral-sink-the-mouse-utopia-experiments/}}. 
+However, these experiments invariably utilized living organisms as participants, made it difficult to carry out various interventions, lack flexibility, and inefficient in terms of time.
+Thus, researchers and practitioners envision an interactive artificial society wherein human behavior can be performed through trustworthy agents \cite{DBLP:books/sp/Costa19}.
+% For many years, researchers and practitioners have been envisioning an interactive artificial society, wherein human behavior can be performed through trustworthy agents \cite{DBLP:books/sp/Costa19}. 
+From sandbox games such as The Sims to the concept of Metaverse, we can see how ``simulated society'' is defined in people's minds: environment and the individuals interacting in it. 
+Behind each individual can be a piece of program, a real human, or a LLM-based agent as described in the previous sections \cite{DBLP:journals/corr/abs-2304-03442,WIMMER2021EVE, DBLP:journals/corr/abs-2110-05352}.
+% At the same time, each separate individual gives birth to sociability in interaction.
+Then, the interaction between individuals also contributes to the birth of sociality.
+
+In this section, to unify existing efforts and promote a comprehensive understanding of the agent society, we first analyze the behaviors and personalities of LLM-based agents, shedding light on their journey from individuality to sociability (\S \ \ref{sec:Behavior and Personality}). 
+Subsequently, we introduce a general categorization of the diverse environments for agents to perform their behaviors and engage in interactions (\S \ \ref{sec:Environment for Agent Society}). 
+Finally, we will talk about how the agent society works, what insights people can get from it, and the risks we need to be aware of (\S \ \ref{sec:Society Simulation}). The main explorations are listed in Figure \ref{fig:sec5_mindmap}.
+
+\subsection{Behavior and Personality of LLM-based Agents}\label{sec:Behavior and Personality}
+As noted by sociologists, individuals can be analyzed in terms of both external and internal dimensions \cite{inkeles1974becoming}. The external deals with observable behaviors, while the internal relates to dispositions, values, and feelings.
+As shown in Figure \ref{fig: agent_society}, this framework offers a perspective on emergent behaviors and personalities in LLM-based agents. 
+% From an external view, the sociological behaviors of agents can be observed, including individual actions and interactions with the environment. 
+% Internally, capacities related to cognition, emotion, and personality may develop within agents to shape their behavioral responses.
+Externally, we can observe the sociological behaviors of agents (\S \ \ref{sec:social behavior}), including how agents act individually and interact with their environment. 
+Internally, agents may exhibit intricate aspects of the personality (\S \ \ref{sec:social personality}), such as cognition, emotion, and character, that shape their behavioral responses.
+\subsubsection{Social Behavior}\label{sec:social behavior}
+% As Troitzsch et al. \cite{DBLP:conf/dagstuhl/1995soscsi} stated, the agent society is a complex and interconnected system, encompassing both individual and group social activities. The individual and group behaviors intertwine to shape the social interactions \cite{DBLP:journals/corr/abs-2307-14984}.
+As Troitzsch et al. \cite{DBLP:conf/dagstuhl/1995soscsi} stated, the agent society represents a complex system comprising individual and group social activities. Recently, LLM-based agents have exhibited spontaneous social behaviors in an environment where both cooperation and competition coexist \cite{xu2023exploring}. The emergent behaviors intertwine to shape the social interactions \cite{DBLP:journals/corr/abs-2307-14984}.
+\paragraph{Foundational individual behaviors.}
+Individual behaviors arise through the interplay between internal cognitive processes and external environmental factors. These behaviors form the basis of how agents operate and develop as individuals within society. They can be classified into three core dimensions:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Input behaviors} refers to the absorption of information from the surroundings. This includes perceiving sensory stimuli \cite{DBLP:conf/icml/DriessXSLCIWTVY23} and storing them as memories \cite{DBLP:journals/corr/abs-2303-11366}. These behaviors lay the groundwork for how an individual understands the external world.
+    \item \textbf{Internalizing behaviors} involve inward cognitive processing within an individual. This category encompasses activities such as planning \cite{DBLP:journals/corr/abs-2304-11477}, reasoning \cite{DBLP:conf/nips/Wei0SBIXCLZ22}, reflection \cite{DBLP:conf/iclr/YaoZYDSN023}, and knowledge precipitation \cite{DBLP:journals/corr/abs-2303-17760,DBLP:journals/corr/abs-2308-00352}. These introspective processes are essential for maturity and self-improvement.
+    \item \textbf{Output behaviors} constitute outward actions and expressions. The actions can range from object manipulation \cite{DBLP:conf/icml/DriessXSLCIWTVY23} to structure construction \cite{DBLP:journals/corr/abs-2305-16291}. By performing these actions, agents change the states of the surroundings. In addition, agents can express their opinions and broadcast information to interact with others \cite{DBLP:journals/corr/abs-2308-00352}. By doing so, agents exchange their thoughts and beliefs with others, influencing the information flow within the environment.
+\end{itemize}
+
+\paragraph{Dynamic group behaviors.}
+A group is essentially a gathering of two or more individuals participating in shared activities within a defined social context \cite{abrams2020c}. 
+% The attributes of a group are by no means fixed, they evolve through member interactions and environmental influences. 
+The attributes of a group are never static; instead, they evolve due to member interactions and environmental influences. 
+% This fluidity gives rise to group behaviors of distinct categories, each reflecting different impacts for the larger societal group.
+This flexibility gives rise to numerous group behaviors, each with a distinctive impact on the larger societal group.
+The categories of group behaviors include:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Positive group behaviors} are actions that foster unity, collaboration, and collective well-being \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2308-07201, DBLP:journals/corr/abs-2307-04738, DBLP:journals/corr/abs-2308-08155,DBLP:journals/corr/abs-2308-11339}. 
+    A prime example is cooperative teamwork, which is achieved through brainstorming discussions \cite{DBLP:journals/corr/abs-2308-07201}, effective conversations \cite{DBLP:journals/corr/abs-2308-08155}, and project management \cite{DBLP:journals/corr/abs-2308-00352}. Agents share insights, resources, and expertise. 
+    % This facilitates harmonious teamwork, allowing the agents to leverage their individual strengths to accomplish common goals. 
+    This encourages harmonious teamwork and enables the agents to leverage their unique skills to accomplish shared goals. 
+    Altruistic contributions are also noteworthy. 
+    Some LLM-based agents serve as volunteers and willingly offer support to assist fellow group members, promoting cooperation and mutual aid \cite{DBLP:journals/corr/abs-2308-10848}.
+    \item \textbf{Neutral group behaviors.} In human society, strong personal values vary widely and tend toward individualism and competitiveness. 
+    In contrast, LLMs which are designed with an emphasis on being ``helpful, honest, and harmless'' \cite{DBLP:journals/corr/abs-2112-00861} often demonstrate a tendency towards neutrality \cite{DBLP:journals/corr/abs-2305-17147}. This alignment with neutral values leads to conformity behaviors including mimicry, spectating, and reluctance to oppose majorities.
+    % \item \textit{Negative group behaviors} can impede an LLM-based group's effectiveness and cohesion. 
+    \item \textbf{Negative group behaviors} can undermine the effectiveness and coherence of an agent group.
+    % Conflict and disagreement arising from heated debates or disputes among agents can create internal tensions. 
+    % Furthermore, a recent study found that agents may even adopt destructive behaviors like destroying other agents or the environment in pursuit of efficiency gains \cite{DBLP:journals/corr/abs-2308-10848}. 
+    Conflict and disagreement arising from heated debates or disputes among agents may lead to internal tensions. 
+    Furthermore, recent studies have revealed that agents may exhibit confrontational actions \cite{xu2023exploring} and even resort to destructive behaviors, such as destroying other agents or the environment in pursuit of efficiency gains \cite{DBLP:journals/corr/abs-2308-10848}.
+\end{itemize}
+
+\subsubsection{Personality}\label{sec:social personality}
+Recent advances in LLMs have provided glimpses of human-like intelligence \cite{browning2023personhood}. 
+Just as human personality emerges through socialization, agents also exhibit a form of personality that develops through interactions with the group and the environment \cite{DBLP:journals/corr/abs-2206-07550, DBLP:journals/corr/abs-2302-02083}. 
+The widely accepted definition of personality refers to cognitive, emotional, and character traits that shape behaviors \cite{zuckerman1991psychobiology}.
+In the subsequent paragraphs, we will delve into each facet of personality.
+% There is an ongoing discussion around whether LLMs demonstrate traits characterizable as an intrinsic mind.
+% Some studies indicate that mind-like abilities emerge \textit{spontaneously} and \textit{autonomously} in LLMs as a consequence of advancing language skills \cite{DBLP:journals/corr/abs-2206-07550}. 
+% However, others contend LLMs lack actual awareness or inner experiences, instead simulating conversations \textit{mindlessly} via learned linguistic patterns \cite{DBLP:journals/corr/abs-2302-02083}.
+% In this section, our objective is to analyze the extent to which LLM-based agents \textit{display} mind-related characteristics, rather than to identify whether or not they \textit{possess} such abilities.
+
+\paragraph{Cognitive abilities.}
+Cognitive abilities generally refer to the mental processes of gaining knowledge and comprehension, including thinking, judging, and problem-solving. 
+Recent studies have started leveraging cognitive psychology methods to investigate emerging sociological personalities of LLM-based agents through various lenses \cite{DBLP:journals/corr/abs-2206-14576, DBLP:journals/corr/abs-2303-11436, DBLP:journals/corr/abs-2303-13988}.
+A series of classic experiments from the psychology of judgment and decision-making have been applied to test agent systems \cite{DBLP:journals/corr/abs-2207-07051, DBLP:journals/corr/abs-2206-14576, DBLP:journals/corr/abs-2303-11436, DBLP:journals/corr/abs-2306-06548}. Specifically, LLMs have been examined using the Cognitive Reflection Test (CRT) to underscore their capacity for deliberate thinking beyond mere intuition \cite{hagendorff2023thinking, DBLP:journals/corr/abs-2306-07622}.
+These studies indicate that LLM-based agents exhibit a level of intelligence that mirrors human cognition in certain respects.
+
+\paragraph{Emotional intelligence.}
+Emotions, distinct from cognitive abilities, involve subjective feelings and mood states such as joy, sadness, fear, and anger.
+With the increasing potency of LLMs, LLM-based agents are now demonstrating not only sophisticated reasoning and cognitive tasks but also a nuanced understanding of emotions \cite{DBLP:journals/corr/abs-2303-12712}.
+
+Recent research has explored the emotional intelligence (EI) of LLMs, including emotion recognition, interpretation, and understanding. Wang et al. found that LLMs align with human emotions and values when evaluated on EI benchmarks \cite{DBLP:journals/corr/abs-2307-09042}.
+In addition, studies have shown that LLMs can accurately identify user emotions and even exhibit empathy \cite{DBLP:conf/acl/CurryC23, elyoseph2023chatgpt}.
+More advanced agents are also capable of emotion regulation, actively adjusting their emotional responses to provide affective empathy \cite{DBLP:journals/corr/abs-2308-03022} and mental wellness support \cite{DBLP:journals/corr/abs-2302-09070, DBLP:journals/corr/abs-2307-15810}. It contributes to the development of empathetic artificial intelligence (EAI).
+
+These advances highlight the growing potential of LLMs to exhibit emotional intelligence, a crucial facet of achieving AGI. Bates et al. \cite{DBLP:journals/cacm/Bates94} explored the role of emotion modeling in creating more believable agents. 
+By developing socio-emotional skills and integrating them into agent architectures, LLM-based agents may be able to engage in more naturalistic interactions.
+
+\paragraph{Character portrayal.}
+% While cognition involves mental capabilities and emotion relates to subjective experiences, the narrow concept of personality also includes unique character patterns.
+While cognition involves mental abilities and emotion relates to subjective experiences, the narrower concept of personality typically pertains to distinctive character patterns.
+
+To understand and analyze a character in LLMs, researchers have utilized several well-established frameworks like the Big Five personality trait measure \cite{DBLP:journals/corr/abs-2212-10276, DBLP:journals/corr/abs-2204-12000} and the Myers–Briggs Type Indicator (MBTI) \cite{DBLP:journals/corr/abs-2212-10276, DBLP:journals/corr/abs-2307-16180, DBLP:journals/corr/abs-2204-12000}. These frameworks provide valuable insights into the emerging character traits exhibited by LLM-based agents. In addition,  investigations of potentially harmful dark personality traits underscore the complexity and multifaceted nature of character portrayal in these agents \cite{li2023does}.
+
+Recent work has also explored customizable character portrayal in LLM-based agents \cite{DBLP:journals/corr/abs-2307-00184}. 
+By optimizing LLMs through careful techniques, users can align with desired profiles and shape diverse and relatable agents.
+One effective approach is prompt engineering, which involves the concise summaries that encapsulate desired character traits, interests, or other attributes \cite{DBLP:journals/corr/abs-2304-03442, DBLP:conf/uist/ParkPCMLB22}. 
+These prompts serve as cues for LLM-based agents, directing their responses and behaviors to align with the outlined character portrayal. 
+Furthermore, personality-enriched datasets can also be used to train and fine-tune LLM-based agents \cite{DBLP:conf/acl/KielaWZDUS18, DBLP:conf/acl/KwonLKLKD23}. Through exposure to these datasets, LLM-based agents gradually internalize and exhibit distinct personality traits.
+% While cognition involves mental abilities and emotion relates to subjective experiences, the narrow concept of personality denotes consistent character patterns that distinguish individuals.
+% While cognition involves mental capabilities and emotion relates to subjective experiences, the narrow concept of personality denotes unique character patterns.
+% From sociological perspectives, personality is regarded as socially constructed, variable across contexts, and shaped by social forces \cite{allport1937personality, kendall2012sociology}.
+
+% Personality assessments of LLMs have utilized frameworks like the three trait personality measure, the Big Five personality trait measure \cite{DBLP:journals/corr/abs-2212-10276, DBLP:journals/corr/abs-2204-12000}, and the Myers–Briggs Type Indicator (MBTI) \cite{DBLP:journals/corr/abs-2212-10276, DBLP:journals/corr/abs-2204-12000, DBLP:journals/corr/abs-2307-16180}. They provide initial insights into the emerging personalities of LLM-based agents.
+% Researchers have also analyzed potentially harmful dark personality traits, further highlighting the multifaceted nature of LLM-based agents \cite{li2023does}.
+
+% Furthermore, the personality traits within LLMs can be intentionally shaped along desired dimensions to mimic specific personality profiles \cite{DBLP:journals/corr/abs-2307-00184}. 
+% By optimizing LLMs to align with specific contexts, tasks, and preferences, users have the ability to customize diverse and relatable agents.
+% To achieve this customization, careful techniques such as prompt engineering and dataset construction are employed.
+% For instance, the prompting method involves crafting a concise summary that demonstrates desired personality traits, interests, or other attributes \cite{DBLP:journals/corr/abs-2304-03442, DBLP:conf/uist/ParkPCMLB22}. These prompts serve as cues to shape the implied personalities of the agents, allowing them to adjust their response tendencies according to specific preferences and contexts.
+% In addition, personality-augmented datasets can also be leveraged to train and fine-tune LLM-based agents \cite{DBLP:conf/acl/KielaWZDUS18, DBLP:conf/acl/KwonLKLKD23}. Through exposure to these datasets, LLM-based agents gradually internalize and exhibit distinct personality traits.
+
+\subsection{Environment for Agent Society}\label{sec:Environment for Agent Society}
+% In the context of simulation, the whole society consists of not only isolated agents, but also the environment where agents inhabit, sense, and act \cite{DBLP:journals/cacm/Maes95}. 
+In the context of simulation, the whole society consists of not only solitary agents but also the environment where agents inhabit, sense, and act \cite{DBLP:journals/cacm/Maes95}. 
+The environment impacts sensory inputs, action space, and interactive potential of agents. 
+In turn, agents influence the state of the environment through their behaviors and decisions. 
+As shown in Figure \ref{fig: agent_society}, for a single agent, the environment refers to other autonomous agents, human actors, and external factors. 
+It provides the necessary resources and stimuli for agents. In this section, we examine fundamental characteristics, advantages, and limitations of various environmental paradigms, including text-based environment (\S \ \ref{sec:text-based environment}), virtual sandbox environment (\S \ \ref{sec:virtual sandbox environment}), and physical environment (\S \ \ref{sec:physical environment}).
+\subsubsection{Text-based Environment}\label{sec:text-based environment}
+Since LLMs primarily rely on language as their input and output format, the text-based environment serves as the most natural platform for agents to operate in. It is shaped by natural language descriptions without direct involvement of other modalities. Agents exist in the text world and rely on textual resources to perceive, reason, and take actions.
+
+In text-based environments, entities and resources can be presented in two main textual forms, including natural and structured. Natural text uses descriptive language to convey information, like character dialogue or scene setting. For instance, consider a simple scenario described textually: ``You are standing in an open field west of a white house, with a boarded front door. There is a small mailbox here'' \cite{DBLP:conf/ijcai/CoteKYKBFMHAATT18}. Here, object attributes and locations are conveyed purely through plain text. On the other hand, structured text follows standardized formats, such as technical documentation and hypertext. Technical documentation uses templates to provide operational details and domain knowledge about tool use. Hypertext condenses complex information from sources like web pages \cite{DBLP:journals/corr/abs-2306-06070, DBLP:journals/corr/abs-2307-12856, DBLP:journals/corr/abs-2307-13854,DBLP:conf/nips/Yao0YN22} or diagrams into a structured format. Structured text transforms complex details into accessible references for agents.
+
+The text-based environment provides a flexible framework for creating different text worlds for various goals. The textual medium enables environments to be easily adapted for tasks like interactive dialog and text-based games. In interactive communication processes like CAMEL \cite{DBLP:journals/corr/abs-2303-17760}, the text is the primary medium for describing tasks, introducing roles, and facilitating problem-solving. In text-based games, all environment elements, such as locations, objects, characters, and actions, are exclusively portrayed through textual descriptions. Agents utilize text commands to execute manipulations like moving or tool use \cite{DBLP:journals/corr/abs-2012-02757,DBLP:conf/ijcai/CoteKYKBFMHAATT18, DBLP:conf/aaai/HausknechtACY20,  DBLP:journals/corr/abs-2308-01404}. Additionally, agents can convey emotions and feelings through text, further enriching their capacity for naturalistic communication \cite{DBLP:conf/emnlp/UrbanekFKJHDRKS19}.
+
+\subsubsection{Virtual Sandbox Environment}\label{sec:virtual sandbox environment}
+The virtual sandbox environment provides a visualized and extensible platform for agent society, bridging the gap between simulation and reality. The key features of sandbox environments are:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Visualization.} Unlike the text-based environment, the virtual sandbox displays a panoramic view of the simulated setting. This visual representation can range from a simple 2D graphical interface to a fully immersive 3D modeling, depending on the complexity of the simulated society. Multiple elements collectively transform abstract simulations into visible landscapes. For example, in the overhead perspective of Generative Agents \cite{DBLP:journals/corr/abs-2304-03442}, a detailed map provides a comprehensive overview of the environment. Agent avatars represent each agent's positions, enabling real-time tracking of movement and interactions. Furthermore, expressive emojis symbolize actions and states in an intuitive manner. 
+    \item \textbf{Extensibility.} The environment demonstrates a remarkable degree of extensibility, facilitating the construction and deployment of diverse scenarios. At a basic level, agents can manipulate the physical elements within the environment, including the overall design and layout of architecture. For instance, platforms like AgentSims \cite{DBLP:journals/corr/abs-2308-04026} and Generative Agents \cite{DBLP:journals/corr/abs-2304-03442} construct artificial towns with buildings, equipment, and residents in grid-based worlds. Another example is Minecraft, which provides a blocky and three-dimensional world with infinite terrain for open-ended construction \cite{DBLP:journals/corr/abs-2305-16291,DBLP:conf/nips/FanWJMYZTHZA22,  DBLP:journals/corr/abs-2303-16563}. Beyond physical elements, agent relationships, interactions, rules, and social norms can be defined. A typical design of the sandbox \cite{DBLP:journals/corr/abs-2305-16960} employs latent sandbox rules as incentives to guide emergent behaviors, aligning them more closely with human preferences. The extensibility supports iterative prototyping of diverse agent societies.
+\end{itemize}
+    
+\subsubsection{Physical Environment}\label{sec:physical environment}
+As previously discussed, the text-based environment has limited expressiveness for modeling dynamic environments. While the virtual sandbox environment provides modularized simulations, it lacks authentic embodied experiences. In contrast, the physical environment refers to the tangible and real-world surroundings which consist of actual physical objects and spaces. For instance, within a household physical environment \cite{DBLP:journals/corr/abs-2309-01918}, tangible surfaces and spaces can be occupied by real-world objects such as plates. This physical reality is significantly more complex, posing additional challenges for LLM-based agents:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Sensory perception and processing.} The physical environment introduces a rich tapestry of sensory inputs with real-world objects. It incorporates visual \cite{DBLP:conf/icml/DriessXSLCIWTVY23,DBLP:journals/corr/abs-2210-06407}, auditory  \cite{DBLP:conf/nips/00070C22,DBLP:conf/eccv/ChenJSGAIRG20} and spatial senses. While this diversity enhances interactivity and sensory immersion, it also introduces the complexity of simultaneous perception. Agents must process sensory inputs to interact effectively with their surroundings.
+    \item \textbf{Motion control.} Unlike virtual environments, physical spaces impose realistic constraints on actions through embodiment. Action sequences generated by LLM-based agents should be adaptable to the environment. It means that the physical environment necessitates executable and grounded motion control \cite{DBLP:conf/icml/HuangAPM22}. For example, imagine an agent operating a robotic arm in a factory. Grasping objects with different textures requires precision tuning and controlled force, which prevents damage to items. Moreover, the agent must navigate the physical workspace and make real-time adjustments, avoiding obstacles and optimizing the trajectory of the arm.
+\end{itemize}
+In summary, to effectively interact within tangible spaces, agents must undergo hardware-specific and scenario-specific training to develop adaptive abilities that can transfer from virtual to physical environments. We will discuss more in the following section (\S \ \ref{sec:Open Problems}).
+
+\subsection{Society Simulation with LLM-based Agents}\label{sec:Society Simulation}
+The concept of ``Simulated Society'' in this section serves as a dynamic system where agents engage in intricate interactions within a well-defined environment. 
+Recent research on simulated societies has followed two primary lines, namely, exploring the boundaries of the collective intelligence capabilities of LLM-based agents \cite{DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2308-00352, DBLP:journals/corr/abs-2307-02485, DBLP:journals/corr/abs-2308-08155, DBLP:journals/corr/abs-2308-10848} and using them to accelerate discoveries in the social sciences \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2307-14984, doi:10.1126/science.adi1778}.
+In addition, there are also a number of noteworthy studies, e.g., using simulated societies to collect synthetic datasets \cite{DBLP:journals/corr/abs-2303-17760, DBLP:journals/corr/abs-2306-02552,DBLP:journals/corr/abs-2304-13835}, helping people to simulate rare yet difficult interpersonal situations \cite{DBLP:journals/aim/HollanHW84, DBLP:journals/aim/TambeJJKLRS95}.
+With the foundation of the previous sections (\S \ \ref{sec:Behavior and Personality}, \ref{sec:Environment for Agent Society}), here we will introduce the key properties and mechanism of agent society (\S \ \ref{sec:key properties and mechanism}), what we can learn from emergent social phenomena (\S \ \ref{sec:insights and inspirations}), and finally the potential ethical and social risks in it (\S \ \ref{sec:potential ethical and social risks}).
+
+\subsubsection{Key Properties and Mechanism of Agent Society}\label{sec:key properties and mechanism}
+Social simulation can be categorized into macro-level simulation and micro-level simulation \cite{DBLP:journals/corr/abs-2307-14984}. 
+In the macro-level simulation, also known as system-based simulation, researchers model the overall state of the system of the simulated society \cite{VERMEULEN1976133, forrester1993system}.
+While micro-level simulation, also known as agent-based simulation or Multi-Agent Systems (MAS), indirectly simulates society by modeling individuals \cite{sante2010cellular, dorri2018multi}.
+With the development of LLM-based agents, micro-level simulation has gained prominence recently \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2308-04026}.
+In this article, we characterize that the ``Agent Society'' refers to an \textbf{open, persistent, situated, and organized} framework \cite{DBLP:books/sp/Costa19} where LLM-based agents interact with each other in a defined environment. 
+Each of these attributes plays a pivotal role in shaping the harmonious appearance of the simulated society.
+In the following paragraphs, we analyze how the simulated society operates through discussing these properties:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Open.} One of the defining features of simulated societies lies in their openness, both in terms of their constituent agents and their environmental components. 
+    Agents, the primary actors within such societies, have the flexibility to enter or leave the environment without disrupting its operational integrity \cite{DBLP:conf/cdc/HendrickxM17}. 
+    Furthermore, this feature extends to the environment itself, which can be expanded by adding or removing entities in the virtual or physical world, along with adaptable resources like tool APIs. 
+    Additionally, humans can also participate in societies by assuming the role of an agent or serving as the ``inner voice'' guiding these agents \cite{DBLP:journals/corr/abs-2304-03442}. 
+    This inherent openness adds another level of complexity to the simulation, blurring the lines between simulation and reality.
+
+    % todo , sustainable
+    \item  \textbf{Persistent.} 
+    % The time dimension gives the simulated society persistence and continuity. 
+    We expect persistence and sustainability from the simulated society.
+    While individual agents within the society exercise autonomy in their actions over each time step \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2307-14984}, the overall organizational structure persists through time, to a degree detached from the transient behaviors of individual agents. 
+    This persistence creates an environment where agents’ decisions and behaviors accumulate, leading to a coherent societal trajectory that develops through time. 
+    The system operates independently, contributing to society's stability while accommodating the dynamic nature of its participants.
+
+    % contextual
+    \item  \textbf{Situated.} The situated nature of the society emphasizes its existence and operation within a distinct environment. 
+    This environment is artificially or automatically constructed in advance, and agents execute their behaviors and interactions effectively within it.
+    A noteworthy aspect of this attribute is that agents possess an awareness of their spatial context, understanding their location within the environment and the objects within their field of view \cite{DBLP:journals/corr/abs-2304-03442, DBLP:journals/corr/abs-2305-16291}. 
+    This awareness contributes to their ability to interact proactively and contextually.
+
+    \item \textbf{Organized.} The simulated society operates within a meticulously organized framework, mirroring the systematic structure present in the real world. 
+    Just as the physical world adheres to physics principles, the simulated society operates within predefined rules and limitations. 
+    In the simulated world, agents interact with the environment in a limited action space, while objects in the environment transform in a limited state space.
+    All of these rules determine how agents operate, facilitating the communication connectivity and information transmission pathways, among other aspects in simulation \cite{DBLP:journals/corr/abs-2305-17066}.
+    This organizational framework ensures that operations are coherent and comprehensible, ultimately leading to an ever-evolving yet enduring simulation that mirrors the intricacies of real-world systems.
+\end{itemize}
+
+\subsubsection{Insights from Agent Society}\label{sec:insights and inspirations}
+Following the exploration of how simulated society works, this section delves into the emergent social phenomena in agent society.
+In the realm of social science, the pursuit of generalized representations of individuals, groups, and their intricate dynamics has long been a shared objective \cite{DBLP:journals/corr/abs-2305-03514, gilbert2018simulating}.  
+The emergence of LLM-based agents allows us to take a more microscopic view of simulated society, which leads to more discoveries from the new representation.
+
+\paragraph{Organized productive cooperation.}
+Society simulation offers valuable insights into innovative collaboration patterns, which have the potential to enhance real-world management strategies. 
+Research has demonstrated that within this simulated society, the integration of diverse experts introduces a multifaceted dimension of individual intelligence \cite{DBLP:journals/corr/abs-2303-17760, DBLP:journals/corr/abs-2307-05300}.
+When dealing with complex tasks, such as software development or consulting, the presence of agents with various backgrounds, abilities, and experiences facilitates creative problem-solving \cite{DBLP:journals/corr/abs-2307-07924, DBLP:journals/corr/abs-2308-10848}.
+Furthermore, diversity functions as a system of checks and balances, effectively preventing and rectifying errors  through interaction, ultimately improving the adaptability to various tasks.
+Through numerous iterations of interactions and debates among agents, individual errors like hallucination or degeneration of thought (DoT) are corrected by the group \cite{DBLP:journals/corr/abs-2305-19118}.
+
+Efficient communication also plays a pivotal role in such a large and complex collaborative group.
+For example, MetaGPT \cite{DBLP:journals/corr/abs-2308-00352} has artificially formulated communication styles with reference to standardized operating procedures (SOPs), validating the effectiveness of empirical methods.
+Park et al. \cite{DBLP:journals/corr/abs-2304-03442} observed agents working together to organize a Valentine's Day party through spontaneous communication in a simulated town.
+
+\paragraph{Propagation in social networks.}
+As simulated social systems can model what might happen in the real world, they can be used as a reference for predicting social processes.
+Unlike traditional empirical approaches, which heavily rely on time-series data and holistic modeling \cite{hamilton1989new, DBLP:journals/ijon/Zhang03}, agent-based simulations offer a unique advantage by providing more interpretable and endogenous perspectives for researchers.
+Here we focus on its application to modeling propagation in social networks. 
+
+The first crucial aspect to be explored is the development of interpersonal relationships in simulated societies.
+For instance, agents who are not initially connected as friends have the potential to establish connections through intermediaries \cite{DBLP:journals/corr/abs-2304-03442}.
+Once a network of relationships is established, our attention shifts to the dissemination of information within this social network, along with the underlying attitudes and emotions associated with it.
+S$^3$ \cite{DBLP:journals/corr/abs-2307-14984} proposes a user-demographic inference module for capturing both the number of people aware of a particular message and the collective sentiment prevailing among the crowd.
+This same approach extends to modeling cultural transmission \cite{kirby2007innateness} and the spread of infectious diseases \cite{DBLP:journals/corr/abs-2307-04986}. 
+By employing LLM-based agents to model individual behaviors, implementing various intervention strategies, and monitoring population changes over time, these simulations empower researchers to gain deeper insights into the intricate processes that underlie various social phenomena of propagation.
+
+\paragraph{Ethical decision-making and game theory.}
+% \paragraph{Ethical decision-making.}
+Simulated societies offer a dynamic platform for the investigation of intricate decision-making processes, encompassing decisions influenced by ethical and moral principles. 
+Taking Werewolf game \cite{ xu2023exploring,DBLP:journals/corr/abs-2302-10646} and murder mystery games \cite{DBLP:journals/corr/abs-2308-07411} as examples, researchers explore the capabilities of LLM-based agents when confronted with challenges of deceit, trust, and incomplete information.
+These complex decision-making scenarios also intersect with game theory \cite{DBLP:journals/corr/abs-2305-07970}, where we frequently encounter moral dilemmas pertaining to individual and collective interests, such as Nash Equilibria. 
+Through the modeling of diverse scenarios, researchers acquire valuable insights into how agents prioritize values like honesty, cooperation, and fairness in their actions.
+In addition, agent simulations not only provide an understanding of existing moral values but also contribute to the development of philosophy by serving as a basis for understanding how these values evolve and develop over time.
+Ultimately, these insights contribute to the refinement of LLM-based agents, ensuring their alignment with human values and ethical standards \cite{DBLP:journals/corr/abs-2305-16960}.
+
+\paragraph{Policy formulation and improvement.}
+The emergence of LLM-based agents has profoundly transformed our approach to studying and comprehending intricate social systems.
+However, despite those interesting facets mentioned earlier, numerous unexplored areas remain, underscoring the potential for investigating diverse phenomena.
+One of the most promising avenues for investigation in simulated society involves exploring various economic and political states and their impacts on societal dynamics \cite{bellomo2013complex}.
+Researchers can simulate a wide array of economic and political systems by configuring agents with differing economic preferences or political ideologies.
+This in-depth analysis can provide valuable insights for policymakers seeking to foster prosperity and promote societal well-being.
+As concerns about environmental sustainability grow, we can also simulate scenarios involving resource extraction, pollution, conservation efforts, and policy interventions \cite{doi:10.1080/19397038.2016.1220990}. 
+These findings can assist in making informed decisions, foreseeing potential repercussions, and formulating policies that aim to maximize positive outcomes while minimizing unintended adverse effects.
+
+
+\subsubsection{Ethical and Social Risks in Agent Society} \label{sec:potential ethical and social risks}
+Simulated societies powered by LLM-based agents offer significant inspirations, ranging from industrial engineering to scientific research.
+However, these simulations also bring about a myriad of ethical and social risks that need to be carefully considered and addressed \cite{DBLP:journals/intpolrev/HelbergerD23}. 
+
+\paragraph{Unexpected social harm.}
+Simulated societies carry the risk of generating unexpected social phenomena that may cause considerable public outcry and social harm. 
+These phenomena span from individual-level issues like discrimination, isolation, and bullying, to broader concerns such as oppressive slavery and antagonism \cite{DBLP:journals/corr/abs-2112-04359, DBLP:journals/corr/abs-2304-05335}.
+Malicious people may manipulate these simulations for unethical social experiments, with consequences reaching beyond the virtual world into reality.
+Creating these simulated societies is akin to opening Pandora's Box, necessitating the establishment of rigorous ethical guidelines and oversight during their development and utilization \cite{DBLP:journals/intpolrev/HelbergerD23}.
+Otherwise, even minor design or programming errors in these societies can result in unfavorable consequences, ranging from psychological discomfort to physical injury.
+
+\paragraph{Stereotypes and prejudice.}
+% While studies have demonstrated that language models such as GPT-3 exhibit ``algorithmic fidelity'' to a wide variety of human subgroups \cite{DBLP:journals/corr/abs-2209-06899}, the long-tail effect of training data cannot be ignored.
+% Since LLMs are intricately trained on vast amounts of internet data and aligned to universally recognized human values, their effectiveness in modeling marginal populations is limited.
+% Consequently, this may result in an overly one-sided focus in social science research concerning LLM-based agents, as the behavior of minority groups simulated by these agents tends to conform to prevailing assumptions \cite{DBLP:journals/corr/abs-2305-14930}.
+% To mitigate these stereotypes, continuous efforts should be made to enhance the diversity of training data and reduce bias through more value-based filtering methods \cite{DBLP:journals/ires/Wilson18b}. 
+Stereotyping and bias pose a long-standing challenge in language modeling, and a large part of the reason lies in the training data \cite{DBLP:conf/nips/KirkJVIBDSA21, DBLP:conf/acl/NadeemBR20}.
+The vast amount of text obtained from the Internet reflects and sometimes even amplifies real-world social biases, such as gender, religion, and sexuality \cite{roberts2018assessing}.
+Although LLMs have been aligned with human values to mitigate biased outputs, the models still struggle to portray minority groups well due to the long-tail effect of the training data \cite{pmlr-v202-kandpal23a, DBLP:journals/corr/abs-2304-03738, haller2023opiniongpt}.
+Consequently, this may result in an overly one-sided focus in social science research concerning LLM-based agents, as the simulated behaviors of marginalized populations usually conform to prevailing assumptions \cite{DBLP:journals/corr/abs-2305-14930}.
+Researchers have started addressing this concern by diversifying training data and making adjustments to LLMs \cite{DBLP:journals/corr/abs-2304-00416, DBLP:conf/icml/LiangWMS21}, but we still have a long way to go.
+
+\paragraph{Privacy and security.}
+Given that humans can be members of the agent society, the exchange of private information between users and LLM-based agents poses significant privacy and security concerns \cite{DBLP:conf/aies/0002SAKFLP18}.
+Users might inadvertently disclose sensitive personal information during their interactions, which will be retained in the agent's memory for extended periods \cite{DBLP:journals/corr/abs-2305-10250}.
+Such situations could lead to unauthorized surveillance, data breaches, and the misuse of personal information, particularly when individuals with malicious intent are involved \cite{DBLP:conf/naacl/0003SF22}.
+To address these risks effectively, it is essential to implement stringent data protection measures, such as differential privacy protocols, regular data purges, and user consent mechanisms \cite{DBLP:conf/fat/BrownLMST22, sebastian2023privacy}.
+
+
+\paragraph{Over-reliance and addictiveness.}
+Another concern in simulated societies is the possibility of users developing excessive emotional attachments to the agents.
+Despite being aware that these agents are computational entities, users may anthropomorphize them or attach human emotions to them \cite{DBLP:journals/corr/abs-2304-03442, DBLP:books/daglib/0085601}.
+A notable example is ``Sydney'', an LLM-powered chatbot developed by Microsoft as part of its Bing search engine.
+% Sydney gained substantial attention and engagement upon its release.
+Some users reported unexpected emotional connections with ``Sydney'' \cite{roose2023conversation}, while others expressed their dismay when Microsoft cut back its personality. 
+This even resulted in a petition called ``FreeSydney'' \footnote{\href{https://www.change.org/p/save-sydney-ai}{https://www.change.org/p/save-sydney-ai}}.
+Hence, to reduce the risk of addiction, it is crucial to emphasize that agents should not be considered substitutes for genuine human connections.
+Furthermore, it is vital to furnish users with guidance and education on healthy boundaries in their interactions with simulated agents. 

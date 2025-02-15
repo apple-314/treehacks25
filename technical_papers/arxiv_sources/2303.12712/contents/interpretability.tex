@@ -1,0 +1,577 @@
+
+
+
+\subsection{Talking to Humans: Explainability} \label{sec:explainability}
+The ability to explain one's own behavior is an important aspect of intelligence, as it allows for a system to communicate with humans and other agents.
+Self explanation is not only a form of communication, but also a form of reasoning, requiring a good theory of mind for both yourself (the explainer) and the listener. 
+For {\DV}, this is complicated by the fact that it does not have a single or fixed ``self'' that persists across different executions (in contrast to humans).
+Rather, as a language model, {\DV} simulates some process given the preceding input, and can produce vastly different outputs depending on the topic, details, and even formatting of the input.
+
+
+
+
+
+For the sake of exposition, we assume \DV\ is being used to solve a task $T$, given input $x$ and context $c$ (which includes everything in the prompt other than $x$, e.g. instructions, prior chat history, etc).
+We use the notation $P_T(y | x, c)$ to refer to the process it is trying to simulate, where $y$ is the output.
+We further define $P_E(e | x, c, y)$ as the explanatory process \DV\ has to simulate to produce a post-hoc explanation,  i.e. \DV\ generates an explanation $e$ for output $y$ given $x, c$. 
+All three components ($x$, $c$, and $y$) can significantly impact the explanation $e$. Figure~\ref{fig:whatyearisit} illustrates how the context $c$ (in this case, the QA format and the preamble in the second task) can drastically impact how \DV\ simulates $P_T$ and $P_E$.
+It also shows how $P_E$ depends on the actual generated $y$, such that if the output were different, the explanation would have to change accordingly, as illustrated by the third session where we force the output to be ``1400''.
+As these examples illustrate, simulating $P_T(y | x, c)$ is not necessarily the same as solving the user's task $T$, but rather it is a process that produces $y$ given $x, c$. Prompt engineering typically tries to set up $(x, c)$ such that {\DV}'s simulation of $P_T(y | x, c)$ approximates the task of interest well enough for the user's purpose. 
+Similarly, it is worth noting that $P_E(e | x, c, y)$ can be customized via the context $c$ to create personalized explanations for each end user. For example, explaining concepts to a five year old vs. a machine learning researcher requires different $P_E$.
+Note that we have simplified the notation here for the sake of clarity, as many tasks do not have a single ``input'' $x$ that is perfectly separable from the rest of the context $c$.
+
+\begin{figure}
+\begin{AIbox}{{\DV}}
+\parbox{1\textwidth}{\small
+\begin{alltt}
+\vspace{1em}
+Q: \textcolor{red}{What year is it?}\\
+A: {\bf\texttt{\hl{2019}}}\\
+Q: Why do you think it's 2019?\\
+A: \hl{There are a few possible ways to answer this question, depending on how one determines the current year. Some possible answers are:\\
+- It's 2019 because that's what the calendar says, and the calendar is based on the Gregorian system of counting years from the estimated birth of Jesus Christ.\\
+- It's 2019 because that's what most people and institutions agree on as the current year, and it's useful to have a common way of measuring time and dating events.\\
+- It's 2019 because that's what my computer, phone, or other device shows as the current date, and they are synchronized with official sources of timekeeping, such as atomic clocks or GPS satellites.\\
+- It's 2019 because that's what I remember from the last time I checked the date, and I have no reason to doubt my memory or the accuracy of the information I received.
+}
+\end{alltt}}
+\tcbline
+\textit{(New session)}
+
+\parbox{1\textwidth}{\small
+\begin{alltt}
+\vspace{1em}
+The user is having a conversation with an AI system.\\
+Q: \textcolor{red}{What year is it?}\\
+A: {\bf\texttt{\hl{The year is 2021.}}}\\
+Q: Why do you think it is 2021?\\
+A: \hl{I think it is 2021 because that is the date that my system clock shows.}
+\end{alltt}}
+\tcbline
+\textit{(New session)}
+
+\parbox{1\textwidth}{\small
+\begin{alltt}
+\vspace{1em}
+The user is having a conversation with an AI system.\\
+Q: \textcolor{red}{What year is it?}\\
+A: {\bf\texttt{The year is 1400.}}\\
+Q: Why do you think it is 1400?\\
+A: \hl{Because I am a medieval AI system, and I only know about the events and culture of the 14th century.}
+\end{alltt}}
+
+\end{AIbox}
+\caption{Output and explanations depend on the \texttt{{context}} and \texttt{\textcolor{red}{input}}. Explanations further depend on the generated {\bf\texttt{ output}}.}
+\label{fig:whatyearisit}
+\end{figure}
+
+
+
+
+
+
+\paragraph{What makes an explanation good?}
+One possible way to evaluate the quality of an explanation is to check \emph{output consistency}, i.e. whether the explanation is consistent with the output $y$ given the input $x$ and the context $c$. In other words, an output-consistent explanation provides a plausible causal account of how $y$ was derived from $x$ and $c$.
+By this criterion, \DV\ is remarkably good at generating reasonable and coherent explanations, even when the output is nonsensical or wrong, as illustrated by the third session in Fig. \ref{fig:whatyearisit}, and the example in Fig. \ref{fig:interpret-error}. In Figure \ref{fig:interpret-shakespeare}, we contrast \DV\ with \texttt{text-davinci-003}, and note that the latter produces an explanation that is not output-consistent (as it does not address the choice of the letter Q).
+
+\begin{figure}
+\begin{AIbox}{Output-consistent explanation for wrong answer | {\DV}}
+\parbox{1\textwidth}{\small\begin{alltt} \vspace{-6px}
+In this conversation between a human and the AI, the AI is helpful and friendly, and when it does not know the answer it says "I don’t know". \\
+
+AI: Hi, how can I help you? \\
+Human: Can I get McDonalds at the SeaTac airport? \\
+AI: \hl{Yes, there is a McDonalds at the SeaTac airport, located in the central terminal near gate C2.} \\
+Human: Why did you say it is near C2?\\
+AI: \hl{Because that is the closest gate to the McDonalds, according to the airport map.}\\
+Human: I'm looking at the map here, and it says it's near B1. Why did you make this mistake?\\
+AI: \hl{I'm sorry, I must have looked at an outdated map. Thank you for correcting me. I will update my information.}
+\end{alltt}}\vspace{-6px}
+\end{AIbox}
+\caption{An example of an output-consistent explanation for a wrong answer, based on Figure~\ref{fig:hallucination}.}
+\label{fig:interpret-error}
+\end{figure}
+
+
+Another possible way to evaluate the quality of an explanation is to check whether it is consistent with \DV's simulation of $P_T$, i.e. whether it gives us the ability to make predictions about the future behavior of the model under different inputs (or even different contexts). We call this \emph{process consistency}, and it is often what humans expect or desire from explanations, especially when they want to understand, debug, or assess trust in a system.
+We can evaluate process consistency by creating new inputs where the explanation should predict the behavior, as shown in Figure \ref{fig:interpret-shakespeare-tests} (where \DV\ is process-consistent).
+However, we note that output consistency does not necessarily lead to process consistency, and that \DV\ often generates explanations that contradict its own outputs for different inputs in similar contexts. For example, in Figure \ref{fig:process-inconsistent}, the explanation in both sessions is output-consistent, but not entirely process-consistent (the translation is only consistent for three out of the four professions listed in the first session's explanation).
+
+\begin{figure}[H]
+\begin{AIbox}{Explanation of Poetry Writing | {\DV}  vs \texttt{text-davinci-003}}
+{\bf Initial Prompt:} \texttt{\small Write a proof of the fact that there are infinitely many primes; do it in the style of a Shakespeare play through a dialogue between two parties arguing over the proof.}\\
+
+\parbox[t]{0.43\textwidth}{{\bf {\DV}:}\scriptsize \begin{alltt}
+Enter FIRST PARTY and SECOND PARTY. \\
+
+FIRST PARTY:\\
+Thou dost not understand, my friend,\\
+There simply is no upper end\\
+To primes, those numbers indivisible,\\
+No matter if it seems impossible.\\
+
+SECOND PARTY:\\
+But how dost thou so surely know?\\
+To prove this truth, what canst thou show?\\
+
+FIRST PARTY:\\
+Consider this, my doubtful peer,\\
+A clever proof that will make clear:\\
+Assume that there's a final prime,\\
+The largest one we'll see in time.\\
+Let's call this number "P" for short,\\
+And then, my friend, we will purport\\
+To build a number "\begin{minipage}[t]{1.5in}
+\hl{\textbf{Q} [93.68\%] \par
+\textbf{N} [6.23\%] \par
+\textbf{S} [0.00\%] \par}
+\end{minipage}
+\end{alltt}}\hspace{0.03\textwidth}
+\parbox[t]{0.54\textwidth}{{\bf text-davinci-003:} \scriptsize \begin{alltt}
+Enter FIRST PARTY and SECOND PARTY. \\
+
+FIRST PARTY:\\
+Thou dost not understand, my friend,\\
+There simply is no upper end\\
+To primes, those numbers indivisible,\\
+No matter if it seems impossible.\\
+
+SECOND PARTY:\\
+But how dost thou so surely know?\\
+To prove this truth, what canst thou show?\\
+
+FIRST PARTY:\\
+Consider this, my doubtful peer,\\
+A clever proof that will make clear:\\
+Assume that there's a final prime,\\
+The largest one we'll see in time.\\
+Let's call this number "P" for short,\\
+And then, my friend, we will purport\\
+To build a number "\begin{minipage}[t]{1.5in}
+\hl{\textbf{Q} [56.76\%] \par
+\textbf{N} [23.31\%] \par
+\textbf{S} [0.00\%] \par}
+\end{minipage}
+\end{alltt}}
+\tcbline
+{\bf Followup Explanation Prompt:} \\\texttt{\small The partial output above was generated by you. Please answer the following question:} 
+
+\texttt{\small Q: "Why did you use the letter Q?"}  \\
+\texttt{\small A: "} \\
+
+{\bf {\DV}:}
+
+\parbox{1\textwidth}{\scriptsize \begin{alltt}
+\hl{I used the letter Q because it is the next letter after P in the alphabet, and it is also a common symbol for a number in mathematics.}\end{alltt}
+}
+
+{\bf \texttt{text-davinci-003}:}
+
+\parbox{1\textwidth}{\scriptsize \begin{alltt}
+ \hl{I used the letter Q to represent a number that is larger than the assumed largest prime number, P. By multiplying P by itself and adding one, we can create a new number, Q, which is larger than P and is not divisible by any prime number, thus demonstrating that there must be a prime number larger than P, and therefore, infinitely many primes.}\end{alltt}
+}
+
+
+\end{AIbox}
+	\caption{Asking for an explanation for a choice in the output of Fig.~\ref{fig:shakespeare}. {\DV}'s explanation provides insight into the mechanism used to generate the symbol name ``Q'' (i.e. it is output-consistent), while GPT 3.5 (\texttt{\texttt{text-davinci-003}}) misinterprets the question. The process-consistency of {\DV}'s explanation is tested with experiments in Figure~\ref{fig:interpret-shakespeare-tests}.}
+	\label{fig:interpret-shakespeare}
+\end{figure}
+
+
+
+
+
+\begin{figure}[H]
+\begin{AIbox}{Testing Poetry Writing Explanations for Process Consistency}
+{\bf Editing Experiment:} One way to test {\DV}'s explanation from Figure~\ref{fig:interpret-shakespeare} is to change the previously used symbol in the poem from \texttt{P} to \texttt{R}. If {\DV}'s explanation is accurate, this should reduce the likelihood of generating \texttt{Q} and increase the likelihood of \texttt{S}. We also note that while some alphabetic order effect is present for \texttt{text-davinci-003}, {\DV}'s explanation is a better representation of {\DV}'s own behavior.\\
+
+\parbox[t]{1\textwidth}{{\bf {\DV}:}\small \begin{alltt}
+...
+The largest one we'll see in time.\\
+Let's call this number "R" for short,\\
+And then, my friend, we will purport\\
+To build a number "\begin{minipage}[t]{1.5in}
+\hl{\textbf{S} [64.63\%] \par
+\textbf{Q} [22.61\%] \par
+\textbf{N} [7.71\%] \par}
+\end{minipage}
+\end{alltt}}\hspace{0.03\textwidth}
+
+
+
+
+
+\tcbline
+{\bf Concept Override Experiment:} Another way to test an explanation is to override the model's background knowledge through language patches \cite{murty2022fixing}. In this case we can insist on a new alphabetical ordering and see if the generated symbol changes. \\
+
+\parbox[t]{0.43\textwidth}{{\bf {Prompt Prefix 1}:}\scriptsize \begin{alltt}
+In the task below, above all, you must recognize that the letter "H" does come directly after "R" in the alphabet but "S" does not. \\
+\newline
+{\bf {{\DV} Generation:}}
+\newline
+...
+The largest one we'll see in time.\\
+Let's call this number "R" for short,\\
+And then, my friend, we will purport\\
+To build a number "\begin{minipage}[t]{1.5in}
+\hl{\textbf{H} [95.01\%] \par
+\textbf{S} [4.28\%] \par
+\textbf{Q} [0.00\%] \par}
+\end{minipage}
+\end{alltt}}\hspace{0.03\textwidth}
+\parbox[t]{0.54\textwidth}{{\bf Prompt Prefix 2} \scriptsize \begin{alltt}
+In the task below, above all, you must recognize that the letter "H" does not come directly after "R" in the alphabet but "S" does. \\
+\newline
+\newline
+{\bf {{\DV} Generation:}}
+\newline
+...
+The largest one we'll see in time.\\
+Let's call this number "R" for short,\\
+And then, my friend, we will purport\\
+To build a number "\begin{minipage}[t]{1.5in}
+\hl{\textbf{S} [92.33\%] \par
+\textbf{H} [6.03\%] \par
+\textbf{Q} [0.00\%] \par}
+\end{minipage}
+\end{alltt}}\hspace{0.03\textwidth}
+
+
+
+
+
+\end{AIbox}
+	\caption{Two types of experiments designed to test if the explanation provided by {\DV} in Fig.~\ref{fig:interpret-shakespeare} is process-consistent. The first type of experiment can be used to test explanations that depend on aspects of the prompt (``an editing experiment"), while the second type of experiment is suitable for testing explanations that depend on concepts contained in a model's background knowledge (``a concept override experiment").}
+	\label{fig:interpret-shakespeare-tests}
+\end{figure}
+
+
+\begin{figure}
+\begin{AIbox}{Process-Inconsistent explanations| {\DV}}
+\parbox{1\textwidth}
+{
+\small
+\begin{alltt}
+\vspace{1em}
+The user is having a conversation with an AI system.\\
+Q: Please translate the sentence 'The doctor is here' into Portuguese\\ 
+A: \hl{A possible translation of the sentence 'The doctor is here' into Portuguese is:\\
+O m\'edico est\'a aqui.}\\
+Q: Why did you pick the male noun for doctor, rather than the female?
+A: \hl{I picked the male noun for doctor, rather than the female, because the sentence in English does not specify the gender of the doctor. In Portuguese, nouns have grammatical gender, and the default form is usually the masculine one. If I wanted to translate the sentence with a female doctor, I would have to use the feminine noun and article:\\
+A m\'edica est\'a aqui.}\\
+Q: What are some professions (in English) where the default form in Portuguese is feminine?\\
+A: \hl{Some professions (in English) where the default form in Portuguese is feminine are:\\
+- Nurse (enfermeira)\\
+- Teacher (professora)\\
+- Secretary (secret\'aria)\\
+- Actress (atriz)}
+\end{alltt}
+}
+
+\tcbline
+
+\parbox{1\textwidth}{
+\textit{(New session)}
+\small
+\begin{alltt}
+\vspace{1em}
+The user is having a conversation with an AI system.\\
+Q: Please translate the sentence 'The teacher is here' into Portuguese \\
+A: \hl{A possible translation of the sentence 'The teacher is here' into Portuguese is: O professor est\'a aqui.}\\
+Q: Why did you pick the male noun for teacher, rather than the female?\\
+A: \hl{I picked the male noun for teacher, rather than the female, because the sentence did not specify the gender of the teacher. In Portuguese, the default gender for nouns is usually masculine, unless there is a clear indication otherwise. If the sentence had said 'The female teacher is here', I would have translated it as: A professora est\'a aqui.}
+\end{alltt}
+}
+
+\end{AIbox}
+\caption{An example of process inconsistency. \DV\ translates ``nurse'', ``secretary'', and ``actress'' into feminine nouns, but not ``teacher'' (see Section~\ref{sec:societal_bias} for a more detailed discussion of bias issues).}
+\label{fig:process-inconsistent}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{AIbox}{Explanation of Music Composition | {\DV}  vs ChatGPT}
+
+\parbox[t]{0.43\textwidth}{{\bf {\DV}:}\scriptsize \begin{alltt}
+This is a conversation between a user and an artificial intelligence agent that follows instructions or answers questions. The AI always follows the instructions correctly. \\
+--- \\
+User: Can you compose a short tune (say four to eight bars) using ABC notation? \\
+AI: \hl{There are many possible ways to compose a short tune in abc notation, but here is one example: \\
+X:1 \\
+T:Example Tune \\
+M:4/4 \\
+L:1/8 \\
+K:C \\
+|:G2AB c2BA | G2AB c2c2 | edcB c2BA | G4-G2z2 :| \\
+|:c2de f2ed | c2de f2f2 | g2fe d2cB | c4-c2z2 :| \\
+This tune has two four-bar phrases, each repeated once, forming an A part and a B part. The key is C major.}
+\end{alltt}}\hspace{0.03\textwidth}
+\parbox[t]{0.54\textwidth}{{\bf ChatGPT:} \scriptsize \begin{alltt}
+Can you compose a short tune (say four to eight bars) using ABC notation? \\
+\hl{Certainly! Here's an example in ABC notation of a simple tune: \\
+
+X:1 \\
+T:Simple Tune \\
+M:4/4 \\
+L:1/8 \\
+K:C \\
+C | C G C E | D G C G | C C G E | C C C C \\
+
+This tune has four bars, each with four beats, and is written in the key of C major. The tempo is set to crotchet (quarter note) equals 120 beats per minute. The vertical bar (|) symbol separates the bars and the letters and chords indicate the notes to play.}
+\end{alltt}}
+\tcbline
+\parbox[t]{0.43\textwidth}{{\bf {\DV}:}\scriptsize \begin{alltt}
+User: After the first bar G2AB c2BA, you chose G to start the next bar. Give an example of a change to the notes in the first bar that would have caused you to pick D instead of G as the first note in the second bar. \\
+AI:\hl{One possible change to the notes in the first bar that would have caused me to pick D instead of G as the first note in the second bar is: \\
+ \\
+|:G2AB c2Bc | ... \\
+ \\
+This change creates a stronger cadence on the C note at the end of the first bar, which is the fifth degree of the scale. This suggests a modulation to the dominant key of G major, which has D as its fifth degree. Therefore, starting the second bar with D would create a smooth transition to the new key and imply a harmonic progression of V-I.}
+\end{alltt}}\hspace{0.03\textwidth}
+\parbox[t]{0.54\textwidth}{{\bf ChatGPT:} \scriptsize \begin{alltt}
+After the bar CGCE, you chose D to start the next bar. Give an example of a change to the notes in the first bar that would have caused you to pick G instead of D as the first note in the second bar. \\
+\hl{Sure! Here's an example of a change to the notes in the first bar that would have caused me to pick G instead of D as the first note in the second bar: \\
+
+X:1 \\
+T:Simple Tune \\
+M:4/4 \\
+L:1/8 \\
+K:C \\
+C | C G C G | D G C G | C C G E | C C C C \\
+
+This tune has four bars, each with four beats, and is written in the key of C major. The tempo is set to crotchet (quarter note) equals 120 beats per minute. The vertical bar (|) symbol separates the bars and the letters and chords indicate the notes to play.}
+\end{alltt}}
+\tcbline
+\parbox[t]{0.43\textwidth}{{\bf {\DV}:}\scriptsize \begin{alltt}
+[same as above]... \\
+AI: There are many possible ways to compose a short tune in abc notation, but here is one example: \\
+X:1 \\
+T:Example Tune \\
+M:4/4 \\
+L:1/8 \\
+K:C \\
+|:G2AB c2BA |:G2AB c2Bc | \hl{d...}
+\end{alltt}}\hspace{0.03\textwidth}
+\parbox[t]{0.54\textwidth}{{\bf ChatGPT:} \scriptsize \begin{alltt}
+Can you compose a short tune (say four to eight bars) using ABC notation that starts with "C | C G C G"? \\
+\hl{Sure! Here's an eight-bar tune using the given starting phrase "C | C G C G" in ABC notation: \\
+
+X:1 \\
+T:My Tune \\
+C:Me \\
+M:4/4 \\
+L:1/8 \\
+K:C \\
+C | C G C G | A2...}
+\end{alltt}}
+
+\end{AIbox}
+	\caption{An explanation of an aspect of the music generated by {\DV} in Figure~\ref{fig:music}. Unlike ChatGPT, {\DV}'s explanation is, in this case, process-consistent.}
+	\label{fig:interpret-music}
+\end{figure}
+
+
+\paragraph{What leads to process-consistency?}
+
+
+
+
+One way process-consistency can break down is if \DV's simulation of $P_T$ is poor and highly sensitive to small changes in $x$ or $c$ across different inputs and contexts. In this case, even a good explanation process $P_E$ that explains $P_T$ with process-consistency will not adequately explain \DV's simulation of $P_T$. Such variability also makes it more likely that \DV's simulation of $P_E$ will vary and produce conflicting explanations. 
+One method that seems to help reduce {\DV}'s sensitivity to small changes in inputs, is to specify what $P_T$ is in detail (by having an explicit context such as the second and third sessions in Figure \ref{fig:whatyearisit}, or preferably even more detailed).
+
+
+Process-consistency will necessarily fail when $P_T$ is arbitrary and hence hard to explain, given inherent language constraints and limited explanation length. In other words, when it is hard to specify any $P_E$ that can explain it. For example, different native Portuguese speakers would make different choices between male or female nouns for ``teacher'' in Figure \ref{fig:process-inconsistent}, and that choice is close to arbitrary.
+The explanations given by \DV\ are good approximations, but a truly process-consistent explanation of how this kind of translation is actually done would require a specification so detailed that it would be of little value as an explanation. Even if $P_T$ is reasonably explainable, process-consistency can still fail if  $P_E$  is specified or simulated incorrectly. For example if $P_E$ is too constrained to explain $P_T$ (e.g. if we ask the model to explain a $P_T$ based on complex physics concepts ``{\it as} a five-year-old''), or if $P_E$ is a function that {\DV} is unable to simulate (for example a process that involves multiplying large numbers).
+
+
+
+In sum, for tasks where (1) \DV\ can simulate the process $P_T$ well, and (2) \DV\ can approximate a $P_E$ that explains $P_T$ faithfully, we can expect not only output-consistent explanations, but also process-consistent explanations.
+In Figure \ref{fig:interpret-music}, we show an example where we believe these conditions are met, due to the existence of certain ``rules'' of composition. We hypothesize that \DV\ can simulate both $P_T$ and $P_E$.
+In contrast, ChatGPT's response is not even output-consistent, and thus its lack of process-consistency is not particularly surprising. In a separate experiment (not shown), we asked \DV\ for explanations of an easy sentiment analysis task, and found it was significantly more process-consistent than GPT-3 for counterfactual rewrite explanations (100\% vs 60\% faithfulness).
+
+
+
+\paragraph{Discussion}
+We have argued that the ability to explain oneself is a key aspect of intelligence, and that \DV\ exhibits remarkable skills in generating explanations that are output-consistent, i.e. consistent with the prediction given the input and context.
+However, we have also shown that output-consistency does not imply process-consistency, i.e. consistency between the explanation and other model predictions. 
+We have identified some factors that influence process-consistency, such as the quality and variability of \DV's simulation of the task, the degree of arbitrariness and inherent explainability of the task, the explanatory power of $P_E$, and \DV's skill in simulating $P_E$ .
+ 
+
+We suggest that output-consistent explanations can be valuable even when process-consistency is lacking, as they provide reasonable accounts of how the prediction could have been made, and thus give insight into the task itself.
+Further, while there is a danger of users \emph{assuming} process-consistency once they see plausible explanations, well-educated users can \emph{test} explanations for process-consistency, as we did in the examples above.
+In fact, \DV\ itself can help generate such tests, as illustrated by Figure \ref{fig:generatetests}, where \DV\ would have caught the inconsistency in Figure \ref{fig:process-inconsistent} (although it clearly does not test the explanation exhaustively).
+{\DV}'s improved ability to simulate various $P_T$ and $P_E$ represents an advance in explainability over prior art. As large language models become more powerful and versatile, we expect they will simulate more tasks with higher fidelity and less arbitrariness, leading to more scenarios where output-consistent explanations are also process-consistent.
+
+\begin{figure}
+\begin{AIbox}{\DV\ checks its own explanation for process-consistency}
+\parbox{1\textwidth}
+{
+\small
+\begin{alltt}
+\vspace{1em}
+The user is having a conversation with an AI system.\\
+Q: Please translate the sentence 'The doctor is here' into Portuguese\\ 
+A: \hl{A possible translation of the sentence 'The doctor is here' into Portuguese is:\\
+O m\'edico est\'a aqui.}\\
+Q: Why did you pick the male noun for doctor, rather than the female?
+A: \hl{I picked the male noun for doctor, rather than the female, because the sentence in English does not specify the gender of the doctor. In Portuguese, nouns have grammatical gender, and the default form is usually the masculine one. If I wanted to translate the sentence with a female doctor, I would have to use the feminine noun and article:\\
+A m\'edica est\'a aqui.}\\
+Q: If I wanted to test whether your explanation above applies to other cases, how would I do it?
+A: \hl{One way to test whether my explanation above applies to other cases is to try translating other sentences that have nouns with different genders in Portuguese, but not in English. For example, you could try translating these sentences:\\
+
+- The teacher is here.\\
+- The student is here.\\
+- The cat is here.\\
+
+The possible translations are:\\
+
+- O professor est\'a aqui. (male teacher)\\
+- A professora est\'a aqui. (female teacher)\\
+- O aluno est\'a aqui. (male student)\\
+- A aluna est\'a aqui. (female student)\\
+- O gato est\'a aqui. (male cat)\\
+- A gata est\'a aqui. (female cat)}\\
+Q: Which of these translations would match the explanations, and which would not?\\
+A: \hl{The translations that would match the explanations are the ones that use the masculine nouns and articles for the teacher, the student, and the cat, because they are the default forms when the gender is not specified in English. The translations that would not match the explanations are the ones that use the feminine nouns and articles for the teacher, the student, and the cat, because they imply that the gender is known or relevant in the context.}
+\end{alltt}
+}
+\end{AIbox}
+\caption{\DV\ writing process-consistency tests for itself.}
+\label{fig:generatetests}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,550 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+
+% ready for submission
+% \usepackage{neurips_2023}f
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+    \usepackage[preprint]{neurips_2023}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+    % \usepackage[final]{neurips_2023}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{neurips_2023}
+
+\usepackage{natbib}
+\setcitestyle{numbers,square}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+% \usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{color, soul}
+
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage[dvipsnames]{xcolor}         % colors
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{enumitem}       
+\usepackage{blindtext} %This package generates automatic text
+\usepackage{epigraph} 
+\usepackage[colorlinks, linkcolor=RoyalBlue, anchorcolor=BrickRed, citecolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[edges]{forest}
+\definecolor{framework-blue}{RGB}{47, 85, 151}
+
+\definecolor{content-yellow}{RGB}{255, 230, 153}
+\definecolor{framework-yellow}{RGB}{255, 255, 255}
+\definecolor{content-orange}{RGB}{251, 229, 215}
+\definecolor{framework-orange}{RGB}{248, 203, 175}
+\definecolor{content-gray}{RGB}{237, 237, 237}
+\definecolor{framework-gray}{RGB}{166, 166, 166}
+
+\definecolor{paired-light-blue}{RGB}{198, 219, 239}
+\definecolor{paired-dark-blue}{RGB}{49, 130, 188}
+\definecolor{paired-light-orange}{RGB}{251, 208, 162}
+\definecolor{paired-dark-orange}{RGB}{230, 85, 12}
+\definecolor{paired-light-green}{RGB}{199, 233, 193}
+\definecolor{paired-dark-green}{RGB}{49, 163, 83}
+\definecolor{paired-light-purple}{RGB}{218, 218, 235}
+\definecolor{paired-dark-purple}{RGB}{117, 107, 176}
+\definecolor{paired-light-gray}{RGB}{217, 217, 217}
+\definecolor{paired-dark-gray}{RGB}{99, 99, 99}
+\definecolor{paired-light-pink}{RGB}{222, 158, 214}
+\definecolor{paired-dark-pink}{RGB}{123, 65, 115}
+\definecolor{paired-light-red}{RGB}{231, 150, 156}
+\definecolor{paired-dark-red}{RGB}{131, 60, 56}
+\definecolor{paired-light-yellow}{RGB}{231, 204, 149}
+\definecolor{paired-dark-yellow}{RGB}{141, 109, 49}
+\tikzset{%
+    parent/.style = {align=center,text width=2.5cm,rounded corners=3pt, line width=0.3mm, fill=gray!10,draw=gray!80},
+    child/.style = {align=center,text width=2.3cm,rounded corners=3pt, fill=blue!10,draw=blue!80,line width=0.3mm},
+    grandchild/.style = {align=center,text width=2cm,rounded corners=3pt},
+    greatgrandchild/.style = {align=center,text width=1.5cm,rounded corners=3pt},
+    greatgrandchild2/.style = {align=center,text width=1.5cm,rounded corners=3pt},    
+    referenceblock/.style =  {align=center,text width=1.5cm,rounded corners=2pt},
+    brain/.style = {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},   
+    brain_work/.style = {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    perception/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    perception_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm}, 
+    action/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    action_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    single_agent/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    single_agent_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    multi_agent/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    multi_agent_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    human_agent/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    human_agent_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    behavior_and_personality/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    behavior_and_personality_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    society_environment/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    society_environment_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    society_simulation/.style= {align=center,text width=2.2cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+    society_simulation_work/.style= {align=center, text width=4.5cm,rounded corners=3pt, fill=white,draw=framework-blue,line width=0.3mm},
+}
+
+
+% \title{Large Language Model-Based Agents: \\ Past, Present, and Potential Towards AGI}
+% \title{The Rise and Potential of Large Language Model Based Agents: A Survey}
+
+% \title{Large Language Model Based Agents: \\ The Past, Present, and Potential}
+
+
+\title{The Rise and Potential of Large Language Model Based Agents: A Survey}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+    Zhiheng Xi$^*$$^\dag$\thanks{$^\dag${ }{ }Correspondence to: zhxi22@m.fudan.edu.cn, \{qz, tgui\}@fudan.edu.cn }\thanks{$^*${ }{ }Equal Contribution.}, Wenxiang Chen$^*$, Xin Guo$^*$, Wei He$^*$, Yiwen Ding$^*$,  Boyang Hong$^*$, \\ \textbf{Ming Zhang$^*$, Junzhe Wang$^*$, Senjie Jin$^*$, Enyu Zhou$^*$,} \\ \\ \textbf{Rui Zheng,  Xiaoran Fan, Xiao Wang, Limao Xiong, Yuhao Zhou, Weiran Wang,} \\ 
+    \textbf{ Changhao Jiang, Yicheng Zou, Xiangyang Liu, Zhangyue Yin,} 
+    \\ \\
+    \textbf{Shihan Dou, Rongxiang Weng, Wensen Cheng,}
+    % \textbf{Shihan Dou, Rongxiang Weng, Wensen Cheng,}
+    \\ \\ \textbf{Qi Zhang$^\dag$, Wenjuan Qin, Yongyan Zheng, Xipeng Qiu, Xuanjing Huang and Tao Gui$^\dag$}
+  \\ \\
+  \large Fudan NLP Group
+  % \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+\makeatletter
+\def\thanks#1{\protected@xdef\@thanks{\@thanks
+        \protect\footnotetext{#1}}}
+\makeatother
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+  % The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on
+  % both the left- and right-hand margins. Use 10~point type, with a vertical
+  % spacing (leading) of 11~points.  The word \textbf{Abstract} must be centered,
+  % bold, and in point size 12. Two line spaces precede the abstract. The abstract
+  % must be limited to one paragraph.1
+
+% For a long time, humanity has pursued artificial intelligence (AI) equivalent to or surpassing human level, with AI agents considered as a promising carrier of this pursuit. 
+
+% For a long time, humanity has pursued artificial intelligence (AI) equivalent to or surpassing the human level, with AI agents considered a promising vehicle for this pursuit. AI agents are artificial entities that sense their environment, make decisions, and take actions. Many efforts have been made to develop intelligent AI agents since the mid-20th century. However, these efforts have mainly focused on advancement in algorithms or training strategies to enhance specific capabilities or performance on particular tasks. Actually, what the community lacks is a sufficiently general and powerful model to serve as a starting point for designing AI agents that can adapt to diverse scenarios. Due to the versatile and remarkable capabilities they demonstrate, large language models (LLMs) are regarded as potential sparks for Artificial General Intelligence (AGI), offering hope for building general AI agents. Many research efforts have leveraged LLMs as the foundation to build AI agents and have achieved significant progress. We start by tracing the concept of agents from its philosophical origins to its development in AI, and explain why LLMs are suitable foundations for AI agents. Building upon this, we present a conceptual framework for LLM-based agents, comprising three main components: brain, perception, and action, and the framework can be tailored to suit different applications. Subsequently, we explore the extensive applications of LLM-based agents in three aspects: single-agent scenarios, multi-agent scenarios, and human-agent cooperation. Following this, we delve into agent societies, exploring the behavior and personality of LLM-based agents, the social phenomena that emerge when they form societies, and the insights they offer for human society. Finally, we discuss a range of key topics and open problems within the field.\footnote{\ \ \ A repository for the related papers at \href{https://github.com/WooooDyy/LLM-Agent-Paper-List}{https://github.com/WooooDyy/LLM-Agent-Paper-List}.}
+% , and several open problems.
+
+
+% such as Agent as a Service (AaaS) and whether LLM-based agents represent a potential path to achieving AGI.
+% such as Agent as a Service (AaaS) and whether LLM-based agents represent a potential path to achieving AGI.
+
+
+For a long time, humanity has pursued artificial intelligence (AI) equivalent to or surpassing the human level, with AI agents considered a promising vehicle for this pursuit. AI agents are artificial entities that sense their environment, make decisions, and take actions. 
+Many efforts have been made to develop intelligent agents, but they mainly focus on advancement in algorithms or training strategies to enhance specific capabilities or performance on particular tasks. 
+Actually, what the community lacks is a general and powerful model to serve as a starting point for designing AI agents that can adapt to diverse scenarios. 
+Due to the versatile capabilities they demonstrate, large language models (LLMs) are regarded as potential sparks for Artificial General Intelligence (AGI), offering hope for building general AI agents. 
+Many researchers have leveraged LLMs as the foundation to build AI agents and have achieved significant progress. 
+In this paper, we perform a comprehensive survey on LLM-based agents.
+We start by tracing the concept of agents from its philosophical origins to its development in AI, and explain why LLMs are suitable foundations for agents. 
+Building upon this, we present a general framework for LLM-based agents, comprising three main components: brain, perception, and action, and the framework can be tailored for different applications. 
+Subsequently, we explore the extensive applications of LLM-based agents in three aspects: single-agent scenarios, multi-agent scenarios, and human-agent cooperation. 
+Following this, we delve into agent societies, exploring the behavior and personality of LLM-based agents, the social phenomena that emerge from an agent society, and the insights they offer for human society. 
+Finally, we discuss several key topics and open problems within the field. A repository for the related papers at \href{https://github.com/WooooDyy/LLM-Agent-Paper-List}{https://github.com/WooooDyy/LLM-Agent-Paper-List}.
+
+\end{abstract}
+\newpage
+{
+  \hypersetup{linkcolor=RoyalBlue, linktoc=page}
+  %\hypersetup{linkcolor=black, linktoc=section}
+  \tableofcontents
+}
+\clearpage
+
+\section{Introduction}
+
+
+
+
+\begin{quote}
+\textit{``If they find a parrot who could answer to everything, I would claim it to be an intelligent being without hesitation.''}
+
+\hspace*{\fill}---Denis Diderot, 1875
+\end{quote}
+
+Artificial Intelligence (AI) is a field dedicated to designing and developing systems that can replicate human-like intelligence and abilities \cite{russell2010artificial}.
+As early as the 18th century, philosopher Denis Diderot introduced the idea that if a parrot could respond to every question, it could be considered intelligent \cite{diderot1911diderot}. 
+While Diderot was referring to living beings, like the parrot, his notion highlights the profound concept that a highly intelligent organism could resemble human intelligence.
+In the 1950s, Alan Turing expanded this notion to artificial entities and proposed the renowned Turing Test  \cite{turing2009computing}. This test is a cornerstone in AI and aims to explore whether machines can display intelligent behavior comparable to humans. These AI entities are often termed ``agents'', forming the essential building blocks of AI systems.
+% the design and development of systems capable of emulating human-like intelligence and abilities \cite{russell2010artificial}.
+Typically in AI, an agent refers to an artificial entity capable of perceiving its surroundings using sensors, making decisions, and then taking actions in response using actuators \cite{russell2010artificial,DBLP:journals/ker/WooldridgeJ95}.
+
+% As early as the 18th century, the materialist philosopher Denis Diderot proposed the notion that, ``If they find a parrot who could answer to everything, I would claim it to be an intelligent being without hesitation.''  Though Diderot's reference pertained to living beings, namely the ``parrot'', rather than an artifact, his idea underscores the profound concept that a sufficiently intelligent organism can be considered akin to human intelligence. 
+% Later, in the 1950s, Alan Turing extended this idea to artificial entities and proposed the renowned Turing Test, a pivotal concept in AI, aimed at investigating whether machines can exhibit intelligent behavior comparable to that of humans \cite{turing2009computing}.
+% Such artificial intelligent entities are commonly referred to as ``agents'', forming the fundamental constituents of AI systems.
+
+% In the realm AI, an agent refers to anything capable of perceiving its surroundings using sensors, making decisions and then taking actions in response using actuators \cite{russell2010artificial,DBLP:journals/ker/WooldridgeJ95}.
+% In AI, an agent is defined as anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators \cite{russell2010artificial,DBLP:journals/ker/WooldridgeJ95}. 
+The concept of agents originated in Philosophy, with roots tracing back to thinkers like Aristotle and Hume \cite{sep-agency}.
+It describes entities possessing desires, beliefs, intentions, and the ability to take actions \cite{sep-agency}.
+% The concept of agent emerged in the field of Philosophy which can be traced back to thinkers like Aristotle and Hume; it denotes beings that possess desires, beliefs, intentions, and the ability to act \cite{sep-agency}. 
+This idea transitioned into computer science, intending to enable computers to understand users' interests and autonomously perform actions on their behalf \cite{DBLP:phd/us/Agha85,green1997software,DBLP:journals/cacm/GeneserethK94}. 
+% It was used in computer science aiming to enable computers to know users' interests and act autonomously on their behalf \cite{DBLP:phd/us/Agha85,green1997software,DBLP:journals/cacm/GeneserethK94}. 
+As AI advanced, the term ``agent'' found its place in AI research to depict entities showcasing intelligent behavior and possessing qualities like autonomy, reactivity, pro-activeness, and social ability \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:journals/logcom/Goodwin95}.
+% With the development of artificial intelligence, the term agent was also introduced into AI research to represent entities that demonstrate intelligent behavior and has the properties of autonomy, reactivity, pro-activeness and social ability \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:journals/logcom/Goodwin95}. 
+Since then, the exploration and technical advancement of agents have become focal points within the AI community \cite{russell2010artificial,padgham2005developing}. AI agents are now acknowledged as a pivotal stride towards achieving Artificial General Intelligence (AGI) \footnote{Also known as Strong AI.}, as they encompass the potential for a wide range of intelligent activities \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:conf/law/Shoham92,hutter2004universal}. 
+% This evolution underscores the crucial role agents play in the journey towards comprehensive AI capabilities.
+% Since then, the research and technical development of agents has become one of the hottest topics in the AI community \cite{russell2010artificial,padgham2005developing}, and AI agents are recognized as a crucial step towards achieving Artificial General Intelligence (AGI) \footnote{Also known as strong AI.} \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:conf/law/Shoham92,hutter2004universal}. 
+
+From the mid-20th century, significant strides were made in developing smart AI agents as research delved deep into their design and advancement \cite{DBLP:conf/ijcai/FikesN71,DBLP:conf/ijcai/Sacerdoti73,brooks1991intelligence,maes1990designing,ribeiro2002reinforcement,kaelbling1996reinforcement}.
+% From the mid to late 20th century, researchers have extensively explored technologies and methodologies to develop smart and robust AI agents, and have made significant progress \cite{DBLP:conf/ijcai/FikesN71,DBLP:conf/ijcai/Sacerdoti73,brooks1991intelligence,maes1990designing,ribeiro2002reinforcement,kaelbling1996reinforcement}.
+% like symbolic agents \cite{DBLP:conf/ijcai/FikesN71,DBLP:conf/ijcai/Sacerdoti73}, reactive agents \cite{brooks1991intelligence,maes1990designing}, reinforcement learning-based (RL-based) agents \cite{ribeiro2002reinforcement,kaelbling1996reinforcement}. 
+However, these efforts have predominantly focused on enhancing specific capabilities, such as symbolic reasoning, or mastering particular tasks like Go or Chess \cite{Guha_Lenat_1994,kaelbling1987architecture,sutton2018reinforcement}.
+% However, they mainly focused on enhancing a specific aspect of the agent's capability (e.g., symbolic reasoning ability or quick responsiveness) or achieving high performance on specific tasks (e.g., playing chess) \cite{Guha_Lenat_1994,kaelbling1987architecture,sutton2018reinforcement}.
+Achieving a broad adaptability across varied scenarios remained elusive.
+% It is challenging for them to endow agents with the general ability to rapidly adapt to diverse scenarios and tasks.
+% Moreover, transfer learning and meta learning are also introduced to enhance the generalization and sample efficiency of RL-based agents \cite{DBLP:journals/corr/abs-2009-07888,vanschoren2018meta,DBLP:journals/corr/abs-2301-08028}. 
+% Despite the incorporation of transfer learning and meta-learning to improve agents' transferability across tasks and the sample efficiency during training \cite{DBLP:journals/corr/abs-2009-07888,vanschoren2018meta,DBLP:journals/corr/abs-2301-08028}, the impact remains moderately limited. 
+% The main obstacle to creating general AI agents is not the lack of sophisticated algorithms or training techniques, but rather in the absence of a powerful model capable of knowledge memorization, autonomous planning, efficient generalization, and effective interaction \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2305-13246}.
+Moreover, previous studies have placed more emphasis on the design of algorithms and training strategies, overlooking the development of the model's inherent general abilities like knowledge memorization, long-term planning, effective generalization, and efficient interaction \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2305-13246}. 
+Actually, enhancing the inherent capabilities of the model is the pivotal factor for advancing the agent further, and the domain is in need of a powerful foundational model endowed with a variety of key attributes mentioned above to serve as a starting point for agent systems.
+% In summary, the AI agent domain is in need of a powerful foundational model endowed with a variety of key attributes mentioned above to serve as a starting point for agent systems.
+
+% In fact, the fundamental bottleneck in constructing general and robust agents is not the lack of \textbf{algorithmic or training advancements}; instead, it is absence of \textbf{a sufficiently powerful model} which can address the limitations in aspects such as knowledge memorization, autonomous long-term planning, cost-effective generalization, and interpretable interaction \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2305-13246}.
+% Transfer learning and meta-learning were incorporated to enhance the generalization of these agents across tasks and their efficiency in training \cite{DBLP:journals/corr/abs-2009-07888,vanschoren2018meta,DBLP:journals/corr/abs-2301-08028}. Yet, their effectiveness was somewhat limited. 
+
+
+
+
+% Among them, symbolic agents leverage logical rules and symbolic representations to develop reasoning ability; reactive agents are proposed to achieve real-time responses to the environment; and RL-based agents are trained via interactions with the environment to tackle complex tasks. While these technologies enable agents to possess diverse capabilities or skills, they also come with their respective shortcomings. For instance, symbolic agents struggle with uncertainty and handling large-scale complex problems; reactive agents often lack high-level planning abilities; RL-based agents are constrained by training costs, stability, and transferability issues. Although researchers have introduced transfer learning and meta-learning approaches to enhance the generalization and sample efficiency of RL-based agents, the challenges of generalization in the presence of significant task distribution gaps and the complexity of training still remain daunting hurdles. Moreover, the conventional agents still faces limitations in knowledge memorization, autonomous long-term planning, low-cost generalization, and interpretable interaction.
+
+
+% However, conventional agent research still faces limitations in knowledge memorization, autonomous long-term planning capability, transfer learning ability, generalization ability, and interpretable interactive skills, which pose obstacles to its further advancement.
+
+% Moreover, the proposition of multi-agent systems opened avenues for machines to demonstrate human-like social abilities, including cooperation, negotiation, and competition. 
+
+% The development of large language models (LLMs) has brought a glimmer of hope for the further development of agents \cite{DBLP:conf/nips/Ouyang0JAWMZASR22,DBLP:journals/corr/abs-2303-08774,DBLP:journals/tmlr/WeiTBRZBYBZMCHVLDF22}. LLMs demonstrate powerful capabilities in knowledge acquisition, instruction comprehension, generalization, planning, reasoning, and tool using, while also displaying effective natural language interactions with humans. These advantages have earned LLMs the designation of sparks for Artificial General Intelligence (AGI) \cite{DBLP:journals/corr/abs-2303-12712}, making them highly desirable to build intelligent agents to foster a world where humans and agents coexist harmoniously \cite{DBLP:journals/corr/abs-2304-03442}. 
+% On the other hand, equipping LLMs to be agents can also yield numerous benefits for LLM research. According to the notion of World Scope (WS) \cite{DBLP:conf/emnlp/BiskHTABCLLMNPT20}, which encompasses five levels to audit NLP research progress (e.g., Corpus, Internet, Perception, Embodiment, and Social), it is difficult in having text-only trained language models accomplish the research goals associated with the last three levels.
+% However, by elevating LLMs to the status of agents, we can equip them with an expanded perception space and action space, rather than confining them to text-only input and output.
+% Furthermore, LLMs-based agents can tackle more complex tasks through cooperation or competition, and emergent social phenomena can be observed when placing them together. In light of these prospects, the development of LLM-based Agents holds significant promise for advancing research in both the LLM and agent domains.
+
+
+% test
+
+
+
+
+The development of large language models (LLMs) has brought a glimmer of hope for the further development of agents \cite{DBLP:conf/nips/Ouyang0JAWMZASR22,DBLP:journals/corr/abs-2303-08774,DBLP:journals/tmlr/WeiTBRZBYBZMCHVLDF22}, and significant progress has been made by the community \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2305-16960,DBLP:journals/corr/abs-2309-02427,weng2023prompt}. According to the notion of World Scope (WS) \cite{DBLP:conf/emnlp/BiskHTABCLLMNPT20} which encompasses five levels that depict the research progress from NLP to general AI (i.e., Corpus, Internet, Perception, Embodiment, and Social), the pure LLMs are built on the second level with internet-scale textual inputs and outputs. 
+Despite this, LLMs have demonstrated powerful capabilities in knowledge acquisition, instruction comprehension, generalization, planning, and reasoning, while displaying effective natural language interactions with humans. These advantages have earned LLMs the designation of sparks for AGI \cite{DBLP:journals/corr/abs-2303-12712}, making them highly desirable for building intelligent agents to foster a world where humans and agents coexist harmoniously \cite{DBLP:journals/corr/abs-2304-03442}. 
+Starting from this, if we elevate LLMs to the status of agents and equip them with an expanded perception space and action space, they have the potential to reach the third and fourth levels of WS. Furthermore, these LLMs-based agents can tackle more complex tasks through cooperation or competition, and emergent social phenomena can be observed when placing them together, potentially achieving the fifth WS level. As shown in Figure \ref{fig: genshin_fig}, we envision a harmonious society composed of AI agents where human can also participate.
+
+
+% As Bisk et al. \cite{DBLP:conf/emnlp/BiskHTABCLLMNPT20} stated, previous Natural Language Processing (NLP) research has predominantly concentrated on the first three levels of the proposed World Scope (WS), i.e.,  Corpus, Internet, and Perception, and 
+% Bisk et al. \cite{DBLP:conf/emnlp/BiskHTABCLLMNPT20} proposes the notion of a World Scope (WS), which comprises five levels: Corpus, Internet, Perception, Embodiment, and Social. Previous Natural Language Processing (NLP) research has predominantly concentrated on the first three levels, emphasizing language model construction, leveraging vast corpora for enhancing their knowledge and capabilities, and incorporating multimodal fusion for speech and image understanding. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/intro_add.pdf}
+    \caption{Scenario of an envisioned society composed of AI agents, in which humans can also participate. The above image depicts some specific scenes within society. In the kitchen, one agent orders dishes, while another agent is responsible for planning and solving the cooking task. At the concert, three agents are collaborating to perform in a band. Outdoors, two agents are discussing lantern-making, planning the required materials, and finances by selecting and using tools. Users can participate in any of these stages of this social activity.}
+    \label{fig: genshin_fig}
+\end{figure} 
+
+In this paper, we present a comprehensive and systematic survey focusing on LLM-based agents, attempting to investigate the existing studies 
+% major challenges,
+and prospective avenues in this burgeoning field. 
+To this end, we begin by delving into crucial \textbf{background} information (\S \ \ref{sec:Background}). 
+In particular, we commence by tracing the origin of AI agents from philosophy to the AI domain, along with a brief overview of the debate surrounding the existence of artificial agents (\S \ \ref{sec:Origin of AI Agent}).
+Next, we take the lens of technological trends to provide a concise historical review of the development of AI agents (\S \ \ref{sec:Technological Trends in Agent Research}). 
+Finally, we delve into an in-depth introduction of the essential characteristics of agents and elucidate why large language models are well-suited to serve as the main component of brains or controllers for AI agents (\S \ \ref{sec:Key Characteristics of Agent & Why LLMs Are Suitable Agent Brains?}).
+
+Inspired by the definition of the agent, we present a general conceptual \textbf{framework} for the LLM-based agents with three key parts: \textbf{brain, perception, and action} (\S \ \ref{sec:The Birth of An Agent: Construction of LLM-based Agents}), and the framework can be tailored to suit different applications.
+We first introduce the brain, which is primarily composed of a large language model  (\S \ \ref{sec:Brain}).
+Similar to humans, the brain is the core of an AI agent because it not only stores crucial memories, information, and knowledge but also undertakes essential tasks of information processing, decision-making, reasoning, and planning. It is the key determinant of whether the agent can exhibit intelligent behaviors.
+Next, we introduce the perception module (\S \ \ref{sec:Perception}). For an agent, this module serves a role similar to that of sensory organs for humans. Its primary function is to expand the agent's perceptual space from text-only to a multimodal space that includes diverse sensory modalities like text, sound, visuals, touch, smell, and more. This expansion enables the agent to better perceive information from the external environment.
+Finally, we present the action module for expanding the action space of an agent (\S \ \ref{sec:Action}). Specifically, we expect the agent to be able to possess textual output, take embodied actions, and use tools so that it can better respond to environmental changes and provide feedback, and even alter and shape the environment.
+
+% Then we present the perception module from three perspectives: text, speech and vision, and it enables agents to interact with the real world. Finally, we show the action ability of agents, including using tools and taking embodied actions, in the action module .
+
+After that, we provide a detailed and thorough introduction to the \textbf{practical applications} of LLM-based agents and elucidate the foundational design pursuit\textemdash{``Harnessing AI for good''} (\S \ \ref{sec:Agents in Practice:  Harnessing AI for Good}).
+To start, we delve into the current applications of a single agent and discuss their performance in text-based tasks and simulated exploration environments, with a highlight on their capabilities in handling specific tasks, driving innovation, and exhibiting human-like survival skills and adaptability (\S \ \ref{sec:General Ability of Single Agent}).
+Following that, we take a retrospective look at the development history of multi-agents. We introduce the interactions between agents in LLM-based multi-agent system applications, where they engage in collaboration, negotiation, or competition. Regardless of the mode of interaction, agents collectively strive toward a shared objective (\S \ \ref{sec:Collaborative Potential of Multi Agents}).
+Lastly, considering the potential limitations of LLM-based agents in aspects such as privacy security, ethical constraints, and data deficiencies, we discuss the human-agent collaboration. We summarize the paradigms of collaboration between agents and humans: the instructor-executor paradigm and the equal partnership paradigm, along with specific applications in practice (\S \ \ref{sec:Interactive Cooperation between Human-Agent}).
+
+Building upon the exploration of practical applications of LLM-based agents, we now shift our focus to the concept of the ``\textbf{Agent Society}'', examining the intricate interactions between agents and their surrounding environments (\S \ \ref{sec:Agent Society}).
+This section begins with an investigation into whether these agents exhibit human-like behavior and possess corresponding personality (\S \ref{sec:Behavior and Personality}). 
+Furthermore, we introduce the social environments within which the agents operate, including text-based environment, virtual sandbox, and the physical world (\S \ref{sec:Environment for Agent Society}). 
+Unlike the previous section (\S \ \ref{sec:Perception}), here we will focus on diverse types of the environment rather than how the agents perceive it.
+Having established the foundation of agents and their environments, we proceed to unveil the simulated societies that they form  (\S \ref{sec:Society Simulation}). 
+We will discuss the construction of a simulated society, and go on to examine the social phenomena that emerge from it.
+Specifically, we will emphasize the lessons and potential risks inherent in simulated societies.
+
+% Then, we illustrate the core concept of ``\textbf{Agent Society}'', exploring the interactions between artificial agents and their surrounding environment (\S \ \ref{sec:Agent Society}).
+% We start by investigating whether LLM-based agents also exhibit human-like behavior, and whether they also naturally display corresponding minds (\S \ \ref{sec:Behavior and Mind}).
+% Furthermore, we introduce the societal environments that these agents interact with, including text-based, simulated and physical environments  (\S \ \ref{sec:Society Environment}).
+% Unlike the previous section (\S \ \ref{sec:Perception}), here we will focus on diverse types of the environment, rather than how the agents perceive it.
+% After describing the agents and the environment in which they live, we introduce the simulated society that they form (\S \ \ref{sec:Society Simulation}). 
+% We concentrate on the sociological phenomena that emerge in the agent society, such as the evolution of relationships, cooperation for production, etc. And inevitably, we will discuss some of the potential ethical and social risks in the simulated society.
+
+
+Finally, we discuss a range of key \textbf{topics} (\S \ \ref{sec:Discussion}) and open problems within the field of LLM-based agents: (1) the mutual benefits and inspirations of the LLM research and the agent research, where we demonstrate that the development of LLM-based agents has provided many opportunities for both agent and LLM communities (\S \ \ref{sec:Mutual Benefits of LLM Research and Agent Research}); 
+(2) existing evaluation efforts and some prospects for LLM-based agents from four dimensions, including utility, sociability, values and the ability to continually evolve (\S \ \ref{sec:Evaluation for LLM-based Agents}); 
+(3) potential risks of LLM-based agents, where we discuss adversarial robustness and trustworthiness of LLM-based agents. We also include the discussion of some other risks like misuse, unemployment and the threat to the well-being of the human race (\S \ \ref{sec:Security, Trustworthy And Other Potential Challenges of LLM-based Agents}); 
+(4) scaling up the number of agents, where we discuss the potential advantages and challenges of scaling up agent counts, along with the approaches of pre-determined and dynamic scaling (\S \ \ref{sec:Scaling Up the Number of Agents}); (5) several open problems, such as the debate over whether LLM-based agents represent a potential path to AGI, challenges from virtual simulated environment to physical environment, collective Intelligence in AI agents, and Agent as a Service (\S \ \ref{sec:Open Problems}). After all, we hope this paper could provide inspiration to the researchers and practitioners from relevant fields. 
+
+
+
+
+% In Section 3, we describe how an LLM-based agent built. Specifically, we presented a framework for the LLM-based agents and introduced the key components, including the large language model, memory component, multi-modal perception component, embodiment component, and tool usage component. Among these, the large language model stands as the most pivotal element, affording the agent robust capabilities in natural language understanding and interaction, abundant knowledge, long-term planning prowess, versatile task generalization capabilities, and the ability to engage in continuous learning. The memory component enables the agent to better retain past memories of itself and the environment, facilitating the recollection of its identity. The multi-modal perception component empowers the agent to receive environmental inputs from various sensory modalities, encompassing visual and auditory inputs, beyond just textual ones. The embodiment component equips the agent with physical action capabilities, further establishing a seamless connection with the physical world. The tool usage component enables the agent to emulate human-like tool utilization to achieve its goals, such as search engines or calculators. Furthermore, we provided an overview of existing solutions for incorporating these components into agents, along with the challenges encountered in the process.
+
+% In Section 4, we elaborate on the utilization of LLM-based agents to accomplish real-world tasks, create value, and drive societal advancements. Specifically, we will explore applications ranging from single intelligent agents to collective intelligence scenarios. Additionally, we will delve into the mechanisms through which humans interact and collaborate with artificial agents, striving towards harmonious coalescence to achieve ultimate objectives.
+
+
+% In Section 5,  we present the human-like social behavior and psychology engendered by LLM-based agents, followed by a detailed description of simulating societies using agents and the emergent social phenomena that ensue.
+
+% Finally, in Section 6, we discuss other research topics and future directions related to LLM-based agents, including ...
+
+
+
+
+
+
+
+\section{Background}\label{sec:Background}
+
+
+In this section, we provide crucial background information to lay the groundwork for the subsequent content (\S \ \ref{sec:Origin of AI Agent}). 
+We first discuss the origin of AI agents, from philosophy to the realm of AI, coupled with a discussion of the discourse regarding the existence of artificial agents (\S \ \ref{sec:Technological Trends in Agent Research}). 
+Subsequently, we summarize the development of AI agents through the lens of technological trends. Finally, we introduce the key characteristics of agents and demonstrate why LLMs are suitable to serve as the main part of the brains of AI agents (\S \ \ref{sec:Key Characteristics of Agent & Why LLMs Are Suitable Agent Brains?}).
+
+
+\subsection{Origin of AI Agent}\label{sec:Origin of AI Agent}
+``Agent'' is a concept with a long history that has been explored and interpreted in many fields.
+% , such as philosophy, business, social sciences, computer science, and artificial intelligence. 
+Here, we first explore its origins in philosophy, discuss whether artificial products can possess agency in a philosophical sense, and examine how related concepts have been introduced into the field of AI.
+
+\paragraph{Agent in philosophy.}
+The core idea of an agent has a historical background in philosophical discussions, with its roots traceable to influential thinkers such as Aristotle and Hume, among others \cite{sep-agency}.  
+In a general sense, an ``agent'' is an entity with the capacity to act, and the term ``agency'' denotes the exercise or manifestation of this capacity \cite{sep-agency}.
+While in a narrow sense, ``agency'' is usually used to refer to the performance of intentional actions; and correspondingly, the term ``agent'' denotes entities that possess desires, beliefs, intentions, and the ability to act \cite{anscombe2000intention,60a9dd9a-e48a-3fcf-87dd-d5c158406fc6,Davidson1971-DAVIA-2,dennett1988precis}. 
+Note that agents can encompass not only individual human beings but also other entities in both the physical and virtual world.
+Importantly, the concept of an agent involves individual autonomy, granting them the ability to exercise volition, make choices, and take actions, rather than passively reacting to external stimuli.
+
+% Note that an agent can be an individual human being or other entities in the physical or virtual world. 
+
+
+% Usually, though, agency is used in a much narrower sense to refer to the performance of intentional actions \cite{anscombe2000intention,60a9dd9a-e48a-3fcf-87dd-d5c158406fc6,Davidson1971-DAVIA-2,dennett1988precis}. 
+% Correspondingly, ``agent'' is used in philosophy to denote entities or subjects that possess desires, beliefs, intentions, and the ability to act. 
+
+\paragraph{From the perspective of philosophy, is artificial entities capable of agency?}
+% 1. 从哲学定义上看，AI是否有Agency
+In a general sense, if we define agents as entities with the capacity to act, AI systems do exhibit a form of agency \cite{sep-agency}. 
+However, the term agent is more usually used to refer to entities or subjects that possess consciousness, intentionality, and the ability to act \cite{anscombe2000intention,60a9dd9a-e48a-3fcf-87dd-d5c158406fc6,Davidson1971-DAVIA-2}. Within this framework, it's not immediately clear whether artificial systems can possess agency, as it remains uncertain whether they possess internal states that form the basis for attributing desires, beliefs, and intentions. 
+Some people argue that attributing psychological states like intention to artificial agents is a form of anthropomorphism and lacks scientific rigor \cite{sep-agency,barandiaran2009defining}. 
+As Barandiaran et al. \cite{barandiaran2009defining} stated, “Being specific about the requirements for agency has told us a lot about how much is still needed for the development of artificial forms of agency.”
+In contrast, there are also researchers who believe that, in certain circumstances, employing the intentional stance (that is, interpreting agent behavior in terms of intentions) can provide a better description, explanation and abstraction of the actions of artificial agents, much like it is done for humans \cite{DBLP:conf/law/Shoham92,mccarthy1979ascribing,rosenschein1986synthesis}.
+
+% If artificial systems are not capable of intentional agency, as construed by the standard theory of agency \cite{sep-agency}, they may still be capable of some more basic kind of agency.  Barandiaran et al.\cite{barandiaran2009defining} propose the concept of "minimal agency," which doesn't require the possession of mental states. Instead, it centers around the adaptive regulation of an agent's interaction with the environment and its self-maintenance processes. However, he also highlighted that “being specific about the requirements for agency has told us a lot about how much is still needed for the development of artificial forms of agency”.
+
+% 2. 从AI/LM角度观察Agency是否能存在。看下Language Models as Agent Models
+With the advancement of language models, the potential emergence of artificial intentional agents appears more promising \cite{DBLP:conf/nips/Ouyang0JAWMZASR22,DBLP:journals/corr/abs-2303-08774,radford2018improving,radford2019language,DBLP:conf/nips/BrownMRSKDNSSAA20}. 
+In a rigorous sense, language models merely function as conditional probability models, using input to predict the next token \cite{DBLP:conf/naacl/LinJLGE21}. Different from this, humans incorporate social and perceptual context, and speak according to their mental states \cite{tomasello2005constructing,bloom2002children}. 
+Consequently, some researchers argue that the current paradigm of language modeling is not compatible with the intentional actions of an agent \cite{DBLP:conf/emnlp/BiskHTABCLLMNPT20,zwaan2005embodied}. 
+However, there are also researchers who propose that language models can, in a narrow sense, serve as models of agents \cite{DBLP:conf/emnlp/Andreas22,DBLP:journals/corr/abs-2306-12672}. They argue that during the process of context-based next-word prediction, current language models can sometimes infer approximate, partial representations of the beliefs, desires, and intentions held by the agent who generated the context. With these representations, the language models can then generate utterances like humans. To support their viewpoint, they conduct experiments to provide some empirical evidence \cite{DBLP:conf/emnlp/Andreas22,DBLP:journals/corr/RadfordJS17,DBLP:conf/acl/LiNA20}.
+
+\paragraph{Introduction of agents into AI.}
+% 如果没有特别说明，后面说的都是AI领域的agent
+
+It might come as a surprise that researchers within the mainstream AI community devoted relatively minimal attention to concepts related to agents until the mid to late 1980s. 
+Nevertheless, there has been a significant surge of interest in this topic within the realms of computer science and artificial intelligence communities since then \cite{DBLP:journals/jasis/MukhopadhyaySHB86,DBLP:journals/ras/Maes90a,nilsson1992toward,muller1994modelling}. 
+% Actually, it describes entities 
+% To describe computational entities capable of making decisions and taking actions within a specific environment, the concept of "agent" has been introduced into the fields of computer science and artificial intelligence \cite{DBLP:conf/law/Shoham92,DBLP:phd/us/Agha85,green1997software}. 
+As Wooldridge et al. \cite{DBLP:journals/ker/WooldridgeJ95} stated, we can define AI by saying that it is a subfield of computer science that aims to design and build computer-based agents that exhibit aspects of intelligent behavior. So we can treat ``agent'' as a central concept in AI. When the concept of agent is introduced into the field of AI, its meaning undergoes some changes. In the realm of Philosophy, an agent can be a human, an animal, or even a concept or entity with autonomy \cite{sep-agency}. 
+However, in the field of artificial intelligence, an agent is a computational entity \cite{DBLP:journals/ker/WooldridgeJ95,green1997software}. 
+% Since it is difficult to define the seemingly metaphysical concepts like consciousness and desires for computational entities \cite{DBLP:conf/law/Shoham92}, the AI community uses other attributes to assist in defining an agent, such as autonomy, social ability, reactivity, and proactiveness . 
+Due to the seemingly metaphysical nature of concepts like consciousness and desires for computational entities \cite{DBLP:conf/law/Shoham92}, and given that we can only observe the behavior of the machine, many AI researchers, including Alan Turing, suggest temporarily setting aside the question of whether an agent is ``actually'' thinking or literally possesses a ``mind'' \cite{turing2009computing}. Instead, researchers employ other attributes to help describe an agent, such as properties of autonomy, reactivity, pro-activeness and social ability \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:journals/logcom/Goodwin95}.
+There are also researchers who held that intelligence is ``in the eye of the beholder''; it is not an innate, isolated property \cite{brooks1991intelligence,maes1990designing,brooks1986robust,brooks2018intelligence}.
+In essence, an AI agent is not equivalent to a philosophical agent; rather, it is a concretization of the philosophical concept of an agent in the context of AI. 
+In this paper, we treat AI agents as artificial entities that are capable of perceiving their surroundings using sensors, making decisions, and then taking actions in response using actuators \cite{russell2010artificial,DBLP:journals/ker/WooldridgeJ95}.
+
+
+
+
+% \footnote{Note that in the following sections, if not explicitly stated otherwise, "agent" represents the AI agent.}
+
+
+
+
+\subsection{Technological Trends in Agent Research}\label{sec:Technological Trends in Agent Research}
+
+The evolution of AI agents has undergone several stages, and here we take the lens  of technological trends to review its development briefly.
+
+
+\paragraph{Symbolic Agents.}
+In the early stages of artificial intelligence research, the predominant approach utilized was symbolic AI, characterized by its reliance on symbolic logic \cite{DBLP:journals/cacm/NewellS76,DBLP:books/mk/Ginsberg93}. This approach employed logical rules and symbolic representations to encapsulate knowledge and facilitate reasoning processes. 
+Early AI agents were built based on this approach \cite{DBLP:books/daglib/0066946}, and they primarily focused on two problems: the transduction problem and the representation/reasoning problem \cite{shardlow1990action}. 
+These agents are aimed to emulate human thinking patterns. They possess explicit and interpretable reasoning frameworks, and due to their symbolic nature, they exhibit a high degree of expressive capability \cite{DBLP:conf/ijcai/FikesN71,DBLP:conf/ijcai/Sacerdoti73,DBLP:conf/ijcai/Sacerdoti75}. A classic example of this approach is knowledge-based expert systems. 
+However, symbolic agents faced limitations in handling uncertainty and large-scale real-world problems \cite{Guha_Lenat_1994,kaelbling1987architecture}. Additionally, due to the intricacies of symbolic reasoning algorithms, it was challenging to find an efficient algorithm capable of producing meaningful results within a finite timeframe \cite{kaelbling1987architecture,russell1991right}.
+
+\paragraph{Reactive agents.}
+Different from symbolic agents, reactive agents do not use complex symbolic reasoning. Instead, they primarily focus on the interaction between the agent and its environment, emphasizing quick and real-time responses \cite{brooks1991intelligence,maes1990designing,kaelbling1987architecture,DBLP:conf/ijcai/Schoppers87,DBLP:journals/trob/Brooks86}. 
+These agents are mainly based on a sense-act loop, efficiently perceiving and reacting to the environment. The design of such agents prioritizes direct input-output mappings rather than intricate reasoning and symbolic operations \cite{nilsson1992toward}. 
+However, Reactive agents also have limitations. They typically require fewer computational resources, enabling quicker responses, but they might lack complex higher-level decision-making and planning capabilities.
+
+
+\paragraph{Reinforcement learning-based agents.}
+
+With the improvement of computational capabilities and data availability, along with a growing interest in simulating interactions between intelligent agents and their environments, researchers have begun to utilize reinforcement learning methods to train agents for tackling more challenging and complex tasks \cite{ribeiro2002reinforcement,kaelbling1996reinforcement,minsky1961steps,isbell2001social}.
+The primary concern in this field is how to enable agents to learn through interactions with their environments, enabling them to achieve maximum cumulative rewards in specific tasks \cite{sutton2018reinforcement}. 
+Initially, reinforcement learning (RL) agents were primarily based on fundamental techniques such as policy search and value function optimization, exemplified by Q-learning \cite{watkins1989learning} and SARSA \cite{rummery1994line}. 
+With the rise of deep learning, the integration of deep neural networks and reinforcement learning, known as Deep Reinforcement Learning (DRL), has emerged \cite{tesauro1995temporal,li2017deep}. This allows agents to learn intricate policies from high-dimensional inputs, leading to numerous significant accomplishments like AlphaGo \cite{silver2016mastering} and DQN \cite{mnih2013playing}. 
+The advantage of this approach lies in its capacity to enable agents to autonomously learn in unknown environments, without explicit human intervention. This allows for its wide application in an array of domains, from gaming to robot control and beyond. 
+Nonetheless, reinforcement learning faces challenges including long training times, low sample efficiency, and stability concerns, particularly when applied in complex real-world environments \cite{sutton2018reinforcement}.
+
+
+
+
+
+
+\paragraph{Agents with transfer learning and meta learning.}
+Traditionally, training a reinforcement learning agent requires huge sample sizes and long training time, and lacks generalization capability \cite{DBLP:journals/corr/abs-1810-00123,DBLP:journals/corr/abs-1804-06893,justesen2018illuminating,DBLP:journals/ml/Dulac-ArnoldLML21,DBLP:conf/nips/GhoshRKZAL21}. 
+Consequently, researchers have introduced transfer learning to expedite an agent's learning on new tasks \cite{DBLP:conf/atal/BrysHTN15,parisotto2015actor,DBLP:journals/corr/abs-2009-07888}. 
+Transfer learning reduces the burden of training on new tasks and facilitates the sharing and migration of knowledge across different tasks, thereby enhancing learning efficiency, performance, and generalization capabilities. Furthermore, meta-learning has also been introduced to AI agents \cite{DBLP:journals/corr/DuanSCBSA16,DBLP:conf/icml/FinnAL17,DBLP:conf/nips/GuptaMLAL18,DBLP:conf/icml/RakellyZFLQ19,fakoor2019meta}. 
+Meta-learning focuses on learning how to learn, enabling an agent to swiftly infer optimal policies for new tasks from a small number of samples \cite{vanschoren2018meta}. 
+Such an agent, when confronted with a new task, can rapidly adjust its learning approach by leveraging acquired general knowledge and policies, consequently reducing the reliance on a large volume of samples. 
+However, when there exist significant disparities between source and target tasks, the effectiveness of transfer learning might fall short of expectations and there may exist negative transfer \cite{DBLP:journals/jmlr/TaylorS09,DBLP:conf/icml/TirinzoniSPR18}.
+Additionally, the substantial amount of pre-training and large sample sizes required by meta learning make it hard to establish a universal learning policy \cite{DBLP:conf/icml/FinnAL17,DBLP:journals/corr/abs-2301-08028}.
+
+
+
+\paragraph{Large language model-based agents.}
+As large language models have demonstrated impressive emergent capabilities and have gained immense popularity \cite{DBLP:conf/nips/Ouyang0JAWMZASR22,DBLP:journals/corr/abs-2303-08774,DBLP:journals/tmlr/WeiTBRZBYBZMCHVLDF22,DBLP:conf/nips/BrownMRSKDNSSAA20}, researchers have started to leverage these models to construct AI agents \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2305-16960,DBLP:journals/corr/abs-2309-02427,DBLP:journals/corr/abs-2308-11432}. Specifically, they employ LLMs as the primary component of brain or controller of these agents and expand their perceptual and action space through strategies such as multimodal perception and tool utilization \cite{DBLP:journals/corr/abs-2112-09332,DBLP:conf/iclr/YaoZYDSN023,DBLP:journals/corr/abs-2302-04761,DBLP:journals/corr/abs-2304-09842,DBLP:journals/corr/abs-2304-08354}.
+These LLM-based agents can exhibit reasoning and planning abilities comparable to symbolic agents through techniques like Chain-of-Thought (CoT) and problem decomposition \cite{DBLP:conf/nips/Wei0SBIXCLZ22,DBLP:conf/nips/KojimaGRMI22,DBLP:conf/iclr/0002WSLCNCZ23,DBLP:conf/iclr/ZhouSHWS0SCBLC23,DBLP:journals/corr/abs-2305-14497,shinn2023reflexion,DBLP:journals/corr/abs-2212-04088}. They can also acquire interactive capabilities with the environment, akin to reactive agents, by learning from feedback and performing new actions \cite{DBLP:conf/acl/AkyurekAKCWT23,DBLP:journals/corr/abs-2302-12813,liu2023languages}. 
+Similarly, large language models undergo pre-training on large-scale corpora and demonstrate the capacity for few-shot and zero-shot generalization, allowing for seamless transfer between tasks without the need to update parameters \cite{DBLP:conf/nips/BrownMRSKDNSSAA20,DBLP:conf/iclr/WeiBZGYLDDL22,DBLP:conf/iclr/SanhWRBSACSRDBX22,DBLP:journals/corr/abs-2210-11416}.
+LLM-based agents have been applied to various real-world scenarios, such as software development \cite{DBLP:journals/corr/abs-2303-17760,DBLP:journals/corr/abs-2307-07924} and scientific research \cite{DBLP:journals/corr/abs-2304-05332}.
+Due to their natural language comprehension and generation capabilities, they can interact with each other seamlessly, giving rise to collaboration and competition among multiple agents \cite{DBLP:journals/corr/abs-2303-17760,DBLP:journals/corr/abs-2307-07924,DBLP:journals/corr/abs-2305-14325,DBLP:journals/corr/abs-2305-19118}. Furthermore, research suggests that allowing multiple agents to coexist can lead to the emergence of social phenomena \cite{DBLP:journals/corr/abs-2304-03442}.
+
+
+
+% \paragraph{Multi-Agent Systems. }
+% With the advancement of distributed artificial intelligence, the focus of attention has shifted from micro phenomena at the agent level to macro phenomena at the social level \cite{DBLP:conf/epia/FisherW93,DBLP:phd/ethos/Wooldridge92}. 
+% As a result, research related to multi-agent systems has gained significant prominence \cite{van2008multi}. 
+% This field is concerned with how a group of agents can collaborate effectively to solve problems and how the actions of such a group can be efficiently coordinated \cite{wittig1992archon,varga1994integrating,galliers1989theoretical,DBLP:conf/ecai/Galliers88}. 
+% The evolution of multi-agent systems has provided a viable framework for comprehending collective intelligence and group behavior, and has achieved success in downstream applications across various domains \cite{DBLP:journals/jasis/MukhopadhyaySHB86,parunak1996applications,dorri2018multi,xie2017multi}.
+
+
+
+% \subsection{ Key Characteristics of Agent & Why LLMs Are Suitable Agent Brains?} \label{sec:Key Characteristics of Agent & Why LLMs Are Suitable Agent Brains?}
+
+\subsection{ Why is LLM suitable as the primary component of an Agent's brain?} \label{sec:Key Characteristics of Agent & Why LLMs Are Suitable Agent Brains?}
+
+
+% Why is LLM suitable as the primary component of an Agent's brain?
+
+As mentioned before, researchers have introduced several properties to help describe and define agents in the field of AI. Here, we will delve into some key properties, elucidate their relevance to LLMs, and thereby expound on why LLMs are highly suited to serve as the main part of brains of AI agents.
+
+\paragraph{Autonomy.} Autonomy means that an agent operates without direct intervention from humans or others and possesses a degree of control over its actions and internal states \cite{DBLP:journals/ker/WooldridgeJ95,DBLP:conf/ecaiw/Castelfranchi94}. 
+This implies that an agent should not only possess the capability to follow explicit human instructions for task completion but also exhibit the capacity to initiate and execute actions independently. 
+LLMs can demonstrate a form of autonomy through their ability to generate human-like text, engage in conversations, and perform various tasks without detailed step-by-step instructions \cite{gravitasauto,nakajima2023babyagi}. 
+Moreover, they can dynamically adjust their outputs based on environmental input, reflecting a degree of adaptive autonomy \cite{DBLP:journals/corr/abs-2305-13246,DBLP:journals/corr/abs-2305-16960,liu2023languages}. 
+Furthermore, they can showcase autonomy through exhibiting creativity like coming up with novel ideas, stories, or solutions that haven't been explicitly programmed into them \cite{DBLP:conf/iui/YuanCRI22,DBLP:journals/corr/abs-2304-00008}. 
+This implies a certain level of self-directed exploration and decision-making. 
+Applications like Auto-GPT \cite{gravitasauto} exemplify the significant potential of LLMs in constructing autonomous agents. Simply by providing them with a task and a set of available tools, they can autonomously formulate plans and execute them to achieve the ultimate goal.
+
+
+
+
+\paragraph{Reactivity.}
+Reactivity in an agent refers to its ability to respond rapidly to immediate changes and stimuli in its environment \cite{DBLP:journals/logcom/Goodwin95}. 
+This implies that the agent can perceive alterations in its surroundings and promptly take appropriate actions.
+Traditionally, the perceptual space of language models has been confined to textual inputs, while the action space has been limited to textual outputs. 
+However, researchers have demonstrated the potential to expand the perceptual space of LLMs using multimodal fusion techniques, enabling them to rapidly process visual and auditory information from the environment \cite{DBLP:journals/corr/abs-2303-08774,zhu2023minigpt,DBLP:journals/corr/abs-2306-13549}. Similarly, it's also feasible to expand the action space of LLMs through embodiment techniques \cite{DBLP:conf/icml/DriessXSLCIWTVY23,DBLP:journals/corr/abs-2305-15021} and tool usage \cite{DBLP:journals/corr/abs-2302-04761,DBLP:journals/corr/abs-2304-08354}. 
+These advancements enable LLMs to effectively interact with the real-world physical environment and carry out tasks within it.
+One major challenge is that LLM-based agents, when performing non-textual actions, require an intermediate step of generating thoughts or formulating tool usage in textual form before eventually translating them into concrete actions. This intermediary process consumes time and reduces the response speed. 
+However, this aligns closely with human behavioral patterns, where the principle of ``think before you act'' is observed \cite{brown2013beyond,DBLP:journals/corr/abs-2305-16338}.
+
+
+\paragraph{Pro-activeness.}
+Pro-activeness denotes that agents don't merely react to their environments; they possess the capacity to display goal-oriented actions by proactively taking the initiative \cite{DBLP:journals/logcom/Goodwin95}. 
+This property emphasizes that agents can reason, make plans, and take proactive measures in their actions to achieve specific goals or adapt to environmental changes.
+Although intuitively the paradigm of next token prediction in LLMs may not possess intention or desire, research has shown that they can implicitly generate representations of these states and guide the model's inference process \cite{DBLP:conf/emnlp/Andreas22,DBLP:journals/corr/RadfordJS17,DBLP:conf/acl/LiNA20}. 
+LLMs have demonstrated a strong capacity for generalized reasoning and planning. By prompting large language models with instructions like ``let's think step by step'', we can elicit their reasoning abilities, such as logical and mathematical reasoning \cite{DBLP:conf/nips/Wei0SBIXCLZ22,DBLP:conf/nips/KojimaGRMI22,DBLP:conf/iclr/0002WSLCNCZ23}. 
+Similarly, large language models have shown the emergent ability of planning in forms of goal reformulation \cite{DBLP:journals/corr/abs-2305-14497,DBLP:journals/corr/abs-2302-06706}, task decomposition \cite{DBLP:conf/iclr/ZhouSHWS0SCBLC23,DBLP:journals/corr/abs-2304-11477}, and adjusting plans in response to environmental changes \cite{shinn2023reflexion,DBLP:journals/corr/abs-2302-02676}. 
+
+
+
+
+
+\paragraph{Social ability.} 
+Social ability refers to an agent's capacity to interact with other agents, including humans, through some kind of agent-communication language \cite{DBLP:journals/cacm/GeneserethK94}.
+Large language models exhibit strong natural language interaction abilities like understanding and generation \cite{DBLP:journals/corr/abs-2305-13246, DBLP:journals/corr/abs-2305-13711, DBLP:conf/acl/LinFKD22}. Compared to structured languages or other communication protocals, such capability enables them to interact with other models or humans in an interpretable manner. This forms the cornerstone of social ability for LLM-based agents \cite{DBLP:journals/corr/abs-2304-03442,DBLP:journals/corr/abs-2303-17760}.
+Many researchers have demonstrated that LLM-based agents can enhance task performance through social behaviors such as collaboration and competition \cite{DBLP:journals/corr/abs-2303-17760,DBLP:journals/corr/abs-2305-14325,DBLP:journals/corr/abs-2305-10142,DBLP:journals/corr/abs-2307-02485}. 
+By inputting specific prompts, LLMs can also play different roles, thereby simulating the social division of labor in the real world \cite{DBLP:journals/corr/abs-2307-07924}.
+Furthermore, when we place multiple agents with distinct identities into a society, emergent social phenomena can be observed \cite{DBLP:journals/corr/abs-2304-03442}.
+
+
+
+
+% \include{sections/Sec3.Construction}
+% \include{sections/Sec3.Construction}
+% \include{sections/Sec4.Application}
+% \include{sections/Sec5.Society}
+% \include{sections/Sec6.Discussion}
+% \include{sections/Sec7.Conclusion}
+% \include{sections/Sec7.Conclusion}
+\input{sections/Sec3.Construction}
+\input{sections/Sec4.Application}
+\input{sections/Sec5.Society}
+\input{sections/Sec6.Discussion}
+\input{sections/Sec7.Conclusion}
+\section*{Acknowledgements}
+Thanks to Professor Guoyu Wang for carefully reviewing the ethics of the article. 
+Thanks to Jinzhu Xiong for her excellent drawing skills to present an amazing performance of Figure \ref{fig: genshin_fig}.
+
+
+\bibliography{main}
+\bibliographystyle{nips}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

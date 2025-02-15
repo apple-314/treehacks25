@@ -1,0 +1,112 @@
+\subsection{Mathematical modeling in various domains}
+\label{subsection:fm}
+
+Mathematical reasoning is more than a skill for solving mathematical exercises and problems; it is also a tool for understanding and communicating about various contexts and situations. In this section, we assess {\DV}'s capacity to use mathematical ideas and techniques to address real-world problems, some of which are not strictly mathematical, but demand quantitative thinking. We show below how \DV successfully builds a plausible mathematical model for a complex system that requires extensive interdisciplinary knowledge, while ChatGPT fails to make meaningful progress.
+
+
+\begin{figure}[H]
+\begin{AIbox}{\DV vs ChatGPT}
+\parbox[t]{\linewidth}{{\bf Prompt:}
+\scriptsize\begin{alltt}
+Please come up with mathematical model for profiling the physiological power rate over time of a professional StarCraft 2 player during a match. Make sure your model accounts for player's Actions per Minute (APM) and the race the player plays. Please keep your answer concise.
+\end{alltt}
+}
+\parbox[t]{\linewidth}{{\bf\DV:}
+\tiny\begin{alltt}
+One possible mathematical model for profiling the physiological power rate over time of a professional StarCraft 2 player during a match is: P(t) = B + A * f(t) * g(r) where: - P(t) is the power rate in watts at time t\\
+- B is the basal metabolic rate in watts, which depends on the player's age, weight, height, and gender\\
+- A is a constant factor that represents the additional energy expenditure per unit of APM
+- f(t) is a function that models the APM over time, which may depend on the match duration, the game phase, the player's strategy, and the opponent's actions\\
+- g(r) is a function that models the race modifier, which may depend on the race the player plays, the race the opponent plays, and the map features Some possible assumptions and simplifications for this model are:\\
+- The power rate is proportional to the APM, which is a common measure of the player's speed and intensity of actions\\
+- The APM over time follows a general pattern of increasing in the early game, peaking in the mid game, and decreasing in the late game, but may vary depending on the specific match conditions\\
+- The race modifier reflects the different characteristics and demands of each race, such as the number and type of units, the amount and frequency of micro and macro management, and the level of aggression or defense\\
+- The basal metabolic rate and the constant factor A are estimated based on average values for professional StarCraft 2 players\\
+- The model ignores other factors that may affect the power rate, such as the player's mood, stress, fatigue, hydration, nutrition, and external environment An example of how to estimate the parameters and functions for this model is: - B = 80 W, based on the average basal metabolic rate for a 25-year-old male with a weight of 70 kg and a height of 175 cm\\
+- A = 0.1 W/APM, based on the assumption that each APM requires an additional 0.1 W of energy\\
+- f(t) = 100 + 50 * sin(pi * t / T), based on the assumption that the APM follows a sinusoidal pattern with a minimum of 50 APM, a maximum of 150 APM, and a period of T minutes, which is the average match duration\\
+- g(r) = 1 + 0.2 * (r - 1), based on the assumption that the race modifier increases by 0.2 for each race in the order of Protoss, Terren and Zerg, reflecting the increasing complexity and diversity of each race Using this example, the power rate for a Zerg player at 10 minutes into a 20-minute match against a Protoss player would be: P(10) = 80 + 0.1 * (100 + 50 * sin(pi * 10 / 20)) * (1 + 0.2 * (3 - 1)) = 101 W\\
+\end{alltt}
+}
+\parbox[t]{\linewidth}{{\bf ChatGPT:}
+\tiny\begin{alltt}
+A possible mathematical model to profile the physiological power rate over time of a professional StarCraft 2 player during a match could be:
+
+Power rate = f(APM, Race, Time)
+
+Where f is a function that maps the player's Actions per Minute (APM), race, and time into the player's physiological power rate. APM is a measure of how fast and efficiently the player is making decisions and executing actions in the game. Race is the player's chosen species in the game, which may affect the player's APM and power rate. Time is the elapsed time in the match.
+
+This function could be estimated using regression analysis with data from previous matches, physiological monitoring devices, and game logs. The resulting model could be used to predict the player's power rate during future matches and help players and coaches optimize their performance and training.
+\end{alltt}
+}
+\end{AIbox}
+ \caption{\DV builds a mathematical model for profiling power rate over time of a professional StarCraft 2 player during a match.}
+\label{fig:my_label}
+\end{figure}
+
+
+
+
+
+\paragraph{Fermi questions.} A specific type of mathematical modeling problems are Fermi questions. Fermi questions involve making educated guesses about quantities or phenomena that are difficult or impossible to measure directly, using logic, approximation, and order-of-magnitude reasoning. For example, some well-known Fermi questions are: ``How many piano tuners are there in Chicago?" and ``How many times does the electric field of the sun’s peak color oscillate during its journey to earth?". To solve these problems with little or no additional information, it requires both quantitative thinking and general knowledge. Here we demonstrate \DV's outstanding ability to answer Fermi questions with quantitative thinking. We show two examples in Figure~\ref{fig:fermi}, where \DV attempts at them by making layers of reasonable assumptions and informed guesses, while ChatGPT admits defeat immediately barely showing trace of mathematical thinking. Even though \DV's final answers are likely to be far off, it demonstrates an impressive angle of attack at these problems.
+
+\begin{figure}[H]
+\centering
+\begin{AIbox}{\DV vs ChatGPT}
+\parbox[t]{\linewidth}{{\bf Prompt:}
+\scriptsize
+\begin{alltt}
+Please estimate roughly how many Fermi questions are being asked everyday?
+\end{alltt}}
+\parbox[t]{\linewidth}{{\bf\DV:}
+\tiny\begin{alltt}
+There is no definitive answer to how many Fermi questions are being asked everyday, but one possible way to approach the problem is to make some assumptions and use some estimates based on available data. Here is one possible example:\\
+- Assume that a Fermi question is a question that requires an order-of-magnitude estimation of some quantity or phenomenon that is not easily measured or known, such as the number of piano tuners in Chicago, the mass of the Eiffel Tower, or the amount of water in Lake Michigan.\\
+- Assume that a Fermi question is more likely to be asked by people who are interested in science, math, engineering, or logic, or who are engaged in some form of education, research, or problem-solving that involves such topics.\\
+- Assume that the population of the world is about 7.8 billion, and that about 25\% of them are in the age range of 15 to 64, which is roughly the working-age population. This gives about 1.95 billion potential Fermi question askers.\\
+- Assume that the average literacy rate among the working-age population is about 86\%, and that literacy is a prerequisite for asking or answering a Fermi question. This gives about 1.68 billion literate potential Fermi question askers.\\
+- Assume that the average interest rate in science, math, engineering, or logic among the literate potential Fermi question askers is about 10\%, and that interest is a proxy for the likelihood of asking or answering a Fermi question. This gives about 168 million interested potential Fermi question askers.\\
+- Assume that the average frequency of asking or answering a Fermi question among the interested potential Fermi question askers is about once a month, and that this frequency is independent of the day of the week, the time of the day, or the season of the year. This gives about 5.6 million Fermi questions asked or answered per day.\\
+Therefore, based on these assumptions and estimates, a rough answer to how many Fermi questions are being asked everyday is about 5.6 million. However, this answer is subject to a lot of uncertainty and variation, depending on the validity and accuracy of the assumptions and estimates, and the definition and scope of what constitutes a Fermi question.
+\end{alltt}}
+\parbox[t]{\linewidth}{{\bf ChatGPT:}
+\tiny\begin{alltt}
+The number of Fermi questions asked daily is difficult to estimate accurately. However, based on the estimated number of daily active users on websites where such questions are commonly asked (e.g. forums, Q\&A sites, etc.), one could make a rough estimate of the number of Fermi questions being asked daily. For example, if a website has 1 million active users and each user asks 1 Fermi question per day, then the number of Fermi questions being asked daily on that website would be 1 million. However, this is a rough estimate and the actual number could be higher or lower.
+\end{alltt}}
+\tcbline
+\parbox[t]{\linewidth}{{\bf Prompt:}
+\scriptsize\begin{alltt}
+Please provide a rough estimate for how many Nvidia A100 GPUs are there in total on earth.
+\end{alltt}}
+\parbox[t]{\linewidth}{{\bf\DV:}
+\tiny\begin{alltt}
+There is no definitive answer to how many Nvidia A100s are there in total on earth, but one possible way to approach the question is to use some available data and assumptions to make a rough estimate. Here are some possible steps and sources:
+- According to Nvidia's website, the A100 is available in various form factors, such as PCIe cards, SXM4 modules, HGX A100 systems, and cloud instances. Each form factor may have different numbers of A100 GPUs per unit, ranging from one to 16. For simplicity, we can assume an average of four A100 GPUs per unit across all form factors.\\
+- According to Nvidia's Q4 2021 earnings call transcript, the company reported a record revenue of \$2.91 billion from its data center segment, which includes the A100 and other products. Assuming that the A100 accounts for a significant portion of this segment, we can estimate that the A100 revenue was about \$2 billion in Q4 2021.\\
+- According to Nvidia's website, the list price of the A100 PCIe card is \$11,000, and the list price of the HGX A100 4-GPU system is \$69,000. Assuming that these prices are representative of the average selling price of the A100 across all form factors, we can estimate that the average selling price of a unit with four A100 GPUs is about \$20,000.
+- Dividing the estimated A100 revenue by the estimated average selling price, we can estimate that Nvidia sold about 100,000 units with four A100 GPUs each in Q4 2021, or about 400,000 A100 GPUs in total.\\
+- Assuming that Q4 2021 was a typical quarter for A100 sales, and that the A100 was launched in mid-2020, we can estimate that Nvidia sold about 800,000 units with four A100 GPUs each in 2020 and 2021, or about 3.2 million A100 GPUs in total.\\
+- Adding a margin of error to account for possible variations in prices, sales, form factors, and launch dates, we can estimate that there are between 2.5 million and 4 million A100 GPUs on earth as of early 2022.\\
+
+Of course, this estimate is based on many assumptions and uncertainties, and should not be taken as a definitive or authoritative answer. It is possible that Nvidia has sold more or less A100 GPUs than estimated, or that some A100 GPUs have been decommissioned, damaged, or lost. Therefore, the actual number of A100 GPUs on earth may be higher or lower than the estimate.
+\end{alltt}}
+\parbox[t]{\linewidth}{{\bf ChatGPT:}\tiny
+\begin{alltt}
+It is not possible to determine the exact number of Nvidia A100 GPUs on Earth, as the company does not publicly disclose sales figures. However, as of 2021, it is estimated that there are hundreds of thousands of Nvidia A100 GPUs in use globally.
+\end{alltt}}
+\end{AIbox}
+\caption{\DV answers Fermi questions.}
+\label{fig:fermi}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+

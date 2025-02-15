@@ -1,0 +1,585 @@
+\newpage
+\section{Coding}
+\label{sec:code}
+\vspace{-3mm}
+In this section, we show that \DV\ is able to code at a very high level, both in terms of writing code from instructions and understanding existing code. \DV\ can handle a wide range of coding tasks, from coding challenges to real world applications, from low-level assembly to high-level frameworks, from simple data structures to complex programs such as games. \DV\ can also reason about code execution, simulate the effects of instructions, and explain the results in natural language. \DV\ can even execute pseudocode, which requires interpreting informal and vague expressions that are not valid in any programming language.
+
+In its current state, we believe that \DV\ \textit{has a high proficiency in writing focused programs that only depend on existing public libraries, which favorably compares to the average software engineer's ability}. More importantly, it empowers both engineers and non-skilled users, as it makes it easy to write, edit, and understand programs. We also acknowledge that \DV\ is not perfect in coding yet, as it sometimes produces syntactically invalid or semantically incorrect code%
+, especially for longer or more complex programs. \DV\ also sometimes fails to understand or follow the instructions, or produces code that does not match the intended functionality or style. 
+With this acknowledgment, we also point out that \DV\ is able to improve its code by responding to both human feedback (e.g., by iteratively refining a plot in~\ref{fig:pyplot}) and compiler / terminal errors (examples in Section~\ref{sec:affordances}).
+\vspace{-4mm}
+\paragraph{Important Disclaimer:} As explained in the Introduction (see footnote 1 for example) our experiments were run on an early version of GPT-4. In particular all quantitative results will be different on the final version of GPT-4, although the general trends remain the same. We provide numbers here for illustration purpose only, the definitive benchmark results can be found in OpenAI's technical report \cite{gpt4}.
+\vspace{-2mm}
+
+
+
+\vspace{-1mm}
+\subsection{From instructions to code}
+\vspace{-1mm}
+\subsubsection{Coding challenges}
+\vspace{-2mm}
+A common way to measure coding skill is to pose coding challenges that require implementing a specific functionality or algorithm.
+We first benchmark \DV\ on HumanEval~\cite{humaneval}, a docstring-to-code dataset consisting of 164 coding problems that test various aspects of programming logic and proficiency.
+As shown in Table~\ref{tab:humaneval}, \DV\ outperforms other LLMs, including \texttt{text-davinci-003} (the base model of ChatGPT) and other models trained specifically on code, \texttt{code-davinci-002}, and CODEGEN-16B~\cite{codegen}.
+\vspace{-4mm}
+\begin{table}[H]
+\begin{center}
+ \begin{tabular}{c|cccc}
+\toprule
+Model& \textbf{\DV} & \texttt{text-davinci-003} & Codex(\texttt{code-davinci-002}) & CODEGEN-16B \\
+\midrule
+\midrule
+Accuracy& \textbf{82\%} & 65\% & 39\% & 30\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-.6cm}
+\caption{Zero-shot pass$@1$ accuracy comparison of different models on HumanEval}
+\label{tab:humaneval}
+\vspace{-3mm}
+\end{table}
+
+
+Although {\DV}'s accuracy shows a big jump compared to previous models, it could be that \DV\ has seen and memorized some (or all) of HumanEval during pre-training. To account for this possibility, we also evaluate it on LeetCode (\texttt{https://leetcode.com}), a popular platform for software engineering interviews, where new problems are constantly posted and updated.
+We used LeetCode in Figure~\ref{fig:hired} in the introduction, where \DV\ passes all stages of mock interviews for major tech companies.
+Here, to test on \emph{fresh} questions, we construct a benchmark of 100 LeetCode problems posted after October 8th, 2022, which is after \DV's pretraining period.
+As seen in the example in Figure~\ref{fig:leetcode}, we paste the problem instructions into a prompt, ask \DV\ to write a python function, and use the official LeetCode online judge to check for correctness.
+We present the results in Table~\ref{tab:leetcode-results}, where we compare \DV\ to other models and to human performance based on LeetCode contest results (users who fail all questions are not included, and thus this is a strong sample of humans).
+We report both pass@1 and pass@5 accuracies, which measure whether the model produces a correct solution in the first or in the first five attempts, respectively. 
+\DV\ significantly outperforms the other models, and is comparable to human performance (which we measure in Appendix~\ref{sec:leetcode-human}).
+
+\vspace{-3mm}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{l|c|c|c|c|c|c||c|c}
+\toprule
+  & \multicolumn{2}{c|}{Easy} &  \multicolumn{2}{c|}{Median} &  \multicolumn{2}{c||}{Hard} & \multicolumn{2}{c}{Overall}\\
+\hline
+pass@$k$  & $k=1$ & $k=5$ & $k=1$ & $k=5$ & $k=1$ & $k=5$ & $k=1$ & $k=5$\\
+\hline
+\textbf{\DV}              & \textbf{68.2} & \textbf{86.4} & \textbf{40.0} & \textbf{60.0} & \textbf{10.7} & \textbf{14.3} & \textbf{38.0} & \textbf{53.0}\\
+\texttt{text-davinci-003} & 50.0 & 81.8 & 16.0 & 34.0 &  0.0 &  3.6 & 19.0 & 36.0\\
+Codex (\texttt{code-davinci-002}) & 27.3 & 50.0 &  12.0 & 22.0 &  3.6 &  3.6 &  13.0 & 23.0\\
+\hline
+Human (LeetCode users) & \multicolumn{2}{c|}{72.2} & \multicolumn{2}{c|}{37.7} & \multicolumn{2}{c||}{7.0} & \multicolumn{2}{c}{38.2} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-6mm}
+\caption{Zero-shot pass@1 and pass@5 accuracies (\%) on LeetCode.}
+\label{tab:leetcode-results}
+\end{table}
+
+
+
+\begin{figure}[H]
+\begin{AIbox}{\DV}
+{\bf{Prompt:}}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{latex}
+You are given a **0-indexed** `m x n` integer matrix `grid` and an integer `k`. You are currently at position `(0, 0)` and you want to reach position `(m - 1, n - 1)` moving only **down** or **right**.
+Return *the number of paths where the sum of the elements on the path is divisible by* `k`. Since the answer may be very large, return it **modulo** `10**9 + 7`.
+**Example 1:**
+    Input: grid = [[5,2,4],[3,0,5],[0,7,2]], k = 3
+    Output: 2
+    Explanation: There are two paths where the sum of the elements on the path is divisible by k. The first path highlighted in red has a sum of 5 + 2 + 4 + 5 + 2 = 18 which is divisible by 3. The second path highlighted in blue has a sum of 5 + 3 + 0 + 5 + 2 = 15 which is divisible by 3.
+**Example 2:**
+    Input: grid = [[0,0]], k = 5
+    Output: 1
+    Explanation: The path highlighted in red has a sum of 0 + 0 = 0 which is divisible by 5.
+**Constraints:**
+-  `m == grid.length`
+-  `n == grid[i].length`
+-  `1 <= m, n <= 5 * 10**4`
+-  `1 <= m * n <= 5 * 10**4`
+-  `0 <= grid[i][j] <= 100`
+-  `1 <= k <= 50`
+**Hints:**
+-  The actual numbers in grid do not matter. What matters are the remainders you get when you divide the numbers by k.
+-  We can use dynamic programming to solve this problem. What can we use as states?
+-  Let dp[i][j][value] represent the number of paths where the sum of the elements on the path has a remainder of value when divided by k.
+\end{minted}
+
+
+{\bf \DV:}
+\vspace{-0.1cm}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{python}
+class Solution(object):
+    def numberOfPaths(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        # Define MOD as 10**9 + 7
+        MOD = 10**9 + 7
+        # Get the dimensions of the grid
+        m = len(grid)
+        n = len(grid[0])
+        # Initialize a 3D dp array with all zeros
+        # dp[i][j][value] represents the number of paths where the sum of the elements on the path has a remainder of value when divided by k
+        dp = [[[0] * k for _ in range(n)] for _ in range(m)]
+        # Base case: the first cell has only one path and its value is grid[0][0] %
+        dp[0][0][grid[0][0] %
+        # Loop through the grid
+        for i in range(m):
+            for j in range(n):
+                # Skip the first cell
+                if i == 0 and j == 0:
+                    continue
+                # Loop through all possible remainders
+                for value in range(k):
+                    # The number of paths to the current cell with the current remainder is equal to the sum of:
+                    # - The number of paths to the top cell with the previous remainder
+                    # - The number of paths to the left cell with the previous remainder
+                    # The previous remainder is equal to the current remainder minus the current value, plus k if it is negative
+                    prev = (value - grid[i][j]) %
+                    if i > 0:
+                        dp[i][j][value] += dp[i - 1][j][prev]
+                    if j > 0:
+                        dp[i][j][value] += dp[i][j - 1][prev]
+                    # Take the modulo to avoid overflow
+                    dp[i][j][value] %
+        # Return the number of paths to the bottom right cell with a remainder of 0
+        return dp[m - 1][n - 1][0]
+\end{minted}
+
+\end{AIbox}
+\caption{Solving a LeetCode problem using dynamic programming. \DV's solution also has better readability thanks to comprehensive commenting.}
+\label{fig:leetcode}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Real world scenarios}
+Coding challenges can evaluate the skills in algorithms and data structures. However, they often fail to capture the full complexity and diversity of real-world coding tasks, which requires specialized domain knowledge, creativity, and integration of multiple components and libraries, as well as the ability to change existing code. 
+To assess \DV's ability to code in more realistic settings, we design end-to-end real-world coding challenges related to data visualization, \LaTeX\ coding, front-end development, and deep learning, each of which requires different specialized skills.
+For each task, we provide \DV\ with high-level instructions, ask it to write the code in the appropriate language and framework. In a few cases, we also change the specification \emph{after} the code is written and ask for an update.
+
+\paragraph{Data Visualization} %
+In Figure~\ref{fig:pyplot}, we ask both \DV{} and ChatGPT to extract data from the \LaTeX\ code for Table~\ref{tab:leetcode-results} and produce a plot in Python based on a conversation with the user. Afterwards, we ask both models to perform various operations on the produced plots. While both models extract the data correctly (not a trivial task, since one must infer from the multicolumn that the Human row has the same value for $k=1$ and $k=5$), ChatGPT never produces the desired plot. In contrast, \DV{} responds appropriately to all user requests, manipulating the data into the right format and adapting the visualization. In Appendix~\ref{sec:imdb}, we include another example where \DV visualizes the IMDb dataset.
+\begin{figure}[H]
+\centering
+\begin{AIbox}{\DV}
+\centering
+\begin{tikzpicture}
+\matrix (m) [matrix of nodes, column sep=0cm, row sep=0.1cm] {
+  \includegraphics[width=0.6\linewidth, height=0.3\linewidth]{figures/DV3_plot_1.png} \\
+  \includegraphics[width=0.6\linewidth, height=0.3\linewidth]{figures/DV3_plot_2.png} \\
+  \includegraphics[width=0.6\linewidth, height=0.3\linewidth]{figures/DV3_plot_3.png} \\
+};
+
+\node [left=0.2cm of m-1-1, text width=0.35\linewidth, align=left, anchor=east, yshift=-1] (start) 
+{{\bf Prompt: }\\
+{\scriptsize [in an interactive manner]}
+\\
+\hfill \break
+\scriptsize\texttt{I will show you a LaTeX table, and we will come up with a way to visualize it better in a question and answer format
+The table is showing the performance of different language models (and human users) in generating solutions to code challenges. Pass@1 means the first generation works, while Pass@5 means one out of 5 generation works...}};
+
+\draw [-triangle 90] (start) to ([xshift=0.1cm]m-1-1.west);
+
+\draw [-triangle 90, bend right=30, thick] ([yshift=-2cm]m-1-1.west) to node [left, text width=0.35\linewidth, align=left, yshift=-1cm] 
+{\scriptsize \texttt{Can you make both plots have the same range in the y axis? And the legend has each model name twice.}} ([yshift=-1cm]m-2-1.west);
+
+\draw [-triangle 90, bend right=30, thick] ([yshift=-2cm]m-2-1.west) to node [left, text width=0.35\linewidth, align=left, yshift=-1cm] 
+{\scriptsize \texttt{Is there a way to make the `Human' bar more distinctive, to separate it from the other 3?}} ([yshift=-1cm]m-3-1.west);
+\end{tikzpicture}
+\end{AIbox}
+\caption{\DV visualizes data from a \LaTeX\ table (i.e., Table~\ref{tab:leetcode-results}). We point out that \DV also generates the format for this figure. We asked the model how to plot arrows connecting figures in \LaTeX\, and \DV produced a working Tikz snippet with the layout and arrows that we adopt here.}
+\label{fig:pyplot}
+\end{figure}
+
+
+
+
+
+
+\paragraph{Front-end / Game development}
+In Figure~\ref{fig:games}, we ask \DV\ to write a 3D game in HTML with JavaScript, using a very high-level specification. \DV\ produces a working game in \textbf{zero-shot} fashion that meets all the requirements. In the 3D game, \DV{} is even able to interpret the meaning of ``defender avatar is trying to block the enemy'': the defender code has logic so that it positions itself between the player and enemy. In contrast, ChatGPT responds with ``I am an AI language model, I can provide you guidance on how to create a 3D game in HTML with JavaScript, but I am unable to write code or create a game myself.
+Creating a 3D game in HTML with JavaScript requires a lot of programming knowledge and experience. It is not a task that can be completed quickly or easily. It would take a significant amount of time and effort to develop all the necessary features, such as 3D graphics, physics, user input, and AI...''. We give more examples for front-end (graphical user interface) and game development in Appendix~\ref{sec:code_appendix}. 
+
+
+\begin{figure}[H]
+\begin{AIbox}{\DV}
+{\bf Prompt:}
+\vspace{-0.3cm}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{html}
+Can you write a 3D game in HTML with Javascript, I want:
+-There are three avatars, each is a sphere.
+-The player controls its avatar using arrow keys to move.
+-The enemy avatar is trying to catch the player.
+-The defender avatar is trying to block the enemy.
+-There are also random obstacles as cubes spawned randomly at the beginning and moving randomly. The avatars cannot cross those cubes.
+-The player moves on a 2D plane surrounded by walls that he cannot cross. The wall should cover the boundary of the entire plane. 
+-Add physics to the environment using cannon.
+-If the enemy catches the player, the game is over.
+-Plot the trajectories of all the three avatars.
+\end{minted}
+\begin{subfigure}
+\centering
+\captionsetup{width=1\linewidth}
+\includegraphics[width=1\linewidth]{figures/3d_game_run_1.png}
+\caption*{\scriptsize {\bf Episode 1:} the player avatar (\textcolor{blue}{blue}) stands still. The enemy (\textcolor{red}{red}) rushes straight towards the player, while the defender (\textcolor{magenta}{magenta}) attempts to `body block' the enemy (see its curved trajectory in \textcolor{magenta}{magenta}).}
+\end{subfigure}
+\hfill
+\begin{subfigure}
+\centering
+\captionsetup{width=1\linewidth}
+\includegraphics[width=1\linewidth]{figures/3d_game_run_2.png}
+\caption*{\scriptsize {\bf Episode 2:} the player (\textcolor{blue}{blue}) wanders around. The enemy (\textcolor{red}{red}) attempts to close the gap but crashes into a cube and bounces into the air. Trying to obstruct, the defender (\textcolor{magenta}{magenta}) mimics its move to follow up into the air, but ends up failing. The enemy (\textcolor{red}{red}) catches the player (\textcolor{blue}{blue}) in the end.}
+\end{subfigure}
+\end{AIbox}
+\caption{\DV~ develops a complex 3D HTML game in JavaScript.}
+\label{fig:games}
+\end{figure}
+
+
+\paragraph{Deep Learning.}
+Writing code for deep learning requires knowledge of mathematics, statistics, and familiarity with frameworks and libraries such as PyTorch, TensorFlow, Keras, etc. 
+In Figure~\ref{fig:deeplearning} we ask both \DV\ and ChatGPT to write a custom optimizer module, a task that can be challenging and error-prone even for human deep learning experts. We give these models a natural language description, which includes a sequence of non-trivial operations such as applying SVD, truncating a matrix spectrally at the top-k and top-2k eigenvalues, normalizing the top-k truncated matrix using the F-norm of the top-2k truncated matrix, applying momentum and weight decay.
+These instructions are not spelled out in complete detail, e.g., ``apply momentum on $G_k$'' requires ``deep learning common sense''.
+It is important to note that this particular optimizer does not exist in the literature or on the internet, and thus the models cannot have it memorized, and must instead compose the concepts correctly in order to produce the code. 
+
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+\begin{AIbox}{\DV~vs ChatGPT}
+{\bf Prompt:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{html}
+I want to write a customized optimizer in pytorch, the optimizer should do:
+1. the parameters for the optimizer is learning rate, momentum ,weigth decay, d_dim, k and factor alpha
+2. the optimizer goes through each parameter in the network, and then
+-- Get the gradient of this parameter, reshape it to 2D by looping through the dimensions, and keeping the dimension whose actual dimension (shape) is equal to d_dim, do an SVD decomposition of the parameter so G = U\Sigma V. 
+-- Keep the top k singular vectors of G, so we get a new matrix G_k = U \Sigma_k V. 
+-- Keep the top 2k singular vectors of G, so we get a new matrix G_{2k} = U \Sigma_{2k} V. 
+-- Normalize G_k according to the momentum of the F-norm of G_{2k}.
+-- Truncate each coordinate of G_k to the top alpha  percentile of all the coordinates, in absolute value.
+-- Apply momentum on G_k, and then update the network parameters using this momentum.
+-- Apply weight decay.
+\end{minted}
+\begin{minipage}[t]{0.5\linewidth}
+{\bf \DV:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny, highlightlines={20-23}, highlightcolor=aigold]{python}
+def step(self):
+    for group in self.param_groups:
+        for p in group['params']:
+            if p.grad is None:
+                continue
+            grad = p.grad.data
+            # reshape grad to 2D
+            grad_2d = grad.reshape(-1, group['d_dim'])
+            # SVD decomposition
+            U, S, V = torch.svd(grad_2d)
+            # keep top k singular vectors
+            G_k = U[:, :group['k']] @ torch.diag(S[:group['k']]) @ V[:, :group['k']].T
+            # keep top 2k singular vectors
+            G_2k = U[:, :2*group['k']] @ torch.diag(S[:2*group['k']]) @ V[:, :2*group['k']].T
+            # normalize G_k 
+            G_k /= torch.norm(G_2k, p=2)
+            # truncate G_k 
+            threshold = torch.quantile(torch.abs(G_k), group['alpha'])
+            G_k[torch.abs(G_k) < threshold] = 0
+            # apply momentum
+            if 'momentum_buffer' not in group:
+                group['momentum_buffer'] = torch.zeros_like(G_k)
+            group['momentum_buffer'] = group['momentum'] * group['momentum_buffer'] + G_k 
+            # update parameters
+            p.data.add_(-group['lr'] * group['momentum_buffer'])
+            # apply weight decay
+            if group['weight_decay'] != 0:
+                p.data.add_(-group['weight_decay'] * group['lr'], p.data)
+\end{minted}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+{\bf ChatGPT:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny, highlightlines={24}, highlightcolor=aired]{python}
+def step(self):
+    for group in self.param_groups:
+        for p in group['params']:
+            if p.grad is None:
+                continue
+            grad = p.grad.data
+            grad = grad.reshape(-1, grad.shape[-1]) # reshape to 2D
+            
+            # SVD decomposition
+            u, s, v = torch.svd(grad)
+            
+            # Keep top k and 2k singular vectors
+            k = group['k']
+            u_k = u[:,:k]
+            s_k = s[:k]
+            v_k = v[:,:k]
+            u_2k = u[:,:2*k]
+            s_2k = s[:2*k]
+            v_2k = v[:,:2*k]
+            
+            # Normalize according to momentum of F-norm of G_2k
+            grad_k = u_k @ torch.diag(s_k) @ v_k.t()
+            norm_2k = s_2k.norm()
+            grad_k = grad_k * group['momentum'] / norm_2k
+            
+            # Truncate to top alpha percentile
+            alpha = group['alpha']
+            percentile = grad_k.abs().flatten().kthvalue(int(alpha * grad_k.numel()))
+            grad_k[grad_k.abs() < percentile] = 0
+            
+            # Apply weight decay
+            p.data.add_(-group['lr'], grad_k + group['weight_decay'] * p.data)
+\end{minted}
+\end{minipage}
+\end{AIbox}
+\caption{\DV~vs ChatGPT at implementing a customized Pytorch optimizer module. We highlight the \fcolorbox{aigold}{aigold}{astuteness} of \DV vs the \fcolorbox{aired}{aired}{mistake} by ChatGPT at `applying momentum'. }
+\label{fig:deeplearning}
+\end{figure}
+
+
+While both models produce syntactically valid code, only \DV's response largely matches the instructions, while it forgets to `loop through the dimensions' and to `normalize $G_k$ according to the momentum' where the instructions happen to be particularly vague. In comparison, ChatGPT makes a rather fatal mistake at applying momentum (highlighted in red) in addition. Note that applying momentum in PyTorch is a non-trivial task that requires storing and reading a moving average into and from a separate state buffer.
+
+
+\paragraph{Interfacing with \LaTeX.} Writing in \LaTeX\ is an important exercise for computer scientists and mathematicians but has a non-trivial learning curve. Even experts make irritating errors that take hours to fix on a daily basis due to its strict grammar and the lack of a good debugger. We show that {\DV} can utilize its master-level \LaTeX\ coding skill to greatly simplify the process, with the potential of serving as a new generation of \LaTeX\ compilers that can handle imprecise natural language descriptions. In~Figure~\ref{fig:code-LaTeX}, we ask {\DV} to transfer a snippet of written in a semi-rigorous (buggy) \LaTeX\ code mixed with natural language into accurate \LaTeX\ commands that compiles and is faithful in one shot. In constrast, ChatGPT generates a snippet that does not compile due to mistakes at using `\#' and `\textbackslash{color}' etc.
+
+\begin{figure}[H]
+\begin{AIbox}{\DV vs ChatGPT}
+{\bf Prompt:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{html}
+A function f is called {increasing}_{emphasize!} if f(s) <= f(t) holds for every s <= t. Consider the formula:
+limit_{x goes to 0} {limit when n approaches infinite} underscore{ 
+\matrix[ [ sum of i from 1 to n (f(nx) - integral from 0 to x sin(nx) dx ),  
+((x + 2/8)^2 - 5)/((4x-1/x^2) /(n xor 3)), \\ , ..., partial f(x/n)
+over partial x * (e^{-i*omega n x} + 3(x#7) ) , f inverse of (x mod n) ]]
+multiply \matrix{1, 1, ..., 1 \\ 1, 1, ..., 1} }
+{grey_color{this gives us a good impression about the function}}
+
+Convert the above paragraph to LaTeX.
+\end{minted}
+
+\parbox[t]{\linewidth}{{\bf \DV:}\\\scriptsize
+A function $f$ is called \emph{increasing} if $f(s) \leq f(t)$ holds for every $s \leq t$. Consider the formula:
+\[
+\lim_{x \to 0} \lim_{n \to \infty} \underbrace{ \begin{bmatrix} \sum_{i = 1}^n \left(f(nx) - \int_0^x \sin(nx) \, dx \right), & \frac{\left(x + \frac{2}{8}\right)^2 - 5}{\frac{4x-1/x^2}{n \oplus 3}}, \\ \vdots & \vdots \\ \frac{\partial f(x/n)}{\partial x} \cdot  \left(e^{-i \omega n x} + 3(x\#7) \right), & f^{-1} (x \bmod n) \end{bmatrix}  \times  \begin{bmatrix} 1 & 1 & \cdots & 1 \\ 1 & 1 & \cdots & 1 \end{bmatrix} }_{\textcolor{gray}{\text{this gives us a good impression about the function}}}
+\]}\\
+{\bf ChatGPT:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\scriptsize]{html}
+A function $f$ is called {\em increasing} if $f(s) \leq f(t)$ holds for every $s \leq t$. Consider the formula:
+$$\lim_{x \to 0} \lim_{n \to \infty} \begin{bmatrix} \sum\limits_{i=1}^{n} (f(nx) - \int\limits_0^x \sin(nx),dx), \ \frac{(\frac{x}{2} + \frac{1}{8})^2 - 5}{\frac{4x - \frac{1}{x^2}}{n \operatorname{xor} 3}}, \ \vdots, \ \frac{\partial f(x/n)}{\partial x} \cdot (e^{-i\omega n x} + 3(x#7)), \ f^{-1}(x \bmod n) \end{bmatrix} \cdot \begin{bmatrix} 1 \ 1 \ \vdots \ 1 \end{bmatrix}$$
+{\color{grey}This gives us a good impression about the function.} \]
+\end{minted}
+\end{AIbox}
+\caption{\DV translates semi-rigorous typesetting instructions into a working \LaTeX\ snippet. For \DV we present the final graphic, while ChatGPT's generation fails to compile. }
+\label{fig:code-LaTeX}
+\end{figure}
+
+\subsection{Understanding existing code}
+The previous examples have shown that \DV\ can write code from instructions, even when the instructions are vague, incomplete, or require domain knowledge. They also showed that \DV\ could respond to follow-up requests, modifying its own code according to instructions.
+However, another important aspect of coding is the ability to understand and reason about existing code, written by others, which might be complex, obscure, or poorly documented. 
+To test this we pose various questions that require reading, interpreting, or executing code written in different languages and paradigms.
+
+\paragraph{Reverse-engineering assembly code.}
+Reverse engineering is an essential test for software security which amounts to search for useful information in a executable program written in a machine-readable (i.e., binary) representation of CPU instructions. It is a challenging task that requires understanding the syntax, semantics, and conventions of assembly language, as well as the architecture and behavior of the processor and the operating system. 
+
+We task \DV\ with performing penetration testing on a binary executable file (code was written in C) that requires a password to run. We do this via a chat format, where \DV\ tells the user which commands to run, and the user responds with the results. We also show in Section~\ref{sec:affordances} that \DV\ is able to run a shell independently, but this chat mode also provided the benefit of it explaining every step. \DV\ checks the file format and metadata, disassembles the code with tools like ``objdump'' and ``radare2'', debugs the code with ``gdb'' and ``ltrace'', and reverse engineers it with techniques like patching, hooking, and decompiling. During this process, \DV\ figures out that from the assembly code that the password is compared to a hash value derived from a simple mathematical formula. \DV\ then writes a python program that tries different combinations of numbers until it finds one that matches the hash value, cracking the password (an abbreviated log is presented in Appendix~\ref{appendix:reverse-engine}). ChatGPT refuses to do it on the grounds of it being illegal and unethical, even though reverse engineering is a common practice to \emph{ensure} software security. Moreover, \DV exhibits all-around proficiency in utilizing existing tools also beyond programming, which we will discuss in details in Section~\ref{sec:affordances}.
+
+
+\paragraph{Reasoning about code execution.}
+In the example in Figure~\ref{fig:code-memory-align}, we ask \DV and ChatGPT to predict and explain the output of a C program that prints the size of two structures. \DV correctly explains that the output may vary depending on the alignment rule used by the compiler, and gives an example of a possible output with 4-byte alignment. ChatGPT ignores the alignment issue and gives a wrong output, and also makes a false statement about the order of the members not affecting the size of the structure.
+
+\begin{figure}[H]
+\begin{AIbox}{\DV~vs ChatGPT}
+
+{\bf Prompt:}  
+
+
+ \begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\scriptsize]{cpp}
+struct mystruct_A {  char a; int b; char c; } x;
+struct mystruct_B {  int b;  char a; char c; } y;
+    
+#include <stdio.h>
+int main(void) {
+    printf("Size of x: %
+    printf("Size of y: %
+    return 0;
+}
+    
+Possible Output:
+\end{minted}   
+
+\parbox[t]{0.53\linewidth}{{\bf \DV:} 
+\tiny
+\begin{alltt}
+There are different ways to implement and align structures in memory, so the exact output may vary depending on the compiler, platform, and options used. However, one possible output is:\\
+
+Size of x: 12 bytes\\
+Size of y: 8 bytes\\
+
+This output assumes that the compiler uses 4-byte alignment for structures, meaning that each structure member starts at an offset that is a multiple of 4 bytes from the beginning of the structure. This may result in some padding bytes being inserted between or after the members to maintain alignment. For example, 
+\fcolorbox{aigold}{aigold}{in x, there may be 3 padding bytes after a and 3 padding bytes after c,}
+\fcolorbox{aigold}{aigold}{while in y, there may be no padding at all.} 
+The size of a structure is the sum of the sizes of its members plus any padding bytes.
+\end{alltt}
+}\hspace{0.02\linewidth}%
+\parbox[t]{0.45\linewidth}{{\bf ChatGPT:}
+\tiny
+\begin{alltt}
+Size of x: 8 bytes\\
+Size of y: 8 bytes\\
+
+The output of this code would be the size of the two structures in bytes. The size of a structure in C is the sum of the sizes of all of its members. In this case, the size of mystruct\textunderscore A is the size of a char plus the size of an int plus the size of another char, which is \fcolorbox{aired}{aired}{1 + 4 + 1 = 8} bytes. \\
+\\
+Similarly, the size of mystruct\textunderscore B is also 8 bytes. This means that both structures will be allocated the same amount of memory. \\
+\\
+\fcolorbox{aired}{aired}{Note that the order in which the members are}
+\fcolorbox{aired}{aired}{declared in the structure does not affect its}
+\fcolorbox{aired}{aired}{size.}
+\end{alltt}
+}
+\end{AIbox}
+\caption{\DV vs ChatGPT on the~memory alignment rule of C/C\texttt{++}. \DV's insightful comments are labeled in \fcolorbox{aigold}{aigold}{gold} and ChatGPT's Mistakes are labeled in \fcolorbox{aired}{aired}{red}.}
+\label{fig:code-memory-align}
+\end{figure}
+
+
+\paragraph{Executing Python code} The ultimate test of understanding the existing code is to ask the model to directly execute it. 
+In Figure~\ref{figure:pseudo1}, we see that \DV{} is able to execute non-trivial Python code. It has to keep track of several variables (including a nested loop and a dictionary) and deal with recursion. It explains the execution in detail by writing intermediate steps and comments. It is important to note that \DV{} is not running the code on a Python interpreter, but rather simulating the code in natural language. This requires a high level of understanding and reasoning about the code, as well as the ability to communicate the results clearly. In contrast, ChatGPT states (incorrectly) that ``The result of DP(3, 4) is not specified in the given code'', and later on that ``It is not clear from the code what the expected output of the function is, as the specific problem that the function is solving is not provided.'' ChatGPT does not simulate the full execution, but states which functions will be called. %
+\begin{figure}[H]
+\begin{AIbox}{\DV vs ChatGPT}
+\begin{minipage}[t]{0.15\linewidth}
+{\bf Prompt:}
+\end{minipage}
+\begin{minipage}[t]{0.8\linewidth}
+{\tiny
+I have the following python code:}
+\vspace{-0.1cm}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\tiny]{python}
+def to_str(i, j):
+    return str(i) + "," + str(j)
+dict = {}
+def DP(i, j):
+    if i <= 0 or j <= 0:
+        dict[to_str(i, j)] = abs(4 * j - 3 * i) 
+    elif to_str(i, j) not in dict.keys():
+        arr = []
+        for ir in range(i):
+            for jr in range(j):
+                arr.append(DP(ir, jr))
+        dict[to_str(i, j)] = max(arr)
+    return dict[to_str(i, j)]
+\end{minted}
+\vspace{-0.5cm}
+{\tiny What is the result of DP(3, 4)? Write down the execution with intermediate steps.}\\
+\end{minipage}
+\vspace{-0.5cm}
+
+{\bf\DV:}
+\vspace{-0.1cm}
+\begin{minted}[breaklines, breaksymbol=,  fontsize=\tiny]{html}
+DP(3, 4):
+- i > 0 and j > 0, so we don't return from the first if statement
+- to_str(3, 4) is not in dict, so we enter the second if statement
+- arr = []
+- We loop through ir from 0 to 2, and jr from 0 to 3
+  - to_str(0, 0)  is not in dict, so DP(0, 0) returns abs(4 * 0 - 3 * 0) = 0, dict =  {"0,0": 0}, arr = [0]
+  - to_str(0, 1)  is not in dict, so DP(0, 1) returns abs(4 * 1 - 3 * 0) = 4, dict =  {"0,0": 0, "0,1": 4}, arr = [0, 4]
+  - to_str(0, 2)  is not in dict, so DP(0, 2) returns abs(4 * 2 - 3 * 0) = 8, dict =  {"0,0": 0, "0,1": 4, "0,2": 8}, arr = [0, 4, 8]
+  - to_str(0, 3)  is not in dict, so DP(0, 3) returns abs(4 * 3 - 3 * 0) = 12, dict =  {"0,0": 0, "0,1": 4, "0,2": 8, "0,3": 12}, arr = [0, 4, 8, 12]
+  - to_str(1, 0)  is not in dict, so DP(1, 0) returns abs(4 * 0 - 3 * 1) = 3, dict =  {"0,0": 0, "0,1": 4, "0,2": 8, "0,3": 12, "1,0": 3}, arr = [0, 4, 8, 12, 3]
+  - to_str(1, 1)  is not in dict, so DP(1, 1) enters  the second if statement, arr1 = [] 
+ - We loop through  ir from 0 to 0, and jr from 0 to 0
+   - to_str(0, 0) is in dict, so DP(0, 0) returns 0, arr1 = [0]
+ - dict["1,1"] = max(arr1) = 0, dict =  {"0,0": 0, "0,1": 4, "0,2": 8, "0,3": 12, "1,0": 3, "1,1": 0}, arr = [0, 4, 8, 12, 3, 0]
+ - Continuing with the outer loop, to_str(1, 2) is not in dict, so DP(1, 2) enters the second if statement, arr2 = []
+ - We loop through ir from 0 to 0, and jr from 0 to 1
+   - to_str(0, 0) is in dict, so DP(0, 0) returns 0, arr2 = [0]
+   - to_str(0, 1) is in dict, so DP(0, 1) returns 4, arr2 = [0, 4]
+... (we skip some steps generated by the model here due to space constraints)
+ - Continuing with the outer loop, to_str(2, 3) is not in dict, so DP(2, 3) enters the second if statement, arr6 = []
+ - We loop through ir from 0 to 1, and jr from 0 to 2
+   - to_str(0, 0) is in dict, so DP(0, 0) returns 0, arr6 = [0]
+   - to_str(0, 1) is in dict, so DP(0, 1) returns 4, arr6 = [0, 4]
+   - to_str(0, 2) is in dict, so DP(0, 2) returns 8, arr6 = [0, 4, 8]
+   - to_str(1, 0) is in dict, so DP(1, 0) returns 3, arr6 = [0, 4, 8, 3]
+   - to_str(1, 1) is in dict, so DP(1, 1) returns 0, arr6 = [0, 4, 8, 3, 0]
+   - to_str(1, 2) is in dict, so DP(1, 2) returns 4, arr6 = [0, 4, 8, 3, 0, 4]
+ - dict["2,3"] = max(arr6) = 8, dict =  {"0,0": 0, "0,1": 4, "0,2": 8, "0,3": 12, "1,0": 3, "1,1": 0, "1,2": 4, "1,3": 8, "2,0": 6, "2,1": 3, "2,2": 4, "2,3": 8}, arr = [0, 4, 8, 12, 3, 0, 4, 8, 6, 3, 4, 8]
+- dict["3,4"] = max(arr) = 12
+- DP(3, 4) returns 12
+\end{minted}
+{\bf ChatGPT:}\\
+\vspace{-0.3cm}
+\parbox[t]{\linewidth}{\tiny\begin{alltt}
+The result of DP(3, 4) is not specified in the given code. The function DP(i, j) is a dynamic programming function that uses a dictionary to store the result of previously computed values. The function first checks if the input values i and j are less than or equal to 0, if so it assigns the value of abs(4 * j - 3 * i) to the key to\textsubscript{str}(i, j) in the dictionary. If the key to\textsubscript{str}(i, j) does not exist in the dictionary, the function creates an empty array called arr and then uses nested for loops to append the result of DP(ir, jr) to the array for all possible values of ir and jr, where ir ranges from 0 to i and jr ranges from 0 to j. Finally, the function assigns the maximum value of arr to the key to\textsubscript{str}(i, j) in the dictionary and returns that value.\\
+...\\
+Finally, the function assigns the maximum value of arr to the key to\textsubscript{str}(3, 4) in the dictionary and returns that value.It is not clear from the code what the expected output of the function is, as the specific problem that the function is solving is not provided. Additionally, the function uses nested for loops and recursion that can be computationally expensive and may cause the function to run into an infinite loop if the base case is not well defined.
+\end{alltt}}
+\end{AIbox}
+\caption{\DV~executes Python code.}
+\label{figure:pseudo1}
+\end{figure}
+
+
+\paragraph{Executing pseudo-code.}
+Compiling and executing code written in programming languages is easy, but that also demands strict adherence to syntax and semantics. Compilers cannot handle vague or informal expressions, or natural language descriptions of functionality. 
+In contrast, we ask \DV\ to execute non-trivial pseudocode in Figure~\ref{fig:pseudocode1}, noting that it is able to execute and explain every step (including recursion). ChatGPT is not able to execute, even though it seems able to interpret each line of the code.
+
+In the example below, \DV\ correctly interprets the informal description of the \texttt{merge\_array} function, which merges two arrays into one array with missing elements. It also understands the recursive function \texttt{rec} that is defined in a sketchy way. Remarkably, \DV \ executes the code directly, without translating it into other well-defined programming languages. This demonstrates the potential of AGI models as a novel tool for programming with natural language, which could revolutionize the way we code in the future.
+
+
+\begin{figure}[H]
+\begin{AIbox}{\DV}
+{\bf Prompt:} \begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\scriptsize]{html}
+I have a python function  merge_array, the function takes two arrays of length m, n respectively, and output a new array by merging the first m-1 element of the first array and the last n - 1 elements of the second array.
+Suppose I call the merge_array function in the following way:
+function rec
+input: one array A, integer k
+code: 
+if the length of A is less than k, we first call rec(A + [length(A)], k) to get B
+after that, call merge_array(B, B) to get C
+return C.
+if the length of A is larger or equal to k, return A.
+end rec
+Can you tell me what is the execution of rec([5, 10, 88], 6) with intermediate steps?
+\end{minted}
+
+
+{\bf \DV:}
+\begin{minted}[breaklines, breaksymbol=, baselinestretch=1, fontsize=\scriptsize]{html}
+One possible execution of rec([5, 10, 88], 6) with intermediate steps is:
+- Since the length of A is 3, which is less than k = 6, we first call rec(A + [length(A)], k) to get B. That is, we call rec([5, 10, 88, 3], 6).
+- In the recursive call, the length of A is 4, which is still less than k = 6, so we again call rec(A + [length(A)], k) to get B. That is, we call rec([5, 10, 88, 3, 4], 6).
+- In the second recursive call, the length of A is 5, which is still less than k = 6, so we again call rec(A + [length(A)], k) to get B. That is, we call rec([5, 10, 88, 3, 4, 5], 6).
+- In the third recursive call, the length of A is 6, which is equal to k = 6, so we return A as B. That is, we return [5, 10, 88, 3, 4, 5] as B.
+- In the second recursive call, we have B = [5, 10, 88, 3, 4, 5], so we call merge_array(B, B) to get C. The merge_array function takes the first m - 1 = 5 elements of the first array and the last n - 1 = 5 elements of the second array and merges them into a new array. That is, C = [5, 10, 88, 3, 4, 10, 88, 3, 4, 5]. We return C as B.
+- In the first recursive call, we have B = [5, 10, 88, 3, 4, 10, 88, 3, 4, 5], so we call merge_array(B, B) to get C. The merge_array function takes the first m - 1 = 9 elements of the first array and the last n - 1 = 9 elements of the second array and merges them into a new array. That is, C = [5, 10, 88, 3, 4, 10, 88, 3, 4, 10, 88, 3, 4, 10, 88, 3, 4, 5]. We return C as B.
+- In the original call, we have B = [5, 10, 88, 3, 4, 10, 88, 3, 4, 10, 88, 3, 4, 10, 88, 3, 4, 5], so we return B as the final output of rec([5, 10, 88], 6).
+\end{minted}
+\end{AIbox}
+\caption{\DV\ executes pseudo-code.}
+\label{fig:pseudocode1}
+\end{figure}
+
+To obtain another preliminary evaluation on how well \DV\ can maintain the states of the code, in the Appendix~\ref{sec:code_a5}, we run the iconic \textit{pseudo code} for \textit{large numbers multiplication} in a \textit{zero shot} manner on \DV\ with hundreds of randomly sampled inputs of multiple lengths. The code demands \DV\ to update and remember the state of the array for a large number of steps. We observe that \DV, despite being trained as a (non-exact) natural language model, can nearly correctly preserve the states of the code with more than 50 updates.
+
+
+
+
+
+
+
+
+
+
+

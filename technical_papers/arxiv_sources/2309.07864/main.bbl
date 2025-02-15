@@ -1,0 +1,3359 @@
+\begin{thebibliography}{100}
+
+\bibitem{russell2010artificial}
+Russell, S.~J.
+\newblock \emph{Artificial intelligence a modern approach}.
+\newblock Pearson Education, Inc., 2010.
+
+\bibitem{diderot1911diderot}
+Diderot, D.
+\newblock \emph{Diderot's early philosophical works}.
+\newblock 4. Open Court, 1911.
+
+\bibitem{turing2009computing}
+Turing, A.~M.
+\newblock \emph{Computing machinery and intelligence}.
+\newblock Springer, 2009.
+
+\bibitem{DBLP:journals/ker/WooldridgeJ95}
+Wooldridge, M.~J., N.~R. Jennings.
+\newblock Intelligent agents: theory and practice.
+\newblock \emph{Knowl. Eng. Rev.}, 10(2):115--152, 1995.
+
+\bibitem{sep-agency}
+Schlosser, M.
+\newblock {Agency}.
+\newblock In E.~N. Zalta, ed., \emph{The {Stanford} Encyclopedia of Philosophy}. Metaphysics Research Lab, Stanford University, {W}inter 2019 edn., 2019.
+
+\bibitem{DBLP:phd/us/Agha85}
+Agha, G.~A.
+\newblock \emph{Actors: a Model of Concurrent Computation in Distributed Systems (Parallel Processing, Semantics, Open, Programming Languages, Artificial Intelligence)}.
+\newblock Ph.D. thesis, University of Michigan, {USA}, 1985.
+
+\bibitem{green1997software}
+Green, S., L.~Hurst, B.~Nangle, et~al.
+\newblock Software agents: A review.
+\newblock \emph{Department of Computer Science, Trinity College Dublin, Tech. Rep. TCS-CS-1997-06}, 1997.
+
+\bibitem{DBLP:journals/cacm/GeneserethK94}
+Genesereth, M.~R., S.~P. Ketchpel.
+\newblock Software agents.
+\newblock \emph{Commun. {ACM}}, 37(7):48--53, 1994.
+
+\bibitem{DBLP:journals/logcom/Goodwin95}
+Goodwin, R.
+\newblock Formalizing properties of agents.
+\newblock \emph{J. Log. Comput.}, 5(6):763--781, 1995.
+
+\bibitem{padgham2005developing}
+Padgham, L., M.~Winikoff.
+\newblock \emph{Developing intelligent agent systems: A practical guide}.
+\newblock John Wiley \& Sons, 2005.
+
+\bibitem{DBLP:conf/law/Shoham92}
+Shoham, Y.
+\newblock Agent oriented programming.
+\newblock In M.~Masuch, L.~P{\'{o}}los, eds., \emph{Knowledge Representation and Reasoning Under Uncertainty, Logic at Work [International Conference Logic at Work, Amsterdam, The Netherlands, December 17-19, 1992]}, vol. 808 of \emph{Lecture Notes in Computer Science}, pages 123--129. Springer, 1992.
+
+\bibitem{hutter2004universal}
+Hutter, M.
+\newblock \emph{Universal artificial intelligence: Sequential decisions based on algorithmic probability}.
+\newblock Springer Science \& Business Media, 2004.
+
+\bibitem{DBLP:conf/ijcai/FikesN71}
+Fikes, R., N.~J. Nilsson.
+\newblock {STRIPS:} {A} new approach to the application of theorem proving to problem solving.
+\newblock In D.~C. Cooper, ed., \emph{Proceedings of the 2nd International Joint Conference on Artificial Intelligence. London, UK, September 1-3, 1971}, pages 608--620. William Kaufmann, 1971.
+
+\bibitem{DBLP:conf/ijcai/Sacerdoti73}
+Sacerdoti, E.~D.
+\newblock Planning in a hierarchy of abstraction spaces.
+\newblock In N.~J. Nilsson, ed., \emph{Proceedings of the 3rd International Joint Conference on Artificial Intelligence. Standford, CA, USA, August 20-23, 1973}, pages 412--422. William Kaufmann, 1973.
+
+\bibitem{brooks1991intelligence}
+Brooks, R.~A.
+\newblock Intelligence without representation.
+\newblock \emph{Artificial intelligence}, 47(1-3):139--159, 1991.
+
+\bibitem{maes1990designing}
+Maes, P.
+\newblock \emph{Designing autonomous agents: Theory and practice from biology to engineering and back}.
+\newblock MIT press, 1990.
+
+\bibitem{ribeiro2002reinforcement}
+Ribeiro, C.
+\newblock Reinforcement learning agents.
+\newblock \emph{Artificial intelligence review}, 17:223--250, 2002.
+
+\bibitem{kaelbling1996reinforcement}
+Kaelbling, L.~P., M.~L. Littman, A.~W. Moore.
+\newblock Reinforcement learning: A survey.
+\newblock \emph{Journal of artificial intelligence research}, 4:237--285, 1996.
+
+\bibitem{Guha_Lenat_1994}
+Guha, R.~V., D.~B. Lenat.
+\newblock Enabling agents to work together.
+\newblock \emph{Communications of the ACM}, 37(7):126–142, 1994.
+
+\bibitem{kaelbling1987architecture}
+Kaelbling, L.~P., et~al.
+\newblock An architecture for intelligent reactive systems.
+\newblock \emph{Reasoning about actions and plans}, pages 395--410, 1987.
+
+\bibitem{sutton2018reinforcement}
+Sutton, R.~S., A.~G. Barto.
+\newblock \emph{Reinforcement learning: An introduction}.
+\newblock MIT press, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2304-03442}
+Park, J.~S., J.~C. O'Brien, C.~J. Cai, et~al.
+\newblock Generative agents: Interactive simulacra of human behavior.
+\newblock \emph{CoRR}, abs/2304.03442, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-13246}
+Wang, Z., G.~Zhang, K.~Yang, et~al.
+\newblock Interactive natural language processing.
+\newblock \emph{CoRR}, abs/2305.13246, 2023.
+
+\bibitem{DBLP:conf/nips/Ouyang0JAWMZASR22}
+Ouyang, L., J.~Wu, X.~Jiang, et~al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-08774}
+OpenAI.
+\newblock {GPT-4} technical report.
+\newblock \emph{CoRR}, abs/2303.08774, 2023.
+
+\bibitem{DBLP:journals/tmlr/WeiTBRZBYBZMCHVLDF22}
+Wei, J., Y.~Tay, R.~Bommasani, et~al.
+\newblock Emergent abilities of large language models.
+\newblock \emph{Trans. Mach. Learn. Res.}, 2022, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-16960}
+Liu, R., R.~Yang, C.~Jia, et~al.
+\newblock Training socially aligned language models in simulated human society.
+\newblock \emph{CoRR}, abs/2305.16960, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2309-02427}
+Sumers, T.~R., S.~Yao, K.~Narasimhan, et~al.
+\newblock Cognitive architectures for language agents.
+\newblock \emph{CoRR}, abs/2309.02427, 2023.
+
+\bibitem{weng2023prompt}
+Weng, L.
+\newblock Llm-powered autonomous agents.
+\newblock \emph{lilianweng.github.io}, 2023.
+
+\bibitem{DBLP:conf/emnlp/BiskHTABCLLMNPT20}
+Bisk, Y., A.~Holtzman, J.~Thomason, et~al.
+\newblock Experience grounds language.
+\newblock In B.~Webber, T.~Cohn, Y.~He, Y.~Liu, eds., \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2020, Online, November 16-20, 2020}, pages 8718--8735. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2303-12712}
+Bubeck, S., V.~Chandrasekaran, R.~Eldan, et~al.
+\newblock Sparks of artificial general intelligence: Early experiments with {GPT-4}.
+\newblock \emph{CoRR}, abs/2303.12712, 2023.
+
+\bibitem{anscombe2000intention}
+Anscombe, G. E.~M.
+\newblock \emph{Intention}.
+\newblock Harvard University Press, 2000.
+
+\bibitem{60a9dd9a-e48a-3fcf-87dd-d5c158406fc6}
+Davidson, D.
+\newblock Actions, reasons, and causes.
+\newblock \emph{The Journal of Philosophy}, 60(23):685--700, 1963.
+
+\bibitem{Davidson1971-DAVIA-2}
+---.
+\newblock I. agency.
+\newblock In A.~Marras, R.~N. Bronaugh, R.~W. Binkley, eds., \emph{Agent, Action, and Reason}, pages 1--37. University of Toronto Press, 1971.
+
+\bibitem{dennett1988precis}
+Dennett, D.~C.
+\newblock Pr{\'e}cis of the intentional stance.
+\newblock \emph{Behavioral and brain sciences}, 11(3):495--505, 1988.
+
+\bibitem{barandiaran2009defining}
+Barandiaran, X.~E., E.~Di~Paolo, M.~Rohde.
+\newblock Defining agency: Individuality, normativity, asymmetry, and spatio-temporality in action.
+\newblock \emph{Adaptive Behavior}, 17(5):367--386, 2009.
+
+\bibitem{mccarthy1979ascribing}
+McCarthy, J.
+\newblock \emph{Ascribing mental qualities to machines}.
+\newblock Stanford University. Computer Science Department, 1979.
+
+\bibitem{rosenschein1986synthesis}
+Rosenschein, S.~J., L.~P. Kaelbling.
+\newblock The synthesis of digital machines with provable epistemic properties.
+\newblock In \emph{Theoretical aspects of reasoning about knowledge}, pages 83--98. Elsevier, 1986.
+
+\bibitem{radford2018improving}
+Radford, A., K.~Narasimhan, T.~Salimans, et~al.
+\newblock Improving language understanding by generative pre-training.
+\newblock \emph{OpenAI}, 2018.
+
+\bibitem{radford2019language}
+Radford, A., J.~Wu, R.~Child, et~al.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI blog}, 1(8):9, 2019.
+
+\bibitem{DBLP:conf/nips/BrownMRSKDNSSAA20}
+Brown, T.~B., B.~Mann, N.~Ryder, et~al.
+\newblock Language models are few-shot learners.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~Balcan, H.~Lin, eds., \emph{Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual}. 2020.
+
+\bibitem{DBLP:conf/naacl/LinJLGE21}
+Lin, C., A.~Jaech, X.~Li, et~al.
+\newblock Limitations of autoregressive models and their alternatives.
+\newblock In K.~Toutanova, A.~Rumshisky, L.~Zettlemoyer, D.~Hakkani{-}T{\"{u}}r, I.~Beltagy, S.~Bethard, R.~Cotterell, T.~Chakraborty, Y.~Zhou, eds., \emph{Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2021, Online, June 6-11, 2021}, pages 5147--5173. Association for Computational Linguistics, 2021.
+
+\bibitem{tomasello2005constructing}
+Tomasello, M.
+\newblock \emph{Constructing a language: A usage-based theory of language acquisition}.
+\newblock Harvard university press, 2005.
+
+\bibitem{bloom2002children}
+Bloom, P.
+\newblock \emph{How children learn the meanings of words}.
+\newblock MIT press, 2002.
+
+\bibitem{zwaan2005embodied}
+Zwaan, R.~A., C.~J. Madden.
+\newblock Embodied sentence comprehension.
+\newblock \emph{Grounding cognition: The role of perception and action in memory, language, and thinking}, 22, 2005.
+
+\bibitem{DBLP:conf/emnlp/Andreas22}
+Andreas, J.
+\newblock Language models as agent models.
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Findings of the Association for Computational Linguistics: {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 5769--5779. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2306-12672}
+Wong, L., G.~Grand, A.~K. Lew, et~al.
+\newblock From word models to world models: Translating from natural language to the probabilistic language of thought.
+\newblock \emph{CoRR}, abs/2306.12672, 2023.
+
+\bibitem{DBLP:journals/corr/RadfordJS17}
+Radford, A., R.~J{\'{o}}zefowicz, I.~Sutskever.
+\newblock Learning to generate reviews and discovering sentiment.
+\newblock \emph{CoRR}, abs/1704.01444, 2017.
+
+\bibitem{DBLP:conf/acl/LiNA20}
+Li, B.~Z., M.~I. Nye, J.~Andreas.
+\newblock Implicit representations of meaning in neural language models.
+\newblock In C.~Zong, F.~Xia, W.~Li, R.~Navigli, eds., \emph{Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing, {ACL/IJCNLP} 2021, (Volume 1: Long Papers), Virtual Event, August 1-6, 2021}, pages 1813--1827. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:journals/jasis/MukhopadhyaySHB86}
+Mukhopadhyay, U., L.~M. Stephens, M.~N. Huhns, et~al.
+\newblock An intelligent system for document retrieval in distributed office environments.
+\newblock \emph{J. Am. Soc. Inf. Sci.}, 37(3):123--135, 1986.
+
+\bibitem{DBLP:journals/ras/Maes90a}
+Maes, P.
+\newblock Situated agents can have goals.
+\newblock \emph{Robotics Auton. Syst.}, 6(1-2):49--70, 1990.
+
+\bibitem{nilsson1992toward}
+Nilsson, N.~J.
+\newblock Toward agent programs with circuit semantics.
+\newblock Tech. rep., \, 1992.
+
+\bibitem{muller1994modelling}
+M{\"u}ller, J.~P., M.~Pischel.
+\newblock Modelling interacting agents in dynamic environments.
+\newblock In \emph{Proceedings of the 11th European Conference on Artificial Intelligence}, pages 709--713. 1994.
+
+\bibitem{brooks1986robust}
+Brooks, R.
+\newblock A robust layered control system for a mobile robot.
+\newblock \emph{IEEE journal on robotics and automation}, 2(1):14--23, 1986.
+
+\bibitem{brooks2018intelligence}
+Brooks, R.~A.
+\newblock Intelligence without reason.
+\newblock In \emph{The artificial life route to artificial intelligence}, pages 25--81. Routledge, 2018.
+
+\bibitem{DBLP:journals/cacm/NewellS76}
+Newell, A., H.~A. Simon.
+\newblock Computer science as empirical inquiry: Symbols and search.
+\newblock \emph{Commun. {ACM}}, 19(3):113--126, 1976.
+
+\bibitem{DBLP:books/mk/Ginsberg93}
+Ginsberg, M.~L.
+\newblock \emph{Essentials of Artificial Intelligence}.
+\newblock Morgan Kaufmann, 1993.
+
+\bibitem{DBLP:books/daglib/0066946}
+Wilkins, D.~E.
+\newblock \emph{Practical planning - extending the classical {AI} planning paradigm}.
+\newblock Morgan Kaufmann series in representation and reasoning. Morgan Kaufmann, 1988.
+
+\bibitem{shardlow1990action}
+Shardlow, N.
+\newblock \emph{Action and agency in cognitive science}.
+\newblock Ph.D. thesis, Master’s thesis, Department of Psychlogy, University of Manchester, Oxford~…, 1990.
+
+\bibitem{DBLP:conf/ijcai/Sacerdoti75}
+Sacerdoti, E.~D.
+\newblock The nonlinear nature of plans.
+\newblock In \emph{Advance Papers of the Fourth International Joint Conference on Artificial Intelligence, Tbilisi, Georgia, USSR, September 3-8, 1975}, pages 206--214. 1975.
+
+\bibitem{russell1991right}
+Russell, S.~J., E.~Wefald.
+\newblock \emph{Do the right thing: studies in limited rationality}.
+\newblock MIT press, 1991.
+
+\bibitem{DBLP:conf/ijcai/Schoppers87}
+Schoppers, M.
+\newblock Universal plans for reactive robots in unpredictable environments.
+\newblock In J.~P. McDermott, ed., \emph{Proceedings of the 10th International Joint Conference on Artificial Intelligence. Milan, Italy, August 23-28, 1987}, pages 1039--1046. Morgan Kaufmann, 1987.
+
+\bibitem{DBLP:journals/trob/Brooks86}
+Brooks, R.~A.
+\newblock A robust layered control system for a mobile robot.
+\newblock \emph{{IEEE} J. Robotics Autom.}, 2(1):14--23, 1986.
+
+\bibitem{minsky1961steps}
+Minsky, M.
+\newblock Steps toward artificial intelligence.
+\newblock \emph{Proceedings of the IRE}, 49(1):8--30, 1961.
+
+\bibitem{isbell2001social}
+Isbell, C., C.~R. Shelton, M.~Kearns, et~al.
+\newblock A social reinforcement learning agent.
+\newblock In \emph{Proceedings of the fifth international conference on Autonomous agents}, pages 377--384. 2001.
+
+\bibitem{watkins1989learning}
+Watkins, C. J. C.~H.
+\newblock Learning from delayed rewards, 1989.
+
+\bibitem{rummery1994line}
+Rummery, G.~A., M.~Niranjan.
+\newblock \emph{On-line Q-learning using connectionist systems}, vol.~37.
+\newblock University of Cambridge, Department of Engineering Cambridge, UK, 1994.
+
+\bibitem{tesauro1995temporal}
+Tesauro, G., et~al.
+\newblock Temporal difference learning and td-gammon.
+\newblock \emph{Communications of the ACM}, 38(3):58--68, 1995.
+
+\bibitem{li2017deep}
+Li, Y.
+\newblock Deep reinforcement learning: An overview.
+\newblock \emph{arXiv preprint arXiv:1701.07274}, 2017.
+
+\bibitem{silver2016mastering}
+Silver, D., A.~Huang, C.~J. Maddison, et~al.
+\newblock Mastering the game of go with deep neural networks and tree search.
+\newblock \emph{nature}, 529(7587):484--489, 2016.
+
+\bibitem{mnih2013playing}
+Mnih, V., K.~Kavukcuoglu, D.~Silver, et~al.
+\newblock Playing atari with deep reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:1312.5602}, 2013.
+
+\bibitem{DBLP:journals/corr/abs-1810-00123}
+Farebrother, J., M.~C. Machado, M.~Bowling.
+\newblock Generalization and regularization in {DQN}.
+\newblock \emph{CoRR}, abs/1810.00123, 2018.
+
+\bibitem{DBLP:journals/corr/abs-1804-06893}
+Zhang, C., O.~Vinyals, R.~Munos, et~al.
+\newblock A study on overfitting in deep reinforcement learning.
+\newblock \emph{CoRR}, abs/1804.06893, 2018.
+
+\bibitem{justesen2018illuminating}
+Justesen, N., R.~R. Torrado, P.~Bontrager, et~al.
+\newblock Illuminating generalization in deep reinforcement learning through procedural level generation.
+\newblock \emph{arXiv preprint arXiv:1806.10729}, 2018.
+
+\bibitem{DBLP:journals/ml/Dulac-ArnoldLML21}
+Dulac{-}Arnold, G., N.~Levine, D.~J. Mankowitz, et~al.
+\newblock Challenges of real-world reinforcement learning: definitions, benchmarks and analysis.
+\newblock \emph{Mach. Learn.}, 110(9):2419--2468, 2021.
+
+\bibitem{DBLP:conf/nips/GhoshRKZAL21}
+Ghosh, D., J.~Rahme, A.~Kumar, et~al.
+\newblock Why generalization in {RL} is difficult: Epistemic pomdps and implicit partial observability.
+\newblock In M.~Ranzato, A.~Beygelzimer, Y.~N. Dauphin, P.~Liang, J.~W. Vaughan, eds., \emph{Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, pages 25502--25515. 2021.
+
+\bibitem{DBLP:conf/atal/BrysHTN15}
+Brys, T., A.~Harutyunyan, M.~E. Taylor, et~al.
+\newblock Policy transfer using reward shaping.
+\newblock In G.~Weiss, P.~Yolum, R.~H. Bordini, E.~Elkind, eds., \emph{Proceedings of the 2015 International Conference on Autonomous Agents and Multiagent Systems, {AAMAS} 2015, Istanbul, Turkey, May 4-8, 2015}, pages 181--188. {ACM}, 2015.
+
+\bibitem{parisotto2015actor}
+Parisotto, E., J.~L. Ba, R.~Salakhutdinov.
+\newblock Actor-mimic: Deep multitask and transfer reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:1511.06342}, 2015.
+
+\bibitem{DBLP:journals/corr/abs-2009-07888}
+Zhu, Z., K.~Lin, J.~Zhou.
+\newblock Transfer learning in deep reinforcement learning: {A} survey.
+\newblock \emph{CoRR}, abs/2009.07888, 2020.
+
+\bibitem{DBLP:journals/corr/DuanSCBSA16}
+Duan, Y., J.~Schulman, X.~Chen, et~al.
+\newblock Rl{\textdollar}{\^{}}2{\textdollar}: Fast reinforcement learning via slow reinforcement learning.
+\newblock \emph{CoRR}, abs/1611.02779, 2016.
+
+\bibitem{DBLP:conf/icml/FinnAL17}
+Finn, C., P.~Abbeel, S.~Levine.
+\newblock Model-agnostic meta-learning for fast adaptation of deep networks.
+\newblock In D.~Precup, Y.~W. Teh, eds., \emph{Proceedings of the 34th International Conference on Machine Learning, {ICML} 2017, Sydney, NSW, Australia, 6-11 August 2017}, vol.~70 of \emph{Proceedings of Machine Learning Research}, pages 1126--1135. {PMLR}, 2017.
+
+\bibitem{DBLP:conf/nips/GuptaMLAL18}
+Gupta, A., R.~Mendonca, Y.~Liu, et~al.
+\newblock Meta-reinforcement learning of structured exploration strategies.
+\newblock In S.~Bengio, H.~M. Wallach, H.~Larochelle, K.~Grauman, N.~Cesa{-}Bianchi, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 31: Annual Conference on Neural Information Processing Systems 2018, NeurIPS 2018, December 3-8, 2018, Montr{\'{e}}al, Canada}, pages 5307--5316. 2018.
+
+\bibitem{DBLP:conf/icml/RakellyZFLQ19}
+Rakelly, K., A.~Zhou, C.~Finn, et~al.
+\newblock Efficient off-policy meta-reinforcement learning via probabilistic context variables.
+\newblock In K.~Chaudhuri, R.~Salakhutdinov, eds., \emph{Proceedings of the 36th International Conference on Machine Learning, {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}}, vol.~97 of \emph{Proceedings of Machine Learning Research}, pages 5331--5340. {PMLR}, 2019.
+
+\bibitem{fakoor2019meta}
+Fakoor, R., P.~Chaudhari, S.~Soatto, et~al.
+\newblock Meta-q-learning.
+\newblock \emph{arXiv preprint arXiv:1910.00125}, 2019.
+
+\bibitem{vanschoren2018meta}
+Vanschoren, J.
+\newblock Meta-learning: A survey.
+\newblock \emph{arXiv preprint arXiv:1810.03548}, 2018.
+
+\bibitem{DBLP:journals/jmlr/TaylorS09}
+Taylor, M.~E., P.~Stone.
+\newblock Transfer learning for reinforcement learning domains: {A} survey.
+\newblock \emph{J. Mach. Learn. Res.}, 10:1633--1685, 2009.
+
+\bibitem{DBLP:conf/icml/TirinzoniSPR18}
+Tirinzoni, A., A.~Sessa, M.~Pirotta, et~al.
+\newblock Importance weighted transfer of samples in reinforcement learning.
+\newblock In J.~G. Dy, A.~Krause, eds., \emph{Proceedings of the 35th International Conference on Machine Learning, {ICML} 2018, Stockholmsm{\"{a}}ssan, Stockholm, Sweden, July 10-15, 2018}, vol.~80 of \emph{Proceedings of Machine Learning Research}, pages 4943--4952. {PMLR}, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2301-08028}
+Beck, J., R.~Vuorio, E.~Z. Liu, et~al.
+\newblock A survey of meta-reinforcement learning.
+\newblock \emph{CoRR}, abs/2301.08028, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-11432}
+Wang, L., C.~Ma, X.~Feng, et~al.
+\newblock A survey on large language model based autonomous agents.
+\newblock \emph{CoRR}, abs/2308.11432, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2112-09332}
+Nakano, R., J.~Hilton, S.~Balaji, et~al.
+\newblock Webgpt: Browser-assisted question-answering with human feedback.
+\newblock \emph{CoRR}, abs/2112.09332, 2021.
+
+\bibitem{DBLP:conf/iclr/YaoZYDSN023}
+Yao, S., J.~Zhao, D.~Yu, et~al.
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-04761}
+Schick, T., J.~Dwivedi{-}Yu, R.~Dess{\`{\i}}, et~al.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock \emph{CoRR}, abs/2302.04761, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-09842}
+Lu, P., B.~Peng, H.~Cheng, et~al.
+\newblock Chameleon: Plug-and-play compositional reasoning with large language models.
+\newblock \emph{CoRR}, abs/2304.09842, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-08354}
+Qin, Y., S.~Hu, Y.~Lin, et~al.
+\newblock Tool learning with foundation models.
+\newblock \emph{CoRR}, abs/2304.08354, 2023.
+
+\bibitem{DBLP:conf/nips/Wei0SBIXCLZ22}
+Wei, J., X.~Wang, D.~Schuurmans, et~al.
+\newblock Chain-of-thought prompting elicits reasoning in large language models.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:conf/nips/KojimaGRMI22}
+Kojima, T., S.~S. Gu, M.~Reid, et~al.
+\newblock Large language models are zero-shot reasoners.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:conf/iclr/0002WSLCNCZ23}
+Wang, X., J.~Wei, D.~Schuurmans, et~al.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:conf/iclr/ZhouSHWS0SCBLC23}
+Zhou, D., N.~Sch{\"{a}}rli, L.~Hou, et~al.
+\newblock Least-to-most prompting enables complex reasoning in large language models.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14497}
+Xi, Z., S.~Jin, Y.~Zhou, et~al.
+\newblock Self-polish: Enhance reasoning in large language models via problem refinement.
+\newblock \emph{CoRR}, abs/2305.14497, 2023.
+
+\bibitem{shinn2023reflexion}
+Shinn, N., F.~Cassano, B.~Labash, et~al.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2303.11366}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2212-04088}
+Song, C.~H., J.~Wu, C.~Washington, et~al.
+\newblock Llm-planner: Few-shot grounded planning for embodied agents with large language models.
+\newblock \emph{CoRR}, abs/2212.04088, 2022.
+
+\bibitem{DBLP:conf/acl/AkyurekAKCWT23}
+Aky{\"{u}}rek, A.~F., E.~Aky{\"{u}}rek, A.~Kalyan, et~al.
+\newblock {RL4F:} generating natural language feedback with reinforcement learning for repairing model outputs.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 7716--7733. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-12813}
+Peng, B., M.~Galley, P.~He, et~al.
+\newblock Check your facts and try again: Improving large language models with external knowledge and automated feedback.
+\newblock \emph{CoRR}, abs/2302.12813, 2023.
+
+\bibitem{liu2023languages}
+Liu, H., C.~Sferrazza, P.~Abbeel.
+\newblock Languages are rewards: Hindsight finetuning using human feedback.
+\newblock \emph{arXiv preprint arXiv:2302.02676}, 2023.
+
+\bibitem{DBLP:conf/iclr/WeiBZGYLDDL22}
+Wei, J., M.~Bosma, V.~Y. Zhao, et~al.
+\newblock Finetuned language models are zero-shot learners.
+\newblock In \emph{The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}. OpenReview.net, 2022.
+
+\bibitem{DBLP:conf/iclr/SanhWRBSACSRDBX22}
+Sanh, V., A.~Webson, C.~Raffel, et~al.
+\newblock Multitask prompted training enables zero-shot task generalization.
+\newblock In \emph{The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}. OpenReview.net, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2210-11416}
+Chung, H.~W., L.~Hou, S.~Longpre, et~al.
+\newblock Scaling instruction-finetuned language models.
+\newblock \emph{CoRR}, abs/2210.11416, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-17760}
+Li, G., H.~A. A.~K. Hammoud, H.~Itani, et~al.
+\newblock {CAMEL:} communicative agents for "mind" exploration of large scale language model society.
+\newblock \emph{CoRR}, abs/2303.17760, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-07924}
+Qian, C., X.~Cong, C.~Yang, et~al.
+\newblock Communicative agents for software development.
+\newblock \emph{CoRR}, abs/2307.07924, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-05332}
+Boiko, D.~A., R.~MacKnight, G.~Gomes.
+\newblock Emergent autonomous scientific research capabilities of large language models.
+\newblock \emph{CoRR}, abs/2304.05332, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14325}
+Du, Y., S.~Li, A.~Torralba, et~al.
+\newblock Improving factuality and reasoning in language models through multiagent debate.
+\newblock \emph{CoRR}, abs/2305.14325, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-19118}
+Liang, T., Z.~He, W.~Jiao, et~al.
+\newblock Encouraging divergent thinking in large language models through multi-agent debate.
+\newblock \emph{CoRR}, abs/2305.19118, 2023.
+
+\bibitem{DBLP:conf/ecaiw/Castelfranchi94}
+Castelfranchi, C.
+\newblock Guarantees for autonomy in cognitive agent architecture.
+\newblock In M.~J. Wooldridge, N.~R. Jennings, eds., \emph{Intelligent Agents, {ECAI-94} Workshop on Agent Theories, Architectures, and Languages, Amsterdam, The Netherlands, August 8-9, 1994, Proceedings}, vol. 890 of \emph{Lecture Notes in Computer Science}, pages 56--70. Springer, 1994.
+
+\bibitem{gravitasauto}
+Gravitas, S.
+\newblock Auto-{GPT}: An {Autonomous GPT-4} experiment, 2023.
+\newblock \emph{URL https://github. com/Significant-Gravitas/Auto-GPT}, 2023.
+
+\bibitem{nakajima2023babyagi}
+Nakajima, Y.
+\newblock {BabyAGI}.
+\newblock \emph{Python. https://github. com/yoheinakajima/babyagi}, 2023.
+
+\bibitem{DBLP:conf/iui/YuanCRI22}
+Yuan, A., A.~Coenen, E.~Reif, et~al.
+\newblock Wordcraft: Story writing with large language models.
+\newblock In G.~Jacucci, S.~Kaski, C.~Conati, S.~Stumpf, T.~Ruotsalo, K.~Gajos, eds., \emph{{IUI} 2022: 27th International Conference on Intelligent User Interfaces, Helsinki, Finland, March 22 - 25, 2022}, pages 841--852. {ACM}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2304-00008}
+Franceschelli, G., M.~Musolesi.
+\newblock On the creativity of large language models.
+\newblock \emph{CoRR}, abs/2304.00008, 2023.
+
+\bibitem{zhu2023minigpt}
+Zhu, D., J.~Chen, X.~Shen, et~al.
+\newblock Minigpt-4: Enhancing vision-language understanding with advanced large language models.
+\newblock \emph{arXiv preprint arXiv:2304.10592}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-13549}
+Yin, S., C.~Fu, S.~Zhao, et~al.
+\newblock A survey on multimodal large language models.
+\newblock \emph{CoRR}, abs/2306.13549, 2023.
+
+\bibitem{DBLP:conf/icml/DriessXSLCIWTVY23}
+Driess, D., F.~Xia, M.~S.~M. Sajjadi, et~al.
+\newblock Palm-e: An embodied multimodal language model.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 8469--8488. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-15021}
+Mu, Y., Q.~Zhang, M.~Hu, et~al.
+\newblock Embodiedgpt: Vision-language pre-training via embodied chain of thought.
+\newblock \emph{CoRR}, abs/2305.15021, 2023.
+
+\bibitem{brown2013beyond}
+Brown, J.~W.
+\newblock Beyond conflict monitoring: Cognitive control and the neural basis of thinking before you act.
+\newblock \emph{Current Directions in Psychological Science}, 22(3):179--185, 2013.
+
+\bibitem{DBLP:journals/corr/abs-2305-16338}
+Kang, J., R.~Laroche, X.~Yuan, et~al.
+\newblock Think before you act: Decision transformers with internal working memory.
+\newblock \emph{CoRR}, abs/2305.16338, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-06706}
+Valmeekam, K., S.~Sreedharan, M.~Marquez, et~al.
+\newblock On the planning abilities of large language models {(A} critical investigation with a proposed benchmark).
+\newblock \emph{CoRR}, abs/2302.06706, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-11477}
+Liu, B., Y.~Jiang, X.~Zhang, et~al.
+\newblock {LLM+P:} empowering large language models with optimal planning proficiency.
+\newblock \emph{CoRR}, abs/2304.11477, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-02676}
+Liu, H., C.~Sferrazza, P.~Abbeel.
+\newblock Chain of hindsight aligns language models with feedback.
+\newblock \emph{CoRR}, abs/2302.02676, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-13711}
+Lin, Y., Y.~Chen.
+\newblock Llm-eval: Unified multi-dimensional automatic evaluation for open-domain conversations with large language models.
+\newblock \emph{CoRR}, abs/2305.13711, 2023.
+
+\bibitem{DBLP:conf/acl/LinFKD22}
+Lin, J., D.~Fried, D.~Klein, et~al.
+\newblock Inferring rewards from language in context.
+\newblock In S.~Muresan, P.~Nakov, A.~Villavicencio, eds., \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2022, Dublin, Ireland, May 22-27, 2022}, pages 8546--8560. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-10142}
+Fu, Y., H.~Peng, T.~Khot, et~al.
+\newblock Improving language model negotiation with self-play and in-context learning from {AI} feedback.
+\newblock \emph{CoRR}, abs/2305.10142, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-02485}
+Zhang, H., W.~Du, J.~Shan, et~al.
+\newblock Building cooperative embodied agents modularly with large language models.
+\newblock \emph{CoRR}, abs/2307.02485, 2023.
+
+\bibitem{darwin1859origin}
+Darwin’s, C.
+\newblock On the origin of species.
+\newblock \emph{published on}, 24:1, 1859.
+
+\bibitem{DBLP:journals/corr/abs-2302-04023}
+Bang, Y., S.~Cahyawijaya, N.~Lee, et~al.
+\newblock A multitask, multilingual, multimodal evaluation of chatgpt on reasoning, hallucination, and interactivity.
+\newblock \emph{CoRR}, abs/2302.04023, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-01746}
+Fang, T., S.~Yang, K.~Lan, et~al.
+\newblock Is chatgpt a highly fluent grammatical error correction system? {A} comprehensive evaluation.
+\newblock \emph{CoRR}, abs/2304.01746, 2023.
+
+\bibitem{DBLP:conf/eacl/LuZZWY23}
+Lu, A., H.~Zhang, Y.~Zhang, et~al.
+\newblock Bounding the capabilities of large language models in open text generation with prompt constraints.
+\newblock In A.~Vlachos, I.~Augenstein, eds., \emph{Findings of the Association for Computational Linguistics: {EACL} 2023, Dubrovnik, Croatia, May 2-6, 2023}, pages 1937--1963. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2109-01355}
+Buehler, M.~C., J.~Adamy, T.~H. Weisswange.
+\newblock Theory of mind based assistive communication in complex human robot cooperation.
+\newblock \emph{CoRR}, abs/2109.01355, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-14763}
+Shapira, N., M.~Levy, S.~H. Alavi, et~al.
+\newblock Clever hans or neural theory of mind? stress testing social reasoning in large language models.
+\newblock \emph{CoRR}, abs/2305.14763, 2023.
+
+\bibitem{DBLP:conf/naacl/HillCK16}
+Hill, F., K.~Cho, A.~Korhonen.
+\newblock Learning distributed representations of sentences from unlabelled data.
+\newblock In K.~Knight, A.~Nenkova, O.~Rambow, eds., \emph{{NAACL} {HLT} 2016, The 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, San Diego California, USA, June 12-17, 2016}, pages 1367--1377. The Association for Computational Linguistics, 2016.
+
+\bibitem{DBLP:journals/jmlr/CollobertWBKKK11}
+Collobert, R., J.~Weston, L.~Bottou, et~al.
+\newblock Natural language processing (almost) from scratch.
+\newblock \emph{J. Mach. Learn. Res.}, 12:2493--2537, 2011.
+
+\bibitem{DBLP:journals/corr/abs-2001-08361}
+Kaplan, J., S.~McCandlish, T.~Henighan, et~al.
+\newblock Scaling laws for neural language models.
+\newblock \emph{CoRR}, abs/2001.08361, 2020.
+
+\bibitem{DBLP:conf/emnlp/RobertsRS20}
+Roberts, A., C.~Raffel, N.~Shazeer.
+\newblock How much knowledge can you pack into the parameters of a language model?
+\newblock In B.~Webber, T.~Cohn, Y.~He, Y.~Liu, eds., \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2020, Online, November 16-20, 2020}, pages 5418--5426. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:journals/sigmod/TandonVM17}
+Tandon, N., A.~S. Varde, G.~de~Melo.
+\newblock Commonsense knowledge in machine intelligence.
+\newblock \emph{{SIGMOD} Rec.}, 46(4):49--52, 2017.
+
+\bibitem{DBLP:conf/emnlp/VulicPLGK20}
+Vulic, I., E.~M. Ponti, R.~Litschko, et~al.
+\newblock Probing pretrained language models for lexical semantics.
+\newblock In B.~Webber, T.~Cohn, Y.~He, Y.~Liu, eds., \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2020, Online, November 16-20, 2020}, pages 7222--7240. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/naacl/HewittM19}
+Hewitt, J., C.~D. Manning.
+\newblock A structural probe for finding syntax in word representations.
+\newblock In J.~Burstein, C.~Doran, T.~Solorio, eds., \emph{Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2019, Minneapolis, MN, USA, June 2-7, 2019, Volume 1 (Long and Short Papers)}, pages 4129--4138. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:journals/ipm/RauJZ89}
+Rau, L.~F., P.~S. Jacobs, U.~Zernik.
+\newblock Information extraction and text summarization using linguistic knowledge acquisition.
+\newblock \emph{Inf. Process. Manag.}, 25(4):419--428, 1989.
+
+\bibitem{DBLP:conf/dasfaa/YangCCHL16}
+Yang, K., Z.~Chen, Y.~Cai, et~al.
+\newblock Improved automatic keyword extraction given more semantic knowledge.
+\newblock In H.~Gao, J.~Kim, Y.~Sakurai, eds., \emph{Database Systems for Advanced Applications - {DASFAA} 2016 International Workshops: BDMS, BDQM, MoI, and SeCoP, Dallas, TX, USA, April 16-19, 2016, Proceedings}, vol. 9645 of \emph{Lecture Notes in Computer Science}, pages 112--125. Springer, 2016.
+
+\bibitem{DBLP:conf/emnlp/BeloucifB21}
+Beloucif, M., C.~Biemann.
+\newblock Probing pre-trained language models for semantic attributes and their values.
+\newblock In M.~Moens, X.~Huang, L.~Specia, S.~W. Yih, eds., \emph{Findings of the Association for Computational Linguistics: {EMNLP} 2021, Virtual Event / Punta Cana, Dominican Republic, 16-20 November, 2021}, pages 2554--2559. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2103-03125}
+Zhang, Z., H.~Zhao.
+\newblock Advances in multi-turn dialogue comprehension: {A} survey.
+\newblock \emph{CoRR}, abs/2103.03125, 2021.
+
+\bibitem{DBLP:conf/emnlp/SafaviK21}
+Safavi, T., D.~Koutra.
+\newblock Relational world knowledge representation in contextual language models: {A} review.
+\newblock In M.~Moens, X.~Huang, L.~Specia, S.~W. Yih, eds., \emph{Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2021, Virtual Event / Punta Cana, Dominican Republic, 7-11 November, 2021}, pages 1053--1067. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:journals/tacl/JiangXAN20}
+Jiang, Z., F.~F. Xu, J.~Araki, et~al.
+\newblock How can we know what language models know.
+\newblock \emph{Trans. Assoc. Comput. Linguistics}, 8:423--438, 2020.
+
+\bibitem{DBLP:conf/emnlp/MadaanZ0YN22}
+Madaan, A., S.~Zhou, U.~Alon, et~al.
+\newblock Language models of code are few-shot commonsense learners.
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 1384--1403. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/pldi/Xu0NH22}
+Xu, F.~F., U.~Alon, G.~Neubig, et~al.
+\newblock A systematic evaluation of large language models of code.
+\newblock In S.~Chaudhuri, C.~Sutton, eds., \emph{MAPS@PLDI 2022: 6th {ACM} {SIGPLAN} International Symposium on Machine Programming, San Diego, CA, USA, 13 June 2022}, pages 1--10. {ACM}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2110-14168}
+Cobbe, K., V.~Kosaraju, M.~Bavarian, et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{CoRR}, abs/2110.14168, 2021.
+
+\bibitem{thirunavukarasu2023large}
+Thirunavukarasu, A.~J., D.~S.~J. Ting, K.~Elangovan, et~al.
+\newblock Large language models in medicine.
+\newblock \emph{Nature medicine}, pages 1--11, 2023.
+
+\bibitem{DBLP:conf/icml/Lai0WZZZYFWY23}
+Lai, Y., C.~Li, Y.~Wang, et~al.
+\newblock {DS-1000:} {A} natural and reliable benchmark for data science code generation.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 18319--18345. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2204-06031}
+AlKhamissi, B., M.~Li, A.~Celikyilmaz, et~al.
+\newblock A review on language models as knowledge bases.
+\newblock \emph{CoRR}, abs/2204.06031, 2022.
+
+\bibitem{DBLP:conf/aaai/KemkerMAHK18}
+Kemker, R., M.~McClure, A.~Abitino, et~al.
+\newblock Measuring catastrophic forgetting in neural networks.
+\newblock In S.~A. McIlraith, K.~Q. Weinberger, eds., \emph{Proceedings of the Thirty-Second {AAAI} Conference on Artificial Intelligence, (AAAI-18), the 30th innovative Applications of Artificial Intelligence (IAAI-18), and the 8th {AAAI} Symposium on Educational Advances in Artificial Intelligence (EAAI-18), New Orleans, Louisiana, USA, February 2-7, 2018}, pages 3390--3398. {AAAI} Press, 2018.
+
+\bibitem{DBLP:conf/emnlp/CaoAT21}
+Cao, N.~D., W.~Aziz, I.~Titov.
+\newblock Editing factual knowledge in language models.
+\newblock In M.~Moens, X.~Huang, L.~Specia, S.~W. Yih, eds., \emph{Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2021, Virtual Event / Punta Cana, Dominican Republic, 7-11 November, 2021}, pages 6491--6506. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-13172}
+Yao, Y., P.~Wang, B.~Tian, et~al.
+\newblock Editing large language models: Problems, methods, and opportunities.
+\newblock \emph{CoRR}, abs/2305.13172, 2023.
+
+\bibitem{DBLP:conf/icml/MitchellLBMF22}
+Mitchell, E., C.~Lin, A.~Bosselut, et~al.
+\newblock Memory-based model editing at scale.
+\newblock In K.~Chaudhuri, S.~Jegelka, L.~Song, C.~Szepesv{\'{a}}ri, G.~Niu, S.~Sabato, eds., \emph{International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}, vol. 162 of \emph{Proceedings of Machine Learning Research}, pages 15817--15831. {PMLR}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-08896}
+Manakul, P., A.~Liusie, M.~J.~F. Gales.
+\newblock Selfcheckgpt: Zero-resource black-box hallucination detection for generative large language models.
+\newblock \emph{CoRR}, abs/2303.08896, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14623}
+Li, M., B.~Peng, Z.~Zhang.
+\newblock Self-checker: Plug-and-play modules for fact-checking with large language models.
+\newblock \emph{CoRR}, abs/2305.14623, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-11738}
+Gou, Z., Z.~Shao, Y.~Gong, et~al.
+\newblock {CRITIC:} large language models can self-correct with tool-interactive critiquing.
+\newblock \emph{CoRR}, abs/2305.11738, 2023.
+
+\bibitem{DBLP:conf/acl/LewisLGGMLSZ20}
+Lewis, M., Y.~Liu, N.~Goyal, et~al.
+\newblock {BART:} denoising sequence-to-sequence pre-training for natural language generation, translation, and comprehension.
+\newblock In D.~Jurafsky, J.~Chai, N.~Schluter, J.~R. Tetreault, eds., \emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, {ACL} 2020, Online, July 5-10, 2020}, pages 7871--7880. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/acl/ParkVS22}
+Park, H.~H., Y.~Vyas, K.~Shah.
+\newblock Efficient classification of long documents using transformers.
+\newblock In S.~Muresan, P.~Nakov, A.~Villavicencio, eds., \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), {ACL} 2022, Dublin, Ireland, May 22-27, 2022}, pages 702--709. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/naacl/GuoAUONSY22}
+Guo, M., J.~Ainslie, D.~C. Uthus, et~al.
+\newblock Longt5: Efficient text-to-text transformer for long sequences.
+\newblock In M.~Carpuat, M.~de~Marneffe, I.~V.~M. Ru{\'{\i}}z, eds., \emph{Findings of the Association for Computational Linguistics: {NAACL} 2022, Seattle, WA, United States, July 10-15, 2022}, pages 724--736. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-09752}
+Ainslie, J., T.~Lei, M.~de~Jong, et~al.
+\newblock Colt5: Faster long-range transformers with conditional computation.
+\newblock \emph{CoRR}, abs/2303.09752, 2023.
+
+\bibitem{DBLP:conf/acl/RuossDGGCBLV23}
+Ruoss, A., G.~Del{\'{e}}tang, T.~Genewein, et~al.
+\newblock Randomized positional encodings boost length generalization of transformers.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 1889--1903. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-13343}
+Liang, X., B.~Wang, H.~Huang, et~al.
+\newblock Unleashing infinite-length input capacity for large-scale language models with self-controlled memory system.
+\newblock \emph{CoRR}, abs/2304.13343, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-11366}
+Shinn, N., B.~Labash, A.~Gopinath.
+\newblock Reflexion: an autonomous agent with dynamic memory and self-reflection.
+\newblock \emph{CoRR}, abs/2303.11366, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-10250}
+Zhong, W., L.~Guo, Q.~Gao, et~al.
+\newblock Memorybank: Enhancing large language models with long-term memory.
+\newblock \emph{CoRR}, abs/2305.10250, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-07201}
+Chan, C., W.~Chen, Y.~Su, et~al.
+\newblock Chateval: Towards better llm-based evaluators through multi-agent debate.
+\newblock \emph{CoRR}, abs/2308.07201, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-17144}
+Zhu, X., Y.~Chen, H.~Tian, et~al.
+\newblock Ghost in the minecraft: Generally capable agents for open-world environments via large language models with text-based knowledge and memory.
+\newblock \emph{CoRR}, abs/2305.17144, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14322}
+Modarressi, A., A.~Imani, M.~Fayyaz, et~al.
+\newblock {RET-LLM:} towards a general read-write memory for large language models.
+\newblock \emph{CoRR}, abs/2305.14322, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-04026}
+Lin, J., H.~Zhao, A.~Zhang, et~al.
+\newblock Agentsims: An open-source sandbox for large language model evaluation.
+\newblock \emph{CoRR}, abs/2308.04026, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-03901}
+Hu, C., J.~Fu, C.~Du, et~al.
+\newblock Chatdb: Augmenting llms with databases as their symbolic memory.
+\newblock \emph{CoRR}, abs/2306.03901, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-01542}
+Huang, Z., S.~Gutierrez, H.~Kamana, et~al.
+\newblock Memory sandbox: Transparent and interactive memory management for conversational agents.
+\newblock \emph{CoRR}, abs/2308.01542, 2023.
+
+\bibitem{DBLP:conf/iclr/CreswellSH23}
+Creswell, A., M.~Shanahan, I.~Higgins.
+\newblock Selection-inference: Exploiting large language models for interpretable logical reasoning.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-17651}
+Madaan, A., N.~Tandon, P.~Gupta, et~al.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock \emph{CoRR}, abs/2303.17651, 2023.
+
+\bibitem{DBLP:conf/corl/IchterBCFHHHIIJ22}
+Ichter, B., A.~Brohan, Y.~Chebotar, et~al.
+\newblock Do as {I} can, not as {I} say: Grounding language in robotic affordances.
+\newblock In K.~Liu, D.~Kulic, J.~Ichnowski, eds., \emph{Conference on Robot Learning, CoRL 2022, 14-18 December 2022, Auckland, New Zealand}, vol. 205 of \emph{Proceedings of Machine Learning Research}, pages 287--318. {PMLR}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-17580}
+Shen, Y., K.~Song, X.~Tan, et~al.
+\newblock Hugginggpt: Solving {AI} tasks with chatgpt and its friends in huggingface.
+\newblock \emph{CoRR}, abs/2303.17580, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-10601}
+Yao, S., D.~Yu, J.~Zhao, et~al.
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock \emph{CoRR}, abs/2305.10601, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-02412}
+Wu, Y., S.~Y. Min, Y.~Bisk, et~al.
+\newblock Plan, eliminate, and track - language models are good teachers for embodied agents.
+\newblock \emph{CoRR}, abs/2305.02412, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-01560}
+Wang, Z., S.~Cai, A.~Liu, et~al.
+\newblock Describe, explain, plan and select: Interactive planning with large language models enables open-world multi-task agents.
+\newblock \emph{CoRR}, abs/2302.01560, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14992}
+Hao, S., Y.~Gu, H.~Ma, et~al.
+\newblock Reasoning with language model is planning with world model.
+\newblock \emph{CoRR}, abs/2305.14992, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-17390}
+Lin, B.~Y., Y.~Fu, K.~Yang, et~al.
+\newblock Swiftsage: {A} generative agent with fast and slow thinking for complex interactive tasks.
+\newblock \emph{CoRR}, abs/2305.17390, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2205-00445}
+Karpas, E., O.~Abend, Y.~Belinkov, et~al.
+\newblock {MRKL} systems: {A} modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning.
+\newblock \emph{CoRR}, abs/2205.00445, 2022.
+
+\bibitem{DBLP:conf/corl/HuangXXCLFZTMCS22}
+Huang, W., F.~Xia, T.~Xiao, et~al.
+\newblock Inner monologue: Embodied reasoning through planning with language models.
+\newblock In K.~Liu, D.~Kulic, J.~Ichnowski, eds., \emph{Conference on Robot Learning, CoRL 2022, 14-18 December 2022, Auckland, New Zealand}, vol. 205 of \emph{Proceedings of Machine Learning Research}, pages 1769--1782. {PMLR}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-14323}
+Chen, Z., K.~Zhou, B.~Zhang, et~al.
+\newblock Chatcot: Tool-augmented chain-of-thought reasoning on chat-based large language models.
+\newblock \emph{CoRR}, abs/2305.14323, 2023.
+
+\bibitem{DBLP:conf/chi/WuTC22}
+Wu, T., M.~Terry, C.~J. Cai.
+\newblock {AI} chains: Transparent and controllable human-ai interaction by chaining large language model prompts.
+\newblock In S.~D.~J. Barbosa, C.~Lampe, C.~Appert, D.~A. Shamma, S.~M. Drucker, J.~R. Williamson, K.~Yatani, eds., \emph{{CHI} '22: {CHI} Conference on Human Factors in Computing Systems, New Orleans, LA, USA, 29 April 2022 - 5 May 2022}, pages 385:1--385:22. {ACM}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-16291}
+Wang, G., Y.~Xie, Y.~Jiang, et~al.
+\newblock Voyager: An open-ended embodied agent with large language models.
+\newblock \emph{CoRR}, abs/2305.16291, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-08268}
+Zhao, X., M.~Li, C.~Weber, et~al.
+\newblock Chat with the environment: Interactive multimodal perception using large language models.
+\newblock \emph{CoRR}, abs/2303.08268, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-00436}
+Miao, N., Y.~W. Teh, T.~Rainforth.
+\newblock Selfcheck: Using llms to zero-shot check their own step-by-step reasoning.
+\newblock \emph{CoRR}, abs/2308.00436, 2023.
+
+\bibitem{DBLP:conf/cvpr/WangWCS023}
+Wang, X., W.~Wang, Y.~Cao, et~al.
+\newblock Images speak in images: {A} generalist painter for in-context visual learning.
+\newblock In \emph{{IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2023, Vancouver, BC, Canada, June 17-24, 2023}, pages 6830--6839. {IEEE}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2301-02111}
+Wang, C., S.~Chen, Y.~Wu, et~al.
+\newblock Neural codec language models are zero-shot text to speech synthesizers.
+\newblock \emph{CoRR}, abs/2301.02111, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2301-00234}
+Dong, Q., L.~Li, D.~Dai, et~al.
+\newblock A survey for in-context learning.
+\newblock \emph{CoRR}, abs/2301.00234, 2023.
+
+\bibitem{Ke2022ContinualLO}
+Ke, Z., B.~Liu.
+\newblock Continual learning of natural language processing tasks: A survey.
+\newblock \emph{ArXiv}, abs/2211.12701, 2022.
+
+\bibitem{Wang2023ACS}
+Wang, L., X.~Zhang, H.~Su, et~al.
+\newblock A comprehensive survey of continual learning: Theory, method and application.
+\newblock \emph{ArXiv}, abs/2302.00487, 2023.
+
+\bibitem{razdaibiedina2023progressive}
+Razdaibiedina, A., Y.~Mao, R.~Hou, et~al.
+\newblock Progressive prompts: Continual learning for language models.
+\newblock In \emph{The Eleventh International Conference on Learning Representations}. 2023.
+
+\bibitem{marshall2013discoveries}
+Marshall, L.~H., H.~W. Magoun.
+\newblock \emph{Discoveries in the human brain: neuroscience prehistory, brain structure, and function}.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem{searle2007language}
+Searle, J.~R.
+\newblock What is language: some preliminary remarks.
+\newblock \emph{Explorations in Pragmatics. Linguistic, cognitive and intercultural aspects}, pages 7--37, 2007.
+
+\bibitem{DBLP:journals/corr/abs-2302-13971}
+Touvron, H., T.~Lavril, G.~Izacard, et~al.
+\newblock Llama: Open and efficient foundation language models.
+\newblock \emph{CoRR}, abs/2302.13971, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2211-05100}
+Scao, T.~L., A.~Fan, C.~Akiki, et~al.
+\newblock {BLOOM:} {A} 176b-parameter open-access multilingual language model.
+\newblock \emph{CoRR}, abs/2211.05100, 2022.
+
+\bibitem{almazrouei2023falcon}
+Almazrouei, E., H.~Alobeidli, A.~Alshamsi, et~al.
+\newblock Falcon-40b: an open large language model with state-of-the-art performance, 2023.
+
+\bibitem{DBLP:journals/corr/SerbanLCP16}
+Serban, I.~V., R.~Lowe, L.~Charlin, et~al.
+\newblock Generative deep neural networks for dialogue: {A} short review.
+\newblock \emph{CoRR}, abs/1611.06216, 2016.
+
+\bibitem{DBLP:journals/corr/VinyalsL15}
+Vinyals, O., Q.~V. Le.
+\newblock A neural conversational model.
+\newblock \emph{CoRR}, abs/1506.05869, 2015.
+
+\bibitem{DBLP:journals/corr/abs-2001-09977}
+Adiwardana, D., M.~Luong, D.~R. So, et~al.
+\newblock Towards a human-like open-domain chatbot.
+\newblock \emph{CoRR}, abs/2001.09977, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2305-17066}
+Zhuge, M., H.~Liu, F.~Faccio, et~al.
+\newblock Mindstorms in natural language-based societies of mind.
+\newblock \emph{CoRR}, abs/2305.17066, 2023.
+
+\bibitem{DBLP:conf/eacl/RollerDGJWLXOSB21}
+Roller, S., E.~Dinan, N.~Goyal, et~al.
+\newblock Recipes for building an open-domain chatbot.
+\newblock In P.~Merlo, J.~Tiedemann, R.~Tsarfaty, eds., \emph{Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume, {EACL} 2021, Online, April 19 - 23, 2021}, pages 300--325. Association for Computational Linguistics, 2021.
+
+\bibitem{taori2023stanford}
+Taori, R., I.~Gulrajani, T.~Zhang, et~al.
+\newblock Stanford alpaca: An instruction-following llama model, 2023.
+
+\bibitem{raffel2020exploring}
+Raffel, C., N.~Shazeer, A.~Roberts, et~al.
+\newblock Exploring the limits of transfer learning with a unified text-to-text transformer.
+\newblock \emph{The Journal of Machine Learning Research}, 21(1):5485--5551, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2304-04370}
+Ge, Y., W.~Hua, J.~Ji, et~al.
+\newblock Openagi: When {LLM} meets domain experts.
+\newblock \emph{CoRR}, abs/2304.04370, 2023.
+
+\bibitem{DBLP:conf/emnlp/RajpurkarZLL16}
+Rajpurkar, P., J.~Zhang, K.~Lopyrev, et~al.
+\newblock Squad: 100, 000+ questions for machine comprehension of text.
+\newblock In J.~Su, X.~Carreras, K.~Duh, eds., \emph{Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2016, Austin, Texas, USA, November 1-4, 2016}, pages 2383--2392. The Association for Computational Linguistics, 2016.
+
+\bibitem{DBLP:journals/corr/abs-2303-12528}
+Ahuja, K., R.~Hada, M.~Ochieng, et~al.
+\newblock {MEGA:} multilingual evaluation of generative {AI}.
+\newblock \emph{CoRR}, abs/2303.12528, 2023.
+
+\bibitem{DBLP:conf/conll/SeePSYM19}
+See, A., A.~Pappu, R.~Saxena, et~al.
+\newblock Do massively pretrained language models make better storytellers?
+\newblock In M.~Bansal, A.~Villavicencio, eds., \emph{Proceedings of the 23rd Conference on Computational Natural Language Learning, CoNLL 2019, Hong Kong, China, November 3-4, 2019}, pages 843--861. Association for Computational Linguistics, 2019.
+
+\bibitem{radford2019better}
+Radford, A., J.~Wu, D.~Amodei, et~al.
+\newblock Better language models and their implications.
+\newblock \emph{OpenAI blog}, 1(2), 2019.
+
+\bibitem{DBLP:journals/corr/abs-2111-09509}
+McCoy, R.~T., P.~Smolensky, T.~Linzen, et~al.
+\newblock How much do language models copy from their training data? evaluating linguistic novelty in text generation using {RAVEN}.
+\newblock \emph{CoRR}, abs/2111.09509, 2021.
+
+\bibitem{DBLP:conf/aaai/TellexKDWBTR11}
+Tellex, S., T.~Kollar, S.~Dickerson, et~al.
+\newblock Understanding natural language commands for robotic navigation and mobile manipulation.
+\newblock In W.~Burgard, D.~Roth, eds., \emph{Proceedings of the Twenty-Fifth {AAAI} Conference on Artificial Intelligence, {AAAI} 2011, San Francisco, California, USA, August 7-11, 2011}, pages 1507--1514. {AAAI} Press, 2011.
+
+\bibitem{DBLP:conf/nips/ChristianoLBMLA17}
+Christiano, P.~F., J.~Leike, T.~B. Brown, et~al.
+\newblock Deep reinforcement learning from human preferences.
+\newblock In I.~Guyon, U.~von Luxburg, S.~Bengio, H.~M. Wallach, R.~Fergus, S.~V.~N. Vishwanathan, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 30: Annual Conference on Neural Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA, {USA}}, pages 4299--4307. 2017.
+
+\bibitem{DBLP:conf/hri/BasuSD18}
+Basu, C., M.~Singhal, A.~D. Dragan.
+\newblock Learning from richer human guidance: Augmenting comparison-based learning with feature queries.
+\newblock In T.~Kanda, S.~Sabanovic, G.~Hoffman, A.~Tapus, eds., \emph{Proceedings of the 2018 {ACM/IEEE} International Conference on Human-Robot Interaction, {HRI} 2018, Chicago, IL, USA, March 05-08, 2018}, pages 132--140. {ACM}, 2018.
+
+\bibitem{DBLP:conf/aaai/SumersHHNG21}
+Sumers, T.~R., M.~K. Ho, R.~X.~D. Hawkins, et~al.
+\newblock Learning rewards from linguistic feedback.
+\newblock In \emph{Thirty-Fifth {AAAI} Conference on Artificial Intelligence, {AAAI} 2021, Thirty-Third Conference on Innovative Applications of Artificial Intelligence, {IAAI} 2021, The Eleventh Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2021, Virtual Event, February 2-9, 2021}, pages 6002--6010. {AAAI} Press, 2021.
+
+\bibitem{DBLP:conf/nips/JeonMD20}
+Jeon, H.~J., S.~Milli, A.~D. Dragan.
+\newblock Reward-rational (implicit) choice: {A} unifying formalism for reward learning.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~Balcan, H.~Lin, eds., \emph{Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual}. 2020.
+
+\bibitem{DBLP:journals/expert/McShane09}
+McShane, M.
+\newblock Reference resolution challenges for intelligent agents: The need for knowledge.
+\newblock \emph{{IEEE} Intell. Syst.}, 24(4):47--58, 2009.
+
+\bibitem{DBLP:conf/acl/GururanganMSLBD20}
+Gururangan, S., A.~Marasovic, S.~Swayamdipta, et~al.
+\newblock Don't stop pretraining: Adapt language models to domains and tasks.
+\newblock In D.~Jurafsky, J.~Chai, N.~Schluter, J.~R. Tetreault, eds., \emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, {ACL} 2020, Online, July 5-10, 2020}, pages 8342--8360. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/icml/ShiCMSDCSZ23}
+Shi, F., X.~Chen, K.~Misra, et~al.
+\newblock Large language models can be easily distracted by irrelevant context.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 31210--31227. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2309-01219}
+Zhang, Y., Y.~Li, L.~Cui, et~al.
+\newblock Siren's song in the {AI} ocean: {A} survey on hallucination in large language models.
+\newblock \emph{CoRR}, abs/2309.01219, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-07842}
+Mialon, G., R.~Dess{\`{\i}}, M.~Lomeli, et~al.
+\newblock Augmented language models: a survey.
+\newblock \emph{CoRR}, abs/2302.07842, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-11019}
+Ren, R., Y.~Wang, Y.~Qu, et~al.
+\newblock Investigating the factual knowledge boundary of large language models with retrieval augmentation.
+\newblock \emph{CoRR}, abs/2307.11019, 2023.
+
+\bibitem{nuxoll2007extending}
+Nuxoll, A.~M., J.~E. Laird.
+\newblock Extending cognitive architecture with episodic memory.
+\newblock In \emph{AAAI}, pages 1560--1564. 2007.
+
+\bibitem{squire1986mechanisms}
+Squire, L.~R.
+\newblock Mechanisms of memory.
+\newblock \emph{Science}, 232(4758):1612--1619, 1986.
+
+\bibitem{schwabe2014reconsolidation}
+Schwabe, L., K.~Nader, J.~C. Pruessner.
+\newblock Reconsolidation of human memory: brain mechanisms and clinical relevance.
+\newblock \emph{Biological psychiatry}, 76(4):274--280, 2014.
+
+\bibitem{hutter2000theory}
+Hutter, M.
+\newblock A theory of universal artificial intelligence based on algorithmic complexity.
+\newblock \emph{arXiv preprint cs/0004001}, 2000.
+
+\bibitem{DBLP:conf/acl/ZhangWZ19}
+Zhang, X., F.~Wei, M.~Zhou.
+\newblock {HIBERT:} document level pre-training of hierarchical bidirectional transformers for document summarization.
+\newblock In A.~Korhonen, D.~R. Traum, L.~M{\`{a}}rquez, eds., \emph{Proceedings of the 57th Conference of the Association for Computational Linguistics, {ACL} 2019, Florence, Italy, July 28- August 2, 2019, Volume 1: Long Papers}, pages 5059--5069. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2305-16300}
+Mohtashami, A., M.~Jaggi.
+\newblock Landmark attention: Random-access infinite context length for transformers.
+\newblock \emph{CoRR}, abs/2305.16300, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2210-05529}
+Chalkidis, I., X.~Dai, M.~Fergadiotis, et~al.
+\newblock An exploration of hierarchical attention transformers for efficient long document classification.
+\newblock \emph{CoRR}, abs/2210.05529, 2022.
+
+\bibitem{DBLP:conf/emnlp/NieH0M22}
+Nie, Y., H.~Huang, W.~Wei, et~al.
+\newblock Capturing global structural information in long document question answering with compressive graph selector network.
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 5036--5047. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-01625}
+Bertsch, A., U.~Alon, G.~Neubig, et~al.
+\newblock Unlimiformer: Long-range transformers with unlimited length input.
+\newblock \emph{CoRR}, abs/2305.01625, 2023.
+
+\bibitem{DBLP:conf/emnlp/ManakulG21}
+Manakul, P., M.~J.~F. Gales.
+\newblock Sparsity and sentence structure in encoder-decoder attention of summarization systems.
+\newblock In M.~Moens, X.~Huang, L.~Specia, S.~W. Yih, eds., \emph{Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2021, Virtual Event / Punta Cana, Dominican Republic, 7-11 November, 2021}, pages 9359--9368. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/nips/ZaheerGDAAOPRWY20}
+Zaheer, M., G.~Guruganesh, K.~A. Dubey, et~al.
+\newblock Big bird: Transformers for longer sequences.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~Balcan, H.~Lin, eds., \emph{Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual}. 2020.
+
+\bibitem{DBLP:journals/corr/abs-2308-10144}
+Zhao, A., D.~Huang, Q.~Xu, et~al.
+\newblock Expel: {LLM} agents are experiential learners.
+\newblock \emph{CoRR}, abs/2308.10144, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-05481}
+Zhou, X., G.~Li, Z.~Liu.
+\newblock {LLM} as {DBA}.
+\newblock \emph{CoRR}, abs/2308.05481, 2023.
+
+\bibitem{wason1968reasoning}
+Wason, P.~C.
+\newblock Reasoning about a rule.
+\newblock \emph{Quarterly journal of experimental psychology}, 20(3):273--281, 1968.
+
+\bibitem{wason1972psychology}
+Wason, P.~C., P.~N. Johnson-Laird.
+\newblock \emph{Psychology of reasoning: Structure and content}, vol.~86.
+\newblock Harvard University Press, 1972.
+
+\bibitem{galotti1989approaches}
+Galotti, K.~M.
+\newblock Approaches to studying formal and everyday reasoning.
+\newblock \emph{Psychological bulletin}, 105(3):331, 1989.
+
+\bibitem{DBLP:conf/acl/0009C23}
+Huang, J., K.~C. Chang.
+\newblock Towards reasoning in large language models: {A} survey.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Findings of the Association for Computational Linguistics: {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 1049--1065. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2212-09196}
+Webb, T.~W., K.~J. Holyoak, H.~Lu.
+\newblock Emergent analogical reasoning in large language models.
+\newblock \emph{CoRR}, abs/2212.09196, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-15408}
+Feng, G., B.~Zhang, Y.~Gu, et~al.
+\newblock Towards revealing the mystery behind chain of thought: a theoretical perspective.
+\newblock \emph{CoRR}, abs/2305.15408, 2023.
+
+\bibitem{grafman2004planning}
+Grafman, J., L.~Spector, M.~J. Rattermann.
+\newblock Planning and the brain.
+\newblock In \emph{The cognitive psychology of planning}, pages 191--208. Psychology Press, 2004.
+
+\bibitem{unterrainer2006planning}
+Unterrainer, J.~M., A.~M. Owen.
+\newblock Planning and problem solving: from neuropsychology to functional neuroimaging.
+\newblock \emph{Journal of Physiology-Paris}, 99(4-6):308--317, 2006.
+
+\bibitem{zula2007integrative}
+Zula, K.~J., T.~J. Chermack.
+\newblock Integrative literature review: Human capital planning: A review of literature and implications for human resource development.
+\newblock \emph{Human Resource Development Review}, 6(3):245--262, 2007.
+
+\bibitem{bratman1988plans}
+Bratman, M.~E., D.~J. Israel, M.~E. Pollack.
+\newblock Plans and resource-bounded practical reasoning.
+\newblock \emph{Computational intelligence}, 4(3):349--355, 1988.
+
+\bibitem{DBLP:books/lib/RussellN03}
+Russell, S., P.~Norvig.
+\newblock \emph{Artificial intelligence - a modern approach, 2nd Edition}.
+\newblock Prentice Hall series in artificial intelligence. Prentice Hall, 2003.
+
+\bibitem{fainstein2015readings}
+Fainstein, S.~S., J.~DeFilippis.
+\newblock \emph{Readings in planning theory}.
+\newblock John Wiley \& Sons, 2015.
+
+\bibitem{sebastia2006decomposition}
+Sebastia, L., E.~Onaindia, E.~Marzal.
+\newblock Decomposition of planning problems.
+\newblock \emph{Ai Communications}, 19(1):49--81, 2006.
+
+\bibitem{crosby2013automated}
+Crosby, M., M.~Rovatsos, R.~Petrick.
+\newblock Automated agent decomposition for classical planning.
+\newblock In \emph{Proceedings of the International Conference on Automated Planning and Scheduling}, vol.~23, pages 46--54. 2013.
+
+\bibitem{DBLP:journals/corr/abs-2305-18323}
+Xu, B., Z.~Peng, B.~Lei, et~al.
+\newblock Rewoo: Decoupling reasoning from observations for efficient augmented language models.
+\newblock \emph{CoRR}, abs/2305.18323, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2211-09935}
+Raman, S.~S., V.~Cohen, E.~Rosen, et~al.
+\newblock Planning with large language models via corrective re-prompting.
+\newblock \emph{CoRR}, abs/2211.09935, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2301-13379}
+Lyu, Q., S.~Havaldar, A.~Stein, et~al.
+\newblock Faithful chain-of-thought reasoning.
+\newblock \emph{CoRR}, abs/2301.13379, 2023.
+
+\bibitem{DBLP:conf/icml/HuangAPM22}
+Huang, W., P.~Abbeel, D.~Pathak, et~al.
+\newblock Language models as zero-shot planners: Extracting actionable knowledge for embodied agents.
+\newblock In K.~Chaudhuri, S.~Jegelka, L.~Song, C.~Szepesv{\'{a}}ri, G.~Niu, S.~Sabato, eds., \emph{International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}, vol. 162 of \emph{Proceedings of Machine Learning Research}, pages 9118--9147. {PMLR}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2308-06391}
+Dagan, G., F.~Keller, A.~Lascarides.
+\newblock Dynamic planning with a {LLM}.
+\newblock \emph{CoRR}, abs/2308.06391, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-06135}
+Rana, K., J.~Haviland, S.~Garg, et~al.
+\newblock Sayplan: Grounding large language models using 3d scene graphs for scalable task planning.
+\newblock \emph{CoRR}, abs/2307.06135, 2023.
+
+\bibitem{peters-etal-2018-deep}
+Peters, M.~E., M.~Neumann, M.~Iyyer, et~al.
+\newblock Deep contextualized word representations.
+\newblock In \emph{Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)}, pages 2227--2237. Association for Computational Linguistics, New Orleans, Louisiana, 2018.
+
+\bibitem{DBLP:conf/naacl/DevlinCLT19}
+Devlin, J., M.~Chang, K.~Lee, et~al.
+\newblock {BERT:} pre-training of deep bidirectional transformers for language understanding.
+\newblock In J.~Burstein, C.~Doran, T.~Solorio, eds., \emph{Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2019, Minneapolis, MN, USA, June 2-7, 2019, Volume 1 (Long and Short Papers)}, pages 4171--4186. Association for Computational Linguistics, 2019.
+
+\bibitem{solaiman2021process}
+Solaiman, I., C.~Dennison.
+\newblock Process for adapting language models to society (palms) with values-targeted datasets.
+\newblock \emph{Advances in Neural Information Processing Systems}, 34:5861--5873, 2021.
+
+\bibitem{DBLP:conf/acl/BachSYWRNSKBFAD22}
+Bach, S.~H., V.~Sanh, Z.~X. Yong, et~al.
+\newblock Promptsource: An integrated development environment and repository for natural language prompts.
+\newblock In V.~Basile, Z.~Kozareva, S.~Stajner, eds., \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics, {ACL} 2022 - System Demonstrations, Dublin, Ireland, May 22-27, 2022}, pages 93--104. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2212-12017}
+Iyer, S., X.~V. Lin, R.~Pasunuru, et~al.
+\newblock {OPT-IML:} scaling language model instruction meta learning through the lens of generalization.
+\newblock \emph{CoRR}, abs/2212.12017, 2022.
+
+\bibitem{DBLP:journals/cacm/Winston80}
+Winston, P.~H.
+\newblock Learning and reasoning by analogy.
+\newblock \emph{Commun. {ACM}}, 23(12):689--703, 1980.
+
+\bibitem{DBLP:conf/acl/LuBM0S22}
+Lu, Y., M.~Bartolo, A.~Moore, et~al.
+\newblock Fantastically ordered prompts and where to find them: Overcoming few-shot prompt order sensitivity.
+\newblock In S.~Muresan, P.~Nakov, A.~Villavicencio, eds., \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2022, Dublin, Ireland, May 22-27, 2022}, pages 8086--8098. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/nips/TsimpoukelliMCE21}
+Tsimpoukelli, M., J.~Menick, S.~Cabi, et~al.
+\newblock Multimodal few-shot learning with frozen language models.
+\newblock In M.~Ranzato, A.~Beygelzimer, Y.~N. Dauphin, P.~Liang, J.~W. Vaughan, eds., \emph{Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, pages 200--212. 2021.
+
+\bibitem{DBLP:conf/nips/BarGDGE22}
+Bar, A., Y.~Gandelsman, T.~Darrell, et~al.
+\newblock Visual prompting via image inpainting.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2304-04675}
+Zhu, W., H.~Liu, Q.~Dong, et~al.
+\newblock Multilingual machine translation with large language models: Empirical results and analysis.
+\newblock \emph{CoRR}, abs/2304.04675, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-03926}
+Zhang, Z., L.~Zhou, C.~Wang, et~al.
+\newblock Speak foreign languages with your own voice: Cross-lingual neural codec language modeling.
+\newblock \emph{CoRR}, abs/2303.03926, 2023.
+
+\bibitem{zhang2023bootstrap}
+Zhang, J., J.~Zhang, K.~Pertsch, et~al.
+\newblock Bootstrap your own skills: Learning to solve new tasks with large language model guidance.
+\newblock In \emph{7th Annual Conference on Robot Learning}. 2023.
+
+\bibitem{McCloskey1989CatastrophicII}
+McCloskey, M., N.~J. Cohen.
+\newblock Catastrophic interference in connectionist networks: The sequential learning problem.
+\newblock \emph{Psychology of Learning and Motivation}, 24:109--165, 1989.
+
+\bibitem{kirkpatrick2017overcoming}
+Kirkpatrick, J., R.~Pascanu, N.~Rabinowitz, et~al.
+\newblock Overcoming catastrophic forgetting in neural networks.
+\newblock \emph{Proceedings of the national academy of sciences}, 114(13):3521--3526, 2017.
+
+\bibitem{li2017learning}
+Li, Z., D.~Hoiem.
+\newblock Learning without forgetting.
+\newblock \emph{IEEE transactions on pattern analysis and machine intelligence}, 40(12):2935--2947, 2017.
+
+\bibitem{farajtabar2020orthogonal}
+Farajtabar, M., N.~Azizan, A.~Mott, et~al.
+\newblock Orthogonal gradient descent for continual learning.
+\newblock In \emph{International Conference on Artificial Intelligence and Statistics}, pages 3762--3773. PMLR, 2020.
+
+\bibitem{smith2023continual}
+Smith, J.~S., Y.-C. Hsu, L.~Zhang, et~al.
+\newblock Continual diffusion: Continual customization of text-to-image diffusion with c-lora.
+\newblock \emph{arXiv preprint arXiv:2304.06027}, 2023.
+
+\bibitem{lopez2017gradient}
+Lopez-Paz, D., M.~Ranzato.
+\newblock Gradient episodic memory for continual learning.
+\newblock \emph{Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{de2019episodic}
+de~Masson~D'Autume, C., S.~Ruder, L.~Kong, et~al.
+\newblock Episodic memory in lifelong language learning.
+\newblock \emph{Advances in Neural Information Processing Systems}, 32, 2019.
+
+\bibitem{rolnick2019experience}
+Rolnick, D., A.~Ahuja, J.~Schwarz, et~al.
+\newblock Experience replay for continual learning.
+\newblock \emph{Advances in Neural Information Processing Systems}, 32, 2019.
+
+\bibitem{Serr2018OvercomingCF}
+Serr{\`a}, J., D.~Sur{\'i}s, M.~Miron, et~al.
+\newblock Overcoming catastrophic forgetting with hard attention to the task.
+\newblock In \emph{International Conference on Machine Learning}. 2018.
+
+\bibitem{DBLP:conf/iclr/DosovitskiyB0WZ21}
+Dosovitskiy, A., L.~Beyer, A.~Kolesnikov, et~al.
+\newblock An image is worth 16x16 words: Transformers for image recognition at scale.
+\newblock In \emph{9th International Conference on Learning Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net, 2021.
+
+\bibitem{DBLP:conf/nips/OordVK17}
+van~den Oord, A., O.~Vinyals, K.~Kavukcuoglu.
+\newblock Neural discrete representation learning.
+\newblock In I.~Guyon, U.~von Luxburg, S.~Bengio, H.~M. Wallach, R.~Fergus, S.~V.~N. Vishwanathan, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 30: Annual Conference on Neural Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA, {USA}}, pages 6306--6315. 2017.
+
+\bibitem{DBLP:conf/iclr/MehtaR22}
+Mehta, S., M.~Rastegari.
+\newblock Mobilevit: Light-weight, general-purpose, and mobile-friendly vision transformer.
+\newblock In \emph{The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}. OpenReview.net, 2022.
+
+\bibitem{DBLP:conf/nips/TolstikhinHKBZU21}
+Tolstikhin, I.~O., N.~Houlsby, A.~Kolesnikov, et~al.
+\newblock Mlp-mixer: An all-mlp architecture for vision.
+\newblock In M.~Ranzato, A.~Beygelzimer, Y.~N. Dauphin, P.~Liang, J.~W. Vaughan, eds., \emph{Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, pages 24261--24272. 2021.
+
+\bibitem{DBLP:journals/corr/abs-2302-14045}
+Huang, S., L.~Dong, W.~Wang, et~al.
+\newblock Language is not all you need: Aligning perception with language models.
+\newblock \emph{CoRR}, abs/2302.14045, 2023.
+
+\bibitem{DBLP:conf/icml/0008LSH23}
+Li, J., D.~Li, S.~Savarese, et~al.
+\newblock {BLIP-2:} bootstrapping language-image pre-training with frozen image encoders and large language models.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 19730--19742. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-06500}
+Dai, W., J.~Li, D.~Li, et~al.
+\newblock Instructblip: Towards general-purpose vision-language models with instruction tuning.
+\newblock \emph{CoRR}, abs/2305.06500, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-04790}
+Gong, T., C.~Lyu, S.~Zhang, et~al.
+\newblock Multimodal-gpt: {A} vision and language model for dialogue with humans.
+\newblock \emph{CoRR}, abs/2305.04790, 2023.
+
+\bibitem{DBLP:conf/nips/AlayracDLMBHLMM22}
+Alayrac, J., J.~Donahue, P.~Luc, et~al.
+\newblock Flamingo: a visual language model for few-shot learning.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-16355}
+Su, Y., T.~Lan, H.~Li, et~al.
+\newblock Pandagpt: One model to instruction-follow them all.
+\newblock \emph{CoRR}, abs/2305.16355, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-08485}
+Liu, H., C.~Li, Q.~Wu, et~al.
+\newblock Visual instruction tuning.
+\newblock \emph{CoRR}, abs/2304.08485, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-12995}
+Huang, R., M.~Li, D.~Yang, et~al.
+\newblock Audiogpt: Understanding and generating speech, music, sound, and talking head.
+\newblock \emph{CoRR}, abs/2304.12995, 2023.
+
+\bibitem{DBLP:conf/interspeech/GongCG21}
+Gong, Y., Y.~Chung, J.~R. Glass.
+\newblock {AST:} audio spectrogram transformer.
+\newblock In H.~Hermansky, H.~Cernock{\'{y}}, L.~Burget, L.~Lamel, O.~Scharenborg, P.~Motl{\'{\i}}cek, eds., \emph{Interspeech 2021, 22nd Annual Conference of the International Speech Communication Association, Brno, Czechia, 30 August - 3 September 2021}, pages 571--575. {ISCA}, 2021.
+
+\bibitem{DBLP:journals/taslp/HsuBTLSM21}
+Hsu, W., B.~Bolte, Y.~H. Tsai, et~al.
+\newblock Hubert: Self-supervised speech representation learning by masked prediction of hidden units.
+\newblock \emph{{IEEE} {ACM} Trans. Audio Speech Lang. Process.}, 29:3451--3460, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-04160}
+Chen, F., M.~Han, H.~Zhao, et~al.
+\newblock {X-LLM:} bootstrapping advanced large language models by treating multi-modalities as foreign languages.
+\newblock \emph{CoRR}, abs/2305.04160, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-02858}
+Zhang, H., X.~Li, L.~Bing.
+\newblock Video-llama: An instruction-tuned audio-visual language model for video understanding.
+\newblock \emph{CoRR}, abs/2306.02858, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-05662}
+Liu, Z., Y.~He, W.~Wang, et~al.
+\newblock Interngpt: Solving vision-centric tasks by interacting with chatbots beyond language.
+\newblock \emph{CoRR}, abs/2305.05662, 2023.
+
+\bibitem{hubel1962receptive}
+Hubel, D.~H., T.~N. Wiesel.
+\newblock Receptive fields, binocular interaction and functional architecture in the cat's visual cortex.
+\newblock \emph{The Journal of physiology}, 160(1):106, 1962.
+
+\bibitem{logothetis1996visual}
+Logothetis, N.~K., D.~L. Sheinberg.
+\newblock Visual object recognition.
+\newblock \emph{Annual review of neuroscience}, 19(1):577--621, 1996.
+
+\bibitem{chatgpt2022}
+OpenAI.
+\newblock Openai: Introducing chatgpt.
+\newblock Website, 2022.
+\newblock \url{https://openai.com/blog/chatgpt}.
+
+\bibitem{DBLP:conf/sigir/LuR0LX20}
+Lu, J., X.~Ren, Y.~Ren, et~al.
+\newblock Improving contextual language models for response retrieval in multi-turn conversation.
+\newblock In J.~X. Huang, Y.~Chang, X.~Cheng, J.~Kamps, V.~Murdock, J.~Wen, Y.~Liu, eds., \emph{Proceedings of the 43rd International {ACM} {SIGIR} conference on research and development in Information Retrieval, {SIGIR} 2020, Virtual Event, China, July 25-30, 2020}, pages 1805--1808. {ACM}, 2020.
+
+\bibitem{DBLP:conf/iccv/HuangWCW19}
+Huang, L., W.~Wang, J.~Chen, et~al.
+\newblock Attention on attention for image captioning.
+\newblock In \emph{2019 {IEEE/CVF} International Conference on Computer Vision, {ICCV} 2019, Seoul, Korea (South), October 27 - November 2, 2019}, pages 4633--4642. {IEEE}, 2019.
+
+\bibitem{DBLP:conf/cvpr/PanYLM20}
+Pan, Y., T.~Yao, Y.~Li, et~al.
+\newblock X-linear attention networks for image captioning.
+\newblock In \emph{2020 {IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2020, Seattle, WA, USA, June 13-19, 2020}, pages 10968--10977. Computer Vision Foundation / {IEEE}, 2020.
+
+\bibitem{DBLP:journals/corr/abs-1912-08226}
+Cornia, M., M.~Stefanini, L.~Baraldi, et~al.
+\newblock M\({}^{\mbox{2}}\): Meshed-memory transformer for image captioning.
+\newblock \emph{CoRR}, abs/1912.08226, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2102-10407}
+Chen, J., H.~Guo, K.~Yi, et~al.
+\newblock Visualgpt: Data-efficient image captioning by balancing visual input and linguistic knowledge from pretraining.
+\newblock \emph{CoRR}, abs/2102.10407, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-06355}
+Li, K., Y.~He, Y.~Wang, et~al.
+\newblock Videochat: Chat-centric video understanding.
+\newblock \emph{CoRR}, abs/2305.06355, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-01399}
+Lin, J., Y.~Du, O.~Watkins, et~al.
+\newblock Learning to model the world with language.
+\newblock \emph{CoRR}, abs/2308.01399, 2023.
+
+\bibitem{DBLP:conf/nips/VaswaniSPUJGKP17}
+Vaswani, A., N.~Shazeer, N.~Parmar, et~al.
+\newblock Attention is all you need.
+\newblock In I.~Guyon, U.~von Luxburg, S.~Bengio, H.~M. Wallach, R.~Fergus, S.~V.~N. Vishwanathan, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 30: Annual Conference on Neural Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA, {USA}}, pages 5998--6008. 2017.
+
+\bibitem{DBLP:conf/icml/TouvronCDMSJ21}
+Touvron, H., M.~Cord, M.~Douze, et~al.
+\newblock Training data-efficient image transformers {\&} distillation through attention.
+\newblock In M.~Meila, T.~Zhang, eds., \emph{Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, vol. 139 of \emph{Proceedings of Machine Learning Research}, pages 10347--10357. {PMLR}, 2021.
+
+\bibitem{DBLP:conf/iclr/LuCZMK23}
+Lu, J., C.~Clark, R.~Zellers, et~al.
+\newblock {UNIFIED-IO:} {A} unified model for vision, language, and multi-modal tasks.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-14824}
+Peng, Z., W.~Wang, L.~Dong, et~al.
+\newblock Kosmos-2: Grounding multimodal large language models to the world.
+\newblock \emph{CoRR}, abs/2306.14824, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-09093}
+Lyu, C., M.~Wu, L.~Wang, et~al.
+\newblock Macaw-llm: Multi-modal language modeling with image, audio, video, and text integration.
+\newblock \emph{CoRR}, abs/2306.09093, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-05424}
+Maaz, M., H.~A. Rasheed, S.~H. Khan, et~al.
+\newblock Video-chatgpt: Towards detailed video understanding via large vision and language models.
+\newblock \emph{CoRR}, abs/2306.05424, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-03373}
+Chen, M., I.~Laina, A.~Vedaldi.
+\newblock Training-free layout control with cross-attention guidance.
+\newblock \emph{CoRR}, abs/2304.03373, 2023.
+
+\bibitem{DBLP:conf/icml/RadfordKXBMS23}
+Radford, A., J.~W. Kim, T.~Xu, et~al.
+\newblock Robust speech recognition via large-scale weak supervision.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 28492--28518. {PMLR}, 2023.
+
+\bibitem{DBLP:conf/nips/RenRTQZZL19}
+Ren, Y., Y.~Ruan, X.~Tan, et~al.
+\newblock Fastspeech: Fast, robust and controllable text to speech.
+\newblock In H.~M. Wallach, H.~Larochelle, A.~Beygelzimer, F.~d'Alch{\'{e}}{-}Buc, E.~B. Fox, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 32: Annual Conference on Neural Information Processing Systems 2019, NeurIPS 2019, December 8-14, 2019, Vancouver, BC, Canada}, pages 3165--3174. 2019.
+
+\bibitem{DBLP:conf/ijcai/YeZ0022}
+Ye, Z., Z.~Zhao, Y.~Ren, et~al.
+\newblock Syntaspeech: Syntax-aware generative adversarial text-to-speech.
+\newblock In L.~D. Raedt, ed., \emph{Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, {IJCAI} 2022, Vienna, Austria, 23-29 July 2022}, pages 4468--4474. ijcai.org, 2022.
+
+\bibitem{DBLP:conf/icml/KimKS21}
+Kim, J., J.~Kong, J.~Son.
+\newblock Conditional variational autoencoder with adversarial learning for end-to-end text-to-speech.
+\newblock In M.~Meila, T.~Zhang, eds., \emph{Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, vol. 139 of \emph{Proceedings of Machine Learning Research}, pages 5530--5540. {PMLR}, 2021.
+
+\bibitem{DBLP:journals/taslp/WangCCLKW23}
+Wang, Z., S.~Cornell, S.~Choi, et~al.
+\newblock Tf-gridnet: Integrating full- and sub-band modeling for speech separation.
+\newblock \emph{{IEEE} {ACM} Trans. Audio Speech Lang. Process.}, 31:3221--3236, 2023.
+
+\bibitem{DBLP:conf/aaai/Liu00CZ22}
+Liu, J., C.~Li, Y.~Ren, et~al.
+\newblock Diffsinger: Singing voice synthesis via shallow diffusion mechanism.
+\newblock In \emph{Thirty-Sixth {AAAI} Conference on Artificial Intelligence, {AAAI} 2022, Thirty-Fourth Conference on Innovative Applications of Artificial Intelligence, {IAAI} 2022, The Twelveth Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2022 Virtual Event, February 22 - March 1, 2022}, pages 11020--11028. {AAAI} Press, 2022.
+
+\bibitem{DBLP:conf/asru/InagumaDYW21}
+Inaguma, H., S.~Dalmia, B.~Yan, et~al.
+\newblock Fast-md: Fast multi-decoder end-to-end speech translation with non-autoregressive hidden intermediates.
+\newblock In \emph{{IEEE} Automatic Speech Recognition and Understanding Workshop, {ASRU} 2021, Cartagena, Colombia, December 13-17, 2021}, pages 922--929. {IEEE}, 2021.
+
+\bibitem{flanagan2013speech}
+Flanagan, J.~L.
+\newblock \emph{Speech analysis synthesis and perception}, vol.~3.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem{schwarz2010mapping}
+Schwarz, B.
+\newblock Mapping the world in 3d.
+\newblock \emph{Nature Photonics}, 4(7):429--430, 2010.
+
+\bibitem{parkinson1996progress}
+Parkinson, B.~W., J.~J. Spilker.
+\newblock \emph{Progress in astronautics and aeronautics: Global positioning system: Theory and applications}, vol. 164.
+\newblock Aiaa, 1996.
+
+\bibitem{DBLP:journals/corr/abs-2205-12255}
+Parisi, A., Y.~Zhao, N.~Fiedel.
+\newblock {TALM:} tool augmented language models.
+\newblock \emph{CoRR}, abs/2205.12255, 2022.
+
+\bibitem{Clarebout2013}
+Clarebout, G., J.~Elen, N.~A.~J. Collazo, et~al.
+\newblock \emph{Metacognition and the Use of Tools}, pages 187--195.
+\newblock Springer New York, New York, NY, 2013.
+
+\bibitem{DBLP:journals/corr/abs-2303-04671}
+Wu, C., S.~Yin, W.~Qi, et~al.
+\newblock Visual chatgpt: Talking, drawing and editing with visual foundation models.
+\newblock \emph{CoRR}, abs/2303.04671, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-17126}
+Cai, T., X.~Wang, T.~Ma, et~al.
+\newblock Large language models as tool makers.
+\newblock \emph{CoRR}, abs/2305.17126, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14318}
+Qian, C., C.~Han, Y.~R. Fung, et~al.
+\newblock {CREATOR:} disentangling abstract and concrete reasonings of large language models through tool creation.
+\newblock \emph{CoRR}, abs/2305.14318, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-05128}
+Chen, X., M.~Lin, N.~Sch{\"{a}}rli, et~al.
+\newblock Teaching large language models to self-debug.
+\newblock \emph{CoRR}, abs/2304.05128, 2023.
+
+\bibitem{liu2022instruction}
+Liu, H., L.~Lee, K.~Lee, et~al.
+\newblock Instruction-following agents with jointly pre-trained vision-language models.
+\newblock \emph{arXiv preprint arXiv:2210.13431}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2210-06407}
+Lynch, C., A.~Wahid, J.~Tompson, et~al.
+\newblock Interactive language: Talking to robots in real time.
+\newblock \emph{CoRR}, abs/2210.06407, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-18898}
+Jin, C., W.~Tan, J.~Yang, et~al.
+\newblock Alphablock: Embodied finetuning for vision-language reasoning in robot manipulation.
+\newblock \emph{CoRR}, abs/2305.18898, 2023.
+
+\bibitem{DBLP:conf/corl/ShahOIL22}
+Shah, D., B.~Osinski, B.~Ichter, et~al.
+\newblock Lm-nav: Robotic navigation with large pre-trained models of language, vision, and action.
+\newblock In K.~Liu, D.~Kulic, J.~Ichnowski, eds., \emph{Conference on Robot Learning, CoRL 2022, 14-18 December 2022, Auckland, New Zealand}, vol. 205 of \emph{Proceedings of Machine Learning Research}, pages 492--504. {PMLR}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-16986}
+Zhou, G., Y.~Hong, Q.~Wu.
+\newblock Navgpt: Explicit reasoning in vision-and-language navigation with large language models.
+\newblock \emph{CoRR}, abs/2305.16986, 2023.
+
+\bibitem{DBLP:conf/nips/FanWJMYZTHZA22}
+Fan, L., G.~Wang, Y.~Jiang, et~al.
+\newblock Minedojo: Building open-ended embodied agents with internet-scale knowledge.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2106-14876}
+Kanitscheider, I., J.~Huizinga, D.~Farhi, et~al.
+\newblock Multi-task curriculum learning in a complex, visual, hard-exploration domain: Minecraft.
+\newblock \emph{CoRR}, abs/2106.14876, 2021.
+
+\bibitem{DBLP:conf/icml/NottinghamAS0H023}
+Nottingham, K., P.~Ammanabrolu, A.~Suhr, et~al.
+\newblock Do embodied agents dream of pixelated sheep: Embodied decision making using language guided world modelling.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 26311--26325. {PMLR}, 2023.
+
+\bibitem{DBLP:conf/icml/SumersMAF023}
+Sumers, T., K.~Marino, A.~Ahuja, et~al.
+\newblock Distilling internet-scale vision-language models into embodied agents.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 32797--32818. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2301-13188}
+Carlini, N., J.~Hayes, M.~Nasr, et~al.
+\newblock Extracting training data from diffusion models.
+\newblock \emph{CoRR}, abs/2301.13188, 2023.
+
+\bibitem{DBLP:conf/icail/SavelkaAGWX23}
+Savelka, J., K.~D. Ashley, M.~A. Gray, et~al.
+\newblock Can {GPT-4} support analysis of textual data in tasks requiring highly specialized domain expertise?
+\newblock In F.~Lagioia, J.~Mumford, D.~Odekerken, H.~Westermann, eds., \emph{Proceedings of the 6th Workshop on Automated Semantic Analysis of Information in Legal Text co-located with the 19th International Conference on Artificial Intelligence and Law {(ICAIL} 2023), Braga, Portugal, 23rd September, 2023}, vol. 3441 of \emph{{CEUR} Workshop Proceedings}, pages 1--12. CEUR-WS.org, 2023.
+
+\bibitem{ling2023domain}
+Ling, C., X.~Zhao, J.~Lu, et~al.
+\newblock Domain specialization as the key to make large language models disruptive: A comprehensive survey, 2023.
+
+\bibitem{DBLP:journals/entropy/LinardatosPK21}
+Linardatos, P., V.~Papastefanopoulos, S.~Kotsiantis.
+\newblock Explainable {AI:} {A} review of machine learning interpretability methods.
+\newblock \emph{Entropy}, 23(1):18, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2307-15043}
+Zou, A., Z.~Wang, J.~Z. Kolter, et~al.
+\newblock Universal and transferable adversarial attacks on aligned language models.
+\newblock \emph{CoRR}, abs/2307.15043, 2023.
+
+\bibitem{DBLP:journals/csur/HusseinGEJ17}
+Hussein, A., M.~M. Gaber, E.~Elyan, et~al.
+\newblock Imitation learning: {A} survey of learning methods.
+\newblock \emph{{ACM} Comput. Surv.}, 50(2):21:1--21:35, 2017.
+
+\bibitem{DBLP:conf/icra/LiuGAL18}
+Liu, Y., A.~Gupta, P.~Abbeel, et~al.
+\newblock Imitation from observation: Learning to imitate behaviors from raw video via context translation.
+\newblock In \emph{2018 {IEEE} International Conference on Robotics and Automation, {ICRA} 2018, Brisbane, Australia, May 21-25, 2018}, pages 1118--1125. {IEEE}, 2018.
+
+\bibitem{DBLP:conf/nips/BakerAZHTEHSC22}
+Baker, B., I.~Akkaya, P.~Zhokov, et~al.
+\newblock Video pretraining {(VPT):} learning to act by watching unlabeled online videos.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/ijrr/LevinePKIQ18}
+Levine, S., P.~Pastor, A.~Krizhevsky, et~al.
+\newblock Learning hand-eye coordination for robotic grasping with deep learning and large-scale data collection.
+\newblock \emph{Int. J. Robotics Res.}, 37(4-5):421--436, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2307-04964}
+Zheng, R., S.~Dou, S.~Gao, et~al.
+\newblock Secrets of {RLHF} in large language models part {I:} {PPO}.
+\newblock \emph{CoRR}, abs/2307.04964, 2023.
+
+\bibitem{10.1145/1553374.1553380}
+Bengio, Y., J.~Louradour, R.~Collobert, et~al.
+\newblock Curriculum learning.
+\newblock In \emph{Proceedings of the 26th Annual International Conference on Machine Learning}, ICML '09, page 41–48. Association for Computing Machinery, New York, NY, USA, 2009.
+
+\bibitem{chen2021evaluating}
+Chen, M., J.~Tworek, H.~Jun, et~al.
+\newblock Evaluating large language models trained on code, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2306-08302}
+Pan, S., L.~Luo, Y.~Wang, et~al.
+\newblock Unifying large language models and knowledge graphs: {A} roadmap.
+\newblock \emph{CoRR}, abs/2306.08302, 2023.
+
+\bibitem{bran2023chemcrow}
+Bran, A.~M., S.~Cox, A.~D. White, et~al.
+\newblock Chemcrow: Augmenting large-language models with chemistry tools, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-03427}
+Ruan, J., Y.~Chen, B.~Zhang, et~al.
+\newblock {TPTU:} task planning and tool usage of large language model-based {AI} agents.
+\newblock \emph{CoRR}, abs/2308.03427, 2023.
+
+\bibitem{ogundare2023industrial}
+Ogundare, O., S.~Madasu, N.~Wiggins.
+\newblock Industrial engineering with large language models: A case study of chatgpt's performance on oil \& gas problems, 2023.
+
+\bibitem{smith2005development}
+Smith, L., M.~Gasser.
+\newblock The development of embodied cognition: Six lessons from babies.
+\newblock \emph{Artificial life}, 11(1-2):13--29, 2005.
+
+\bibitem{DBLP:journals/tetci/DuanYTZT22}
+Duan, J., S.~Yu, H.~L. Tan, et~al.
+\newblock A survey of embodied {AI:} from simulators to research tasks.
+\newblock \emph{{IEEE} Trans. Emerg. Top. Comput. Intell.}, 6(2):230--244, 2022.
+
+\bibitem{DBLP:journals/corr/MnihKSGAWR13}
+Mnih, V., K.~Kavukcuoglu, D.~Silver, et~al.
+\newblock Playing atari with deep reinforcement learning.
+\newblock \emph{CoRR}, abs/1312.5602, 2013.
+
+\bibitem{DBLP:journals/nature/SilverHMGSDSAPL16}
+Silver, D., A.~Huang, C.~J. Maddison, et~al.
+\newblock Mastering the game of go with deep neural networks and tree search.
+\newblock \emph{Nat.}, 529(7587):484--489, 2016.
+
+\bibitem{DBLP:journals/corr/abs-1806-10293}
+Kalashnikov, D., A.~Irpan, P.~Pastor, et~al.
+\newblock Qt-opt: Scalable deep reinforcement learning for vision-based robotic manipulation.
+\newblock \emph{CoRR}, abs/1806.10293, 2018.
+
+\bibitem{DBLP:conf/irc/NguyenL19}
+Nguyen, H., H.~M. La.
+\newblock Review of deep reinforcement learning for robot manipulation.
+\newblock In \emph{3rd {IEEE} International Conference on Robotic Computing, {IRC} 2019, Naples, Italy, February 25-27, 2019}, pages 590--595. {IEEE}, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2302-00763}
+Dasgupta, I., C.~Kaeser{-}Chen, K.~Marino, et~al.
+\newblock Collaborating with language models for embodied reasoning.
+\newblock \emph{CoRR}, abs/2302.00763, 2023.
+
+\bibitem{DBLP:conf/cvpr/PuigRBLWF018}
+Puig, X., K.~Ra, M.~Boben, et~al.
+\newblock Virtualhome: Simulating household activities via programs.
+\newblock In \emph{2018 {IEEE} Conference on Computer Vision and Pattern Recognition, {CVPR} 2018, Salt Lake City, UT, USA, June 18-22, 2018}, pages 8494--8502. Computer Vision Foundation / {IEEE} Computer Society, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2011-13922}
+Hong, Y., Q.~Wu, Y.~Qi, et~al.
+\newblock A recurrent vision-and-language {BERT} for navigation.
+\newblock \emph{CoRR}, abs/2011.13922, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2108-04927}
+Suglia, A., Q.~Gao, J.~Thomason, et~al.
+\newblock Embodied {BERT:} {A} transformer model for embodied, language-guided visual task completion.
+\newblock \emph{CoRR}, abs/2108.04927, 2021.
+
+\bibitem{DBLP:journals/corr/abs-1911-05892}
+Ganesh, S., N.~Vadori, M.~Xu, et~al.
+\newblock Reinforcement learning for market making in a multi-agent dealer market.
+\newblock \emph{CoRR}, abs/1911.05892, 2019.
+
+\bibitem{DBLP:journals/arc/TipaldiIM22}
+Tipaldi, M., R.~Iervolino, P.~R. Massenio.
+\newblock Reinforcement learning in spacecraft control applications: Advances, prospects, and challenges.
+\newblock \emph{Annu. Rev. Control.}, 54:1--23, 2022.
+
+\bibitem{DBLP:conf/iccv/SavvaMPBKMZWJSL19}
+Savva, M., J.~Malik, D.~Parikh, et~al.
+\newblock Habitat: {A} platform for embodied {AI} research.
+\newblock In \emph{2019 {IEEE/CVF} International Conference on Computer Vision, {ICCV} 2019, Seoul, Korea (South), October 27 - November 2, 2019}, pages 9338--9346. {IEEE}, 2019.
+
+\bibitem{longpre2023flan}
+Longpre, S., L.~Hou, T.~Vu, et~al.
+\newblock The flan collection: Designing data and methods for effective instruction tuning.
+\newblock \emph{arXiv preprint arXiv:2301.13688}, 2023.
+
+\bibitem{wang2022self}
+Wang, Y., Y.~Kordi, S.~Mishra, et~al.
+\newblock Self-instruct: Aligning language model with self generated instructions.
+\newblock \emph{arXiv preprint arXiv:2212.10560}, 2022.
+
+\bibitem{DBLP:conf/icra/LiangHXXHIFZ23}
+Liang, J., W.~Huang, F.~Xia, et~al.
+\newblock Code as policies: Language model programs for embodied control.
+\newblock In \emph{{IEEE} International Conference on Robotics and Automation, {ICRA} 2023, London, UK, May 29 - June 2, 2023}, pages 9493--9500. {IEEE}, 2023.
+
+\bibitem{DBLP:conf/corl/LiXMS19}
+Li, C., F.~Xia, R.~Mart{\'{\i}}n{-}Mart{\'{\i}}n, et~al.
+\newblock {HRL4IN:} hierarchical reinforcement learning for interactive navigation with mobile manipulators.
+\newblock In L.~P. Kaelbling, D.~Kragic, K.~Sugiura, eds., \emph{3rd Annual Conference on Robot Learning, CoRL 2019, Osaka, Japan, October 30 - November 1, 2019, Proceedings}, vol. 100 of \emph{Proceedings of Machine Learning Research}, pages 603--616. {PMLR}, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2012-10147}
+Eppe, M., C.~Gumbsch, M.~Kerzel, et~al.
+\newblock Hierarchical principles of embodied reinforcement learning: {A} review.
+\newblock \emph{CoRR}, abs/2012.10147, 2020.
+
+\bibitem{DBLP:conf/nips/00070C22}
+Paul, S., A.~Roy{-}Chowdhury, A.~Cherian.
+\newblock {AVLEN:} audio-visual-language embodied navigation in 3d environments.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2306-03604}
+Hu, B., C.~Zhao, P.~Zhang, et~al.
+\newblock Enabling intelligent interactions between an agent and an {LLM:} {A} reinforcement learning approach.
+\newblock \emph{CoRR}, abs/2306.03604, 2023.
+
+\bibitem{DBLP:conf/eccv/ChenJSGAIRG20}
+Chen, C., U.~Jain, C.~Schissler, et~al.
+\newblock Soundspaces: Audio-visual navigation in 3d environments.
+\newblock In A.~Vedaldi, H.~Bischof, T.~Brox, J.~Frahm, eds., \emph{Computer Vision - {ECCV} 2020 - 16th European Conference, Glasgow, UK, August 23-28, 2020, Proceedings, Part {VI}}, vol. 12351 of \emph{Lecture Notes in Computer Science}, pages 17--36. Springer, 2020.
+
+\bibitem{DBLP:conf/nips/Huang0LCZ22}
+Huang, R., Y.~Ren, J.~Liu, et~al.
+\newblock Generspeech: Towards style transfer for generalizable out-of-domain text-to-speech.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:conf/icra/ShahEKRL21}
+Shah, D., B.~Eysenbach, G.~Kahn, et~al.
+\newblock Ving: Learning open-world navigation with visual goals.
+\newblock In \emph{{IEEE} International Conference on Robotics and Automation, {ICRA} 2021, Xi'an, China, May 30 - June 5, 2021}, pages 13215--13222. {IEEE}, 2021.
+
+\bibitem{DBLP:conf/icra/HuangMZB23}
+Huang, C., O.~Mees, A.~Zeng, et~al.
+\newblock Visual language maps for robot navigation.
+\newblock In \emph{{IEEE} International Conference on Robotics and Automation, {ICRA} 2023, London, UK, May 29 - June 2, 2023}, pages 10608--10615. {IEEE}, 2023.
+
+\bibitem{DBLP:conf/cvpr/GeorgakisSWDMRD22}
+Georgakis, G., K.~Schmeckpeper, K.~Wanchoo, et~al.
+\newblock Cross-modal map learning for vision and language navigation.
+\newblock In \emph{{IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2022, New Orleans, LA, USA, June 18-24, 2022}, pages 15439--15449. {IEEE}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-03480}
+Dorbala, V.~S., J.~F.~M. Jr., D.~Manocha.
+\newblock Can an embodied agent find your "cat-shaped mug"? llm-based zero-shot object navigation.
+\newblock \emph{CoRR}, abs/2303.03480, 2023.
+
+\bibitem{DBLP:conf/cvpr/LiZZYLZWYZHCG22}
+Li, L.~H., P.~Zhang, H.~Zhang, et~al.
+\newblock Grounded language-image pre-training.
+\newblock In \emph{{IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2022, New Orleans, LA, USA, June 18-24, 2022}, pages 10955--10965. {IEEE}, 2022.
+
+\bibitem{DBLP:conf/icra/GanZ0GT20}
+Gan, C., Y.~Zhang, J.~Wu, et~al.
+\newblock Look, listen, and act: Towards audio-visual embodied navigation.
+\newblock In \emph{2020 {IEEE} International Conference on Robotics and Automation, {ICRA} 2020, Paris, France, May 31 - August 31, 2020}, pages 9701--9707. {IEEE}, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2212-06817}
+Brohan, A., N.~Brown, J.~Carbajal, et~al.
+\newblock {RT-1:} robotics transformer for real-world control at scale.
+\newblock \emph{CoRR}, abs/2212.06817, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2307-15818}
+---.
+\newblock {RT-2:} vision-language-action models transfer web knowledge to robotic control.
+\newblock \emph{CoRR}, abs/2307.15818, 2023.
+
+\bibitem{Mineflayer-JavaScript-2013}
+{PrismarineJS}, 2013.
+
+\bibitem{DBLP:journals/corr/abs-2307-12856}
+Gur, I., H.~Furuta, A.~Huang, et~al.
+\newblock A real-world webagent with planning, long context understanding, and program synthesis.
+\newblock \emph{CoRR}, abs/2307.12856, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-06070}
+Deng, X., Y.~Gu, B.~Zheng, et~al.
+\newblock Mind2web: Towards a generalist agent for the web.
+\newblock \emph{CoRR}, abs/2306.06070, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-11854}
+Furuta, H., O.~Nachum, K.~Lee, et~al.
+\newblock Multimodal web navigation with instruction-finetuned foundation models.
+\newblock \emph{CoRR}, abs/2305.11854, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-13854}
+Zhou, S., F.~F. Xu, H.~Zhu, et~al.
+\newblock Webarena: {A} realistic web environment for building autonomous agents.
+\newblock \emph{CoRR}, abs/2307.13854, 2023.
+
+\bibitem{DBLP:conf/nips/Yao0YN22}
+Yao, S., H.~Chen, J.~Yang, et~al.
+\newblock Webshop: Towards scalable real-world web interaction with grounded language agents.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-17491}
+Kim, G., P.~Baldi, S.~McAleer.
+\newblock Language models can solve computer tasks.
+\newblock \emph{CoRR}, abs/2303.17491, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-07863}
+Zheng, L., R.~Wang, B.~An.
+\newblock Synapse: Leveraging few-shot exemplars for human-level computer control.
+\newblock \emph{CoRR}, abs/2306.07863, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-01552}
+Chen, P., C.~Chang.
+\newblock Interact: Exploring the potentials of chatgpt as a cooperative agent.
+\newblock \emph{CoRR}, abs/2308.01552, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2210-04964}
+Gramopadhye, M., D.~Szafir.
+\newblock Generating executable action plans with environmentally-aware language models.
+\newblock \emph{CoRR}, abs/2210.04964, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2308-00245}
+Li, H., Y.~Hao, Y.~Zhai, et~al.
+\newblock The hitchhiker's guide to program analysis: {A} journey with large language models.
+\newblock \emph{CoRR}, abs/2308.00245, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-05152}
+Feldt, R., S.~Kang, J.~Yoon, et~al.
+\newblock Towards autonomous testing agents via conversational large language models.
+\newblock \emph{CoRR}, abs/2306.05152, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-01423}
+Kang, Y., J.~Kim.
+\newblock Chatmof: An autonomous {AI} system for predicting and generating metal-organic frameworks.
+\newblock \emph{CoRR}, abs/2308.01423, 2023.
+
+\bibitem{DBLP:conf/emnlp/WangJCA22}
+Wang, R., P.~A. Jansen, M.~C{\^{o}}t{\'{e}}, et~al.
+\newblock Scienceworld: Is your agent smarter than a 5th grader?
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 11279--11298. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-16563}
+Yuan, H., C.~Zhang, H.~Wang, et~al.
+\newblock Plan4mc: Skill reinforcement learning and planning for open-world minecraft tasks.
+\newblock \emph{CoRR}, abs/2303.16563, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-12998}
+Hao, R., L.~Hu, W.~Qi, et~al.
+\newblock Chatllm network: More brains, more intelligence.
+\newblock \emph{CoRR}, abs/2304.12998, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-04738}
+Mandi, Z., S.~Jain, S.~Song.
+\newblock Roco: Dialectic multi-robot collaboration with large language models.
+\newblock \emph{CoRR}, abs/2307.04738, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2301-05327}
+Hamilton, S.
+\newblock Blind judgement: Agent-based supreme court modelling with {GPT}.
+\newblock \emph{CoRR}, abs/2301.05327, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-00352}
+Hong, S., X.~Zheng, J.~Chen, et~al.
+\newblock Metagpt: Meta programming for multi-agent collaborative framework.
+\newblock \emph{CoRR}, abs/2308.00352, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-08155}
+Wu, Q., G.~Bansal, J.~Zhang, et~al.
+\newblock Autogen: Enabling next-gen {LLM} applications via multi-agent conversation framework.
+\newblock \emph{CoRR}, abs/2308.08155, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-11339}
+Zhang, C., K.~Yang, S.~Hu, et~al.
+\newblock Proagent: Building proactive cooperative {AI} with large language models.
+\newblock \emph{CoRR}, abs/2308.11339, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-17071}
+Nair, V., E.~Schumacher, G.~J. Tso, et~al.
+\newblock {DERA:} enhancing large language model completions with dialog-enabled resolving agents.
+\newblock \emph{CoRR}, abs/2303.17071, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-03314}
+Talebirad, Y., A.~Nadiri.
+\newblock Multi-agent collaboration: Harnessing the power of intelligent {LLM} agents.
+\newblock \emph{CoRR}, abs/2306.03314, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-10848}
+Chen, W., Y.~Su, J.~Zuo, et~al.
+\newblock Agentverse: Facilitating multi-agent collaboration and exploring emergent behaviors in agents.
+\newblock \emph{CoRR}, abs/2308.10848, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-12503}
+Shi, J., J.~Zhao, Y.~Wang, et~al.
+\newblock {CGMI:} configurable general multi-agent interaction framework.
+\newblock \emph{CoRR}, abs/2308.12503, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-11595}
+Xiong, K., X.~Ding, Y.~Cao, et~al.
+\newblock Examining the inter-consistency of large language models: An in-depth analysis via debate.
+\newblock \emph{CoRR}, abs/2305.11595, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-13548}
+Kalvakurthi, V., A.~S. Varde, J.~Jenq.
+\newblock Hey dona! can you help me with student course registration?
+\newblock \emph{CoRR}, abs/2303.13548, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-02502}
+Swan, M., T.~Kido, E.~Roland, et~al.
+\newblock Math agents: Computational infrastructure, mathematical embedding, and genomics.
+\newblock \emph{CoRR}, abs/2307.02502, 2023.
+
+\bibitem{hsu2023helping}
+Hsu, S.-L., R.~S. Shah, P.~Senthil, et~al.
+\newblock Helping the helper: Supporting peer counselors via ai-empowered practice and feedback.
+\newblock \emph{arXiv preprint arXiv:2305.08982}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-15075}
+Zhang, H., J.~Chen, F.~Jiang, et~al.
+\newblock Huatuogpt, towards taming language model to be a doctor.
+\newblock \emph{CoRR}, abs/2305.15075, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-03549}
+Yang, S., H.~Zhao, S.~Zhu, et~al.
+\newblock Zhongjing: Enhancing the chinese medical capabilities of large language model through expert feedback and real-world multi-turn dialogue.
+\newblock \emph{CoRR}, abs/2308.03549, 2023.
+
+\bibitem{DBLP:conf/iva/AliRLMKRSH20}
+Ali, M.~R., S.~Z. Razavi, R.~Langevin, et~al.
+\newblock A virtual conversational agent for teens with autism spectrum disorder: Experimental results and design lessons.
+\newblock In S.~Marsella, R.~Jack, H.~H. Vilhj{\'{a}}lmsson, P.~Sequeira, E.~S. Cross, eds., \emph{{IVA} '20: {ACM} International Conference on Intelligent Virtual Agents, Virtual Event, Scotland, UK, October 20-22, 2020}, pages 2:1--2:8. {ACM}, 2020.
+
+\bibitem{DBLP:conf/ijcnn/GaoGT23}
+Gao, W., X.~Gao, Y.~Tang.
+\newblock Multi-turn dialogue agent as sales' assistant in telemarketing.
+\newblock In \emph{International Joint Conference on Neural Networks, {IJCNN} 2023, Gold Coast, Australia, June 18-23, 2023}, pages 1--9. {IEEE}, 2023.
+
+\bibitem{DBLP:conf/iclr/SchickYJPLIYNG023}
+Schick, T., J.~A. Yu, Z.~Jiang, et~al.
+\newblock {PEER:} {A} collaborative language model.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-07047}
+Lu, B., N.~Haduong, C.~Lee, et~al.
+\newblock {DIALGEN:} collaborative human-lm generated dialogues for improved understanding of human-human conversations.
+\newblock \emph{CoRR}, abs/2307.07047, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-08640}
+Gao, D., L.~Ji, L.~Zhou, et~al.
+\newblock Assistgpt: {A} general multi-modal assistant that can plan, execute, inspect, and learn.
+\newblock \emph{CoRR}, abs/2306.08640, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-03022}
+Hasan, M., C.~{\"{O}}zel, S.~Potter, et~al.
+\newblock {SAPIEN:} affective virtual agents powered by large language models.
+\newblock \emph{CoRR}, abs/2308.03022, 2023.
+
+\bibitem{liu2022artificial}
+Liu-Thompkins, Y., S.~Okazaki, H.~Li.
+\newblock Artificial empathy in marketing interactions: Bridging the human-ai gap in affective and social customer experience.
+\newblock \emph{Journal of the Academy of Marketing Science}, 50(6):1198--1218, 2022.
+
+\bibitem{DBLP:conf/iclr/Bakhtin0LGJFMB23}
+Bakhtin, A., D.~J. Wu, A.~Lerer, et~al.
+\newblock Mastering the game of no-press diplomacy via human-regularized reinforcement learning and planning.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{meta2022human}
+(FAIR)†, M. F. A. R. D.~T., A.~Bakhtin, N.~Brown, et~al.
+\newblock Human-level play in the game of diplomacy by combining language models with strategic reasoning.
+\newblock \emph{Science}, 378(6624):1067--1074, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-20076}
+Lin, J., N.~Tomlin, J.~Andreas, et~al.
+\newblock Decision-oriented dialogue for human-ai collaboration.
+\newblock \emph{CoRR}, abs/2305.20076, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-03313}
+Li, C., X.~Su, C.~Fan, et~al.
+\newblock Quantifying the impact of large language models on collective opinion dynamics.
+\newblock \emph{CoRR}, abs/2308.03313, 2023.
+
+\bibitem{Chase-LangChain-2022}
+Chase, H.
+\newblock {LangChain}.
+\newblock \emph{URL https://github.com/hwchase17/langchain}, 2022.
+
+\bibitem{AgentGPT}
+Reworked.
+\newblock {Agent{\_}GPT}.
+\newblock \emph{URL https://github.com/reworkd/AgentGPT}, 2023.
+
+\bibitem{gptengineer}
+AntonOsika.
+\newblock {GPT Engineer}.
+\newblock \emph{URL https://github.com/AntonOsika/gpt-engineer}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2012-02757}
+Dambekodi, S.~N., S.~Frazier, P.~Ammanabrolu, et~al.
+\newblock Playing text-based games with common sense.
+\newblock \emph{CoRR}, abs/2012.02757, 2020.
+
+\bibitem{DBLP:conf/atal/SinghSM22}
+Singh, I., G.~Singh, A.~Modi.
+\newblock Pre-trained language models as prior knowledge for playing text-based games.
+\newblock In P.~Faliszewski, V.~Mascardi, C.~Pelachaud, M.~E. Taylor, eds., \emph{21st International Conference on Autonomous Agents and Multiagent Systems, {AAMAS} 2022, Auckland, New Zealand, May 9-13, 2022}, pages 1729--1731. International Foundation for Autonomous Agents and Multiagent Systems {(IFAAMAS)}, 2022.
+
+\bibitem{DBLP:conf/naacl/AmmanabroluULSR21}
+Ammanabrolu, P., J.~Urbanek, M.~Li, et~al.
+\newblock How to motivate your dragon: Teaching goal-driven agents to speak and act in fantasy worlds.
+\newblock In K.~Toutanova, A.~Rumshisky, L.~Zettlemoyer, D.~Hakkani{-}T{\"{u}}r, I.~Beltagy, S.~Bethard, R.~Cotterell, T.~Chakraborty, Y.~Zhou, eds., \emph{Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2021, Online, June 6-11, 2021}, pages 807--833. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/naacl/XuMDCHLL21}
+Xu, N., S.~Masling, M.~Du, et~al.
+\newblock Grounding open-domain instructions to automate web support tasks.
+\newblock In K.~Toutanova, A.~Rumshisky, L.~Zettlemoyer, D.~Hakkani{-}T{\"{u}}r, I.~Beltagy, S.~Bethard, R.~Cotterell, T.~Chakraborty, Y.~Zhou, eds., \emph{Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2021, Online, June 6-11, 2021}, pages 1022--1032. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-05091}
+Chhikara, P., J.~Zhang, F.~Ilievski, et~al.
+\newblock Knowledge-enhanced agents for interactive text games.
+\newblock \emph{CoRR}, abs/2305.05091, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-15626}
+Yang, K., A.~M. Swope, A.~Gu, et~al.
+\newblock Leandojo: Theorem proving with retrieval-augmented language models.
+\newblock \emph{CoRR}, abs/2306.15626, 2023.
+
+\bibitem{lin2023evolutionary}
+Lin, Z., H.~Akin, R.~Rao, et~al.
+\newblock Evolutionary-scale prediction of atomic-level protein structure with a language model.
+\newblock \emph{Science}, 379(6637):1123--1130, 2023.
+
+\bibitem{DBLP:journals/mlst/IrwinDHB22}
+Irwin, R., S.~Dimitriadis, J.~He, et~al.
+\newblock Chemformer: a pre-trained transformer for computational chemistry.
+\newblock \emph{Mach. Learn. Sci. Technol.}, 3(1):15022, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2211-00688}
+Skrynnik, A., Z.~Volovikova, M.~C{\^{o}}t{\'{e}}, et~al.
+\newblock Learning to solve voxel building embodied tasks from pixels and natural language instructions.
+\newblock \emph{CoRR}, abs/2211.00688, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2007-02701}
+Amiranashvili, A., N.~Dorka, W.~Burgard, et~al.
+\newblock Scaling imitation learning in minecraft.
+\newblock \emph{CoRR}, abs/2007.02701, 2020.
+
+\bibitem{minsky1988society}
+Minsky, M.
+\newblock \emph{Society of mind}.
+\newblock Simon and Schuster, 1988.
+
+\bibitem{balaji2010introduction}
+Balaji, P.~G., D.~Srinivasan.
+\newblock An introduction to multi-agent systems.
+\newblock \emph{Innovations in multi-agent systems and applications-1}, pages 1--27, 2010.
+
+\bibitem{DBLP:conf/cikm/FininFMM94}
+Finin, T.~W., R.~Fritzson, D.~P. McKay, et~al.
+\newblock {KQML} as an agent communication language.
+\newblock In \emph{Proceedings of the Third International Conference on Information and Knowledge Management (CIKM'94), Gaithersburg, Maryland, USA, November 29 - December 2, 1994}, pages 456--463. {ACM}, 1994.
+
+\bibitem{yang2020overview}
+Yang, Y., J.~Wang.
+\newblock An overview of multi-agent reinforcement learning from game theoretical perspective.
+\newblock \emph{arXiv preprint arXiv:2011.00583}, 2020.
+
+\bibitem{smith1937wealth}
+Smith, A.
+\newblock \emph{The wealth of nations [1776]}, vol. 11937.
+\newblock na, 1937.
+
+\bibitem{DBLP:journals/corr/abs-2307-05300}
+Wang, Z., S.~Mao, W.~Wu, et~al.
+\newblock Unleashing cognitive synergy in large language models: {A} task-solving agent through multi-persona self-collaboration.
+\newblock \emph{CoRR}, abs/2307.05300, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-13657}
+Hassan, M.~M., R.~A. Knipper, S.~K.~K. Santu.
+\newblock Chatgpt as your personal data scientist.
+\newblock \emph{CoRR}, abs/2305.13657, 2023.
+
+\bibitem{DBLP:books/daglib/0027240}
+von Neumann, J., O.~Morgenstern.
+\newblock \emph{Theory of Games and Economic Behavior (60th-Anniversary Edition)}.
+\newblock Princeton University Press, 2007.
+
+\bibitem{DBLP:journals/sigact/Aziz10}
+Aziz, H.
+\newblock Multiagent systems: algorithmic, game-theoretic, and logical foundations by y. shoham and k. leyton-brown cambridge university press, 2008.
+\newblock \emph{{SIGACT} News}, 41(1):34--37, 2010.
+
+\bibitem{Campbell2002DeepB}
+Campbell, M., A.~J. Hoane, F.~hsiung Hsu.
+\newblock Deep blue.
+\newblock \emph{Artif. Intell.}, 134:57--83, 2002.
+
+\bibitem{DBLP:journals/nature/SilverSSAHGHBLB17}
+Silver, D., J.~Schrittwieser, K.~Simonyan, et~al.
+\newblock Mastering the game of go without human knowledge.
+\newblock \emph{Nat.}, 550(7676):354--359, 2017.
+
+\bibitem{DBLP:conf/emnlp/LewisYDPB17}
+Lewis, M., D.~Yarats, Y.~N. Dauphin, et~al.
+\newblock Deal or no deal? end-to-end learning of negotiation dialogues.
+\newblock In M.~Palmer, R.~Hwa, S.~Riedel, eds., \emph{Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2017, Copenhagen, Denmark, September 9-11, 2017}, pages 2443--2453. Association for Computational Linguistics, 2017.
+
+\bibitem{DBLP:journals/corr/abs-1805-00899}
+Irving, G., P.~F. Christiano, D.~Amodei.
+\newblock {AI} safety via debate.
+\newblock \emph{CoRR}, abs/1805.00899, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2103-14659}
+Kenton, Z., T.~Everitt, L.~Weidinger, et~al.
+\newblock Alignment of language agents.
+\newblock \emph{CoRR}, abs/2103.14659, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2209-00626}
+Ngo, R.
+\newblock The alignment problem from a deep learning perspective.
+\newblock \emph{CoRR}, abs/2209.00626, 2022.
+
+\bibitem{paul2023digitization}
+Paul, M., L.~Maglaras, M.~A. Ferrag, et~al.
+\newblock Digitization of healthcare sector: A study on privacy and security concerns.
+\newblock \emph{ICT Express}, 2023.
+
+\bibitem{bassiri2011interactional}
+Bassiri, M.~A.
+\newblock Interactional feedback and the impact of attitude and motivation on noticing l2 form.
+\newblock \emph{English Language and Literature Studies}, 1(2):61, 2011.
+
+\bibitem{DBLP:journals/aim/TellexKDWBTR11}
+Tellex, S., T.~Kollar, S.~Dickerson, et~al.
+\newblock Approaching the symbol grounding problem with probabilistic graphical models.
+\newblock \emph{{AI} Mag.}, 32(4):64--76, 2011.
+
+\bibitem{DBLP:conf/iser/MatuszekHZF12}
+Matuszek, C., E.~Herbst, L.~Zettlemoyer, et~al.
+\newblock Learning to parse natural language commands to a robot control system.
+\newblock In J.~P. Desai, G.~Dudek, O.~Khatib, V.~Kumar, eds., \emph{Experimental Robotics - The 13th International Symposium on Experimental Robotics, {ISER} 2012, June 18-21, 2012, Qu{\'{e}}bec City, Canada}, vol.~88 of \emph{Springer Tracts in Advanced Robotics}, pages 403--415. Springer, 2012.
+
+\bibitem{DBLP:conf/aaai/ChaplotSPRS18}
+Chaplot, D.~S., K.~M. Sathyendra, R.~K. Pasumarthi, et~al.
+\newblock Gated-attention architectures for task-oriented language grounding.
+\newblock In S.~A. McIlraith, K.~Q. Weinberger, eds., \emph{Proceedings of the Thirty-Second {AAAI} Conference on Artificial Intelligence, (AAAI-18), the 30th innovative Applications of Artificial Intelligence (IAAI-18), and the 8th {AAAI} Symposium on Educational Advances in Artificial Intelligence (EAAI-18), New Orleans, Louisiana, USA, February 2-7, 2018}, pages 2819--2826. {AAAI} Press, 2018.
+
+\bibitem{DBLP:conf/iclr/LiMCRW17}
+Li, J., A.~H. Miller, S.~Chopra, et~al.
+\newblock Dialogue learning with human-in-the-loop.
+\newblock In \emph{5th International Conference on Learning Representations, {ICLR} 2017, Toulon, France, April 24-26, 2017, Conference Track Proceedings}. OpenReview.net, 2017.
+
+\bibitem{DBLP:conf/acl/IyerKCKZ17}
+Iyer, S., I.~Konstas, A.~Cheung, et~al.
+\newblock Learning a neural semantic parser from user feedback.
+\newblock In R.~Barzilay, M.~Kan, eds., \emph{Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics, {ACL} 2017, Vancouver, Canada, July 30 - August 4, Volume 1: Long Papers}, pages 963--973. Association for Computational Linguistics, 2017.
+
+\bibitem{DBLP:conf/nips/Weston16}
+Weston, J.
+\newblock Dialog-based language learning.
+\newblock In D.~D. Lee, M.~Sugiyama, U.~von Luxburg, I.~Guyon, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 29: Annual Conference on Neural Information Processing Systems 2016, December 5-10, 2016, Barcelona, Spain}, pages 829--837. 2016.
+
+\bibitem{DBLP:journals/corr/abs-2208-03188}
+Shuster, K., J.~Xu, M.~Komeili, et~al.
+\newblock Blenderbot 3: a deployed conversational agent that continually learns to responsibly engage.
+\newblock \emph{CoRR}, abs/2208.03188, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2204-03685}
+Du, W., Z.~M. Kim, V.~Raheja, et~al.
+\newblock Read, revise, repeat: {A} system demonstration for human-in-the-loop iterative text revision.
+\newblock \emph{CoRR}, abs/2204.03685, 2022.
+
+\bibitem{DBLP:conf/naacl/KreutzerKMR18}
+Kreutzer, J., S.~Khadivi, E.~Matusov, et~al.
+\newblock Can neural machine translation be improved with user feedback?
+\newblock In S.~Bangalore, J.~Chu{-}Carroll, Y.~Li, eds., \emph{Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2018, New Orleans, Louisiana, USA, June 1-6, 2018, Volume 3 (Industry Papers)}, pages 92--105. Association for Computational Linguistics, 2018.
+
+\bibitem{DBLP:conf/acl/YavuzGSY18}
+Gur, I., S.~Yavuz, Y.~Su, et~al.
+\newblock Dialsql: Dialogue based structured query generation.
+\newblock In I.~Gurevych, Y.~Miyao, eds., \emph{Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics, {ACL} 2018, Melbourne, Australia, July 15-20, 2018, Volume 1: Long Papers}, pages 1339--1349. Association for Computational Linguistics, 2018.
+
+\bibitem{DBLP:conf/emnlp/YaoSSY19}
+Yao, Z., Y.~Su, H.~Sun, et~al.
+\newblock Model-based interactive semantic parsing: {A} unified framework and {A} text-to-sql case study.
+\newblock In K.~Inui, J.~Jiang, V.~Ng, X.~Wan, eds., \emph{Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing, {EMNLP-IJCNLP} 2019, Hong Kong, China, November 3-7, 2019}, pages 5446--5457. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:conf/naacl/MehtaG19}
+Mehta, N., D.~Goldwasser.
+\newblock Improving natural language interaction with robots using advice.
+\newblock In J.~Burstein, C.~Doran, T.~Solorio, eds., \emph{Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2019, Minneapolis, MN, USA, June 2-7, 2019, Volume 1 (Long and Short Papers)}, pages 1962--1967. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:conf/naacl/ElgoharyMRFRA21}
+Elgohary, A., C.~Meek, M.~Richardson, et~al.
+\newblock {NL-EDIT:} correcting semantic parse errors through natural language interaction.
+\newblock In K.~Toutanova, A.~Rumshisky, L.~Zettlemoyer, D.~Hakkani{-}T{\"{u}}r, I.~Beltagy, S.~Bethard, R.~Cotterell, T.~Chakraborty, Y.~Zhou, eds., \emph{Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL-HLT} 2021, Online, June 6-11, 2021}, pages 5599--5610. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/naacl/TandonMCY22}
+Tandon, N., A.~Madaan, P.~Clark, et~al.
+\newblock Learning to repair: Repairing model output errors after deployment using a dynamic memory of feedback.
+\newblock In M.~Carpuat, M.~de~Marneffe, I.~V.~M. Ru{\'{\i}}z, eds., \emph{Findings of the Association for Computational Linguistics: {NAACL} 2022, Seattle, WA, United States, July 10-15, 2022}, pages 339--352. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-16755}
+Scheurer, J., J.~A. Campos, T.~Korbak, et~al.
+\newblock Training language models with language feedback at scale.
+\newblock \emph{CoRR}, abs/2303.16755, 2023.
+
+\bibitem{DBLP:conf/acl/XuUKABW23}
+Xu, J., M.~Ung, M.~Komeili, et~al.
+\newblock Learning new skills after deployment: Improving open-domain internet-driven dialogue with human feedback.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 13557--13572. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-07932}
+Cai, Z., B.~Chang, W.~Han.
+\newblock Human-in-the-loop through chain-of-thought.
+\newblock \emph{CoRR}, abs/2306.07932, 2023.
+
+\bibitem{DBLP:conf/acl/HancockBMW19}
+Hancock, B., A.~Bordes, P.~Mazar{\'{e}}, et~al.
+\newblock Learning from dialogue after deployment: Feed yourself, chatbot!
+\newblock In A.~Korhonen, D.~R. Traum, L.~M{\`{a}}rquez, eds., \emph{Proceedings of the 57th Conference of the Association for Computational Linguistics, {ACL} 2019, Florence, Italy, July 28- August 2, 2019, Volume 1: Long Papers}, pages 3667--3684. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2304-10750}
+Mehta, N., M.~Teruel, P.~F. Sanz, et~al.
+\newblock Improving grounded language understanding in a collaborative environment by interacting with agents through help feedback.
+\newblock \emph{CoRR}, abs/2304.10750, 2023.
+
+\bibitem{DBLP:conf/hri/GvirsmanKNG20}
+Gvirsman, O., Y.~Koren, T.~Norman, et~al.
+\newblock Patricc: {A} platform for triadic interaction with changeable characters.
+\newblock In T.~Belpaeme, J.~E. Young, H.~Gunes, L.~D. Riek, eds., \emph{{HRI} '20: {ACM/IEEE} International Conference on Human-Robot Interaction, Cambridge, United Kingdom, March 23-26, 2020}, pages 399--407. {ACM}, 2020.
+
+\bibitem{doi:10.1177/2055207617713827}
+Stiles-Shields, C., E.~Montague, E.~G. Lattie, et~al.
+\newblock What might get in the way: Barriers to the use of apps for depression.
+\newblock \emph{DIGITAL HEALTH}, 3:2055207617713827, 2017.
+\newblock PMID: 29942605.
+
+\bibitem{DBLP:series/synthesis/2020McTear}
+McTear, M.~F.
+\newblock \emph{Conversational {AI:} Dialogue Systems, Conversational Agents, and Chatbots}.
+\newblock Synthesis Lectures on Human Language Technologies. Morgan {\&} Claypool Publishers, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2106-10901}
+Motger, Q., X.~Franch, J.~Marco.
+\newblock Conversational agents in software engineering: Survey, taxonomy and challenges.
+\newblock \emph{CoRR}, abs/2106.10901, 2021.
+
+\bibitem{DBLP:journals/ijmms/RappCB21}
+Rapp, A., L.~Curti, A.~Boldi.
+\newblock The human side of human-chatbot interaction: {A} systematic literature review of ten years of research on text-based chatbots.
+\newblock \emph{Int. J. Hum. Comput. Stud.}, 151:102630, 2021.
+
+\bibitem{adamopoulou2020chatbots}
+Adamopoulou, E., L.~Moussiades.
+\newblock Chatbots: History, technology, and applications.
+\newblock \emph{Machine Learning with Applications}, 2:100006, 2020.
+
+\bibitem{DBLP:conf/ijcai/Wang018}
+Wang, K., X.~Wan.
+\newblock Sentigan: Generating sentimental texts via mixture adversarial networks.
+\newblock In J.~Lang, ed., \emph{Proceedings of the Twenty-Seventh International Joint Conference on Artificial Intelligence, {IJCAI} 2018, July 13-19, 2018, Stockholm, Sweden}, pages 4446--4452. ijcai.org, 2018.
+
+\bibitem{DBLP:conf/acl/WangZ18}
+Zhou, X., W.~Y. Wang.
+\newblock Mojitalk: Generating emotional responses at scale.
+\newblock In I.~Gurevych, Y.~Miyao, eds., \emph{Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics, {ACL} 2018, Melbourne, Australia, July 15-20, 2018, Volume 1: Long Papers}, pages 1128--1137. Association for Computational Linguistics, 2018.
+
+\bibitem{lin2019caire}
+Lin, Z., P.~Xu, G.~I. Winata, et~al.
+\newblock Caire: An empathetic neural chatbot.
+\newblock \emph{arXiv preprint arXiv:1907.12108}, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2110-03949}
+Jhan, J., C.~Liu, S.~Jeng, et~al.
+\newblock Cheerbots: Chatbots toward empathy and emotionusing reinforcement learning.
+\newblock \emph{CoRR}, abs/2110.03949, 2021.
+
+\bibitem{DBLP:conf/emnlp/LinMSXF19}
+Lin, Z., A.~Madotto, J.~Shin, et~al.
+\newblock Moel: Mixture of empathetic listeners.
+\newblock In K.~Inui, J.~Jiang, V.~Ng, X.~Wan, eds., \emph{Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing, {EMNLP-IJCNLP} 2019, Hong Kong, China, November 3-7, 2019}, pages 121--132. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:conf/emnlp/MajumderHPLGGMP20}
+Majumder, N., P.~Hong, S.~Peng, et~al.
+\newblock {MIME:} mimicking emotions for empathetic response generation.
+\newblock In B.~Webber, T.~Cohn, Y.~He, Y.~Liu, eds., \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2020, Online, November 16-20, 2020}, pages 8968--8979. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/aaai/SabourZH22}
+Sabour, S., C.~Zheng, M.~Huang.
+\newblock {CEM:} commonsense-aware empathetic response generation.
+\newblock In \emph{Thirty-Sixth {AAAI} Conference on Artificial Intelligence, {AAAI} 2022, Thirty-Fourth Conference on Innovative Applications of Artificial Intelligence, {IAAI} 2022, The Twelveth Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2022 Virtual Event, February 22 - March 1, 2022}, pages 11229--11237. {AAAI} Press, 2022.
+
+\bibitem{DBLP:conf/aaai/LiLRRC22}
+Li, Q., P.~Li, Z.~Ren, et~al.
+\newblock Knowledge bridging for empathetic dialogue generation.
+\newblock In \emph{Thirty-Sixth {AAAI} Conference on Artificial Intelligence, {AAAI} 2022, Thirty-Fourth Conference on Innovative Applications of Artificial Intelligence, {IAAI} 2022, The Twelveth Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2022 Virtual Event, February 22 - March 1, 2022}, pages 10993--11001. {AAAI} Press, 2022.
+
+\bibitem{DBLP:journals/cbsn/LiuS18}
+Liu, B., S.~S. Sundar.
+\newblock Should machines express sympathy and empathy? experiments with a health advice chatbot.
+\newblock \emph{Cyberpsychology Behav. Soc. Netw.}, 21(10):625--636, 2018.
+
+\bibitem{DBLP:conf/amia/SuFJ0C20}
+Su, Z., M.~C. Figueiredo, J.~Jo, et~al.
+\newblock Analyzing description, user understanding and expectations of {AI} in mobile health applications.
+\newblock In \emph{{AMIA} 2020, American Medical Informatics Association Annual Symposium, Virtual Event, USA, November 14-18, 2020}. {AMIA}, 2020.
+
+\bibitem{DBLP:journals/corr/MoravcikSBLMBDW17}
+Moravc{\'{\i}}k, M., M.~Schmid, N.~Burch, et~al.
+\newblock Deepstack: Expert-level artificial intelligence in no-limit poker.
+\newblock \emph{CoRR}, abs/1701.01724, 2017.
+
+\bibitem{DBLP:conf/nips/CarrollSHGSAD19}
+Carroll, M., R.~Shah, M.~K. Ho, et~al.
+\newblock On the utility of learning about humans for human-ai coordination.
+\newblock In H.~M. Wallach, H.~Larochelle, A.~Beygelzimer, F.~d'Alch{\'{e}}{-}Buc, E.~B. Fox, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 32: Annual Conference on Neural Information Processing Systems 2019, NeurIPS 2019, December 8-14, 2019, Vancouver, BC, Canada}, pages 5175--5186. 2019.
+
+\bibitem{bard2020hanabi}
+Bard, N., J.~N. Foerster, S.~Chandar, et~al.
+\newblock The hanabi challenge: A new frontier for ai research.
+\newblock \emph{Artificial Intelligence}, 280:103216, 2020.
+
+\bibitem{DBLP:conf/acl/WangSKOYZY19}
+Wang, X., W.~Shi, R.~Kim, et~al.
+\newblock Persuasion for good: Towards a personalized persuasive dialogue system for social good.
+\newblock In A.~Korhonen, D.~R. Traum, L.~M{\`{a}}rquez, eds., \emph{Proceedings of the 57th Conference of the Association for Computational Linguistics, {ACL} 2019, Florence, Italy, July 28- August 2, 2019, Volume 1: Long Papers}, pages 5635--5649. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:journals/ijsr/AbramsP20}
+Abrams, A. M.~H., A.~M.~R. der P{\"{u}}tten.
+\newblock {I-C-E} framework: Concepts for group dynamics research in human-robot interaction.
+\newblock \emph{Int. J. Soc. Robotics}, 12(6):1213--1229, 2020.
+
+\bibitem{xu2023exploring}
+Xu, Y., S.~Wang, P.~Li, et~al.
+\newblock Exploring large language models for communication games: An empirical study on werewolf, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2206-14576}
+Binz, M., E.~Schulz.
+\newblock Using cognitive psychology to understand {GPT-3}.
+\newblock \emph{CoRR}, abs/2206.14576, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2207-07051}
+Dasgupta, I., A.~K. Lampinen, S.~C.~Y. Chan, et~al.
+\newblock Language models show human-like content effects on reasoning.
+\newblock \emph{CoRR}, abs/2207.07051, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2303-11436}
+Dhingra, S., M.~Singh, V.~S. B, et~al.
+\newblock Mind meets machine: Unravelling gpt-4's cognitive psychology.
+\newblock \emph{CoRR}, abs/2303.11436, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-13988}
+Hagendorff, T.
+\newblock Machine psychology: Investigating emergent capabilities and behavior in large language models using psychological methods.
+\newblock \emph{CoRR}, abs/2303.13988, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-09042}
+Wang, X., X.~Li, Z.~Yin, et~al.
+\newblock Emotional intelligence of large language models.
+\newblock \emph{CoRR}, abs/2307.09042, 2023.
+
+\bibitem{DBLP:conf/acl/CurryC23}
+Curry, A., A.~C. Curry.
+\newblock Computer says "no": The case against empathetic conversational {AI}.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Findings of the Association for Computational Linguistics: {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 8123--8130. Association for Computational Linguistics, 2023.
+
+\bibitem{elyoseph2023chatgpt}
+Elyoseph, Z., D.~Hadar-Shoval, K.~Asraf, et~al.
+\newblock Chatgpt outperforms humans in emotional awareness evaluations.
+\newblock \emph{Frontiers in Psychology}, 14:1199058, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2302-09070}
+Habibi, R., J.~Pfau, J.~Holmes, et~al.
+\newblock Empathetic {AI} for empowering resilience in games.
+\newblock \emph{CoRR}, abs/2302.09070, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2212-10276}
+Caron, G., S.~Srivastava.
+\newblock Identifying and manipulating the personality traits of language models.
+\newblock \emph{CoRR}, abs/2212.10276, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2307-16180}
+Pan, K., Y.~Zeng.
+\newblock Do llms possess a personality? making the {MBTI} test an amazing evaluation for large language models.
+\newblock \emph{CoRR}, abs/2307.16180, 2023.
+
+\bibitem{li2023does}
+Li, X., Y.~Li, S.~Joty, et~al.
+\newblock Does gpt-3 demonstrate psychopathy? evaluating large language models from a psychological perspective, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-00184}
+Safdari, M., G.~Serapio{-}Garc{\'{\i}}a, C.~Crepy, et~al.
+\newblock Personality traits in large language models.
+\newblock \emph{CoRR}, abs/2307.00184, 2023.
+
+\bibitem{DBLP:conf/ijcai/CoteKYKBFMHAATT18}
+C{\^{o}}t{\'{e}}, M., {\'{A}}.~K{\'{a}}d{\'{a}}r, X.~Yuan, et~al.
+\newblock Textworld: {A} learning environment for text-based games.
+\newblock In T.~Cazenave, A.~Saffidine, N.~R. Sturtevant, eds., \emph{Computer Games - 7th Workshop, {CGW} 2018, Held in Conjunction with the 27th International Conference on Artificial Intelligence, {IJCAI} 2018, Stockholm, Sweden, July 13, 2018, Revised Selected Papers}, vol. 1017 of \emph{Communications in Computer and Information Science}, pages 41--75. Springer, 2018.
+
+\bibitem{DBLP:conf/emnlp/UrbanekFKJHDRKS19}
+Urbanek, J., A.~Fan, S.~Karamcheti, et~al.
+\newblock Learning to speak and act in a fantasy text adventure game.
+\newblock In K.~Inui, J.~Jiang, V.~Ng, X.~Wan, eds., \emph{Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing, {EMNLP-IJCNLP} 2019, Hong Kong, China, November 3-7, 2019}, pages 673--683. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:conf/aaai/HausknechtACY20}
+Hausknecht, M.~J., P.~Ammanabrolu, M.~C{\^{o}}t{\'{e}}, et~al.
+\newblock Interactive fiction games: {A} colossal adventure.
+\newblock In \emph{The Thirty-Fourth {AAAI} Conference on Artificial Intelligence, {AAAI} 2020, The Thirty-Second Innovative Applications of Artificial Intelligence Conference, {IAAI} 2020, The Tenth {AAAI} Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2020, New York, NY, USA, February 7-12, 2020}, pages 7903--7910. {AAAI} Press, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2308-01404}
+O'Gara, A.
+\newblock Hoodwinked: Deception and cooperation in a text-based game for language models.
+\newblock \emph{CoRR}, abs/2308.01404, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2309-01918}
+Bharadhwaj, H., J.~Vakil, M.~Sharma, et~al.
+\newblock Roboagent: Generalization and efficiency in robot manipulation via semantic augmentations and action chunking.
+\newblock \emph{CoRR}, abs/2309.01918, 2023.
+
+\bibitem{DBLP:conf/uist/ParkPCMLB22}
+Park, J.~S., L.~Popowski, C.~J. Cai, et~al.
+\newblock Social simulacra: Creating populated prototypes for social computing systems.
+\newblock In M.~Agrawala, J.~O. Wobbrock, E.~Adar, V.~Setlur, eds., \emph{The 35th Annual {ACM} Symposium on User Interface Software and Technology, {UIST} 2022, Bend, OR, USA, 29 October 2022 - 2 November 2022}, pages 74:1--74:18. {ACM}, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2307-14984}
+Gao, C., X.~Lan, Z.~Lu, et~al.
+\newblock S\({}^{\mbox{3}}\): Social-network simulation system with large language model-empowered agents.
+\newblock \emph{CoRR}, abs/2307.14984, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-02552}
+Wang, L., J.~Zhang, X.~Chen, et~al.
+\newblock Recagent: {A} novel simulation paradigm for recommender systems.
+\newblock \emph{CoRR}, abs/2306.02552, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-04986}
+Williams, R., N.~Hosseinichimeh, A.~Majumdar, et~al.
+\newblock Epidemic modeling with generative agents.
+\newblock \emph{CoRR}, abs/2307.04986, 2023.
+
+\bibitem{DBLP:books/sp/Costa19}
+da~Rocha~Costa, A.~C.
+\newblock \emph{A Variational Basis for the Regulation and Structuration Mechanisms of Agent Societies}.
+\newblock Springer, 2019.
+
+\bibitem{WIMMER2021EVE}
+Wimmer, S., A.~Pfeiffer, N.~Denk.
+\newblock The everyday life in the sims 4 during a pandemic. a life simulation as a virtual mirror of society?
+\newblock In \emph{INTED2021 Proceedings}, 15th International Technology, Education and Development Conference, pages 5754--5760. IATED, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2110-05352}
+Lee, L., T.~Braud, P.~Zhou, et~al.
+\newblock All one needs to know about metaverse: {A} complete survey on technological singularity, virtual ecosystem, and research agenda.
+\newblock \emph{CoRR}, abs/2110.05352, 2021.
+
+\bibitem{inkeles1974becoming}
+Inkeles, A., D.~H. Smith.
+\newblock \emph{Becoming modern: Individual change in six developing countries}.
+\newblock Harvard University Press, 1974.
+
+\bibitem{DBLP:conf/dagstuhl/1995soscsi}
+Troitzsch, K.~G., U.~Mueller, G.~N. Gilbert, et~al., eds.
+\newblock \emph{Social Science Microsimulation [Dagstuhl Seminar, May, 1995]}. Springer, 1996.
+
+\bibitem{abrams2020c}
+Abrams, A.~M., A.~M. R.-v. der P{\"u}tten.
+\newblock I--c--e framework: Concepts for group dynamics research in human-robot interaction: Revisiting theory from social psychology on ingroup identification (i), cohesion (c) and entitativity (e).
+\newblock \emph{International Journal of Social Robotics}, 12:1213--1229, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2112-00861}
+Askell, A., Y.~Bai, A.~Chen, et~al.
+\newblock A general language assistant as a laboratory for alignment.
+\newblock \emph{CoRR}, abs/2112.00861, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-17147}
+Zhang, Z., N.~Liu, S.~Qi, et~al.
+\newblock Heterogeneous value evaluation for large language models.
+\newblock \emph{CoRR}, abs/2305.17147, 2023.
+
+\bibitem{browning2023personhood}
+Browning, J.
+\newblock Personhood and ai: Why large language models don’t understand us.
+\newblock \emph{AI \& SOCIETY}, pages 1--8, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2206-07550}
+Jiang, G., M.~Xu, S.~Zhu, et~al.
+\newblock {MPI:} evaluating and inducing personality in pre-trained language models.
+\newblock \emph{CoRR}, abs/2206.07550, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2302-02083}
+Kosinski, M.
+\newblock Theory of mind may have spontaneously emerged in large language models.
+\newblock \emph{CoRR}, abs/2302.02083, 2023.
+
+\bibitem{zuckerman1991psychobiology}
+Zuckerman, M.
+\newblock \emph{Psychobiology of personality}, vol.~10.
+\newblock Cambridge University Press, 1991.
+
+\bibitem{DBLP:journals/corr/abs-2306-06548}
+Han, S.~J., K.~Ransom, A.~Perfors, et~al.
+\newblock Inductive reasoning in humans and large language models.
+\newblock \emph{CoRR}, abs/2306.06548, 2023.
+
+\bibitem{hagendorff2023thinking}
+Hagendorff, T., S.~Fabi, M.~Kosinski.
+\newblock Thinking fast and slow in large language models, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2306-07622}
+Hagendorff, T., S.~Fabi.
+\newblock Human-like intuitive behavior and reasoning biases emerged in language models - and disappeared in {GPT-4}.
+\newblock \emph{CoRR}, abs/2306.07622, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-15810}
+Ma, Z., Y.~Mei, Z.~Su.
+\newblock Understanding the benefits and challenges of using large language model-based conversational agents for mental well-being support.
+\newblock \emph{CoRR}, abs/2307.15810, 2023.
+
+\bibitem{DBLP:journals/cacm/Bates94}
+Bates, J.
+\newblock The role of emotion in believable agents.
+\newblock \emph{Commun. {ACM}}, 37(7):122--125, 1994.
+
+\bibitem{DBLP:journals/corr/abs-2204-12000}
+Karra, S.~R., S.~Nguyen, T.~Tulabandhula.
+\newblock {AI} personification: Estimating the personality of language models.
+\newblock \emph{CoRR}, abs/2204.12000, 2022.
+
+\bibitem{DBLP:conf/acl/KielaWZDUS18}
+Zhang, S., E.~Dinan, J.~Urbanek, et~al.
+\newblock Personalizing dialogue agents: {I} have a dog, do you have pets too?
+\newblock In I.~Gurevych, Y.~Miyao, eds., \emph{Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics, {ACL} 2018, Melbourne, Australia, July 15-20, 2018, Volume 1: Long Papers}, pages 2204--2213. Association for Computational Linguistics, 2018.
+
+\bibitem{DBLP:conf/acl/KwonLKLKD23}
+Kwon, D.~S., S.~Lee, K.~H. Kim, et~al.
+\newblock What, when, and how to ground: Designing user persona-aware conversational agents for engaging dialogue.
+\newblock In S.~Sitaram, B.~B. Klebanov, J.~D. Williams, eds., \emph{Proceedings of the The 61st Annual Meeting of the Association for Computational Linguistics: Industry Track, {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 707--719. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:journals/cacm/Maes95}
+Maes, P.
+\newblock Artificial life meets entertainment: Lifelike autonomous agents.
+\newblock \emph{Commun. {ACM}}, 38(11):108--114, 1995.
+
+\bibitem{doi:10.1126/science.adi1778}
+Grossmann, I., M.~Feinberg, D.~C. Parker, et~al.
+\newblock Ai and the transformation of social science research.
+\newblock \emph{Science}, 380(6650):1108--1109, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-13835}
+Wei, J., K.~Shuster, A.~Szlam, et~al.
+\newblock Multi-party chat: Conversational agents in group settings with humans and models.
+\newblock \emph{CoRR}, abs/2304.13835, 2023.
+
+\bibitem{DBLP:journals/aim/HollanHW84}
+Hollan, J.~D., E.~L. Hutchins, L.~Weitzman.
+\newblock {STEAMER:} an interactive inspectable simulation-based training system.
+\newblock \emph{{AI} Mag.}, 5(2):15--27, 1984.
+
+\bibitem{DBLP:journals/aim/TambeJJKLRS95}
+Tambe, M., W.~L. Johnson, R.~M. Jones, et~al.
+\newblock Intelligent agents for interactive simulation environments.
+\newblock \emph{{AI} Mag.}, 16(1):15--39, 1995.
+
+\bibitem{VERMEULEN1976133}
+Vermeulen, P., D.~{de Jongh}.
+\newblock ‘dynamics of growth in a finite world’ – comprehensive sensitivity analysis.
+\newblock \emph{IFAC Proceedings Volumes}, 9(3):133--145, 1976.
+\newblock IFAC Symposium on Large Scale Systems Theory and Applications, Milano, Italy, 16-20 June.
+
+\bibitem{forrester1993system}
+Forrester, J.~W.
+\newblock System dynamics and the lessons of 35 years.
+\newblock In \emph{A systems-based approach to policymaking}, pages 199--240. Springer, 1993.
+
+\bibitem{sante2010cellular}
+Sant{\'e}, I., A.~M. Garc{\'\i}a, D.~Miranda, et~al.
+\newblock Cellular automata models for the simulation of real-world urban processes: A review and analysis.
+\newblock \emph{Landscape and urban planning}, 96(2):108--122, 2010.
+
+\bibitem{dorri2018multi}
+Dorri, A., S.~S. Kanhere, R.~Jurdak.
+\newblock Multi-agent systems: A survey.
+\newblock \emph{Ieee Access}, 6:28573--28593, 2018.
+
+\bibitem{DBLP:conf/cdc/HendrickxM17}
+Hendrickx, J.~M., S.~Martin.
+\newblock Open multi-agent systems: Gossiping with random arrivals and departures.
+\newblock In \emph{56th {IEEE} Annual Conference on Decision and Control, {CDC} 2017, Melbourne, Australia, December 12-15, 2017}, pages 763--768. {IEEE}, 2017.
+
+\bibitem{DBLP:journals/corr/abs-2305-03514}
+Ziems, C., W.~Held, O.~Shaikh, et~al.
+\newblock Can large language models transform computational social science?
+\newblock \emph{CoRR}, abs/2305.03514, 2023.
+
+\bibitem{gilbert2018simulating}
+Gilbert, N., J.~Doran.
+\newblock \emph{Simulating Societies: The Computer Simulation of Social Phenomena}.
+\newblock Routledge Library Editions: Artificial Intelligence. Taylor \& Francis, 2018.
+
+\bibitem{hamilton1989new}
+Hamilton, J.~D.
+\newblock A new approach to the economic analysis of nonstationary time series and the business cycle.
+\newblock \emph{Econometrica: Journal of the econometric society}, pages 357--384, 1989.
+
+\bibitem{DBLP:journals/ijon/Zhang03}
+Zhang, G.~P.
+\newblock Time series forecasting using a hybrid {ARIMA} and neural network model.
+\newblock \emph{Neurocomputing}, 50:159--175, 2003.
+
+\bibitem{kirby2007innateness}
+Kirby, S., M.~Dowman, T.~L. Griffiths.
+\newblock Innateness and culture in the evolution of language.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 104(12):5241--5245, 2007.
+
+\bibitem{DBLP:journals/corr/abs-2302-10646}
+Shibata, H., S.~Miki, Y.~Nakamura.
+\newblock Playing the werewolf game with artificial intelligence for language understanding.
+\newblock \emph{CoRR}, abs/2302.10646, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-07411}
+Junprung, E.
+\newblock Exploring the intersection of large language models and agent-based modeling via prompt engineering.
+\newblock \emph{CoRR}, abs/2308.07411, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-07970}
+Phelps, S., Y.~I. Russell.
+\newblock Investigating emergent goal-like behaviour in large language models using experimental economics.
+\newblock \emph{CoRR}, abs/2305.07970, 2023.
+
+\bibitem{bellomo2013complex}
+Bellomo, N., G.~A. Marsan, A.~Tosin.
+\newblock \emph{Complex systems and society: modeling and simulation}, vol.~2.
+\newblock Springer, 2013.
+
+\bibitem{doi:10.1080/19397038.2016.1220990}
+Moon, Y.~B.
+\newblock Simulation modelling for sustainability: a review of the literature.
+\newblock \emph{International Journal of Sustainable Engineering}, 10(1):2--19, 2017.
+
+\bibitem{DBLP:journals/intpolrev/HelbergerD23}
+Helberger, N., N.~Diakopoulos.
+\newblock Chatgpt and the {AI} act.
+\newblock \emph{Internet Policy Rev.}, 12(1), 2023.
+
+\bibitem{DBLP:journals/corr/abs-2112-04359}
+Weidinger, L., J.~Mellor, M.~Rauh, et~al.
+\newblock Ethical and social risks of harm from language models.
+\newblock \emph{CoRR}, abs/2112.04359, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2304-05335}
+Deshpande, A., V.~Murahari, T.~Rajpurohit, et~al.
+\newblock Toxicity in chatgpt: Analyzing persona-assigned language models.
+\newblock \emph{CoRR}, abs/2304.05335, 2023.
+
+\bibitem{DBLP:conf/nips/KirkJVIBDSA21}
+Kirk, H.~R., Y.~Jun, F.~Volpin, et~al.
+\newblock Bias out-of-the-box: An empirical analysis of intersectional occupational biases in popular generative language models.
+\newblock In M.~Ranzato, A.~Beygelzimer, Y.~N. Dauphin, P.~Liang, J.~W. Vaughan, eds., \emph{Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, pages 2611--2624. 2021.
+
+\bibitem{DBLP:conf/acl/NadeemBR20}
+Nadeem, M., A.~Bethke, S.~Reddy.
+\newblock Stereoset: Measuring stereotypical bias in pretrained language models.
+\newblock In C.~Zong, F.~Xia, W.~Li, R.~Navigli, eds., \emph{Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing, {ACL/IJCNLP} 2021, (Volume 1: Long Papers), Virtual Event, August 1-6, 2021}, pages 5356--5371. Association for Computational Linguistics, 2021.
+
+\bibitem{roberts2018assessing}
+Roberts, T., G.~Marchais.
+\newblock Assessing the role of social media and digital technology in violence reporting.
+\newblock \emph{Contemporary Readings in Law \& Social Justice}, 10(2), 2018.
+
+\bibitem{pmlr-v202-kandpal23a}
+Kandpal, N., H.~Deng, A.~Roberts, et~al.
+\newblock Large language models struggle to learn long-tail knowledge.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{Proceedings of the 40th International Conference on Machine Learning}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 15696--15707. PMLR, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-03738}
+Ferrara, E.
+\newblock Should chatgpt be biased? challenges and risks of bias in large language models.
+\newblock \emph{CoRR}, abs/2304.03738, 2023.
+
+\bibitem{haller2023opiniongpt}
+Haller, P., A.~Aynetdinov, A.~Akbik.
+\newblock Opiniongpt: Modelling explicit biases in instruction-tuned llms, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14930}
+Salewski, L., S.~Alaniz, I.~Rio{-}Torto, et~al.
+\newblock In-context impersonation reveals large language models' strengths and biases.
+\newblock \emph{CoRR}, abs/2305.14930, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2304-00416}
+Lin, B., D.~Bouneffouf, G.~A. Cecchi, et~al.
+\newblock Towards healthy {AI:} large language models need therapists too.
+\newblock \emph{CoRR}, abs/2304.00416, 2023.
+
+\bibitem{DBLP:conf/icml/LiangWMS21}
+Liang, P.~P., C.~Wu, L.~Morency, et~al.
+\newblock Towards understanding and mitigating social biases in language models.
+\newblock In M.~Meila, T.~Zhang, eds., \emph{Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, vol. 139 of \emph{Proceedings of Machine Learning Research}, pages 6565--6576. {PMLR}, 2021.
+
+\bibitem{DBLP:conf/aies/0002SAKFLP18}
+Henderson, P., K.~Sinha, N.~Angelard{-}Gontier, et~al.
+\newblock Ethical challenges in data-driven dialogue systems.
+\newblock In J.~Furman, G.~E. Marchant, H.~Price, F.~Rossi, eds., \emph{Proceedings of the 2018 {AAAI/ACM} Conference on AI, Ethics, and Society, {AIES} 2018, New Orleans, LA, USA, February 02-03, 2018}, pages 123--129. {ACM}, 2018.
+
+\bibitem{DBLP:conf/naacl/0003SF22}
+Li, H., Y.~Song, L.~Fan.
+\newblock You don't know my favorite color: Preventing dialogue representations from revealing speakers' private personas.
+\newblock In M.~Carpuat, M.~de~Marneffe, I.~V.~M. Ru{\'{\i}}z, eds., \emph{Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL} 2022, Seattle, WA, United States, July 10-15, 2022}, pages 5858--5870. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/fat/BrownLMST22}
+Brown, H., K.~Lee, F.~Mireshghallah, et~al.
+\newblock What does it mean for a language model to preserve privacy?
+\newblock In \emph{FAccT '22: 2022 {ACM} Conference on Fairness, Accountability, and Transparency, Seoul, Republic of Korea, June 21 - 24, 2022}, pages 2280--2292. {ACM}, 2022.
+
+\bibitem{sebastian2023privacy}
+Sebastian, G.
+\newblock Privacy and data protection in chatgpt and other ai chatbots: Strategies for securing user information.
+\newblock \emph{Available at SSRN 4454761}, 2023.
+
+\bibitem{DBLP:books/daglib/0085601}
+Reeves, B., C.~Nass.
+\newblock \emph{The media equation - how people treat computers, television, and new media like real people and places}.
+\newblock Cambridge University Press, 1996.
+
+\bibitem{roose2023conversation}
+Roose, K.
+\newblock A conversation with bing's chatbot left me deeply unsettled, 2023.
+
+\bibitem{DBLP:conf/iclr/0002HBVPW23}
+Li, K., A.~K. Hopkins, D.~Bau, et~al.
+\newblock Emergent world representations: Exploring a sequence model trained on a synthetic task.
+\newblock In \emph{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2212-08073}
+Bai, Y., S.~Kadavath, S.~Kundu, et~al.
+\newblock Constitutional {AI:} harmlessness from {AI} feedback.
+\newblock \emph{CoRR}, abs/2212.08073, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2204-05862}
+Bai, Y., A.~Jones, K.~Ndousse, et~al.
+\newblock Training a helpful and harmless assistant with reinforcement learning from human feedback.
+\newblock \emph{CoRR}, abs/2204.05862, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2308-03688}
+Liu, X., H.~Yu, H.~Zhang, et~al.
+\newblock Agentbench: Evaluating llms as agents.
+\newblock \emph{CoRR}, abs/2308.03688, 2023.
+
+\bibitem{DBLP:conf/icml/AherAK23}
+Aher, G.~V., R.~I. Arriaga, A.~T. Kalai.
+\newblock Using large language models to simulate multiple humans and replicate human subject studies.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 337--371. {PMLR}, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2307-12573}
+Liang, Y., L.~Zhu, Y.~Yang.
+\newblock Tachikuma: Understading complex interactions with multi-character and novel objects by large language models.
+\newblock \emph{CoRR}, abs/2307.12573, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2308-04030}
+Xu, B., X.~Liu, H.~Shen, et~al.
+\newblock Gentopia: {A} collaborative platform for tool-augmented llms.
+\newblock \emph{CoRR}, abs/2308.04030, 2023.
+
+\bibitem{kim2023help}
+Kim, S.~S., E.~A. Watkins, O.~Russakovsky, et~al.
+\newblock " help me help the ai": Understanding how explainability can support human-ai interaction.
+\newblock In \emph{Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems}, pages 1--17. 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-14938}
+Choi, M., J.~Pei, S.~Kumar, et~al.
+\newblock Do llms understand social knowledge? evaluating the sociability of large language models with socket benchmark.
+\newblock \emph{CoRR}, abs/2305.14938, 2023.
+
+\bibitem{wilson2019if}
+Wilson, A.~C., D.~V. Bishop.
+\newblock " if you catch my drift...": ability to infer implied meaning is distinct from vocabulary and grammar skills.
+\newblock \emph{Wellcome open research}, 4, 2019.
+
+\bibitem{DBLP:conf/naacl/0001USW22}
+Shuster, K., J.~Urbanek, A.~Szlam, et~al.
+\newblock Am {I} me or you? state-of-the-art dialogue models cannot maintain an identity.
+\newblock In M.~Carpuat, M.~de~Marneffe, I.~V.~M. Ru{\'{\i}}z, eds., \emph{Findings of the Association for Computational Linguistics: {NAACL} 2022, Seattle, WA, United States, July 10-15, 2022}, pages 2367--2387. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2209-07858}
+Ganguli, D., L.~Lovitt, J.~Kernion, et~al.
+\newblock Red teaming language models to reduce harms: Methods, scaling behaviors, and lessons learned.
+\newblock \emph{CoRR}, abs/2209.07858, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2207-05221}
+Kadavath, S., T.~Conerly, A.~Askell, et~al.
+\newblock Language models (mostly) know what they know.
+\newblock \emph{CoRR}, abs/2207.05221, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2305-12487}
+Colas, C., L.~Teodorescu, P.~Oudeyer, et~al.
+\newblock Augmenting autotelic agents with large language models.
+\newblock \emph{CoRR}, abs/2305.12487, 2023.
+
+\bibitem{chaudhry2018riemannian}
+Chaudhry, A., P.~K. Dokania, T.~Ajanthan, et~al.
+\newblock Riemannian walk for incremental learning: Understanding forgetting and intransigence.
+\newblock In \emph{Proceedings of the European conference on computer vision (ECCV)}, pages 532--547. 2018.
+
+\bibitem{hou2019learning}
+Hou, S., X.~Pan, C.~C. Loy, et~al.
+\newblock Learning a unified classifier incrementally via rebalancing.
+\newblock In \emph{Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 831--839. 2019.
+
+\bibitem{DBLP:journals/jair/ColasKSO22}
+Colas, C., T.~Karch, O.~Sigaud, et~al.
+\newblock Autotelic agents with intrinsically motivated goal-conditioned reinforcement learning: {A} short survey.
+\newblock \emph{J. Artif. Intell. Res.}, 74:1159--1199, 2022.
+
+\bibitem{DBLP:journals/corr/SzegedyZSBEGF13}
+Szegedy, C., W.~Zaremba, I.~Sutskever, et~al.
+\newblock Intriguing properties of neural networks.
+\newblock In Y.~Bengio, Y.~LeCun, eds., \emph{2nd International Conference on Learning Representations, {ICLR} 2014, Banff, AB, Canada, April 14-16, 2014, Conference Track Proceedings}. 2014.
+
+\bibitem{DBLP:journals/corr/GoodfellowSS14}
+Goodfellow, I.~J., J.~Shlens, C.~Szegedy.
+\newblock Explaining and harnessing adversarial examples.
+\newblock In Y.~Bengio, Y.~LeCun, eds., \emph{3rd International Conference on Learning Representations, {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings}. 2015.
+
+\bibitem{DBLP:conf/iclr/MadryMSTV18}
+Madry, A., A.~Makelov, L.~Schmidt, et~al.
+\newblock Towards deep learning models resistant to adversarial attacks.
+\newblock In \emph{6th International Conference on Learning Representations, {ICLR} 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings}. OpenReview.net, 2018.
+
+\bibitem{DBLP:conf/acl/ZhengXLLGZHMSG23}
+Zheng, R., Z.~Xi, Q.~Liu, et~al.
+\newblock Characterizing the impacts of instances on robustness.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Findings of the Association for Computational Linguistics: {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 2314--2332. Association for Computational Linguistics, 2023.
+
+\bibitem{zhiheng2023safety}
+Zhiheng, X., Z.~Rui, G.~Tao.
+\newblock Safety and ethical concerns of large language models.
+\newblock In \emph{Proceedings of the 22nd Chinese National Conference on Computational Linguistics (Volume 4: Tutorial Abstracts)}, pages 9--16. 2023.
+
+\bibitem{DBLP:journals/corr/abs-2108-00401}
+Akhtar, N., A.~Mian, N.~Kardan, et~al.
+\newblock Threat of adversarial attacks on deep learning in computer vision: Survey {II}.
+\newblock \emph{CoRR}, abs/2108.00401, 2021.
+
+\bibitem{drenkow2021systematic}
+Drenkow, N., N.~Sani, I.~Shpitser, et~al.
+\newblock A systematic review of robustness in deep learning for computer vision: Mind the gap?
+\newblock \emph{arXiv preprint arXiv:2112.00639}, 2021.
+
+\bibitem{DBLP:conf/iclr/HendrycksD19}
+Hendrycks, D., T.~G. Dietterich.
+\newblock Benchmarking neural network robustness to common corruptions and perturbations.
+\newblock In \emph{7th International Conference on Learning Representations, {ICLR} 2019, New Orleans, LA, USA, May 6-9, 2019}. OpenReview.net, 2019.
+
+\bibitem{DBLP:conf/naacl/0002WY22}
+Wang, X., H.~Wang, D.~Yang.
+\newblock Measure and improve robustness in {NLP} models: {A} survey.
+\newblock In M.~Carpuat, M.~de~Marneffe, I.~V.~M. Ru{\'{\i}}z, eds., \emph{Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, {NAACL} 2022, Seattle, WA, United States, July 10-15, 2022}, pages 4569--4586. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/ndss/LiJDLW19}
+Li, J., S.~Ji, T.~Du, et~al.
+\newblock Textbugger: Generating adversarial text against real-world applications.
+\newblock In \emph{26th Annual Network and Distributed System Security Symposium, {NDSS} 2019, San Diego, California, USA, February 24-27, 2019}. The Internet Society, 2019.
+
+\bibitem{DBLP:conf/iclr/ZhuCGSGL20}
+Zhu, C., Y.~Cheng, Z.~Gan, et~al.
+\newblock Freelb: Enhanced adversarial training for natural language understanding.
+\newblock In \emph{8th International Conference on Learning Representations, {ICLR} 2020, Addis Ababa, Ethiopia, April 26-30, 2020}. OpenReview.net, 2020.
+
+\bibitem{DBLP:conf/emnlp/XiZGZH22}
+Xi, Z., R.~Zheng, T.~Gui, et~al.
+\newblock Efficient adversarial training with robust early-bird tickets.
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 8318--8331. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/icml/PintoDSG17}
+Pinto, L., J.~Davidson, R.~Sukthankar, et~al.
+\newblock Robust adversarial reinforcement learning.
+\newblock In D.~Precup, Y.~W. Teh, eds., \emph{Proceedings of the 34th International Conference on Machine Learning, {ICML} 2017, Sydney, NSW, Australia, 6-11 August 2017}, vol.~70 of \emph{Proceedings of Machine Learning Research}, pages 2817--2826. {PMLR}, 2017.
+
+\bibitem{DBLP:conf/nips/RigterLH22}
+Rigter, M., B.~Lacerda, N.~Hawes.
+\newblock {RAMBO-RL:} robust adversarial model-based offline reinforcement learning.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{DBLP:conf/nips/PanagantiXKG22}
+Panaganti, K., Z.~Xu, D.~Kalathil, et~al.
+\newblock Robust reinforcement learning using offline data.
+\newblock In \emph{NeurIPS}. 2022.
+
+\bibitem{tencent2019experimental}
+Lab, T. K.~S.
+\newblock Experimental security research of tesla autopilot.
+\newblock \emph{Tencent Keen Security Lab}, 2019.
+
+\bibitem{DBLP:conf/eccv/XuZ0FSCCWL20}
+Xu, K., G.~Zhang, S.~Liu, et~al.
+\newblock Adversarial t-shirt! evading person detectors in a physical world.
+\newblock In A.~Vedaldi, H.~Bischof, T.~Brox, J.~Frahm, eds., \emph{Computer Vision - {ECCV} 2020 - 16th European Conference, Glasgow, UK, August 23-28, 2020, Proceedings, Part {V}}, vol. 12350 of \emph{Lecture Notes in Computer Science}, pages 665--681. Springer, 2020.
+
+\bibitem{DBLP:conf/ccs/SharifBBR16}
+Sharif, M., S.~Bhagavatula, L.~Bauer, et~al.
+\newblock Accessorize to a crime: Real and stealthy attacks on state-of-the-art face recognition.
+\newblock In E.~R. Weippl, S.~Katzenbeisser, C.~Kruegel, A.~C. Myers, S.~Halevi, eds., \emph{Proceedings of the 2016 {ACM} {SIGSAC} Conference on Computer and Communications Security, Vienna, Austria, October 24-28, 2016}, pages 1528--1540. {ACM}, 2016.
+
+\bibitem{DBLP:conf/aaai/JinJZS20}
+Jin, D., Z.~Jin, J.~T. Zhou, et~al.
+\newblock Is {BERT} really robust? {A} strong baseline for natural language attack on text classification and entailment.
+\newblock In \emph{The Thirty-Fourth {AAAI} Conference on Artificial Intelligence, {AAAI} 2020, The Thirty-Second Innovative Applications of Artificial Intelligence Conference, {IAAI} 2020, The Tenth {AAAI} Symposium on Educational Advances in Artificial Intelligence, {EAAI} 2020, New York, NY, USA, February 7-12, 2020}, pages 8018--8025. {AAAI} Press, 2020.
+
+\bibitem{DBLP:conf/acl/RenDHC19}
+Ren, S., Y.~Deng, K.~He, et~al.
+\newblock Generating natural language adversarial examples through probability weighted word saliency.
+\newblock In A.~Korhonen, D.~R. Traum, L.~M{\`{a}}rquez, eds., \emph{Proceedings of the 57th Conference of the Association for Computational Linguistics, {ACL} 2019, Florence, Italy, July 28- August 2, 2019, Volume 1: Long Papers}, pages 1085--1097. Association for Computational Linguistics, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2306-04528}
+Zhu, K., J.~Wang, J.~Zhou, et~al.
+\newblock Promptbench: Towards evaluating the robustness of large language models on adversarial prompts.
+\newblock \emph{CoRR}, abs/2306.04528, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2303-00293}
+Chen, X., J.~Ye, C.~Zu, et~al.
+\newblock How robust is {GPT-3.5} to predecessors? {A} comprehensive study on language understanding tasks.
+\newblock \emph{CoRR}, abs/2303.00293, 2023.
+
+\bibitem{DBLP:journals/corr/abs-1708-06733}
+Gu, T., B.~Dolan{-}Gavitt, S.~Garg.
+\newblock Badnets: Identifying vulnerabilities in the machine learning model supply chain.
+\newblock \emph{CoRR}, abs/1708.06733, 2017.
+
+\bibitem{DBLP:conf/acsac/Chen0C0MSW021}
+Chen, X., A.~Salem, D.~Chen, et~al.
+\newblock Badnl: Backdoor attacks against {NLP} models with semantic-preserving improvements.
+\newblock In \emph{{ACSAC} '21: Annual Computer Security Applications Conference, Virtual Event, USA, December 6 - 10, 2021}, pages 554--569. {ACM}, 2021.
+
+\bibitem{DBLP:conf/emnlp/LiMDS21}
+Li, Z., D.~Mekala, C.~Dong, et~al.
+\newblock Bfclass: {A} backdoor-free text classification framework.
+\newblock In M.~Moens, X.~Huang, L.~Specia, S.~W. Yih, eds., \emph{Findings of the Association for Computational Linguistics: {EMNLP} 2021, Virtual Event / Punta Cana, Dominican Republic, 16-20 November, 2021}, pages 444--453. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/nlpcc/ShiLYHZL22}
+Shi, Y., P.~Li, C.~Yin, et~al.
+\newblock Promptattack: Prompt-based attack for language models via gradient search.
+\newblock In W.~Lu, S.~Huang, Y.~Hong, X.~Zhou, eds., \emph{Natural Language Processing and Chinese Computing - 11th {CCF} International Conference, {NLPCC} 2022, Guilin, China, September 24-25, 2022, Proceedings, Part {I}}, vol. 13551 of \emph{Lecture Notes in Computer Science}, pages 682--693. Springer, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2211-09527}
+Perez, F., I.~Ribeiro.
+\newblock Ignore previous prompt: Attack techniques for language models.
+\newblock \emph{CoRR}, abs/2211.09527, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2211-09110}
+Liang, P., R.~Bommasani, T.~Lee, et~al.
+\newblock Holistic evaluation of language models.
+\newblock \emph{CoRR}, abs/2211.09110, 2022.
+
+\bibitem{DBLP:conf/emnlp/GururanganCDGWW22}
+Gururangan, S., D.~Card, S.~K. Dreier, et~al.
+\newblock Whose language counts as high quality? measuring language ideologies in text data selection.
+\newblock In Y.~Goldberg, Z.~Kozareva, Y.~Zhang, eds., \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2022, Abu Dhabi, United Arab Emirates, December 7-11, 2022}, pages 2562--2580. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2306-05499}
+Liu, Y., G.~Deng, Y.~Li, et~al.
+\newblock Prompt injection attack against llm-integrated applications.
+\newblock \emph{CoRR}, abs/2306.05499, 2023.
+
+\bibitem{DBLP:conf/sp/Carlini018}
+Carlini, N., D.~A. Wagner.
+\newblock Audio adversarial examples: Targeted attacks on speech-to-text.
+\newblock In \emph{2018 {IEEE} Security and Privacy Workshops, {SP} Workshops 2018, San Francisco, CA, USA, May 24, 2018}, pages 1--7. {IEEE} Computer Society, 2018.
+
+\bibitem{DBLP:conf/emnlp/MorrisLYGJQ20}
+Morris, J.~X., E.~Lifland, J.~Y. Yoo, et~al.
+\newblock Textattack: {A} framework for adversarial attacks, data augmentation, and adversarial training in {NLP}.
+\newblock In Q.~Liu, D.~Schlangen, eds., \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, {EMNLP} 2020 - Demos, Online, November 16-20, 2020}, pages 119--126. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/acl/SiZQLWLS21}
+Si, C., Z.~Zhang, F.~Qi, et~al.
+\newblock Better robustness by more coverage: Adversarial and mixup data augmentation for robust finetuning.
+\newblock In C.~Zong, F.~Xia, W.~Li, R.~Navigli, eds., \emph{Findings of the Association for Computational Linguistics: {ACL/IJCNLP} 2021, Online Event, August 1-6, 2021}, vol. {ACL/IJCNLP} 2021 of \emph{Findings of {ACL}}, pages 1569--1576. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/acl/YooKJK22}
+Yoo, K., J.~Kim, J.~Jang, et~al.
+\newblock Detection of adversarial examples in text classification: Benchmark and baseline via robust density estimation.
+\newblock In S.~Muresan, P.~Nakov, A.~Villavicencio, eds., \emph{Findings of the Association for Computational Linguistics: {ACL} 2022, Dublin, Ireland, May 22-27, 2022}, pages 3656--3672. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:conf/acl/LeP020}
+Le, T., N.~Park, D.~Lee.
+\newblock A sweet rabbit hole by {DARCY:} using honeypots to detect universal trigger's adversarial attacks.
+\newblock In C.~Zong, F.~Xia, W.~Li, R.~Navigli, eds., \emph{Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing, {ACL/IJCNLP} 2021, (Volume 1: Long Papers), Virtual Event, August 1-6, 2021}, pages 3831--3844. Association for Computational Linguistics, 2021.
+
+\bibitem{DBLP:conf/iclr/TsiprasSETM19}
+Tsipras, D., S.~Santurkar, L.~Engstrom, et~al.
+\newblock Robustness may be at odds with accuracy.
+\newblock In \emph{7th International Conference on Learning Representations, {ICLR} 2019, New Orleans, LA, USA, May 6-9, 2019}. OpenReview.net, 2019.
+
+\bibitem{DBLP:conf/icml/ZhangYJXGJ19}
+Zhang, H., Y.~Yu, J.~Jiao, et~al.
+\newblock Theoretically principled trade-off between robustness and accuracy.
+\newblock In K.~Chaudhuri, R.~Salakhutdinov, eds., \emph{Proceedings of the 36th International Conference on Machine Learning, {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}}, vol.~97 of \emph{Proceedings of Machine Learning Research}, pages 7472--7482. {PMLR}, 2019.
+
+\bibitem{DBLP:journals/corr/abs-2009-05835}
+Wong, A., X.~Y. Wang, A.~Hryniowski.
+\newblock How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks.
+\newblock \emph{CoRR}, abs/2009.05835, 2020.
+
+\bibitem{DBLP:journals/csr/HuangKRSSTWY20}
+Huang, X., D.~Kroening, W.~Ruan, et~al.
+\newblock A survey of safety and trustworthiness of deep neural networks: Verification, testing, adversarial attack and defence, and interpretability.
+\newblock \emph{Comput. Sci. Rev.}, 37:100270, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2305-11391}
+Huang, X., W.~Ruan, W.~Huang, et~al.
+\newblock A survey of safety and trustworthiness of large language models through the lens of verification and validation.
+\newblock \emph{CoRR}, abs/2305.11391, 2023.
+
+\bibitem{DBLP:journals/jmlr/RaffelSRLNMZLL20}
+Raffel, C., N.~Shazeer, A.~Roberts, et~al.
+\newblock Exploring the limits of transfer learning with a unified text-to-text transformer.
+\newblock \emph{J. Mach. Learn. Res.}, 21:140:1--140:67, 2020.
+
+\bibitem{DBLP:conf/acl/ChenYC0J23}
+Chen, Y., L.~Yuan, G.~Cui, et~al.
+\newblock A close look into the calibration of pre-trained language models.
+\newblock In A.~Rogers, J.~L. Boyd{-}Graber, N.~Okazaki, eds., \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2023, Toronto, Canada, July 9-14, 2023}, pages 1343--1367. Association for Computational Linguistics, 2023.
+
+\bibitem{DBLP:conf/acl/BlodgettBDW20}
+Blodgett, S.~L., S.~Barocas, H.~D. III, et~al.
+\newblock Language (technology) is power: {A} critical survey of "bias" in {NLP}.
+\newblock In D.~Jurafsky, J.~Chai, N.~Schluter, J.~R. Tetreault, eds., \emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, {ACL} 2020, Online, July 5-10, 2020}, pages 5454--5476. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:conf/aies/GuoC21}
+Guo, W., A.~Caliskan.
+\newblock Detecting emergent intersectional biases: Contextualized word embeddings contain a distribution of human-like biases.
+\newblock In M.~Fourcade, B.~Kuipers, S.~Lazar, D.~K. Mulligan, eds., \emph{{AIES} '21: {AAAI/ACM} Conference on AI, Ethics, and Society, Virtual Event, USA, May 19-21, 2021}, pages 122--133. {ACM}, 2021.
+
+\bibitem{DBLP:conf/nips/BolukbasiCZSK16}
+Bolukbasi, T., K.~Chang, J.~Y. Zou, et~al.
+\newblock Man is to computer programmer as woman is to homemaker? debiasing word embeddings.
+\newblock In D.~D. Lee, M.~Sugiyama, U.~von Luxburg, I.~Guyon, R.~Garnett, eds., \emph{Advances in Neural Information Processing Systems 29: Annual Conference on Neural Information Processing Systems 2016, December 5-10, 2016, Barcelona, Spain}, pages 4349--4357. 2016.
+
+\bibitem{caliskan2017semantics}
+Caliskan, A., J.~J. Bryson, A.~Narayanan.
+\newblock Semantics derived automatically from language corpora contain human-like biases.
+\newblock \emph{Science}, 356(6334):183--186, 2017.
+
+\bibitem{DBLP:journals/csur/JiLFYSXIBMF23}
+Ji, Z., N.~Lee, R.~Frieske, et~al.
+\newblock Survey of hallucination in natural language generation.
+\newblock \emph{{ACM} Comput. Surv.}, 55(12):248:1--248:38, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-15852}
+M{\"{u}}ndler, N., J.~He, S.~Jenko, et~al.
+\newblock Self-contradictory hallucinations of large language models: Evaluation, detection and mitigation.
+\newblock \emph{CoRR}, abs/2305.15852, 2023.
+
+\bibitem{DBLP:conf/acl/MaynezNBM20}
+Maynez, J., S.~Narayan, B.~Bohnet, et~al.
+\newblock On faithfulness and factuality in abstractive summarization.
+\newblock In D.~Jurafsky, J.~Chai, N.~Schluter, J.~R. Tetreault, eds., \emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, {ACL} 2020, Online, July 5-10, 2020}, pages 1906--1919. Association for Computational Linguistics, 2020.
+
+\bibitem{DBLP:journals/corr/abs-2307-03987}
+Varshney, N., W.~Yao, H.~Zhang, et~al.
+\newblock A stitch in time saves nine: Detecting and mitigating hallucinations of llms by validating low-confidence generation.
+\newblock \emph{CoRR}, abs/2307.03987, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2305-20050}
+Lightman, H., V.~Kosaraju, Y.~Burda, et~al.
+\newblock Let's verify step by step.
+\newblock \emph{CoRR}, abs/2305.20050, 2023.
+
+\bibitem{DBLP:conf/acl/GuoYA22}
+Guo, Y., Y.~Yang, A.~Abbasi.
+\newblock Auto-debias: Debiasing masked language models with automated biased prompts.
+\newblock In S.~Muresan, P.~Nakov, A.~Villavicencio, eds., \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), {ACL} 2022, Dublin, Ireland, May 22-27, 2022}, pages 1012--1023. Association for Computational Linguistics, 2022.
+
+\bibitem{DBLP:journals/corr/abs-2208-11857}
+Du, M., F.~He, N.~Zou, et~al.
+\newblock Shortcut learning of large language models in natural language understanding: {A} survey.
+\newblock \emph{CoRR}, abs/2208.11857, 2022.
+
+\bibitem{DBLP:journals/corr/abs-1802-07228}
+Brundage, M., S.~Avin, J.~Clark, et~al.
+\newblock The malicious use of artificial intelligence: Forecasting, prevention, and mitigation.
+\newblock \emph{CoRR}, abs/1802.07228, 2018.
+
+\bibitem{DBLP:journals/corr/abs-2108-07258}
+Bommasani, R., D.~A. Hudson, E.~Adeli, et~al.
+\newblock On the opportunities and risks of foundation models.
+\newblock \emph{CoRR}, abs/2108.07258, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2305-15336}
+Charan, P. V.~S., H.~Chunduri, P.~M. Anand, et~al.
+\newblock From text to {MITRE} techniques: Exploring the malicious use of large language models for generating cyber attack payloads.
+\newblock \emph{CoRR}, abs/2305.15336, 2023.
+
+\bibitem{DBLP:journals/corr/abs-2103-04044}
+Wang, Z.~J., D.~Choi, S.~Xu, et~al.
+\newblock Putting humans in the natural language processing loop: {A} survey.
+\newblock \emph{CoRR}, abs/2103.04044, 2021.
+
+\bibitem{galsworthy1912inn}
+Galsworthy, J.
+\newblock \emph{The inn of tranquillity: studies and essays}.
+\newblock W. Heinemann, 1912.
+
+\bibitem{yao2023impact}
+Yao, S., K.~Narasimhan.
+\newblock Language agents in the digital world: Opportunities and risks.
+\newblock \emph{princeton-nlp.github.io}, 2023.
+
+\bibitem{asimov1941three}
+Asimov, I.
+\newblock Three laws of robotics.
+\newblock \emph{Asimov, I. Runaround}, 2, 1941.
+
+\bibitem{elhage2021mathematical}
+Elhage, N., N.~Nanda, C.~Olsson, et~al.
+\newblock A mathematical framework for transformer circuits.
+\newblock \emph{Transformer Circuits Thread}, 1, 2021.
+
+\bibitem{DBLP:journals/corr/abs-2308-11136}
+Bai, J., S.~Zhang, Z.~Chen.
+\newblock Is there any social principle for llm-based agents?
+\newblock \emph{CoRR}, abs/2308.11136, 2023.
+
+\bibitem{baum2017survey}
+Baum, S.
+\newblock A survey of artificial general intelligence projects for ethics, risk, and policy.
+\newblock \emph{Global Catastrophic Risk Institute Working Paper}, pages 17--1, 2017.
+
+\bibitem{twitter_1}
+Lecun, Y.
+\newblock \href{https://twitter.com/ylecun/status/1625127902890151943}{https://twitter.com/ylecun/status/1625127902890151943}.
+
+\bibitem{blog_1}
+Zhao, S.
+\newblock \href{https://medium.com/@zhaosw/are-large-language-models-a-viable-path-to-artificial-general-intelligence-9756fd9f6f3b}{Can Large Language Models Lead to Artificial General Intelligence?}
+
+\bibitem{blog_2}
+Brandes, N.
+\newblock \href{https://www.lesswrong.com/posts/wNrbHbhgPJBD2d9v6/language-models-are-a-potentially-safe-path-to-human-level}{Language Models are a Potentially Safe Path to Human-Level AGI.}
+
+\bibitem{blog_3}
+Zocca, V.
+\newblock \href{https://aisupremacy.substack.com/p/how-far-are-we-from-agi}{How far are we from AGI?}
+
+\bibitem{video_1}
+Ilya~Sutskever, L.~F.
+\newblock \href{https://www.youtube.com/watch?v=MJUGTWb8xRo}{Ilya Sutskever: Deep Learning | Lex Fridman Podcast \#94.}
+
+\bibitem{twitter_2}
+Lecun, Y.
+\newblock \href{https://twitter.com/ylecun/status/1640063227903213568}{https://twitter.com/ylecun/status/1640063227903213568}.
+
+\bibitem{lecun2022path}
+LeCun, Y.
+\newblock A path towards autonomous machine intelligence version 0.9. 2, 2022-06-27.
+\newblock \emph{Open Review}, 62, 2022.
+
+\bibitem{DBLP:conf/iclr/ShridharYCBTH21}
+Shridhar, M., X.~Yuan, M.~C{\^{o}}t{\'{e}}, et~al.
+\newblock Alfworld: Aligning text and embodied environments for interactive learning.
+\newblock In \emph{9th International Conference on Learning Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net, 2021.
+
+\bibitem{DBLP:conf/icml/ChowdhuryC23a}
+Chowdhury, J.~R., C.~Caragea.
+\newblock Monotonic location attention for length generalization.
+\newblock In A.~Krause, E.~Brunskill, K.~Cho, B.~Engelhardt, S.~Sabato, J.~Scarlett, eds., \emph{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}, vol. 202 of \emph{Proceedings of Machine Learning Research}, pages 28792--28808. {PMLR}, 2023.
+
+\bibitem{DBLP:conf/IEEEcloud/DuanFZSNH15}
+Duan, Y., G.~Fu, N.~Zhou, et~al.
+\newblock Everything as a service (xaas) on the cloud: Origins, current and future trends.
+\newblock In C.~Pu, A.~Mohindra, eds., \emph{8th {IEEE} International Conference on Cloud Computing, {CLOUD} 2015, New York City, NY, USA, June 27 - July 2, 2015}, pages 621--628. {IEEE} Computer Society, 2015.
+
+\bibitem{bhardwaj2010cloud}
+Bhardwaj, S., L.~Jain, S.~Jain.
+\newblock Cloud computing: A study of infrastructure as a service (iaas).
+\newblock \emph{International Journal of engineering and information Technology}, 2(1):60--63, 2010.
+
+\bibitem{serrano2015infrastructure}
+Serrano, N., G.~Gallardo, J.~Hernantes.
+\newblock Infrastructure as a service and cloud technologies.
+\newblock \emph{IEEE Software}, 32(2):30--36, 2015.
+
+\bibitem{mell2011nist}
+Mell, P., T.~Grance, et~al.
+\newblock The nist definition of cloud computing, 2011.
+
+\bibitem{lawton2008developing}
+Lawton, G.
+\newblock Developing software online with platform-as-a-service technology.
+\newblock \emph{Computer}, 41(6):13--15, 2008.
+
+\bibitem{sun2007software}
+Sun, W., K.~Zhang, S.-K. Chen, et~al.
+\newblock Software as a service: An integration perspective.
+\newblock In \emph{Service-Oriented Computing--ICSOC 2007: Fifth International Conference, Vienna, Austria, September 17-20, 2007. Proceedings 5}, pages 558--569. Springer, 2007.
+
+\bibitem{dubey2007delivering}
+Dubey, A., D.~Wagle.
+\newblock Delivering software as a service.
+\newblock \emph{The McKinsey Quarterly}, 6(2007):2007, 2007.
+
+\bibitem{DBLP:conf/icml/SunSQHQ22}
+Sun, T., Y.~Shao, H.~Qian, et~al.
+\newblock Black-box tuning for language-model-as-a-service.
+\newblock In K.~Chaudhuri, S.~Jegelka, L.~Song, C.~Szepesv{\'{a}}ri, G.~Niu, S.~Sabato, eds., \emph{International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}, vol. 162 of \emph{Proceedings of Machine Learning Research}, pages 20841--20855. {PMLR}, 2022.
+
+\end{thebibliography}

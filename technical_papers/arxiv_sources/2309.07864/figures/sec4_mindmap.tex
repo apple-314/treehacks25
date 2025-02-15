@@ -1,0 +1,71 @@
+\begin{figure*}[!ht]
+\scriptsize
+    \begin{adjustbox}{width=\textwidth}
+        \begin{forest}
+        for tree={
+                forked edges,
+                grow'=0,
+                draw,
+                rounded corners,
+                node options={align=center},
+                text width=2.7cm,
+                s sep=6pt,
+                calign=edge midpoint, 
+            },
+            [Agents in Practice:  Harnessing AI for Good, fill=gray!45, parent
+                [Single Agent Deployment \S\ref{sec:General Ability of Single Agent}, for tree={single_agent}
+                    [Task-oriented Deploytment \S\ref{sec:Task-Oriented Deployment}, single_agent 
+                        [Web scenarios, single_agent
+                            [{WebAgent \cite{DBLP:journals/corr/abs-2307-12856}, Mind2Web \cite{DBLP:journals/corr/abs-2306-06070}, WebGum \cite{DBLP:journals/corr/abs-2305-11854}, WebArena \cite{DBLP:journals/corr/abs-2307-13854}, Webshop \cite{DBLP:conf/nips/Yao0YN22}, WebGPT \cite{DBLP:journals/corr/abs-2112-09332}, Kim et al. \cite{DBLP:journals/corr/abs-2303-17491}, Zheng et al. \cite{DBLP:journals/corr/abs-2306-07863}, etc.}, single_agent_work]
+                        ]
+                        [Life scenarios, single_agent
+                            [{InterAct \cite{DBLP:journals/corr/abs-2308-01552}, PET \cite{DBLP:journals/corr/abs-2305-02412}, Huang et al. \cite{DBLP:conf/icml/HuangAPM22}, Gramopadhye et al. \cite{DBLP:journals/corr/abs-2210-04964}, Raman et al. \cite{DBLP:journals/corr/abs-2211-09935}, etc.}, single_agent_work]
+                        ]
+                    ]
+                    [Innovation-oriented Deploytment \S\ref{sec:Innovation-Oriented Deployment},single_agent
+                        [{Li et al. \cite{DBLP:journals/corr/abs-2308-00245}, Feldt et al. \cite{DBLP:journals/corr/abs-2306-05152}, ChatMOF \cite{DBLP:journals/corr/abs-2308-01423}, ChemCrow \cite{bran2023chemcrow}, Boiko et al. \cite{DBLP:journals/corr/abs-2304-05332}, SCIENCEWORLD et al. \cite{DBLP:conf/emnlp/WangJCA22}, etc.}, single_agent_work]
+                    ]
+                    [Lifecycle-oriented Deploytment \S\ref{sec:Lifecycle-Oriented Deployment},single_agent
+                        [{Voyager \cite{DBLP:journals/corr/abs-2305-16291}, GITM \cite{DBLP:journals/corr/abs-2305-17144}, DEPS \cite{DBLP:journals/corr/abs-2302-01560}, Plan4MC \cite{DBLP:journals/corr/abs-2303-16563}, Nottingham et al. \cite{DBLP:conf/icml/NottinghamAS0H023}, etc.}, single_agent_work]
+                    ]
+                ]
+                [Multi-Agents Interaction \S\ref{sec:Collaborative Potential of Multi Agents}, for tree={multi_agent}
+                    [Cooperative Interaction  \S\ref{sec:Cooperative Engagement for Complementarity}, multi_agent 
+                        [Disordered cooperation, multi_agent
+                            [{ChatLLM \cite{DBLP:journals/corr/abs-2304-12998}, RoCo \cite{DBLP:journals/corr/abs-2307-04738}, Blind Judgement \cite{DBLP:journals/corr/abs-2301-05327}, etc.}, multi_agent_work]
+                        ]
+                        [Ordered cooperation, multi_agent
+                            [{MetaGPT \cite{DBLP:journals/corr/abs-2308-00352}, ChatDev \cite{DBLP:journals/corr/abs-2307-07924}, CAMEL \cite{DBLP:journals/corr/abs-2303-17760}, AutoGen \cite{DBLP:journals/corr/abs-2308-08155}, SwiftSage \cite{DBLP:journals/corr/abs-2305-17390}, ProAgent \cite{DBLP:journals/corr/abs-2308-11339}, DERA \cite{DBLP:journals/corr/abs-2303-17071}, Talebirad et al. \cite{DBLP:journals/corr/abs-2306-03314}, AgentVerse \cite{DBLP:journals/corr/abs-2308-10848}, CGMI \cite{DBLP:journals/corr/abs-2308-12503}, Liu et al. \cite{DBLP:journals/corr/abs-2305-16960}, etc.}, multi_agent_work]
+                        ]
+                    ]
+                    [Adversarial \hphantom{x} Interaction \S\ref{sec:Adversarial Interactions for Advancement}, multi_agent
+                        [{ChatEval \cite{DBLP:journals/corr/abs-2308-07201}, Xiong et al. \cite{DBLP:journals/corr/abs-2305-11595}, Du et al. \cite{DBLP:journals/corr/abs-2305-14325}, Fu et al. \cite{DBLP:journals/corr/abs-2305-10142}, Liang et al. \cite{DBLP:journals/corr/abs-2305-19118}, etc.}, multi_agent_work]
+                    ]
+                ]
+                [Human-Agent Interaction \S\ref{sec:Interactive Cooperation between Human-Agent}, for tree={human_agent}
+                    [Instructor-Executor Paradigm \S\ref{Instructor-Executor Paradigm},human_agent
+                        [Education, human_agent
+                           [{Dona \cite{DBLP:journals/corr/abs-2303-13548}, Math Agents \cite{DBLP:journals/corr/abs-2307-02502}, etc.}, human_agent_work]
+                        ]
+                        [Health, human_agent
+                           [{Hsu et al. \cite{hsu2023helping}, HuatuoGPT \cite{DBLP:journals/corr/abs-2305-15075}, Zhongjing \cite{DBLP:journals/corr/abs-2308-03549}, LISSA \cite{DBLP:conf/iva/AliRLMKRSH20}, etc.}, human_agent_work]
+                        ]
+                        [Other Applications, human_agent
+                           [{Gao et al. \cite{DBLP:conf/ijcnn/GaoGT23}, PEER \cite{DBLP:conf/iclr/SchickYJPLIYNG023}, DIALGEN \cite{DBLP:journals/corr/abs-2307-07047}, AssistGPT \cite{DBLP:journals/corr/abs-2306-08640}, etc.}, human_agent_work]
+                        ]
+                    ]
+                    [Equal Partnership Paradigm \S\ref{Equal Partnership Paradigm}, human_agent
+                        [Empathetic Communicator, human_agent
+                           [{SAPIEN \cite{DBLP:journals/corr/abs-2308-03022}, Hsu et al. \cite{hsu2023helping}, Liu et al. \cite{liu2022artificial}, etc.}, human_agent_work]
+                        ]
+                        [Human-Level Participant, human_agent
+                           [{Bakhtin et al. \cite{DBLP:conf/iclr/Bakhtin0LGJFMB23}, FAIR et al. \cite{meta2022human}, Lin et al. \cite{DBLP:journals/corr/abs-2305-20076}, Li et al. \cite{DBLP:journals/corr/abs-2308-03313}, etc.}, human_agent_work]
+                        ]
+                    ]
+                ]
+            ]   
+        \end{forest}
+    \end{adjustbox} 
+    \caption{Typology of applications of LLM-based agents.}
+    \label{fig:sec4_mindmap}
+\end{figure*}

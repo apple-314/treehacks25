@@ -1,0 +1,57 @@
+\begin{figure*}[!ht]
+\scriptsize
+    \begin{adjustbox}{width=\textwidth}
+        \begin{forest}
+        for tree={
+                forked edges,
+                grow'=0,
+                draw,
+                rounded corners,
+                node options={align=center},
+                text width=2.7cm,
+                s sep=6pt,
+                calign=edge midpoint, 
+            },
+            [Agent Society: From Individuality to Sociability, fill=gray!45, parent
+                [Behavior and Personality \S\ref{sec:Behavior and Personality}, for tree={behavior_and_personality}
+                    [\hphantom{x} Social \hphantom{xxx} Behavior \S\ref{sec:social behavior}, behavior_and_personality
+                        [Individual behaviors, behavior_and_personality
+                            [{PaLM-E \cite{DBLP:conf/icml/DriessXSLCIWTVY23}, Reflexion \cite{DBLP:journals/corr/abs-2303-11366}, Voyager \cite{DBLP:journals/corr/abs-2305-16291}, LLM+P \cite{DBLP:journals/corr/abs-2304-11477}, CoT \cite{DBLP:conf/nips/Wei0SBIXCLZ22}, ReAct \cite{DBLP:conf/iclr/YaoZYDSN023}, etc.}, behavior_and_personality_work]
+                        ]
+                        [Group behaviors, behavior_and_personality
+                            [{ChatDev \cite{DBLP:journals/corr/abs-2307-07924}, ChatEval \cite{DBLP:journals/corr/abs-2308-07201}, AutoGen \cite{DBLP:journals/corr/abs-2308-08155}, RoCo \cite{DBLP:journals/corr/abs-2307-04738}, ProAgent \cite{DBLP:journals/corr/abs-2308-11339}, AgentVerse \cite{DBLP:journals/corr/abs-2308-10848}, Xu et al. \cite{xu2023exploring}, etc.}, behavior_and_personality_work]
+                        ]
+                    ]
+                    [Personality \S\ref{sec:social personality}, behavior_and_personality
+                        [Cognition, behavior_and_personality
+                            [{Binz et al. \cite{DBLP:journals/corr/abs-2206-14576}, Dasgupta et al. \cite{DBLP:journals/corr/abs-2207-07051}, Dhingra et al. \cite{DBLP:journals/corr/abs-2303-11436}, Hagendorff et al.\cite{DBLP:journals/corr/abs-2303-13988}, etc.}, behavior_and_personality_work]
+                        ]
+                        [Emotion, behavior_and_personality
+                            [{Wang et al. \cite{DBLP:journals/corr/abs-2307-09042}, Curry et al. \cite{DBLP:conf/acl/CurryC23}, Elyoseph et al. \cite{elyoseph2023chatgpt}, Habibi et al. \cite{DBLP:journals/corr/abs-2302-09070}, etc.}, behavior_and_personality_work]
+                        ]
+                        [Character, behavior_and_personality
+                            [{Caron et al. \cite{DBLP:journals/corr/abs-2212-10276}, Pan et al.  \cite{DBLP:journals/corr/abs-2307-16180}, Li et al. \cite{li2023does}, Safdari et al. \cite{DBLP:journals/corr/abs-2307-00184}, etc.}, behavior_and_personality_work]
+                        ]                 
+                    ]
+                ]
+                [\hphantom{x} Social \hphantom{xxx} Environment \S\ref{sec:Environment for Agent Society}, for tree={society_environment}
+                    [\hphantom{x} Text-based \hphantom{xx} Environment \S\ref{sec:text-based environment}, society_environment
+                        [{Textworld \cite{DBLP:conf/ijcai/CoteKYKBFMHAATT18}, Urbanek et al. \cite{DBLP:conf/emnlp/UrbanekFKJHDRKS19}, Hausknecht et al. \cite{DBLP:conf/aaai/HausknechtACY20}, Ammanabrolu et al. \cite{DBLP:journals/corr/abs-2012-02757}, CAMEL \cite{DBLP:journals/corr/abs-2303-17760}, Hoodwinked \cite{DBLP:journals/corr/abs-2308-01404}, etc.}, society_environment_work]
+                    ]
+                    [Virtual Sandbox Environment \S\ref{sec:virtual sandbox environment}, society_environment
+                        [{Generative Agents \cite{DBLP:journals/corr/abs-2304-03442}, AgentSims \cite{DBLP:journals/corr/abs-2308-04026}, Minedojo \cite{DBLP:conf/nips/FanWJMYZTHZA22}, Voyager \cite{DBLP:journals/corr/abs-2305-16291}, Plan4mc \cite{DBLP:journals/corr/abs-2303-16563}, SANDBOX \cite{DBLP:journals/corr/abs-2305-16960}, etc.}, society_environment_work]
+                    ]
+                    [\hphantom{x} Physical \hphantom{x} Environment \S\ref{sec:physical environment}, society_environment
+                        [{Interactive Language \cite{DBLP:journals/corr/abs-2210-06407}, PaLM-E \cite{DBLP:conf/icml/DriessXSLCIWTVY23}, RoboAgent \cite{DBLP:journals/corr/abs-2309-01918}, AVLEN \cite{DBLP:conf/nips/00070C22}, etc.}, society_environment_work]
+                    ]
+                ]
+                [\hphantom{x} Society \hphantom{xx} Simulation \S\ref{sec:Society Simulation}, for tree={society_simulation}
+                    [{Generative Agents \cite{DBLP:journals/corr/abs-2304-03442}, AgentSims \cite{DBLP:journals/corr/abs-2308-04026}, Social Simulacra \cite{DBLP:conf/uist/ParkPCMLB22}, S$^3$ \cite{DBLP:journals/corr/abs-2307-14984}, RecAgent \cite{DBLP:journals/corr/abs-2306-02552}, Williams et al. \cite{DBLP:journals/corr/abs-2307-04986}, SANDBOX \cite{DBLP:journals/corr/abs-2305-16960},} etc., society_simulation_work
+                    ]
+                ]
+            ]   
+        \end{forest}
+    \end{adjustbox} 
+    \caption{Typology of society of LLM-based agents.}
+    \label{fig:sec5_mindmap}
+\end{figure*}

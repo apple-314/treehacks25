@@ -1,0 +1,42 @@
+\begin{figure*}[!ht]
+\scriptsize
+    \begin{adjustbox}{width=\textwidth}
+        \begin{forest}
+        for tree={
+                forked edges,
+                grow'=0,
+                draw,
+                rounded corners,
+                node options={align=center},
+                text width=2.7cm,
+                s sep=6pt,
+                calign=edge midpoint, 
+            },
+                [Action , fill=gray!45, parent
+                    [Textual Output \S\ref{sec:Textual Output} , for tree={action}
+                    ]
+                    [Tools \S\ref{sec:Tool Using}, action
+                        [Learning tools, action
+                            [{Toolformer \cite{DBLP:journals/corr/abs-2302-04761}, TALM \cite{DBLP:journals/corr/abs-2205-12255}, InstructGPT \cite{DBLP:conf/nips/Ouyang0JAWMZASR22}, Clarebout et al. \cite{Clarebout2013}, etc.}, action_work]
+                        ]
+                        [Using tools, action
+                            [ {WebGPT \cite{DBLP:journals/corr/abs-2112-09332}, OpenAGI \cite{DBLP:journals/corr/abs-2304-04370}, Visual ChatGPT \cite{DBLP:journals/corr/abs-2303-04671}, SayCan \cite{DBLP:conf/corl/IchterBCFHHHIIJ22}, etc.}, action_work]
+                        ]            
+                        [Making tools, action
+                            [{LATM \cite{DBLP:journals/corr/abs-2305-17126}, CREATOR \cite{DBLP:journals/corr/abs-2305-14318}, SELF-DEBUGGING \cite{DBLP:journals/corr/abs-2304-05128}, etc.}, action_work]
+                        ]
+                    ]
+                    [Embodied \hphantom{x} Action \S\ref{sec:Embodied Action}, action
+                        [\hphantom{x} LLM-based \hphantom{x} Embodied actions, action
+                            [{SayCan \cite{DBLP:conf/corl/IchterBCFHHHIIJ22}, EmbodiedGPT \cite{DBLP:journals/corr/abs-2305-15021}, InstructRL \cite{liu2022instruction}, Lynch et al. \cite{DBLP:journals/corr/abs-2210-06407}, Voyager \cite{DBLP:journals/corr/abs-2305-16291}, AlphaBlock \cite{DBLP:journals/corr/abs-2305-18898}, DEPS \cite{DBLP:journals/corr/abs-2302-01560}, LM-Nav \cite{DBLP:conf/corl/ShahOIL22}, NavGPT \cite{DBLP:journals/corr/abs-2305-16986}, etc.}, action_work]
+                        ]
+                        [Prospective to the embodied action , action
+                            [{MineDojo \cite{DBLP:conf/nips/FanWJMYZTHZA22}, Kanitscheider et al. \cite{DBLP:journals/corr/abs-2106-14876}, DECKARD \cite{DBLP:conf/icml/NottinghamAS0H023}, Sumers et al. \cite{DBLP:conf/icml/SumersMAF023}, etc.}, action_work]
+                        ]
+                    ]
+                ]
+        \end{forest}
+    \end{adjustbox} 
+    \caption{Typology of the action module.}
+    \label{fig:sec3_mindmap_action}
+\end{figure*}

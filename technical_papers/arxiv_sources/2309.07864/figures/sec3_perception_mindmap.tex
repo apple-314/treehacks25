@@ -1,0 +1,47 @@
+\begin{figure*}[!ht]
+\scriptsize
+    \begin{adjustbox}{width=\textwidth}
+        \begin{forest}
+        for tree={
+                forked edges,
+                grow'=0,
+                draw,
+                rounded corners,
+                node options={align=center},
+                text width=2.7cm,
+                s sep=6pt,
+                calign=edge midpoint, 
+            },
+                [Perception, fill=gray!45, parent
+                    [Textual Input \S\ref{sec:Textual Input}, for tree={perception}
+                    ]
+                    [Visual Input \S\ref{sec:Visual Input}, perception
+                        [Visual encoder, perception
+                            [{ViT \cite{DBLP:conf/iclr/DosovitskiyB0WZ21},  VQVAE \cite{DBLP:conf/nips/OordVK17}, MobileViT \cite{DBLP:conf/iclr/MehtaR22},  MLP-Mixer \cite{DBLP:conf/nips/TolstikhinHKBZU21}, etc.}, perception_work]
+                        ]
+                        [\hphantom{x} Learnable \hphantom{x} architecture, perception
+                            [Query based, perception_work
+                                [{Kosmos \cite{DBLP:journals/corr/abs-2302-14045}, BLIP-2 \cite{DBLP:conf/icml/0008LSH23}, InstructBLIP \cite{DBLP:journals/corr/abs-2305-06500},  MultiModal-GPT \cite{DBLP:journals/corr/abs-2305-04790}, Flamingo \cite{DBLP:conf/nips/AlayracDLMBHLMM22}, etc.}, perception_work]
+                            ]
+                            [Projection based, perception_work
+                                [{PandaGPT \cite{DBLP:journals/corr/abs-2305-16355}, LLaVA \cite{DBLP:journals/corr/abs-2304-08485}, Minigpt-4 \cite{zhu2023minigpt}, etc.}, perception_work]
+                            ]                           
+                        ]
+                    ]
+                    [Auditory Input \S\ref{sec:Auditory Input}, perception
+                        [Cascading manner, perception
+                            [{AudioGPT \cite{DBLP:journals/corr/abs-2304-12995}, HuggingGPT \cite{DBLP:journals/corr/abs-2303-17580}, etc.}, perception_work]
+                        ]
+                        [\hphantom{xx} Transfer \hphantom{xxx} visual method, perception
+                            [{AST \cite{DBLP:conf/interspeech/GongCG21}, HuBERT \cite{DBLP:journals/taslp/HsuBTLSM21} , X-LLM \cite{DBLP:journals/corr/abs-2305-04160}, Video-LLaMA \cite{DBLP:journals/corr/abs-2306-02858}, etc.}, perception_work]
+                        ]
+                    ]
+                    [Other Input \S\ref{sec:Others Input}, perception
+                        [{InternGPT \cite{DBLP:journals/corr/abs-2305-05662}, etc.}, perception_work]
+                    ]
+                ] 
+        \end{forest}
+    \end{adjustbox} 
+    \caption{Typology of the perception module.}
+    \label{fig:sec3_mindmap_perception}
+\end{figure*}
