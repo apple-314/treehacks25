@@ -5,9 +5,10 @@ from pathlib import Path
 import re
 import numpy as np
 import linkedin
-
+import time
 
 async def detect_async(frame):
+    start_time = time.time()
     imgpath = "/Users/jameschen/Documents/treehacks25/imgs"
     folder_path = Path(imgpath)
 
@@ -68,8 +69,8 @@ async def detect_async(frame):
     print(best_name)
 
     if (best_name == "Unknown"):
-        fn = "Aarav"
-        ln = "Wattal"
+        fn = "James"
+        ln = "Chen"
 
         top, right, bottom, left = face_locations[best_idx]
     
@@ -86,10 +87,21 @@ async def detect_async(frame):
         # Show the cropped face
         cv2.imwrite(f"{imgpath}/{fn}{ln}.png", cropped_face)
 
-        img, link, about, experiences, education = linkedin.scrape(fn, ln, log=True)
+        # img, link, about, experiences, education = linkedin.scrape(fn, ln, log=True)
 
-        s = linkedin.format_info(about, experiences, education)
-        print(s)
+        # a, b, c = linkedin.format_info(about, experiences, education)
+        img, link, about, experiences, education = await asyncio.to_thread(linkedin.scrape, fn, ln, log=True)
+        a, b, c = await asyncio.to_thread(linkedin.format_info, about, experiences, education)
+
+        print(a)
+        print()
+        print()
+        print(b)
+        print()
+        print()
+        print(c)
+
+    print(f"total time: {time.time() - start_time}")
 
 async def main():
     cap = cv2.VideoCapture(0)

@@ -42,8 +42,8 @@ def get_info(client, link):
 
     soup = str(BeautifulSoup(client.page_source , "lxml"))
 
-    with open("out.txt", "w") as f:
-        f.write(soup)
+    # with open("out.txt", "w") as f:
+    #     f.write(soup)
 
 
     # -----
@@ -228,8 +228,14 @@ def scrape(fn, ln, headless = True, log = False):
 # img, link = scrape("James", "Chen")
 # img, link, about, experiences, education = scrape("James", "Chen", headless=False)
 
-# s = format_info(about, experiences, education)
-# print(s)
+# a, b, c = format_info(about, experiences, education)
+# print(a)
+# print()
+# print()
+# print(b)
+# print()
+# print()
+# print(c)
 
 # input()
 # img.show()
