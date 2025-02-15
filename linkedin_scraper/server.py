@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/get_context/")
 async def get_context(first_name: str, last_name: str):
-    img, link, about, experiences, education = scrape("Kaival", "Shah")
-    context = format_info(about, experiences, education)
+    img, link, about, experiences, education = scrape(first_name, last_name)
+    about_s, experiences_s, educaiton_s = format_info(about, experiences, education)
 
-    return {"context": context}
+    return {"about": about_s, "experiences": experiences_s, "education": educaiton_s}

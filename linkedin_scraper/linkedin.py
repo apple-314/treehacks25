@@ -15,32 +15,35 @@ import face_recognition
 import numpy as np
 
 def format_info(about, experiences, education):
-    lines = ["ABOUT:", "------------", about, ""]
+    about_lines = ["------------", about, ""]
 
-    lines.append("EXPERIENCES")
+    experience_lines = []
     for exp in experiences:
-        lines.append("--------------")
+        experience_lines.append("--------------")
         for l in exp:
-            lines.append(l)
-        lines.append("")
+            experience_lines.append(l)
+        experience_lines.append("")
 
-    lines.append("EDUCATION")
+    education_lines = []
     for edu in education:
-        lines.append("--------------")
+        education_lines.append("--------------")
         for l in edu:
-            lines.append(l)
-        lines.append("")
+            education_lines.append(l)
+        education_lines.append("")
 
-    s = "\n".join(lines)[:-1]
-    return s
+    about_s = "\n".join(about_lines)[:-1]
+    experience_s = "\n".join(experience_lines)[:-1]
+    educaiton_s = "\n".join(education_lines)[:-1]
+    return about_s, experience_s, educaiton_s
 
 def get_info(client, link):
     client.get(link)
     time.sleep(1)
+
     soup = str(BeautifulSoup(client.page_source , "lxml"))
 
-    # with open("out.txt", "w") as f:
-    #     f.write(soup)
+    with open("out.txt", "w") as f:
+        f.write(soup)
 
 
     # -----
@@ -62,7 +65,7 @@ def get_info(client, link):
     exp_start = '''<span aria-hidden="true"><!-- -->Experience'''
     item_start = '''<div class="display-flex align-items-center mr1 t-bold">'''
     field_start = '''aria-hidden="true">'''
-    exp_end = '''<svg aria-hidden="true"'''
+    exp_end = '''</section>'''
 
     s = soup.find(exp_start) + len(exp_start)
     fields = [m.start() for m in re.finditer(field_start, soup)]
@@ -99,7 +102,7 @@ def get_info(client, link):
     edu_start = '''<span aria-hidden="true"><!-- -->Education'''
     item_start = '''<div class="display-flex align-items-center mr1 hoverable-link-text t-bold">'''
     field_start = '''aria-hidden="true">'''
-    edu_end = '''<svg aria-hidden="true"'''
+    edu_end = '''</section>'''
 
     s = soup.find(edu_start) + len(edu_start)
     fields = [m.start() for m in re.finditer(field_start, soup)]
@@ -131,7 +134,7 @@ def get_info(client, link):
 
     return about, experiences, education
 
-def scrape(fn, ln, headless = True):
+def scrape(fn, ln, headless = True, log = False):
     options = Options()
     if headless:
         options.add_argument('--headless')
@@ -141,7 +144,7 @@ def scrape(fn, ln, headless = True):
 
     liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
 
-    fr_image = face_recognition.load_image_file(f"{fn}{ln}.png")
+    fr_image = face_recognition.load_image_file(f"../imgs/{fn}{ln}.png")
     fr_face_encoding = face_recognition.face_encodings(fr_image)[0]
 
     known_face_encodings = [
@@ -164,6 +167,9 @@ def scrape(fn, ln, headless = True):
     detected_link = None
 
     begin2 = time.time()
+
+    if log:
+        print("LOG: accessed search")
 
     for page in range(1, 10):
         SEARCH_URL = f"https://www.linkedin.com/search/results/people/?firstName={fn}&lastName={ln}&origin=GLOBAL_SEARCH_HEADER&page={page}"
@@ -214,13 +220,16 @@ def scrape(fn, ln, headless = True):
                     name = known_face_names[best_match_index]
 
                 if name != "Unknown":
+                    if log:
+                        print("LOG: found person")
                     about, experiences, education = get_info(client, pf)
                     return orig_img, pf, about, experiences, education
 
 # img, link = scrape("James", "Chen")
-img, link, about, experiences, education = scrape("Kaival", "Shah")
+# img, link, about, experiences, education = scrape("James", "Chen", headless=False)
 
-s = format_info(about, experiences, education)
-print(s)
+# s = format_info(about, experiences, education)
+# print(s)
 
+# input()
 # img.show()
