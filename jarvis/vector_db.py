@@ -239,3 +239,15 @@ class VectorDatabase:
         embeddings = self._model.encode(df['sentence'].tolist(), normalize_embeddings=True)
         df['sentence_vector'] = embeddings.tolist()
         self.write_data_many_df(schema_name, table_name, df, True)
+    
+    # get entries in sorted order with indices in an interval
+    def get_table_interval(self, schema_name, table_name, text_id, start_idx, end_idx):
+        query = f"""
+            SELECT *
+            FROM {schema_name}.{table_name}
+            WHERE index BETWEEN {start_idx} AND {end_idx}
+                AND text_id = {text_id}
+            ORDER BY index ASC;
+        """
+        self._execute_query(query)
+        return self._cursor.fetchall()
