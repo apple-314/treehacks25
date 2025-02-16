@@ -42,13 +42,13 @@ class VectorDatabase:
         self._table_defs = {
             "LinkedIn" : "(type VARCHAR(255), description VARCHAR(2000))",
             "Conversation" : "(text_id INT, index INT, time_stamp DATETIME, sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
-            "Documents" : "(text_id INT, index INT, title VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))"
+            "Documents" : "(text_id INT, index INT, title VARCHAR(200), arxiv_id VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))"
         }
 
         self._table_entry_types = {
             "LinkedIn" : ["type", "description"],
             "Conversation" : ["text_id", "index", "time_stamp", "sentence", "sentence_vector"],
-            "Documents" : ["text_id", "index", "title", "sentence", "sentence_vector"]
+            "Documents" : ["text_id", "index", "title", "arxiv_id", "sentence", "sentence_vector"]
         }
 
     def _execute_query(self, query, params=None):
