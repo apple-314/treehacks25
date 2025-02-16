@@ -9,6 +9,8 @@ from langchain_community.llms import OpenAI
 
 from datetime import datetime
 
+import os
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)  # Suppress deprecation warnings
 
@@ -30,8 +32,8 @@ manager_system = SystemMessage(
         "1. Normal: Simply passes the prompt to the LLM if no specialization is needed.\n"
         "2. Administrative: This has access to a texting tool. Go to it if the user specifically asks to send a text.\n"
         "3. Technical: Has access to technical documents about machine learning and coding (with RAG capabilities). Don't use this agent unless the prompt is specifically about these topics.\n"
-        "4. Conversational: Has access to past conversations with people (with RAG capabilities).\n"
-        "5. Healthcare: Has access to healthcare documents (with RAG capabilities).\n"
+        # "4. Conversational: Has access to past conversations with people (with RAG capabilities).\n"
+        "4. Healthcare: Has access to healthcare documents (with RAG capabilities).\n"
         "Based on the user request and any relevant previous conversation context, "
         "select the most appropriate agent and output only the agent's name (one of: Normal, Administrative, Technical, Conversational, Healthcare) "
         "as your answer. Your answer should be only 1 word\n"
@@ -180,31 +182,26 @@ def jarvis_handle(db, user_request: str, conversation_context: str = "") -> str:
 
         extracting_name_from_user_prompt = SystemMessage(
             content = (
-                f"Message: ** {user_request} ** "
-                f"You are given a list of names as follows: ** {str(ppl)} ** "
-                "Given the user prompt above, decide which of the names in the list given above is most associated with any names in the user prompt. "
-                "Specifically, you should look if there are any exact matches between a name in the list (could just be the first name) and someone mentioned in the prompt. "
-                "However, if there aren't any exact matches choose the closest one. "
-                "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES GIVEN AT THE BEGINNING. "
-                "Here are some examples: \n\n"
-                "Q: What did Billy think of our lunch the other day?\n"
-                "A: BillyBob\n"
-                "Q: Remind me of some of the key points from my talk with Samantha about ML\n"
-                "A: SamanthaWang\n"
-                "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name!!! THIS MEANS THAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!!*** Answer: "
+                f"Here is a message: ** {user_request} ** "
+                f"Here is a list of names as follows: ** {str(ppl)} ** "
+                "Decide which of the names in the list given above is most associated with any names in the user prompt. "
+                "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES. "
+                "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name! Don't give anything other than that though!*** Answer: "
             )
         )
         id_name = llm.invoke([extracting_name_from_user_prompt]).content
+
+        print(f"**{id_name}**")
 
         (name, _, _, phone, _, most_recent_summary) = db.get_row_from_table("General", "Contacts", "id_name", id_name)[0]
         
         admin_example_output_1 = '''{
             "phone": "5556789012",
-            "message": "James Chen: Hey Samantha, it was fantastic meeting you at the marketing conference today! I was truly inspired by your insights on branding and digital strategy. I'd love to continue our conversation over lunch sometime. Let me know when you're free!"
+            "message": "Aarav Wattal: Hey Samantha, it was fantastic meeting you at the marketing conference today! I was truly inspired by your insights on branding and digital strategy. I'd love to continue our conversation over lunch sometime. Let me know when you're free!"
         }'''
         admin_example_output_2 = '''{
             "phone": "5551112222",
-            "message": "James Chen: Hey Bob, I had an amazing time at the concert tonight! The live music was electrifying, and I really enjoyed hanging out with you. Let's plan another fun outing soon!"
+            "message": "Aarav Wattal: Hey Bob, I had an amazing time at the concert tonight! The live music was electrifying, and I really enjoyed hanging out with you. Let's plan another fun outing soon!"
         }'''
 
         # context = (
@@ -230,7 +227,7 @@ def jarvis_handle(db, user_request: str, conversation_context: str = "") -> str:
         
         context = (
             "\n----------\n"
-            "Context: Start each text with 'James Chen: '. DON'T DEVIATE FROM THIS FORMAT AT ALL! \n"
+            "Context: Start each text with 'Aarav Wattal: '. DON'T DEVIATE FROM THIS FORMAT AT ALL! \n"
             f"{name}'s phone number is {phone}. \n"
             f"Here is a summary of my conversation with {name}:\n{most_recent_summary}\n"
             "WHEN CALLING FUNCTIONS USE DOUBLE QUOTES FOR ALL FIELDS AND PARAMETERS OF THE JSON.\n"
@@ -246,86 +243,88 @@ def jarvis_handle(db, user_request: str, conversation_context: str = "") -> str:
             "Example Final Output: Great! I just sent Bob a message saying: 'James Chen: Hey Bob, I had an amazing time at the concert tonight! The live music was electrifying, and I really enjoyed hanging out with you. Let's plan another fun outing soon!'\n"
         )
         answer = admin_agent.run(user_request + context)
-    elif chosen_agent.lower() == "conversational":
-        answer = invoke_agent(conversational_system, user_request)
-        # note that for conversational agent, it is required that the user prompt provides the name of a person
-        # this is so there can be lookup in that particular schema in the database later on
-        print(user_request)
-        print()
+    # elif chosen_agent.lower() == "conversational":
+    #     answer = invoke_agent(conversational_system, user_request)
+    #     # note that for conversational agent, it is required that the user prompt provides the name of a person
+    #     # this is so there can be lookup in that particular schema in the database later on
+    #     print(user_request)
+    #     print()
 
-        # getting list of all people
-        ppl = db.get_column_from_table("General", "Contacts", "id_name")
-        ppl = [p[0] for p in ppl]
-        print(ppl)
+    #     # getting list of all people
+    #     ppl = db.get_column_from_table("General", "Contacts", "id_name")
+    #     ppl = [p[0] for p in ppl]
+    #     print(ppl)
         
-        extracting_name_from_user_prompt = SystemMessage(
-            content = (
-                f"Message: ** {user_request} ** "
-                f"You are given a list of names as follows: ** {str(ppl)} ** "
-                "Given the user prompt above, decide which of the names in the list given above is most associated with any names in the user prompt. "
-                "Specifically, you should look if there are any exact matches between a name in the list (could just be the first name) and someone mentioned in the prompt. "
-                "However, if there aren't any exact matches choose the closest one. "
-                "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES GIVEN AT THE BEGINNING. "
-                "Here are some examples: \n\n"
-                "Q: What did Billy think of our lunch the other day?\n"
-                "A: BillyBob\n"
-                "Q: Remind me of some of the key points from my talk with Samantha about ML\n"
-                "A: SamanthaWang\n"
-                "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name!!! THIS MEANS THAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!!*** Answer: "
-            )
-        )
+    #     extracting_name_from_user_prompt = SystemMessage(
+    #         content = (
+    #             f"Message: ** {user_request} ** "
+    #             f"You are given a list of names as follows: ** {str(ppl)} ** "
+    #             "VERY VERY IMPORTANT: NO MATTER WHAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!! "
+    #             "Given the user prompt above, decide which of the names in the list given above is most associated with any names in the user prompt. "
+    #             "Specifically, you should look if there are any exact matches between a name in the list (could just be the first name) and someone mentioned in the prompt. "
+    #             "However, if there aren't any exact matches choose the closest one. "
+    #             "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES GIVEN AT THE BEGINNING. "
+    #             "Here are some examples: \n\n"
+    #             "Q: What did Billy think of our lunch the other day?\n"
+    #             "A: BillyBob\n"
+    #             "Q: Remind me of some of the key points from my talk with Samantha about ML\n"
+    #             "A: SamanthaWang\n"
+    #             "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name!!! NO MATTER WHAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!!*** Answer: "
+    #         )
+    #     )
 
-        print(extracting_name_from_user_prompt)
+    #     print(extracting_name_from_user_prompt)
 
-        id_name = llm.invoke([extracting_name_from_user_prompt]).content
-        id_name = [person for person in ppl if person.startswith(id_name)][0]
+    #     id_name = llm.invoke([extracting_name_from_user_prompt]).content
 
-        # print()
-        # print(id_name)
-        # print()
+    #     print()
+    #     print(f"'{id_name}'")
+    #     print()
 
-        # not using time based things
-        # current_datetime = datetime.now().replace(microsecond=0)
-        # extracting_datetime_range_from_user_prompt = SystemMessage(
-        #     content = (
-        #         "Given the current date and the user's qualitative search query (which may or may not reference a time period), generate an exact DATETIME range for searching. "
-        #         "If the query explicitly mentions a time period (e.g., \"last week,\" \"next month,\" \"January 2023,\" \"past 6 months\"), extract the relevant DATETIME range accordingly. "
-        #         f"If no time period is mentioned, default to the last 30 days. The output must use exact dates and timestamps in YYYY-MM-DD HH:MM:SS format, assuming the current date is {current_datetime}. "
-        #         "Here are some examples (assuming today is 2024-02-16):\n"
-        #         "User Prompt: \"Show me recent transactions.\"\n"
-        #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
-        #         "User Prompt: \"Get logs from last week.\"\n"
-        #         "Output: BETWEEN '2024-02-05 00:00:00' AND '2024-02-11 23:59:59'\n"
-        #         "User Prompt: \"Find orders from January 2023.\"\n"
-        #         "Output: BETWEEN '2023-01-01 00:00:00' AND '2023-01-31 23:59:59'\n"
-        #         "User Prompt: \"Search for data.\" (No time mentioned, defaulting to last 30 days)\n"
-        #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
-        #         "Now do the same on the following. DO NOT GIVE ANY OTHER OUTPUT OR EXPLANATION:\n"
-        #         f"User Prompt: {user_request}\n"
-        #         "Output: "
-        #     )
-        # )
+    #     id_name = [person for person in ppl if person.startswith(id_name)][0]
 
-        ret = db.vector_search(id_name, "Conversation", user_request, 3)
-        excerpts = {}
+    #     # not using time based things
+    #     # current_datetime = datetime.now().replace(microsecond=0)
+    #     # extracting_datetime_range_from_user_prompt = SystemMessage(
+    #     #     content = (
+    #     #         "Given the current date and the user's qualitative search query (which may or may not reference a time period), generate an exact DATETIME range for searching. "
+    #     #         "If the query explicitly mentions a time period (e.g., \"last week,\" \"next month,\" \"January 2023,\" \"past 6 months\"), extract the relevant DATETIME range accordingly. "
+    #     #         f"If no time period is mentioned, default to the last 30 days. The output must use exact dates and timestamps in YYYY-MM-DD HH:MM:SS format, assuming the current date is {current_datetime}. "
+    #     #         "Here are some examples (assuming today is 2024-02-16):\n"
+    #     #         "User Prompt: \"Show me recent transactions.\"\n"
+    #     #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
+    #     #         "User Prompt: \"Get logs from last week.\"\n"
+    #     #         "Output: BETWEEN '2024-02-05 00:00:00' AND '2024-02-11 23:59:59'\n"
+    #     #         "User Prompt: \"Find orders from January 2023.\"\n"
+    #     #         "Output: BETWEEN '2023-01-01 00:00:00' AND '2023-01-31 23:59:59'\n"
+    #     #         "User Prompt: \"Search for data.\" (No time mentioned, defaulting to last 30 days)\n"
+    #     #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
+    #     #         "Now do the same on the following. DO NOT GIVE ANY OTHER OUTPUT OR EXPLANATION:\n"
+    #     #         f"User Prompt: {user_request}\n"
+    #     #         "Output: "
+    #     #     )
+    #     # )
 
-        for i, x in enumerate(ret):
-            y = db.get_table_interval(id_name, "Conversation", x[0], x[1]-1, x[1]+1)
-            s = ""
-            for z in y:
-                s += z[3]
-            excerpts[i] = {"date": x[2], "ex": s}
+    #     ret = db.vector_search(id_name, "Conversation", user_request, 3)
+    #     excerpts = {}
+
+    #     for i, x in enumerate(ret):
+    #         y = db.get_table_interval(id_name, "Conversation", x[0], x[1]-1, x[1]+1)
+    #         s = ""
+    #         for z in y:
+    #             s += z[3]
+    #         excerpts[i] = {"date": x[2], "ex": s}
         
-        (fname, lname, _, _, _, _) = db.get_row_from_table("General", "Contacts", "id_name", id_name)[0]
+    #     (fname, lname, _, _, _, _) = db.get_row_from_table("General", "Contacts", "id_name", id_name)[0]
         
-        conversational_prompt_rag = f"""{conversational_prompt}\nHere are potentially relevant excerpts from prior conversations with {fname} {lname}:\n"""
-        for ex in excerpts.values():
-            conversational_prompt_rag += f"conversation on day {ex['date']}\nexcerpt: {ex['ex']}\n\n"
+    #     conversational_prompt_rag = f"""{conversational_prompt}\nHere are potentially relevant excerpts from prior conversations with {fname} {lname}:\n"""
+    #     for ex in excerpts.values():
+    #         conversational_prompt_rag += f"conversation on day {ex['date']}\nexcerpt: {ex['ex']}\n\n"
 
-        conversational_system_rag = SystemMessage(content=conversational_prompt_rag)
+    #     conversational_system_rag = SystemMessage(content=conversational_prompt_rag)
 
-        print(f"\n\n{conversational_prompt_rag}\n\n")
-        answer = invoke_agent(conversational_system_rag, user_request)
+    #     print(f"\n\n{conversational_prompt_rag}\n\n")
+    #     answer = invoke_agent(conversational_system_rag, user_request)
     elif chosen_agent.lower() == "technical":
         # Perform a vector search for technical documents (RAG)
         ret = db.vector_search("TechnicalAgent", "ResearchPapers", user_request, 3)
@@ -371,6 +370,16 @@ def jarvis_handle(db, user_request: str, conversation_context: str = "") -> str:
     
     processed_agent = chosen_agent[0].upper() + chosen_agent[1:].lower()
     return answer, processed_agent
+
+def get_summary(text):
+    prompt = f"Create a summary of this conversation: {text}"
+
+    return llm.invoke([prompt]).content
+
+def update_summary(old_summary, new_text):
+    prompt = f"Here is the current summary we have of all of the conversations with this person: {old_summary} \n\n Create a new, not too much longer summary integrating this new conversation: {new_text}"
+
+    return llm.invoke([prompt]).content
 
 # -----------------------------------------------------------
 # 6. Example Usage

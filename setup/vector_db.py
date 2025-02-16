@@ -288,3 +288,11 @@ class VectorDatabase:
         """
         self._execute_query(query)
     
+    # updated row in table
+    def update_row_from_table(self, schema_name, table_name, col, value, new_col, new_value):
+        query = f"""
+            UPDATE {schema_name}.{table_name}
+            SET {new_col} = {new_value}
+            WHERE {col} = {value}
+        """
+        self._execute_query(query)
