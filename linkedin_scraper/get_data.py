@@ -33,6 +33,9 @@ for name in names:
     interests_results = db.get_row_from_table(name, "LinkedIn", "type", "interests")
     interests = interests_results[0][1] if interests_results else ""
 
+    convos = []
+    
+
     # Structure data
     data[formatted_name] = {
         "LinkedIn": {
