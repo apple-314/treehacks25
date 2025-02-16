@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import JSONResponse
+from fastapi import timestamps 
 from pydantic import BaseModel
 from typing import List
 import numpy as np
@@ -26,6 +28,8 @@ app = FastAPI()
 accumulated_samples: List[float] = []
 
 model = whisper.load_model("base")
+
+name = ""
 
 class AudioSamples(BaseModel):
     samples: List[float]
@@ -97,6 +101,23 @@ def capture_single_screenshot():
         cv2.imwrite(filename, frame)
         return filename
 
+@app.post("/count_contacts")
+async def count_contacts(data: str = Body(..., media_type="text/plain")):
+    # Print the received string
+    print(data)
+    # Return a success message
+    return JSONResponse(content={"message": "success"})
+
+@app.post("/obtain_name")
+async def obtain_name(data: str = Body(..., media_type="text/plain")):
+    # Print the received string
+    print("printing the received name string")
+    print(data)
+    global name
+    name = data
+    # Return a success message
+    return JSONResponse(content={"message": "success", "name": data})
+
 @app.post("/capture_gesture")
 async def capture_gesture(data: dict):
     """
@@ -104,15 +125,16 @@ async def capture_gesture(data: dict):
     The payload should be a JSON object like:
     { "timestamp": "2025-02-15T10:30:45Z" }
     """
-    if not hasattr(app, 'timestamps'):
-        app.timestamps = []
-
-    app.timestamps.append(data["timestamp"])
-
+    print("Received gesture timestamp:", data["timestamp"])
+    
+    # Capture a screenshot
     screenshot_file = capture_single_screenshot()
-    first_name = "Kaival"
-    last_name = "Shah"
-    orig_img, pf, about, experiences, education = await scrape(first_name, last_name, screenshot_file)
+    
+    # Split the name into first and last name
+    global name
+    first_name = name.split()[0]
+    last_name = name.split()[1] if len(name.split()) > 1 else ""
+    orig_img, pf, about, experiences, education = await scrape(first_name, last_name, screenshot_file, headless=False)
     
     if pf is None:
         return {
@@ -269,6 +291,7 @@ async def scrape(fn, ln, file, headless = True, log = False):
 
     client = webdriver.Chrome(options=options)
 
+    # liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
     liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
 
     print("Loading face image...")

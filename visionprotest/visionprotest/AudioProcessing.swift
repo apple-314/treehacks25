@@ -325,87 +325,82 @@ struct ProfileDescriptionView: View {
     let name: String
     let about: String
     let education: String
-    let experiences: [[String]]  // Use the original array of arrays
+    let experiences: [[String]]
     let profileURL: String
-
+    
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 8) {
-                // Name
+            VStack(alignment: .leading, spacing: 0) {
+                // Floating name label: larger, slightly higher, and shifted to the left.
                 Text(name)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
-                    .padding(.bottom, 5)
+                    .foregroundColor(.white)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 72))
+                    .padding(.leading, 40)
+                    .offset(x: -20, y: -20) // Adjust this to position it precisely.
+                    .padding(.bottom, -10)
                 
-                // About
-                Text(about)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                    .padding(.leading, 13)
-                
-                // Education Section
-                Text("Education")
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
-                
-                Text(education)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                    .padding(.leading, 20)
-                
-                // Experiences Section
-                Text("Experiences")
-                    .foregroundColor(.black)
-                    .font(.system(size: 30, weight: .semibold, design: .default))
-                
-                ForEach(experiences, id: \.self) { experience in
-                    if experience.count == 2 {
-                        // For two-item experiences, display both items in one line without a toggle.
-                        HStack {
-                            Text(experience[0])
-                            Text("•")
-                            Text(experience[1])
-                        }
+                // Main content container with rounded background.
+                VStack(alignment: .leading, spacing: 13) {
+                    // Education section
+                    Text("Education")
+                        .foregroundColor(.black)
+                        .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 42))
+                    
+                    Text(education)
                         .foregroundColor(.black)
                         .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                    } else if experience.count == 3 {
-                        // For three-item experiences, display the first two items as the title,
-                        // with the third item hidden inside a disclosure group.
-                        DisclosureGroup {
-                            Text(experience[2])
+                        .padding(.leading, 20)
+                    
+                    // Experiences section
+                    Text("Experiences")
+                        .foregroundColor(.black)
+                        .font(.system(size: 42, weight: .semibold))
+                    
+                    ForEach(experiences, id: \.self) { experience in
+                        if experience.count >= 2 {
+                            DisclosureGroup {
+                                ForEach(Array(experience.dropFirst(2)), id: \.self) { extraField in
+                                    HStack(alignment: .top) {
+                                        Text("•")
+                                        Text(extraField)
+                                    }
+                                    .foregroundColor(.black)
+                                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                                    .padding(.leading, 20)
+                                }
+                            } label: {
+                                HStack {
+                                    Text(experience[0])
+                                    Text("•")
+                                    Text(experience[1])
+                                }
                                 .foregroundColor(.black)
-                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                                .padding(.leading, 13)
-                        } label: {
-                            HStack {
-                                Text(experience[0])
-                                Text("•")
-                                Text(experience[1])
+                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                             }
-                            .foregroundColor(.black)
-                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                        } else {
+                            Text(experience.joined(separator: " • "))
+                                .foregroundColor(.black)
+                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                         }
-                    } else {
-                        // Fallback for unexpected formats.
-                        Text(experience.joined(separator: " • "))
-                            .foregroundColor(.black)
-                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                     }
+                    
+                    // Profile URL
+                    Text("Profile URL: \(profileURL)")
+                        .foregroundColor(.blue)
+                        .underline()
                 }
-                
-                // Profile URL
-                Text("Profile URL: \(profileURL)")
-                    .foregroundColor(.blue)
-                    .underline()
+                .frame(width: 800)
+                .padding(40)
+                .background(
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(Color(hex: "E2E2E2").opacity(0.6))
+                )
             }
-            .frame(width: 800)
-            .padding(40)
-            .background(
-                RoundedRectangle(cornerRadius: 30)
-                    .fill(Color(hex: "E2E2E2").opacity(0.6))
-            )
+            // Add extra padding at the top to ensure the name isn't cut off.
+            .padding(.top, 30)
         }
     }
+
 }
 
 
@@ -577,32 +572,25 @@ struct AudioProcessing_Preview: PreviewProvider {
 
 extension Color {
     init(hex: String) {
-        let sanitizedHex = hex
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .replacingOccurrences(of: "#", with: "")
-        var rgbValue: UInt64 = 0
-        Scanner(string: sanitizedHex).scanHexInt64(&rgbValue)
-
-        let r, g, b, a: UInt64
-        switch sanitizedHex.count {
-        case 6:
-            r = (rgbValue >> 16) & 0xFF
-            g = (rgbValue >> 8) & 0xFF
-            b = rgbValue & 0xFF
-            a = 0xFF
-        case 8:
-            r = (rgbValue >> 24) & 0xFF
-            g = (rgbValue >> 16) & 0xFF
-            b = (rgbValue >> 8) & 0xFF
-            a = rgbValue & 0xFF
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
-            r = 255; g = 255; b = 255; a = 255
+            (a, r, g, b) = (255, 0, 0, 0)
         }
         self.init(
             .sRGB,
             red: Double(r) / 255,
             green: Double(g) / 255,
-            blue: Double(b) / 255,
+            blue:  Double(b) / 255,
             opacity: Double(a) / 255
         )
     }
