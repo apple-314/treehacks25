@@ -1,10 +1,14 @@
 from datetime import datetime
 from vector_db import VectorDatabase
 
+f = open("phone_numbers.txt", "r")
+x = f.readlines()
+f.close()
+
 contacts = {
-    0 : {"fname": "James", "lname": "Chen", "id_name": "JamesChen", "phone": "1234567890", "conv_summary": "likes to play chess"},
-    1 : {"fname": "Aarav", "lname": "Wattal", "id_name": "AaravWattal", "phone": "0987654321", "conv_summary": "likes ee stuff"},
-    2 : {"fname": "Kaival", "lname": "Shah", "id_name": "KaivalShah", "phone": "7125364908", "conv_summary": "is a freshman"}
+    0 : {"fname": "James", "lname": "Chen", "id_name": "JamesChen", "phone": x[0], "conv_summary": "likes to play chess", "most_recent_conv_summary": "likes to drink soda"},
+    1 : {"fname": "Aarav", "lname": "Wattal", "id_name": "AaravWattal", "phone": x[1], "conv_summary": "likes ee stuff", "most_recent_conv_summary": "Aarav is over 6 feet tall"},
+    2 : {"fname": "Kaival", "lname": "Shah", "id_name": "KaivalShah", "phone": x[2], "conv_summary": "is a freshman", "most_recent_conv_summary": "VR is cool"}
 }
 
 db = VectorDatabase()

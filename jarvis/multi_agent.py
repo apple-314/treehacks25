@@ -5,7 +5,12 @@ from vector_db import VectorDatabase
 import requests
 import json
 from langchain.agents import Tool, initialize_agent
-from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
+
+from datetime import datetime
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)  # Suppress deprecation warnings
 
 # -----------------------------------------------------------
 # 1. Initialize the Groq LLM and Vector Database for most agents
@@ -22,22 +27,20 @@ manager_system = SystemMessage(
         "You are Jarvis, a friendly and helpful personal assistant. "
         "Your job is to decide which of the following agents should answer the user’s request. "
         "The available agents are:\n"
-        "1. Normal Agent: Simply passes the prompt to the LLM if no specialization is needed.\n"
-        "2. Administrative Agent: This has access to a texting tool. Go to it if the user specifically asks to send a text.\n"
-        "3. Technical Agent: Has access to technical documents about machine learning and coding (with RAG capabilities). Don't use this agent unless the prompt is specifically about these topics.\n"
-        "4. Conversational Agent: Has access to past conversations with people (with RAG capabilities).\n"
-        "5. Healthcare Agent: Has access to healthcare documents (with RAG capabilities).\n"
+        "1. Normal: Simply passes the prompt to the LLM if no specialization is needed.\n"
+        "2. Administrative: This has access to a texting tool. Go to it if the user specifically asks to send a text.\n"
+        "3. Technical: Has access to technical documents about machine learning and coding (with RAG capabilities). Don't use this agent unless the prompt is specifically about these topics.\n"
+        "4. Conversational: Has access to past conversations with people (with RAG capabilities).\n"
+        "5. Healthcare: Has access to healthcare documents (with RAG capabilities).\n"
         "Based on the user request and any relevant previous conversation context, "
         "select the most appropriate agent and output only the agent's name (one of: Normal, Administrative, Technical, Conversational, Healthcare) "
-        "as your answer.\n"
-        "For all your answers, keep it friendly but also relatively short and to the point."
+        "as your answer. Your answer should be only 1 word\n"
     )
 )
 
 normal_system = SystemMessage(
     content=(
-        "You are the Normal Agent. Simply answer the following user prompt by passing it directly to the LLM "
-        "and returning the answer. Keep your response friendly but brief and to the point."
+        "Give an answer that is friendly but concise and to the point: "
     )
 )
 
@@ -49,7 +52,7 @@ administrative_system = SystemMessage(
 
 conversational_prompt = (
     "You are the Conversational Agent. You have access to all of my conversation history with other people. "
-    "You will be asked a question about a person or people you may or may not have met"
+    "You will be asked a question about a person or people you may or may not have met. "
     "Your job is to answer questions about past discussions, including who was involved, when they took place, and what was discussed. "
     "You should provide concise, factual responses while maintaining accuracy and relevance. "
     "DO NOT GUESS OR MAKE UP DETAILS. "
@@ -171,8 +174,30 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
     
     # Route to the appropriate agent based on the manager's decision.
     if chosen_agent.lower() == "administrative":
-        name = "Aarav"
-        phone = "9259647214"
+        # getting list of all people
+        ppl = db.get_column_from_table("General", "Contacts", "id_name")
+        ppl = [p[0] for p in ppl]
+
+        extracting_name_from_user_prompt = SystemMessage(
+            content = (
+                f"Message: ** {user_request} ** "
+                f"You are given a list of names as follows: ** {str(ppl)} ** "
+                "Given the user prompt above, decide which of the names in the list given above is most associated with any names in the user prompt. "
+                "Specifically, you should look if there are any exact matches between a name in the list (could just be the first name) and someone mentioned in the prompt. "
+                "However, if there aren't any exact matches choose the closest one. "
+                "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES GIVEN AT THE BEGINNING. "
+                "Here are some examples: \n\n"
+                "Q: What did Billy think of our lunch the other day?\n"
+                "A: BillyBob\n"
+                "Q: Remind me of some of the key points from my talk with Samantha about ML\n"
+                "A: SamanthaWang\n"
+                "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name!!! THIS MEANS THAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!!*** Answer: "
+            )
+        )
+        id_name = llm.invoke([extracting_name_from_user_prompt]).content
+
+        (name, _, _, phone, _, most_recent_summary) = db.get_row_from_table("General", "Contacts", "id_name", id_name)[0]
+        
         admin_example_output_1 = '''{
             "phone": "5556789012",
             "message": "James Chen: Hey Samantha, it was fantastic meeting you at the marketing conference today! I was truly inspired by your insights on branding and digital strategy. I'd love to continue our conversation over lunch sometime. Let me know when you're free!"
@@ -181,14 +206,33 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
             "phone": "5551112222",
             "message": "James Chen: Hey Bob, I had an amazing time at the concert tonight! The live music was electrifying, and I really enjoyed hanging out with you. Let's plan another fun outing soon!"
         }'''
+
+        # context = (
+        #     "\n----------\n"
+        #     "Context: Start each text with 'James Chen: '. DON'T DEVIATE FROM THIS FORMAT AT ALL! \n"
+        #     f"{name}'s phone number is {phone}. \n"
+        #     f"Here is a summary of my conversation with {name}: \n"
+        #     f"I met Aarav at a tech meetup and we jumped straight into a dynamic discussion about the latest in AI and blockchain. "
+        #     "In just a few minutes, we exchanged sharp insights on neural networks, data security, and the disruptive potential of decentralized systems. \n"
+        #     "Our brief, yet content-rich chat left us both excited about future collaborations and eager to continue the conversation over coffee.\n"
+        #     "WHEN CALLING FUNCTIONS USE DOUBLE QUOTES FOR ALL FIELDS AND PARAMETERS OF THE JSON.\n"
+        #     "*** After sending *ONE* text message, simply report back to me with a confirmation and do not propose any further actions. ***\n"
+        #     "----------\n"
+        #     "Examples:\n"
+        #     "Example Prompt - Please text Samantha following up on our discussion at the marketing conference today. Mention how inspired I was by her insights on branding and digital strategy, and ask if she'd like to have lunch sometime to explore these ideas further.\n"
+        #     f"Example Function Call - {admin_example_output_1}\n"
+        #     "Example Final Output: I just sent Samantha a message saying: 'James Chen: Hey Samantha, it was fantastic meeting you at the marketing conference today! I was truly inspired by your insights on branding and digital strategy. I'd love to continue our conversation over lunch sometime. Let me know when you're free!'\n"
+        #     "\n"
+        #     "Example Prompt - Please text Bob following up on our concert tonight, mentioning how much I enjoyed the live music and his company, and ask if he wants to catch up again soon.\n"
+        #     f"Example Function Call - {admin_example_output_2}\n"
+        #     "Example Final Output: Great! I just sent Bob a message saying: 'James Chen: Hey Bob, I had an amazing time at the concert tonight! The live music was electrifying, and I really enjoyed hanging out with you. Let's plan another fun outing soon!'\n"
+        # )
+        
         context = (
             "\n----------\n"
             "Context: Start each text with 'James Chen: '. DON'T DEVIATE FROM THIS FORMAT AT ALL! \n"
-            f"Aarav's phone number is {phone}. \n"
-            "Here is a summary of my conversation with Aarav: \n"
-            f"I met {name} at a tech meetup and we jumped straight into a dynamic discussion about the latest in AI and blockchain. "
-            "In just a few minutes, we exchanged sharp insights on neural networks, data security, and the disruptive potential of decentralized systems. \n"
-            "Our brief, yet content-rich chat left us both excited about future collaborations and eager to continue the conversation over coffee.\n"
+            f"{name}'s phone number is {phone}. \n"
+            f"Here is a summary of my conversation with {name}:\n{most_recent_summary}\n"
             "WHEN CALLING FUNCTIONS USE DOUBLE QUOTES FOR ALL FIELDS AND PARAMETERS OF THE JSON.\n"
             "*** After sending *ONE* text message, simply report back to me with a confirmation and do not propose any further actions. ***\n"
             "----------\n"
@@ -204,6 +248,84 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
         answer = admin_agent.run(user_request + context)
     elif chosen_agent.lower() == "conversational":
         answer = invoke_agent(conversational_system, user_request)
+        # note that for conversational agent, it is required that the user prompt provides the name of a person
+        # this is so there can be lookup in that particular schema in the database later on
+        print(user_request)
+        print()
+
+        # getting list of all people
+        ppl = db.get_column_from_table("General", "Contacts", "id_name")
+        ppl = [p[0] for p in ppl]
+        print(ppl)
+        
+        extracting_name_from_user_prompt = SystemMessage(
+            content = (
+                f"Message: ** {user_request} ** "
+                f"You are given a list of names as follows: ** {str(ppl)} ** "
+                "Given the user prompt above, decide which of the names in the list given above is most associated with any names in the user prompt. "
+                "Specifically, you should look if there are any exact matches between a name in the list (could just be the first name) and someone mentioned in the prompt. "
+                "However, if there aren't any exact matches choose the closest one. "
+                "YOU MUST CHOOSE SOME NAME FROM THE LIST OF NAMES GIVEN AT THE BEGINNING. "
+                "Here are some examples: \n\n"
+                "Q: What did Billy think of our lunch the other day?\n"
+                "A: BillyBob\n"
+                "Q: Remind me of some of the key points from my talk with Samantha about ML\n"
+                "A: SamanthaWang\n"
+                "Only write the full name from the list. ***VERY IMPORTANT: Do not just give a first name. It must be the full name!!! THIS MEANS THAT YOUR ANSWER SHOULD BE JUST ONE WORD THAT IS A FIRST AND LAST NAME CONCATENATED AND NOTHING ELSE!!*** Answer: "
+            )
+        )
+
+        print(extracting_name_from_user_prompt)
+
+        id_name = llm.invoke([extracting_name_from_user_prompt]).content
+        id_name = [person for person in ppl if person.startswith(id_name)][0]
+
+        # print()
+        # print(id_name)
+        # print()
+
+        # not using time based things
+        # current_datetime = datetime.now().replace(microsecond=0)
+        # extracting_datetime_range_from_user_prompt = SystemMessage(
+        #     content = (
+        #         "Given the current date and the user's qualitative search query (which may or may not reference a time period), generate an exact DATETIME range for searching. "
+        #         "If the query explicitly mentions a time period (e.g., \"last week,\" \"next month,\" \"January 2023,\" \"past 6 months\"), extract the relevant DATETIME range accordingly. "
+        #         f"If no time period is mentioned, default to the last 30 days. The output must use exact dates and timestamps in YYYY-MM-DD HH:MM:SS format, assuming the current date is {current_datetime}. "
+        #         "Here are some examples (assuming today is 2024-02-16):\n"
+        #         "User Prompt: \"Show me recent transactions.\"\n"
+        #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
+        #         "User Prompt: \"Get logs from last week.\"\n"
+        #         "Output: BETWEEN '2024-02-05 00:00:00' AND '2024-02-11 23:59:59'\n"
+        #         "User Prompt: \"Find orders from January 2023.\"\n"
+        #         "Output: BETWEEN '2023-01-01 00:00:00' AND '2023-01-31 23:59:59'\n"
+        #         "User Prompt: \"Search for data.\" (No time mentioned, defaulting to last 30 days)\n"
+        #         "Output: BETWEEN '2024-01-17 00:00:00' AND '2024-02-16 23:59:59'\n"
+        #         "Now do the same on the following. DO NOT GIVE ANY OTHER OUTPUT OR EXPLANATION:\n"
+        #         f"User Prompt: {user_request}\n"
+        #         "Output: "
+        #     )
+        # )
+
+        ret = db.vector_search(id_name, "Conversation", user_request, 3)
+        excerpts = {}
+
+        for i, x in enumerate(ret):
+            y = db.get_table_interval(id_name, "Conversation", x[0], x[1]-1, x[1]+1)
+            s = ""
+            for z in y:
+                s += z[3]
+            excerpts[i] = {"date": x[2], "ex": s}
+        
+        (fname, lname, _, _, _, _) = db.get_row_from_table("General", "Contacts", "id_name", id_name)[0]
+        
+        conversational_prompt_rag = f"""{conversational_prompt}\nHere are potentially relevant excerpts from prior conversations with {fname} {lname}:\n"""
+        for ex in excerpts.values():
+            conversational_prompt_rag += f"conversation on day {ex['date']}\nexcerpt: {ex['ex']}\n\n"
+
+        conversational_system_rag = SystemMessage(content=conversational_prompt_rag)
+
+        print(f"\n\n{conversational_prompt_rag}\n\n")
+        answer = invoke_agent(conversational_system_rag, user_request)
     elif chosen_agent.lower() == "technical":
         # Perform a vector search for technical documents (RAG)
         ret = db.vector_search("TechnicalAgent", "ResearchPapers", user_request, 3)
@@ -247,7 +369,8 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
         # Default to normal agent if no clear decision was made.
         answer = invoke_agent(normal_system, user_request)
     
-    return answer
+    processed_agent = chosen_agent[0].upper() + chosen_agent[1:].lower()
+    return answer, processed_agent
 
 # -----------------------------------------------------------
 # 6. Example Usage
@@ -260,6 +383,9 @@ if __name__ == "__main__":
     # This prompt is designed for the administrative agent (which now uses the OpenAI tool).
     admin_user_request = (
         "Please text Aarav following up on our meeting today, add some details about what I enjoyed from our conversation and follow up on scheduling a coffee chat."
+    )
+    admin_user_request2 = (
+        "Please text Aarav thanking him for reviewing my paper on Machine Learning, i really appreciated it! also add stuff about our last meeting with some details using the fetched context."
     )
 
     # --- Example 2: Technical Request (RAG-based answer) ---
@@ -277,12 +403,17 @@ if __name__ == "__main__":
         "Can you tell me some illnesses with symptoms of severe coughs?"
     )
 
+    # --- Example 5: Conversational Question ---
+    conversational_user_request = (
+        "Can you give me a summary of my virtual reality conversation with Kaival?"
+    )
+
     # Choose one request to test; for instance, testing the administrative agent:
-    user_request = healthcare_user_request
+    user_request = admin_user_request
     # Alternatively, uncomment the following line to test the technical agent:
     # user_request = technical_user_request
 
-    final_answer = jarvis_handle(user_request, conversation_context)
+    final_answer, agent = jarvis_handle(user_request, conversation_context)
     
-    print("\nFinal Answer from Jarvis:")
+    print(f"\nFinal Answer from Jarvis [{agent} Agent]:")
     print(final_answer)
