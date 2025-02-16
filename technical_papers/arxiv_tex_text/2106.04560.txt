@@ -1,543 +1,4 @@
 
-%%% FILE: arxiv_sources/2106.04560/content.tex %%%
-\begin{abstract}
-
-Attention-based neural networks such as the Vision Transformer (ViT) have recently attained state-of-the-art results on many computer vision benchmarks. Scale is a primary ingredient in attaining excellent results, therefore, understanding a model's scaling properties is a key to designing future generations effectively. While the laws for scaling Transformer language models have been studied, it is unknown how Vision Transformers scale. To address this, we scale ViT models and data, both up and down, and characterize the relationships between error rate, data, and compute. Along the way, we refine the architecture and training of ViT, reducing memory consumption and increasing accuracy of the resulting models. As a result, we successfully train a ViT model with two billion parameters, which attains a new state-of-the-art on ImageNet of $90.45\%$ top-1 accuracy. The model also performs well for few-shot transfer, for example, reaching $84.86\%$ top-1 accuracy on ImageNet with only 10 examples per class.
-
-\end{abstract}
-
-% =========================================================
-\section{Introduction}\label{sec:intro}
-% =========================================================
-
-\begin{figure}[t]
-  \begin{center}
-    \includegraphics[width=0.4\textwidth]{figs/few_shot.pdf}
-  \end{center}
-  \vspace{-1em}
-  \caption{Few-shot transfer results. Our ViT-G model reaches 84.86\% top-1 accuracy on ImageNet with 10-shot linear evaluation.}\label{fig:few_shot}
-  \vspace{-0.8em}
-\end{figure}
-
-Attention-based Transformer architectures~\cite{vaswani2017attention} have taken computer vision domain by storm~\cite{dosovitskiy2020, carion2020endtoend} and are becoming an increasingly popular choice in research and practice.  Previously, Transformers have been widely adopted in the natural language processing (NLP) domain~\cite{devlin2019bert, brown2020language}.  Optimal scaling of Transformers in NLP was carefully studied in~\cite{kaplan2020scaling}, with the main conclusion that large models not only perform better, but do use large computational budgets more efficiently. However, it remains unclear to what extent these findings transfer to the vision domain, which has several important differences. For example, the most successful pre-training schemes in vision are supervised, as opposed to unsupervised pre-training in the NLP domain.
-
-In this paper we concentrate on scaling laws for transfer performance of ViT models pre-trained on image classification tasks. In particular, we experiment with models ranging from five million to two billion parameters, datasets ranging from one million to three billion training images and compute budgets ranging from below one TPUv3 core-day to beyond $10\,000$ core-days. Our main contribution is a characterization of the performance-compute frontier for ViT models, on two datasets.
-
-\begin{figure*}[t]
-  \begin{center}
-  \vspace{-2em}
-    \includegraphics[width=0.385\textwidth]{figs/imagenet_finetune.pdf}
-    \includegraphics[width=0.605\textwidth]{figs/scaling_laws_teaser_saturating2.pdf}
-  \end{center}
-  \vspace{-1em}
-  \caption{
-  \textbf{Left}/\textbf{Center}: Representation quality, measured as ImageNet finetune and linear 10-shot error rate, as a function of total training compute.
-  A saturating power-law approximates the Pareto frontier fairly accurately.
-  Note that smaller models (blue shading), or models trained on fewer images (smaller markers), saturate and fall off the frontier when trained for longer.
-  \textbf{Top right}: Representation quality when bottlenecked by model size.
-  For each model size, a large dataset and amount of compute is used, so model capacity is the main bottleneck.
-  Faintly-shaded markers depict sub-optimal runs of each model.
-  \textbf{Bottom Right}: Representation quality by datasets size.
-  For each dataset size, the model with an optimal size and amount of compute is highlighted, so dataset size is the main bottleneck.
-  }\label{fig:teaser_pic}
-  \vspace{-1em}
-\end{figure*}
-
-Along the way, we create an improved large-scale training recipe. We investigate training hyper-parameters and discover subtle choices that make drastic improvements in few-shot transfer performance. 
-The few-shot transfer evaluation protocol has also been adopted by previous large-scale pre-training efforts in NLP domain~\cite{gpt3}.
-Specifically, we discover that very strong L2 regularization, applied to the final linear prediction layer only, results in a learned visual representation that has very strong few-shot transfer capabilities.
-For example, with just a single example per class on the ImageNet dataset (which has $1\,000$ classes), our best model achieves 69.52\% accuracy; and with \emph{10 examples per class it attains 84.86\%}.  In addition, we substantially reduce the memory footprint of the original ViT model proposed in~\cite{dosovitskiy2020}. We achieve this by hardware-specific architecture changes and a different optimizer. As a result, we train a model with two billion parameters and attain a new \emph{state-of-the-art 90.45\% accuracy on ImageNet}.
-
-% =========================================================
-\section{Core Results}\label{sec:core}
-% =========================================================
-
-We first present our main results on scaling trends, before presenting detailed architecture and training protocol improvements in Section~\ref{sec:setup}.
-In the following experiments, we train several ViT models on both public ImageNet-21k~\cite{imagenet} dataset and privately gathered images, up to three billion weakly-labelled images.
-We vary the architecture size, number of training images, and training duration.
-All models are trained on TPUv3, thus total compute is measured in TPUv3 core-days.
-To evaluate the quality of the representation learned by the models, we measure (i) few-shot transfer via training a linear classifier on frozen weights, (ii) transfer via fine-tuning the whole model on all data, both to multiple benchmark tasks.
-
-\subsection{Scaling up compute, model and data together}\label{sec:scaling_up}
-
-Figure~\ref{fig:teaser_pic} shows both the 10-shot linear evaluation and finetuning evaluation on ImageNet~\cite{imagenet}.
-Similar trends on other datasets, Oxford IIIT Pets~\cite{pets}, CIFAR-100~\cite{cifar}, and Caltech-UCSD Birds~\cite{cub} are presented in the Appendix, Figure~\ref{fig:scaling_laws_all_results}.
-For each combination of model size and data size we pre-train for various numbers of steps.
-In Figure~\ref{fig:teaser_pic}, connected points represent the same model trained for a different number of steps. 
-We make the following observations.
-
-First, \textit{scaling up compute, model and data together improves representation quality}.
-In the left plot and center plot, the lower right point shows the model with the largest size, dataset size and compute achieving the lowest error rate.
-However, it appears that at the largest size the models starts to saturate, and fall behind the power law frontier (linear relationship on the log-log plot in Figure~\ref{fig:teaser_pic}).
-
-Second, \textit{representation quality can be bottlenecked by model size}. 
-The top-right plot shows the best attained performance for each model size. 
-Due to limited capacity, small models are not able to benefit from either the largest dataset, or compute resources.
-Figure~\ref{fig:teaser_pic}, left and center, show the Ti/16 model tending towards a high error rate, even when trained on a large number of images.
-
-Third, \textit{large models benefit from additional data, even beyond 1B images}. 
-When scaling up the model size, the representation quality can be limited by smaller datasets; even 30-300M images is not sufficient to saturate the largest models.
-In Figure~\ref{fig:teaser_pic}, center, the error rate of L/16 model on the the 30M dataset does not improve past 27\%.
-On the larger datasets, this model attains 19\%.
-Further, when increasing the dataset size, we observe a performance boost with big models, but not small ones.
-The largest models even obtain a performance improvement the training set size grows from 1B to 3B images (Figure~\ref{fig:teaser_pic}, bottom right).
-For small models, however, such as Ti/16 or B/32, increasing the dataset size does not help.
-For example, in Figure~\ref{fig:teaser_pic}, left and center, all of the curves for Ti/16 overlap, showing that this model achieves the same performance irrespective of the dataset size.
-
-\begin{figure*}[t]
-  \begin{center}
-    \includegraphics[width=\linewidth]{figs/sample_efficiency_transfer.pdf}
-  \end{center}
-  \caption{Error rate on ImageNet, with respect to images seen during pre-training. Big models are more sample efficient, which is consistent across diverse setups: few-shot transfer on the frozen representations, fine-tune the network on ImageNet, and evaluate the fine-tuned models on the v2 test set.}
-  \label{fig:sample_efficiency}
-\end{figure*}
-
-\subsection{Double-saturating power law}\label{sec:power_laws}
-
-Figure~\ref{fig:teaser_pic}, left and center, show the Pareto frontier of representation quality versus training compute.
-The frontier contains the models with the best allocation of compute to model shape and training duration.
-
-For over two orders of magnitude of compute, the relationship between compute and performance follows a power-law ($E=aC^b$), resulting in a straight line on the log-log plot.
-However, we observe ``saturation'' at both ends of the compute spectrum.
-At the higher end of compute, the largest models do not tend towards zero error-rate.
-If we extrapolate from our observations, an infinite capacity model will obtain a non-zero error.
-This effect has also been observed for generative models~\cite{henighan2020scaling}.
-The authors of~\cite{henighan2020scaling} refer to this residual error as the ``irreducible entropy'' of the task.
-Since we plot error rate, the information-theoretic interpretation does not apply, but our observations support the notion of fundamental performance ceilings for ImageNet~\cite{beyer2020imagenet}.
-In terms of the law, this saturation corresponds to an additive constant to the error rate: $c$ in $E=aC^{-b}+c$.
-
-At the lower end of the compute spectrum, we see a saturation for smaller models;
-the performance of the smallest model is better than that would be predicted by a power-law.
-This saturation occurs because even trivial solutions can achieve non-zero error.
-For example, predicting the majority class (almost zero compute) will achieve an accuracy related to its occurence frequency in the test set.
-This lower bound is not observed in~\cite{henighan2020scaling}, either because their smallest model is large enough to avoid this region, or because log-loss saturates at worse performances than accuracy (it will saturate eventually).
-This saturation corresponds to a shift in the x-axis: $d$ in $E=a(C+d)^{-b}+c$.
-This constant indicates that the zero-compute model will still obtain non-zero accuracy.
-
-
-
-\subsection{Big models are more sample efficient} \label{sec:sample_efficiency}
-
-
-
-Figure~\ref{fig:sample_efficiency} shows the representation quality with respect to the total number of images ``seen'' (batch size times number of steps) during pre-training. 
-In addition to ImageNet fine-tuning and linear 10-shot results on the public validation set, we also report results of the ImageNet fine-tuned model on the ImageNet-v2 test set~\cite{recht2019imagenet} as an indicator of robust generalization.
-Three ViT models pre-trained on three billion images are presented in this plot. 
-
-We observe that \textit{bigger models are more sample efficient}, reaching the same level of error rate with fewer seen images.
-For 10-shot, the Ti/16 model needs to see nearly 100 times more images to match the representation quality of the L/16 model.
-When fine-tuning, this factor reduces from 100 to about 20.
-Our results suggest that with sufficient data, training a larger model for fewer steps is preferable.
-This observation mirrors results in language modelling and machine translation~\cite{kaplan2020scaling,gshard}.
-
-
-\begin{figure}[b]
-  \begin{center}
-   % \vspace{-2em}
-    \includegraphics[width=0.48\textwidth]{figs/scaling_laws_i21k.pdf}
-  \end{center}
-  % \vspace{-0.5em}
-  \caption{Results on the ImageNet-21k dataset. \textbf{Left}: Representation quality, measured as ImageNet linear 10-shot error rate, as a function of total training compute. The double-saturating power law still applies. \textbf{Right}: Representation quality by model sizes and dataset sizes.}\label{fig:scaling_laws_i21k}
-  % \vspace{-0.8em}
-\end{figure}
-
-\begin{table*}[t]
-  % \small
-  \newcolumntype{C}{>{\centering\arraybackslash}X}
-  \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-  \setlength{\tabcolsep}{0pt}
-  \setlength{\extrarowheight}{5pt}
-  \renewcommand{\arraystretch}{0.75}
-  \centering
-  \caption{The results for ViT-G/14, compared to the previous state-of-the-art models.}\label{table:sota}
-  % Format is type{width}, p: paragraph, top-align, C is custom, c is squeezed.
-  \begin{tabularx}{\linewidth}{p{3.2cm}p{0.1cm}Cp{0.1cm}Cp{0.1cm}Cp{0.1cm}Cp{0.1cm}C}
-    \toprule[1pt]
-     \bf{Benchmark} && \bf{ImageNet} && \bf{INet V2} && \bf{INet ReaL} && \bf{ObjectNet} && \bf{VTAB (light)} \\
-    \midrule
-     NS (Eff.-L2)~\cite{xie2019selftraining} && 88.3 && 80.2 && - && 68.5 && - \\
-     MPL (Eff.-L2)~\cite{pham2020meta} && 90.2 && - && \textbf{91.02} && - && - \\
-     CLIP (ViT-L/14)~\cite{radford2021learning} && 85.4 && 75.9 && - && \textbf{72.3} && -\\
-     ALIGN (Eff.-L2)~\cite{jia2021scaling} && 88.6 && 70.1 && - && - && -\\
-     BiT-L (ResNet)~\cite{kolesnikov2019big} && 87.54 && - && 90.54 && 58.7 && 76.29\\
-     ViT-H/14~\cite{dosovitskiy2020} && 88.55 && - && 90.72 && - && 77.63 \\
-     \midrule
-     Our ViT-G/14 && \textbf{90.45$\pm$0.03} && \textbf{83.33$\pm$0.03}  && 90.81$\pm$0.01 && 70.53$\pm$0.52 && \textbf{78.29$\pm$0.53} \\ 
-    \bottomrule[1pt]
-  \end{tabularx}
-  %\vspace{-2em}
-\end{table*}
-
-\subsection{Do scaling laws still apply on fewer images?}\label{sec:public}
-
-We extend the study to much fewer images, ranging from one million to 13 millions on the public ImageNet-21k dataset. 
-In Figure~\ref{fig:scaling_laws_i21k} left, we found that the double-saturation power law \textit{still applies}, when varying model sizes, dataset sizes and compute resources. 
-This indicates that the conclusions from the study generalizes well, and can guide future design choices for vision transformer architectures.
-In Figure~\ref{fig:scaling_laws_i21k} right, we observe similar behaviors that the model performance are bottlenecked by the dataset size. 
-When scaling up compute, model and data together, one gets the best representation quality.
-
-\subsection{ViT-G/14 results}\label{sec:results}
-
-We trained a large Vision Transformer, ViT-G/14, which contains nearly two billion parameters.
-Section~\ref{sec:shape} details the architecture's shape.
-We evaluate the ViT-G/14 model on a range of downstream tasks, and compare it to recent state-of-the-art results.
-We fine-tune on ImaegNet, and report ImageNet~\cite{ILSVRC15}, ImageNet-v2~\cite{recht2019imagenet}, ReaL~\cite{beyer2020imagenet}, and ObjectNet~\cite{Barbu2019ObjectNetAL} accuracies. 
-In addition, we report transfer learning result on the VTAB-1k benchmark consisting of 19 tasks~\cite{zhai2019largescale}. 
-
-Figure~\ref{fig:few_shot} shows the few-shot transfer results on ImageNet.
-ViT-G/14 outperforms the previous best ViT-H/14 model~\cite{dosovitskiy2020} by a large margin (more than 5\%), attaining \emph{84.86\% accuracy with 10 examples per class}.
-Ten images per class is less than 1\% of ImageNet data (13 examples per class), as commonly used in self-supervised and semi-supervised learning~\cite{zhai2019s4l}.
-For reference, Figure~\ref{fig:few_shot} shows three state-of-the-art self-supervised learning models, SimCLR v2~\cite{chen2020big} and BYOL~\cite{grill2020bootstrap}, using 1\% of ImageNet data, DINO~\cite{dino} using 20 examples per class.
-Note, however, that these approaches are quite different:
-ViT-G/14 uses large source of weakly-supervised data, and is pre-trained only once and transferred to different tasks.
-Meanwhile, the self-supervised learning models use unlabeled but in-domain data for pre-training, and target a single task.
-
-Table~\ref{table:sota} shows the results on the remaining benchmarks.
-ViT-G/14 achieves \emph{90.45\% top-1 accuracy on ImageNet}, setting the new state-of-the art. 
-On ImageNet-v2, ViT-G/14 improves 3\% over the Noisy Student model~\cite{xie2019selftraining} based on EfficientNet-L2. 
-For ReaL, ViT-G/14 outperforms ViT-H~\cite{dosovitskiy2020} and BiT-L~\cite{kolesnikov2019big} by only a small margin, which indicates again that the ImageNet classification task is likely reaching its saturation point.
-For ObjectNet, ViT-G/14 outperforms BiT-L~\cite{kolesnikov2019big} by a large margin, and is 2\% better than Noisy Student, but is about 2\% behind CLIP~\cite{radford2021learning}. 
-Note that, unlike the other methods, CLIP does not fine-tune on ImageNet, and evaluates directly on ObjectNet, this likely improves its robustness.
-Finally, when transferring the ViT-G/14 model to VTAB, it gets consistently better results with just a single hyper parameter across all tasks.
-The state-of-the-art on VTAB using a heavyweight per-task hyperparameter sweep is 79.99~\cite{jia2021scaling}, we leave running a heavy sweep with ViT-G/14 to future work.
-
-% =========================================================
-\section{Method details}\label{sec:setup}
-% =========================================================
-
-We present a number of improvements to the ViT model and training.
-These improvements are mostly simple to implement, and can significantly improve memory-utilization and model quality.
-They allow us to train ViT-G/14 using data-parallelism alone, with the entire model fitting on a single TPUv3 core.
-
-\subsection{Decoupled weight decay for the ``head''}
-
-\begin{figure*}%
-    \centering
-    \raisebox{-0.47\height}{\includegraphics[width=0.65\textwidth]{figs/wd.pdf}}%
-    \hspace*{.1in}
-    \raisebox{-0.5\height}{\includegraphics[width=0.34\textwidth]{figs/headcurves.pdf}}%
-    %\vspace{-1em}
-    \caption{\textbf{Left and middle}: The dependence of 5-shot ImageNet accuracy and upstream performance depends on the weight decay strength. Normally, a single weight decay value is applied to all weights (corresponds to the diagonal on the heatmaps). We show that by using weight decay values for the ``head'' and the rest of the weights one significantly improves few-shot transfer performance.
-    \textbf{Right}: Few-shot performance on ImageNet for different types of head.  A high weight decay on the head works equally well for all of them.}%
-    \vspace{-1em}
-    \label{fig:wd}%
-\end{figure*}
-
-Weight decay has a drastic effect on model adaptation in the low-data regime. We conduct an study of this phenomena at a mid-size scale.
-
-We find that one can benefit from decoupling weight decay strength for the final linear layer (``head''), and for the remaining weights (``body'') in the model. 
-Figure~\ref{fig:wd} demonstrates this effect: we train a collection ViT-B/32 models on JFT-300M, each cell corresponds to the performance of  different head/body weight decay values. 
-The diagonal corresponds to using the same value for both decays.
-One can observe that the best performance appears off-diagonal (i.e. with a decoupled weight decay for the head and body).
-Interestingly, we observe that high weight decay in the head decreases performance on the pre-training (upstream) task (not shown), despite improving transfer performance.
-
-We do not have a complete explanation of this phenomena. However, we hypothesize that a stronger weight decay in the head results in representations with larger margin between classes, and thus better few-shot adaptation.
-This is similar to the main idea behind SVMs~\cite{cortes1995support}.
-This large decay makes it harder to get high accuracy during upstream pre-training, but our main goal is high quality transfer.
-
-\subsection{Saving memory by removing {\tt [class]} token}\label{sec:head}
-
-The largest VIT model from~\cite{dosovitskiy2020} uses $14 \times 14$ patches with $224 \times 224$ images. This results in $256$ visual ``tokens'', where each one corresponds to an image patch. On top of this, ViT models have an extra {\tt [class]} token, which is used to produce the final representation, bringing the total number of tokens to $257$.
-
-For ViT models, current TPU hardware pads the token dimension to a multiple of $128$, which may result in up to a $50\%$ memory overhead.
-To overcome this issue we investigate alternatives to using the extra {\tt [class]} token.
-In particular, we evaluate global average pooling (GAP) and multihead attention pooling (MAP)~\cite{lee2019set} to aggregate representation from all patch tokens.
-We set the number of heads in MAP to be equal to the number of attention heads in the rest of the model.
-To further simplify the head design we remove final non-linear projection before the final prediction layer, which was present in the original ViT paper.
-
-To choose the best head, we perform a side-by-side comparison of a {\tt [class]} token and GAP/MAP heads.
-Results are summarized in Figure~\ref{fig:wd}~(right).
-We find that all heads perform similarly, while GAP and MAP are much more memory efficient due to the aforementioned padding considerations. We also observe that non-linear projection can be safely removed.
-Thus, we opt for the MAP head, since it is the most expressive and results in the most uniform architecture. 
-MAP head has also been explored in~\cite{cait}, in a different context for better quality rather than saving memory. 
-
-\begin{figure*}[t]
-  \begin{center}
-    \includegraphics[width=0.8\linewidth]{figs/jft_300m_3b.pdf}
-  \end{center}
-  \vspace{-0.5em}
-  \caption{The effect of switching from JFT-300M to JFT-3B, without any further scaling. Both small and large models benefit from this change, by an approximately constant factor, both for linear few-shot evaluation (\textbf{left}) and transfer using the full dataset (\textbf{right}).}
-  \label{fig:jft_300m_3b}
-\end{figure*}
-
-
-\subsection{Scaling up data}\label{sec:dataset}
-
-For this study, we use the proprietary JFT-3B dataset, a larger version of the JFT-300M dataset used in many previous works on large-scale computer vision models~\cite{sun2017unreasonable,kolesnikov2019big,dosovitskiy2020}.
-This dataset consists of nearly 3 billion images, annotated with a class-hierarchy of around 30k labels via a semi-automatic pipeline.
-Thus, the data and associated labels are noisy.
-We ignore the hierarchical aspect of the labels and use only the assigned labels as targets for multi-label classification via a sigmoid cross-entropy loss, following~\cite{kolesnikov2019big,dosovitskiy2020}.
-
-We have conducted sensitive category association analysis as described in~\cite{aka2021measuring}. We measured (per label) the distribution of sensitive categories across the raw data, the cleaned data, the models trained on this data, and labels that were verified by human raters. Human raters additionally assisted in removing offensive content from the dataset.
-
-Figure~\ref{fig:jft_300m_3b} shows an ablation of the effect of changing from JFT-300M to JFT-3B on model performance, even when scale is not increased.
-Figure~\ref{fig:jft_300m_3b}, left shows linear 10-shot ImageNet performance evaluated throughout.
-We observe that JFT-3B  results in a better model, even before the model has completely one epoch of JFT-300M.
-Therefore, overfitting JFT-300M is not the sole cause of the improvement.
-This difference can be seen even for the small B/32 model as well as the larger L/16.
-We fine-tune the models to the full ImageNet dataset (right), and confirm that these improvements transfer to a full fine-tuning setup.
-Overall, the change in dataset improves transfer to ImageNet by about 1\% for both small and large models. 
-Other than the performance improvement, training behavior is similar on JFT-300M and JFT-3B.
-Most importantly, JFT-3B allows us to scale up further with fewer concerns about overfitting and regularization.
-
-\textbf{Deduplication.} We remove all images from the JFT-3B dataset that are near-duplicates of images from both train set and test set of datasets we evaluate on. Overall we identified and removed 927k duplicate images from JFT-3B.
-
-
-\subsection{Memory-efficient optimizers}\label{sec:optims}
-
-When training large models, storage required for model parameters becomes a bottleneck. Our largest model, ViT-G, has roughly two billion parameters, which occupies 8 GiB of device memory. To make things much worse, the Adam optimizer that is commonly used for training Transformers, stores two additional floating point scalars per each parameter, which results in an additional two-fold overhead (extra 16 GiB). To tackle the overhead introduced by the Adam optimizer we explore two modifications.
-
-\textbf{Adam with half-precision momentum}. We empirically observe that storing momentum in half-precision (\texttt{bfloat16} type) does not affect training dynamics and has no effect on the outcome. This allows to reduce optimizer overhead from 2-fold to 1.5-fold. Notably, storing the second momentum using half-precision resulted in a significant performance deterioration.
-
-\textbf{Adafactor optimizer.} The above optimizer still induces a large memory overhead. Thus, we turn our attention to the Adafactor optimizer~\cite{adafactor}, which stores second momentum using rank 1 factorization. From practical point of view, this results in the negligible memory overhead. However, the Adafactor optimizer did not work out of the box, so we make the following modifications:
-\begin{itemize}
-    \item We re-introduce the first momentum in half-precision, whereas the recommended setting does not use the first momentum at all.
-    \item We disable scaling of learning rate relative to weight norms, a feature that is part of Adafactor.
-    \item Adafactor gradually increases the second momentum from $0.0$ to $1.0$ throughout the course of training. In our preliminary experiments, we found that clipping the second momentum at $0.999$ (Adam's default value) results in better convergence, so we adopt it.
-\end{itemize}
-The resulting optimizer introduces only a 50\% memory overhead on top the space needed to store model's parameters. 
-
-We observe that both proposed optimizers perform on par with  or slightly better than the original Adam optimizer.
-We are aware of other memory-efficient optimizers~\cite{zero_optimizer,adam_1bit}, we leave the exploration to future work.
-
-\subsection{Learning-rate schedule}
-
-In our study we want to train each of the models for several different durations in order to measure the trade-off between model size and training duration.
-When using linear decay, as in~\cite{dosovitskiy2020}, each training duration requires its own training run starting from scratch, which would be an inefficient protocol.
-
-Inspired by~\cite{instagram}, we address this issue by exploring learning-rate schedules that, similar to the \emph{warmup} phase in the beginning, include a \emph{cooldown} phase at the end of training, where the learning-rate is linearly annealed toward zero.
-Between the warmup and the cooldown phases, the learning-rate should not decay too quickly to zero.
-This can be achieved by using either a constant, or a reciprocal square-root schedule for the main part of training.
-Figure~\ref{fig:schedules}~(bottom) depicts several of these options, with a cooldown after approximately 200\,k, 400\,k, and 500\,k steps.
-The upper half of Figure~\ref{fig:schedules} shows the validation score (higher is better) for each of these options and their cooldowns, together with two linear schedules for reference.
-While the linear schedule is still preferable when one knows the training duration in advance and does not intend to train any longer, all three alternatives come reasonably close, with the advantage of allowing indefinite training \emph{and} evaluating multiple training durations from just one run.
-For each of the schedules, we optimized the learning-rate and the exact shape.
-We have also briefly tried cyclic learning-rate schedules, however they seemed to perform much worse and we have not investigated further.
-We therefore opt for the reciprocal square-root schedule.
-
-\begin{figure}[t]
-  \begin{center}
-  \vspace{-0.5em}
-    \includegraphics[width=0.45\textwidth]{figs/schedules.pdf}
-  \end{center}
-  \vspace{-1.2em}
-  \caption{Various ``infinite'' learning-rate schedules, along with the finite linear one for reference.}\label{fig:schedules}
-  % \vspace{-1em}
-\end{figure}
-
-\subsection{Selecting model dimensions}\label{sec:shape}
-
-
-\begin{figure*}[t]
-  \begin{center}
-    \includegraphics[width=0.92\linewidth]{figs/shapefinder.pdf}
-  \end{center}
-  \vspace{-1.5em}
-  \caption{Combined results of the ``Shapefinder'' simulation for the original ViT in orange, our improvements together with half-precision Adam (\eg ViT-g) in green, and finally with our modified AdaFactor in blue. White areas ran out of memory. The brightness of the dot corresponds to its relative training speed.}
-  \label{fig:shapefinder}
-\end{figure*}
-
-ViT models have many parameters that control the model's shape, and we refer to the original publication for full details.
-Briefly, these include the \emph{patch-size}, the number of encoder blocks (\emph{depth}), the dimensionality of patch embeddings and self-attention (\emph{width}), the number of attention \emph{heads}, and the hidden dimension of MLP blocks (\emph{MLP-width}).
-On top of this, we rely on the XLA compiler to optimize our models for runtime speed and memory footprint.
-Behind the scenes, XLA uses complex heuristics to compile a model into code for a specific hardware that trades off memory and speed optimally.
-As a result, it is hard to predict which model configurations will fit into memory on a single device.
-
-Therefore we run an extensive simulation, where we instantiate a large amount of ViTs of various shapes, and attempt to train them for a few steps, without considering the quality.
-We vary the depth, width, heads, and MLP-width, but keep the patch-size at 14\,px. 
-In this way, we measure their speed and whether or not a given model fits into the device's memory.
-Figure~\ref{fig:shapefinder} summarizes the result of this simulation.
-Each block corresponds to one model configuration, the shade of the block corresponds to its training speed (brighter is faster). 
-Orange blocks show which original ViT models, without any of our modifications, fit.
-Green blocks then further include the memory savings described in Section~\ref{sec:head} coupled with the half-precision Adam described in Section~\ref{sec:optims}.
-Finally, blue blocks are with our modified AdaFactor optimizer.
-The shapes in the white area were not able to fit into memory in any setting.
-For space reasons, we show here only the models pertaining to the experiments presented, but note that with our modifications we were able to fit thin ViT models of a depth up to 100 encoder blocks.
-
-\begin{table}
-  \setlength{\tabcolsep}{5pt}
-  \setlength{\extrarowheight}{5pt}
-  \renewcommand{\arraystretch}{0.75}
-  \centering
-  % \vspace{-2em}
-  \caption{Model architecture details.}\label{tbl:models}
-  \vspace{0.5em}
-  \begin{tabulary}{1.0\linewidth}{LCCCCRRR}
-    \toprule
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Name}}} &
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Width}}} &
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Depth}}} &
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{MLP}}} &
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Heads}}} &
-    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\shortstack[c]{\bf{Mio.} \\ \bf{Param}}}} &
-    \multicolumn{2}{c}{\bf{GFLOPs}} \\
-    \cmidrule[0.5pt]{7-8}
-     &  &  &  &  & & \multicolumn{1}{c}{$224^2$} & \multicolumn{1}{c}{$384^2$} \\
-    \cmidrule[0.5pt]{1-8}
-    s/28  & 256  & 6  & 1024 & 8  &  5.4 & 0.7   & 2.0 \\
-    s/16  & 256  & 6  & 1024 & 8  &  5.0 & 2.2   & 7.8 \\
-    S/32  & 384  & 12 & 1536 & 6  &   22 & 2.3   & 6.9 \\
-    Ti/16 & 192  & 12 & 768  & 3  &  5.5 & 2.5   & 9.5 \\
-    B/32  & 768  & 12 & 3072 & 12 &   87 & 8.7   & 26.0 \\
-    S/16  & 384  & 12 & 1536 & 6  &   22 & 9.2   & 31.2 \\
-    B/28  & 768  & 12 & 3072 & 12 &   87 & 11.3  & 30.5 \\
-    B/16  & 768  & 12 & 3072 & 12 &   86 & 35.1  & 111.3 \\
-    L/16  & 1024 & 24 & 4096 & 16 &  303 & 122.9 & 382.8 \\
-    g/14  & 1408 & 40 & 6144 & 16 & 1011 & 533.1 & 1596.4 \\
-    G/14  & 1664 & 48 & 8192 & 16 & 1843 & 965.3 & 2859.9 \\
-    \bottomrule
-  \end{tabulary}
-  %\vspace{-2em}
-\end{table}
-
-The original Vision Transformer publication contains a study in Appendix~D2 about the trade-offs between scaling the different components, concluding that it is most effective to scale all aspects (depth, width, MLP-width, and patch-size) simultaneously and by a similar amount.
-We follow this recommendation, and select shapes for ViT-g and ViT-G at the limit of what fits in memory accordingly, as shown in Figure~\ref{fig:shapefinder} and summarized in Table~\ref{tbl:models}.
-
-% =========================================================
-\section{Related Work}\label{sec:relwork}
-% =========================================================
-
-\textbf{Smaller Vision Transformers\,\,}
-Early work on Transformers for vision focused on  small networks for CIFAR-10~\cite{cordonnier2020}.
-The Vision Transformer~\cite{dosovitskiy2020}, however, was proposed in the context of state-of-the-art medium and large-scale image recognition; the smallest model (ViT-B) containing 86M parameters.
-\cite{touvron2020training} present smaller ViT sizes for training from-scratch, down to ViT-Ti, with 5M parameters.
-New variants of ViT introduce smaller and cheaper architectures.
-For example, T2T-ViT~\cite{yuan2021tokens} reduces the number of parameters and compute using a new tokenization and narrower networks.
-Pyramidal ViTs~\cite{wang2021pyramid}, designed for dense prediction tasks, follow a CNN-like pyramidal structure, that also reduces the size of the model.
-Hybrids of CNNs and Transformers typically allow smaller models to perform well, such as the ViT-CNN hybrid in \cite{dosovitskiy2020}, BoTNet~\cite{srinivas2021bottleneck}, and HaloNet~\cite{vaswani2021scaling}.
-However, the other direction, increasing the scale of ViT, is less explored.
-While language Transformers are still much larger than Vision Transformers, understanding the scaling properties and the improvements introduced in this paper represent a step in this direction.
-
-\textbf{Scaling Laws\,\,}
-\cite{kaplan2020scaling} present a thorough study of the empirical scaling laws of neural language models.
-The authors fit power laws that describe the relationships between compute, data size, model size, and performance. 
-Following these laws, GPT-3, a 175B parameter language model was successfully trained~\cite{brown2020language}.
-\cite{henighan2020scaling} presents laws for autoregressive generative modelling in other modalities, including the generation of images.
-Our paper contains the first study of scaling laws for the discriminative modelling of images.
-
-\textbf{Scaling-up Vision Models\,\,}
-Many papers scale up CNNs to attain improved performance.
-EfficientNets~\cite{efficientnet,efficientnet_v2} present a scaling strategy that balances compute between depth, width, and resolution and apply it to MobileNets.
-This strategy is revisited in \cite{bello2021revisiting,resnet_strikes} to further improve the performance of ResNets~\cite{he2016deep}.
-Large CNNs have attained excellent performance in visual recognition, such as AmoebaNet-B(18, 512) (557M parameters) trained using GPipe pipeline parallelism~\cite{gpipe}, ResNeXt-101 32×48d (829M parameters) pre-trained on weakly-labelled Instagram images~\cite{instagram}, EfficientNet-L2 (480M parameters) trained with ImageNet pseudo-labels on JFT-300M~\cite{noisystudent}, and BiT-L-ResNet152x4 (928M parameters) pre-trained on JFT-300M~\cite{kolesnikov2019big}.
-Recently, ~\cite{deepvit,cait} explore strategies to scale the depth of ViTs. 
-We are the first to scale Vision Transformers to even larger size and reache new state-of-the-art results doing so.
-The concurrent work ~\cite{coatnet} focuses on CNN and ViT hybrid architectures.
- 
-
-% =========================================================
-\section{Discussion}\label{sec:discussion}
-% =========================================================
-
-\textbf{Limitations.} This work uses the proprietary JFT-3B dataset for the scaling laws study. To make our insights more reliable and generalizable, we verify that the scaling laws also apply on the public ImageNet-21k dataset. 
-
-\textbf{Societal  impact.} A potential broader cost of this work is the energy required to perform the experiments in our scaling study, especially in training the largest ViT-G model.
-However, this cost may be amortized in two ways.
-First, such studies of scaling laws need only be performed once; We hope future developers of ViT models may use our results to design models that can be trained with fewer compute resources.
-Second, the models trained are designed primarily for transfer learning.
-Transfer of pre-trained weights is much less expensive than training from scratch on a downstream task, and typically reaches higher accuracy.
-Therefore, by transferring our models to many tasks, the pre-training compute is further amortized.
-
-% =========================================================
-\section{Conclusion}\label{sec:conclusion}
-% =========================================================
-
-We demonstrate that the performance-compute frontier for ViT models with enough training data roughly follows a (saturating) power law. 
-Crucially, in order to stay on this frontier one has to simultaneously scale compute and model size; that is, not increasing a model's size when extra compute becomes available is suboptimal. 
-We also demonstrate that larger models are much more sample efficient and are great few-shot learners. 
-Finally, we present a new training recipe, which allows one to efficiently train large and high-performing ViT models. Note, that our conclusions may not necessarily generalize beyond the scale we have studied and they may not generalize beyond the ViT family of models.
-\paragraph{Acknowledgements} We thank James Bradbury and Vivek Sharma for their help on using large-scale infrastructure; Alexey Dosovitskiy, Joan Puigcerver, Basil Mustafa, Carlos Riquelme for insightful discussions; Tom Duerig, Austin Tarango, Daniel Keysers, Howard Zhou, Wenlei Zhou, Yanan Bao for discussions on JFT; the Google Brain team at large for providing a supportive research environment.
-%%% FILE: arxiv_sources/2106.04560/main.tex %%%
-\documentclass[10pt,twocolumn,letterpaper]{article}
-
-%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
-%\usepackage[review]{cvpr}      % To produce the REVIEW version
-% \usepackage{cvpr}              % To produce the CAMERA-READY version
-\usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
-
-\usepackage[utf8]{inputenc} % allow utf-8 input
-\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-\usepackage[pagebackref=true,breaklinks=true,colorlinks,bookmarks=false]{hyperref}
-\usepackage{url}            % simple URL typesetting
-\usepackage{booktabs}       % professional-quality tables
-\usepackage{amsfonts}       % blackboard math symbols
-\usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
-\usepackage{xcolor}         % colors
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\usepackage{multirow}
-\usepackage{tabularx}
-\usepackage{tabulary}
-\usepackage{colortbl}
-
-\usepackage{xfrac}
-
-\usepackage{xspace}
-
-\usepackage{listings}
-\usepackage{upquote}  % Straight ' in all listings
-\usepackage{xcolor}
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-}
-
-\lstset{style=mystyle}
-
-\definecolor{todocolor}{rgb}{0.82, 0.41, 0.12}
-\newcommand\TODO[1]{\textcolor{todocolor}{\textbf{TODO: #1}}}
-
-\title{Scaling Vision Transformers}
-
-\author{%
-  \centerline{Xiaohua Zhai$^{\star}$, Alexander Kolesnikov$^{\star}$, Neil Houlsby, Lucas Beyer$^{\star}$} \vspace{2mm}\\
-  \centerline{Google Research, Brain Team, Zürich} \vspace{1.5mm} \\
-  \centerline{\texttt{{\{xzhai, akolesnikov, neilhoulsby, lbeyer\}}@google.com}}
-}
-
-%%%%%%%%% PAPER ID  - PLEASE UPDATE
-\def\cvprPaperID{10350} % *** Enter the CVPR Paper ID here
-\def\confName{CVPR}
-\def\confYear{2022}
-
-\begin{document}
-
-\maketitle
-{\let\thefootnote\relax\footnote{
-{$^{\star}$equal contribution}}}
-
-\input{content.tex}
-
-{\small
-\bibliographystyle{ieee_fullname}
-\bibliography{scaling}
-}
-
-\clearpage{}
-\input{appendix}
-
-
-\end{document}
 %%% FILE: arxiv_sources/2106.04560/appendix.tex %%%
 \appendix
 
@@ -1546,3 +1007,543 @@ We show the total steps and the cooldown steps for each model, as well as the be
 \end{table*}
 
 
+
+%%% FILE: arxiv_sources/2106.04560/main.tex %%%
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+%\usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage{cvpr}              % To produce the CAMERA-READY version
+\usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[pagebackref=true,breaklinks=true,colorlinks,bookmarks=false]{hyperref}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{colortbl}
+
+\usepackage{xfrac}
+
+\usepackage{xspace}
+
+\usepackage{listings}
+\usepackage{upquote}  % Straight ' in all listings
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\definecolor{todocolor}{rgb}{0.82, 0.41, 0.12}
+\newcommand\TODO[1]{\textcolor{todocolor}{\textbf{TODO: #1}}}
+
+\title{Scaling Vision Transformers}
+
+\author{%
+  \centerline{Xiaohua Zhai$^{\star}$, Alexander Kolesnikov$^{\star}$, Neil Houlsby, Lucas Beyer$^{\star}$} \vspace{2mm}\\
+  \centerline{Google Research, Brain Team, Zürich} \vspace{1.5mm} \\
+  \centerline{\texttt{{\{xzhai, akolesnikov, neilhoulsby, lbeyer\}}@google.com}}
+}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\cvprPaperID{10350} % *** Enter the CVPR Paper ID here
+\def\confName{CVPR}
+\def\confYear{2022}
+
+\begin{document}
+
+\maketitle
+{\let\thefootnote\relax\footnote{
+{$^{\star}$equal contribution}}}
+
+\input{content.tex}
+
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{scaling}
+}
+
+\clearpage{}
+\input{appendix}
+
+
+\end{document}
+%%% FILE: arxiv_sources/2106.04560/content.tex %%%
+\begin{abstract}
+
+Attention-based neural networks such as the Vision Transformer (ViT) have recently attained state-of-the-art results on many computer vision benchmarks. Scale is a primary ingredient in attaining excellent results, therefore, understanding a model's scaling properties is a key to designing future generations effectively. While the laws for scaling Transformer language models have been studied, it is unknown how Vision Transformers scale. To address this, we scale ViT models and data, both up and down, and characterize the relationships between error rate, data, and compute. Along the way, we refine the architecture and training of ViT, reducing memory consumption and increasing accuracy of the resulting models. As a result, we successfully train a ViT model with two billion parameters, which attains a new state-of-the-art on ImageNet of $90.45\%$ top-1 accuracy. The model also performs well for few-shot transfer, for example, reaching $84.86\%$ top-1 accuracy on ImageNet with only 10 examples per class.
+
+\end{abstract}
+
+% =========================================================
+\section{Introduction}\label{sec:intro}
+% =========================================================
+
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{figs/few_shot.pdf}
+  \end{center}
+  \vspace{-1em}
+  \caption{Few-shot transfer results. Our ViT-G model reaches 84.86\% top-1 accuracy on ImageNet with 10-shot linear evaluation.}\label{fig:few_shot}
+  \vspace{-0.8em}
+\end{figure}
+
+Attention-based Transformer architectures~\cite{vaswani2017attention} have taken computer vision domain by storm~\cite{dosovitskiy2020, carion2020endtoend} and are becoming an increasingly popular choice in research and practice.  Previously, Transformers have been widely adopted in the natural language processing (NLP) domain~\cite{devlin2019bert, brown2020language}.  Optimal scaling of Transformers in NLP was carefully studied in~\cite{kaplan2020scaling}, with the main conclusion that large models not only perform better, but do use large computational budgets more efficiently. However, it remains unclear to what extent these findings transfer to the vision domain, which has several important differences. For example, the most successful pre-training schemes in vision are supervised, as opposed to unsupervised pre-training in the NLP domain.
+
+In this paper we concentrate on scaling laws for transfer performance of ViT models pre-trained on image classification tasks. In particular, we experiment with models ranging from five million to two billion parameters, datasets ranging from one million to three billion training images and compute budgets ranging from below one TPUv3 core-day to beyond $10\,000$ core-days. Our main contribution is a characterization of the performance-compute frontier for ViT models, on two datasets.
+
+\begin{figure*}[t]
+  \begin{center}
+  \vspace{-2em}
+    \includegraphics[width=0.385\textwidth]{figs/imagenet_finetune.pdf}
+    \includegraphics[width=0.605\textwidth]{figs/scaling_laws_teaser_saturating2.pdf}
+  \end{center}
+  \vspace{-1em}
+  \caption{
+  \textbf{Left}/\textbf{Center}: Representation quality, measured as ImageNet finetune and linear 10-shot error rate, as a function of total training compute.
+  A saturating power-law approximates the Pareto frontier fairly accurately.
+  Note that smaller models (blue shading), or models trained on fewer images (smaller markers), saturate and fall off the frontier when trained for longer.
+  \textbf{Top right}: Representation quality when bottlenecked by model size.
+  For each model size, a large dataset and amount of compute is used, so model capacity is the main bottleneck.
+  Faintly-shaded markers depict sub-optimal runs of each model.
+  \textbf{Bottom Right}: Representation quality by datasets size.
+  For each dataset size, the model with an optimal size and amount of compute is highlighted, so dataset size is the main bottleneck.
+  }\label{fig:teaser_pic}
+  \vspace{-1em}
+\end{figure*}
+
+Along the way, we create an improved large-scale training recipe. We investigate training hyper-parameters and discover subtle choices that make drastic improvements in few-shot transfer performance. 
+The few-shot transfer evaluation protocol has also been adopted by previous large-scale pre-training efforts in NLP domain~\cite{gpt3}.
+Specifically, we discover that very strong L2 regularization, applied to the final linear prediction layer only, results in a learned visual representation that has very strong few-shot transfer capabilities.
+For example, with just a single example per class on the ImageNet dataset (which has $1\,000$ classes), our best model achieves 69.52\% accuracy; and with \emph{10 examples per class it attains 84.86\%}.  In addition, we substantially reduce the memory footprint of the original ViT model proposed in~\cite{dosovitskiy2020}. We achieve this by hardware-specific architecture changes and a different optimizer. As a result, we train a model with two billion parameters and attain a new \emph{state-of-the-art 90.45\% accuracy on ImageNet}.
+
+% =========================================================
+\section{Core Results}\label{sec:core}
+% =========================================================
+
+We first present our main results on scaling trends, before presenting detailed architecture and training protocol improvements in Section~\ref{sec:setup}.
+In the following experiments, we train several ViT models on both public ImageNet-21k~\cite{imagenet} dataset and privately gathered images, up to three billion weakly-labelled images.
+We vary the architecture size, number of training images, and training duration.
+All models are trained on TPUv3, thus total compute is measured in TPUv3 core-days.
+To evaluate the quality of the representation learned by the models, we measure (i) few-shot transfer via training a linear classifier on frozen weights, (ii) transfer via fine-tuning the whole model on all data, both to multiple benchmark tasks.
+
+\subsection{Scaling up compute, model and data together}\label{sec:scaling_up}
+
+Figure~\ref{fig:teaser_pic} shows both the 10-shot linear evaluation and finetuning evaluation on ImageNet~\cite{imagenet}.
+Similar trends on other datasets, Oxford IIIT Pets~\cite{pets}, CIFAR-100~\cite{cifar}, and Caltech-UCSD Birds~\cite{cub} are presented in the Appendix, Figure~\ref{fig:scaling_laws_all_results}.
+For each combination of model size and data size we pre-train for various numbers of steps.
+In Figure~\ref{fig:teaser_pic}, connected points represent the same model trained for a different number of steps. 
+We make the following observations.
+
+First, \textit{scaling up compute, model and data together improves representation quality}.
+In the left plot and center plot, the lower right point shows the model with the largest size, dataset size and compute achieving the lowest error rate.
+However, it appears that at the largest size the models starts to saturate, and fall behind the power law frontier (linear relationship on the log-log plot in Figure~\ref{fig:teaser_pic}).
+
+Second, \textit{representation quality can be bottlenecked by model size}. 
+The top-right plot shows the best attained performance for each model size. 
+Due to limited capacity, small models are not able to benefit from either the largest dataset, or compute resources.
+Figure~\ref{fig:teaser_pic}, left and center, show the Ti/16 model tending towards a high error rate, even when trained on a large number of images.
+
+Third, \textit{large models benefit from additional data, even beyond 1B images}. 
+When scaling up the model size, the representation quality can be limited by smaller datasets; even 30-300M images is not sufficient to saturate the largest models.
+In Figure~\ref{fig:teaser_pic}, center, the error rate of L/16 model on the the 30M dataset does not improve past 27\%.
+On the larger datasets, this model attains 19\%.
+Further, when increasing the dataset size, we observe a performance boost with big models, but not small ones.
+The largest models even obtain a performance improvement the training set size grows from 1B to 3B images (Figure~\ref{fig:teaser_pic}, bottom right).
+For small models, however, such as Ti/16 or B/32, increasing the dataset size does not help.
+For example, in Figure~\ref{fig:teaser_pic}, left and center, all of the curves for Ti/16 overlap, showing that this model achieves the same performance irrespective of the dataset size.
+
+\begin{figure*}[t]
+  \begin{center}
+    \includegraphics[width=\linewidth]{figs/sample_efficiency_transfer.pdf}
+  \end{center}
+  \caption{Error rate on ImageNet, with respect to images seen during pre-training. Big models are more sample efficient, which is consistent across diverse setups: few-shot transfer on the frozen representations, fine-tune the network on ImageNet, and evaluate the fine-tuned models on the v2 test set.}
+  \label{fig:sample_efficiency}
+\end{figure*}
+
+\subsection{Double-saturating power law}\label{sec:power_laws}
+
+Figure~\ref{fig:teaser_pic}, left and center, show the Pareto frontier of representation quality versus training compute.
+The frontier contains the models with the best allocation of compute to model shape and training duration.
+
+For over two orders of magnitude of compute, the relationship between compute and performance follows a power-law ($E=aC^b$), resulting in a straight line on the log-log plot.
+However, we observe ``saturation'' at both ends of the compute spectrum.
+At the higher end of compute, the largest models do not tend towards zero error-rate.
+If we extrapolate from our observations, an infinite capacity model will obtain a non-zero error.
+This effect has also been observed for generative models~\cite{henighan2020scaling}.
+The authors of~\cite{henighan2020scaling} refer to this residual error as the ``irreducible entropy'' of the task.
+Since we plot error rate, the information-theoretic interpretation does not apply, but our observations support the notion of fundamental performance ceilings for ImageNet~\cite{beyer2020imagenet}.
+In terms of the law, this saturation corresponds to an additive constant to the error rate: $c$ in $E=aC^{-b}+c$.
+
+At the lower end of the compute spectrum, we see a saturation for smaller models;
+the performance of the smallest model is better than that would be predicted by a power-law.
+This saturation occurs because even trivial solutions can achieve non-zero error.
+For example, predicting the majority class (almost zero compute) will achieve an accuracy related to its occurence frequency in the test set.
+This lower bound is not observed in~\cite{henighan2020scaling}, either because their smallest model is large enough to avoid this region, or because log-loss saturates at worse performances than accuracy (it will saturate eventually).
+This saturation corresponds to a shift in the x-axis: $d$ in $E=a(C+d)^{-b}+c$.
+This constant indicates that the zero-compute model will still obtain non-zero accuracy.
+
+
+
+\subsection{Big models are more sample efficient} \label{sec:sample_efficiency}
+
+
+
+Figure~\ref{fig:sample_efficiency} shows the representation quality with respect to the total number of images ``seen'' (batch size times number of steps) during pre-training. 
+In addition to ImageNet fine-tuning and linear 10-shot results on the public validation set, we also report results of the ImageNet fine-tuned model on the ImageNet-v2 test set~\cite{recht2019imagenet} as an indicator of robust generalization.
+Three ViT models pre-trained on three billion images are presented in this plot. 
+
+We observe that \textit{bigger models are more sample efficient}, reaching the same level of error rate with fewer seen images.
+For 10-shot, the Ti/16 model needs to see nearly 100 times more images to match the representation quality of the L/16 model.
+When fine-tuning, this factor reduces from 100 to about 20.
+Our results suggest that with sufficient data, training a larger model for fewer steps is preferable.
+This observation mirrors results in language modelling and machine translation~\cite{kaplan2020scaling,gshard}.
+
+
+\begin{figure}[b]
+  \begin{center}
+   % \vspace{-2em}
+    \includegraphics[width=0.48\textwidth]{figs/scaling_laws_i21k.pdf}
+  \end{center}
+  % \vspace{-0.5em}
+  \caption{Results on the ImageNet-21k dataset. \textbf{Left}: Representation quality, measured as ImageNet linear 10-shot error rate, as a function of total training compute. The double-saturating power law still applies. \textbf{Right}: Representation quality by model sizes and dataset sizes.}\label{fig:scaling_laws_i21k}
+  % \vspace{-0.8em}
+\end{figure}
+
+\begin{table*}[t]
+  % \small
+  \newcolumntype{C}{>{\centering\arraybackslash}X}
+  \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+  \setlength{\tabcolsep}{0pt}
+  \setlength{\extrarowheight}{5pt}
+  \renewcommand{\arraystretch}{0.75}
+  \centering
+  \caption{The results for ViT-G/14, compared to the previous state-of-the-art models.}\label{table:sota}
+  % Format is type{width}, p: paragraph, top-align, C is custom, c is squeezed.
+  \begin{tabularx}{\linewidth}{p{3.2cm}p{0.1cm}Cp{0.1cm}Cp{0.1cm}Cp{0.1cm}Cp{0.1cm}C}
+    \toprule[1pt]
+     \bf{Benchmark} && \bf{ImageNet} && \bf{INet V2} && \bf{INet ReaL} && \bf{ObjectNet} && \bf{VTAB (light)} \\
+    \midrule
+     NS (Eff.-L2)~\cite{xie2019selftraining} && 88.3 && 80.2 && - && 68.5 && - \\
+     MPL (Eff.-L2)~\cite{pham2020meta} && 90.2 && - && \textbf{91.02} && - && - \\
+     CLIP (ViT-L/14)~\cite{radford2021learning} && 85.4 && 75.9 && - && \textbf{72.3} && -\\
+     ALIGN (Eff.-L2)~\cite{jia2021scaling} && 88.6 && 70.1 && - && - && -\\
+     BiT-L (ResNet)~\cite{kolesnikov2019big} && 87.54 && - && 90.54 && 58.7 && 76.29\\
+     ViT-H/14~\cite{dosovitskiy2020} && 88.55 && - && 90.72 && - && 77.63 \\
+     \midrule
+     Our ViT-G/14 && \textbf{90.45$\pm$0.03} && \textbf{83.33$\pm$0.03}  && 90.81$\pm$0.01 && 70.53$\pm$0.52 && \textbf{78.29$\pm$0.53} \\ 
+    \bottomrule[1pt]
+  \end{tabularx}
+  %\vspace{-2em}
+\end{table*}
+
+\subsection{Do scaling laws still apply on fewer images?}\label{sec:public}
+
+We extend the study to much fewer images, ranging from one million to 13 millions on the public ImageNet-21k dataset. 
+In Figure~\ref{fig:scaling_laws_i21k} left, we found that the double-saturation power law \textit{still applies}, when varying model sizes, dataset sizes and compute resources. 
+This indicates that the conclusions from the study generalizes well, and can guide future design choices for vision transformer architectures.
+In Figure~\ref{fig:scaling_laws_i21k} right, we observe similar behaviors that the model performance are bottlenecked by the dataset size. 
+When scaling up compute, model and data together, one gets the best representation quality.
+
+\subsection{ViT-G/14 results}\label{sec:results}
+
+We trained a large Vision Transformer, ViT-G/14, which contains nearly two billion parameters.
+Section~\ref{sec:shape} details the architecture's shape.
+We evaluate the ViT-G/14 model on a range of downstream tasks, and compare it to recent state-of-the-art results.
+We fine-tune on ImaegNet, and report ImageNet~\cite{ILSVRC15}, ImageNet-v2~\cite{recht2019imagenet}, ReaL~\cite{beyer2020imagenet}, and ObjectNet~\cite{Barbu2019ObjectNetAL} accuracies. 
+In addition, we report transfer learning result on the VTAB-1k benchmark consisting of 19 tasks~\cite{zhai2019largescale}. 
+
+Figure~\ref{fig:few_shot} shows the few-shot transfer results on ImageNet.
+ViT-G/14 outperforms the previous best ViT-H/14 model~\cite{dosovitskiy2020} by a large margin (more than 5\%), attaining \emph{84.86\% accuracy with 10 examples per class}.
+Ten images per class is less than 1\% of ImageNet data (13 examples per class), as commonly used in self-supervised and semi-supervised learning~\cite{zhai2019s4l}.
+For reference, Figure~\ref{fig:few_shot} shows three state-of-the-art self-supervised learning models, SimCLR v2~\cite{chen2020big} and BYOL~\cite{grill2020bootstrap}, using 1\% of ImageNet data, DINO~\cite{dino} using 20 examples per class.
+Note, however, that these approaches are quite different:
+ViT-G/14 uses large source of weakly-supervised data, and is pre-trained only once and transferred to different tasks.
+Meanwhile, the self-supervised learning models use unlabeled but in-domain data for pre-training, and target a single task.
+
+Table~\ref{table:sota} shows the results on the remaining benchmarks.
+ViT-G/14 achieves \emph{90.45\% top-1 accuracy on ImageNet}, setting the new state-of-the art. 
+On ImageNet-v2, ViT-G/14 improves 3\% over the Noisy Student model~\cite{xie2019selftraining} based on EfficientNet-L2. 
+For ReaL, ViT-G/14 outperforms ViT-H~\cite{dosovitskiy2020} and BiT-L~\cite{kolesnikov2019big} by only a small margin, which indicates again that the ImageNet classification task is likely reaching its saturation point.
+For ObjectNet, ViT-G/14 outperforms BiT-L~\cite{kolesnikov2019big} by a large margin, and is 2\% better than Noisy Student, but is about 2\% behind CLIP~\cite{radford2021learning}. 
+Note that, unlike the other methods, CLIP does not fine-tune on ImageNet, and evaluates directly on ObjectNet, this likely improves its robustness.
+Finally, when transferring the ViT-G/14 model to VTAB, it gets consistently better results with just a single hyper parameter across all tasks.
+The state-of-the-art on VTAB using a heavyweight per-task hyperparameter sweep is 79.99~\cite{jia2021scaling}, we leave running a heavy sweep with ViT-G/14 to future work.
+
+% =========================================================
+\section{Method details}\label{sec:setup}
+% =========================================================
+
+We present a number of improvements to the ViT model and training.
+These improvements are mostly simple to implement, and can significantly improve memory-utilization and model quality.
+They allow us to train ViT-G/14 using data-parallelism alone, with the entire model fitting on a single TPUv3 core.
+
+\subsection{Decoupled weight decay for the ``head''}
+
+\begin{figure*}%
+    \centering
+    \raisebox{-0.47\height}{\includegraphics[width=0.65\textwidth]{figs/wd.pdf}}%
+    \hspace*{.1in}
+    \raisebox{-0.5\height}{\includegraphics[width=0.34\textwidth]{figs/headcurves.pdf}}%
+    %\vspace{-1em}
+    \caption{\textbf{Left and middle}: The dependence of 5-shot ImageNet accuracy and upstream performance depends on the weight decay strength. Normally, a single weight decay value is applied to all weights (corresponds to the diagonal on the heatmaps). We show that by using weight decay values for the ``head'' and the rest of the weights one significantly improves few-shot transfer performance.
+    \textbf{Right}: Few-shot performance on ImageNet for different types of head.  A high weight decay on the head works equally well for all of them.}%
+    \vspace{-1em}
+    \label{fig:wd}%
+\end{figure*}
+
+Weight decay has a drastic effect on model adaptation in the low-data regime. We conduct an study of this phenomena at a mid-size scale.
+
+We find that one can benefit from decoupling weight decay strength for the final linear layer (``head''), and for the remaining weights (``body'') in the model. 
+Figure~\ref{fig:wd} demonstrates this effect: we train a collection ViT-B/32 models on JFT-300M, each cell corresponds to the performance of  different head/body weight decay values. 
+The diagonal corresponds to using the same value for both decays.
+One can observe that the best performance appears off-diagonal (i.e. with a decoupled weight decay for the head and body).
+Interestingly, we observe that high weight decay in the head decreases performance on the pre-training (upstream) task (not shown), despite improving transfer performance.
+
+We do not have a complete explanation of this phenomena. However, we hypothesize that a stronger weight decay in the head results in representations with larger margin between classes, and thus better few-shot adaptation.
+This is similar to the main idea behind SVMs~\cite{cortes1995support}.
+This large decay makes it harder to get high accuracy during upstream pre-training, but our main goal is high quality transfer.
+
+\subsection{Saving memory by removing {\tt [class]} token}\label{sec:head}
+
+The largest VIT model from~\cite{dosovitskiy2020} uses $14 \times 14$ patches with $224 \times 224$ images. This results in $256$ visual ``tokens'', where each one corresponds to an image patch. On top of this, ViT models have an extra {\tt [class]} token, which is used to produce the final representation, bringing the total number of tokens to $257$.
+
+For ViT models, current TPU hardware pads the token dimension to a multiple of $128$, which may result in up to a $50\%$ memory overhead.
+To overcome this issue we investigate alternatives to using the extra {\tt [class]} token.
+In particular, we evaluate global average pooling (GAP) and multihead attention pooling (MAP)~\cite{lee2019set} to aggregate representation from all patch tokens.
+We set the number of heads in MAP to be equal to the number of attention heads in the rest of the model.
+To further simplify the head design we remove final non-linear projection before the final prediction layer, which was present in the original ViT paper.
+
+To choose the best head, we perform a side-by-side comparison of a {\tt [class]} token and GAP/MAP heads.
+Results are summarized in Figure~\ref{fig:wd}~(right).
+We find that all heads perform similarly, while GAP and MAP are much more memory efficient due to the aforementioned padding considerations. We also observe that non-linear projection can be safely removed.
+Thus, we opt for the MAP head, since it is the most expressive and results in the most uniform architecture. 
+MAP head has also been explored in~\cite{cait}, in a different context for better quality rather than saving memory. 
+
+\begin{figure*}[t]
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{figs/jft_300m_3b.pdf}
+  \end{center}
+  \vspace{-0.5em}
+  \caption{The effect of switching from JFT-300M to JFT-3B, without any further scaling. Both small and large models benefit from this change, by an approximately constant factor, both for linear few-shot evaluation (\textbf{left}) and transfer using the full dataset (\textbf{right}).}
+  \label{fig:jft_300m_3b}
+\end{figure*}
+
+
+\subsection{Scaling up data}\label{sec:dataset}
+
+For this study, we use the proprietary JFT-3B dataset, a larger version of the JFT-300M dataset used in many previous works on large-scale computer vision models~\cite{sun2017unreasonable,kolesnikov2019big,dosovitskiy2020}.
+This dataset consists of nearly 3 billion images, annotated with a class-hierarchy of around 30k labels via a semi-automatic pipeline.
+Thus, the data and associated labels are noisy.
+We ignore the hierarchical aspect of the labels and use only the assigned labels as targets for multi-label classification via a sigmoid cross-entropy loss, following~\cite{kolesnikov2019big,dosovitskiy2020}.
+
+We have conducted sensitive category association analysis as described in~\cite{aka2021measuring}. We measured (per label) the distribution of sensitive categories across the raw data, the cleaned data, the models trained on this data, and labels that were verified by human raters. Human raters additionally assisted in removing offensive content from the dataset.
+
+Figure~\ref{fig:jft_300m_3b} shows an ablation of the effect of changing from JFT-300M to JFT-3B on model performance, even when scale is not increased.
+Figure~\ref{fig:jft_300m_3b}, left shows linear 10-shot ImageNet performance evaluated throughout.
+We observe that JFT-3B  results in a better model, even before the model has completely one epoch of JFT-300M.
+Therefore, overfitting JFT-300M is not the sole cause of the improvement.
+This difference can be seen even for the small B/32 model as well as the larger L/16.
+We fine-tune the models to the full ImageNet dataset (right), and confirm that these improvements transfer to a full fine-tuning setup.
+Overall, the change in dataset improves transfer to ImageNet by about 1\% for both small and large models. 
+Other than the performance improvement, training behavior is similar on JFT-300M and JFT-3B.
+Most importantly, JFT-3B allows us to scale up further with fewer concerns about overfitting and regularization.
+
+\textbf{Deduplication.} We remove all images from the JFT-3B dataset that are near-duplicates of images from both train set and test set of datasets we evaluate on. Overall we identified and removed 927k duplicate images from JFT-3B.
+
+
+\subsection{Memory-efficient optimizers}\label{sec:optims}
+
+When training large models, storage required for model parameters becomes a bottleneck. Our largest model, ViT-G, has roughly two billion parameters, which occupies 8 GiB of device memory. To make things much worse, the Adam optimizer that is commonly used for training Transformers, stores two additional floating point scalars per each parameter, which results in an additional two-fold overhead (extra 16 GiB). To tackle the overhead introduced by the Adam optimizer we explore two modifications.
+
+\textbf{Adam with half-precision momentum}. We empirically observe that storing momentum in half-precision (\texttt{bfloat16} type) does not affect training dynamics and has no effect on the outcome. This allows to reduce optimizer overhead from 2-fold to 1.5-fold. Notably, storing the second momentum using half-precision resulted in a significant performance deterioration.
+
+\textbf{Adafactor optimizer.} The above optimizer still induces a large memory overhead. Thus, we turn our attention to the Adafactor optimizer~\cite{adafactor}, which stores second momentum using rank 1 factorization. From practical point of view, this results in the negligible memory overhead. However, the Adafactor optimizer did not work out of the box, so we make the following modifications:
+\begin{itemize}
+    \item We re-introduce the first momentum in half-precision, whereas the recommended setting does not use the first momentum at all.
+    \item We disable scaling of learning rate relative to weight norms, a feature that is part of Adafactor.
+    \item Adafactor gradually increases the second momentum from $0.0$ to $1.0$ throughout the course of training. In our preliminary experiments, we found that clipping the second momentum at $0.999$ (Adam's default value) results in better convergence, so we adopt it.
+\end{itemize}
+The resulting optimizer introduces only a 50\% memory overhead on top the space needed to store model's parameters. 
+
+We observe that both proposed optimizers perform on par with  or slightly better than the original Adam optimizer.
+We are aware of other memory-efficient optimizers~\cite{zero_optimizer,adam_1bit}, we leave the exploration to future work.
+
+\subsection{Learning-rate schedule}
+
+In our study we want to train each of the models for several different durations in order to measure the trade-off between model size and training duration.
+When using linear decay, as in~\cite{dosovitskiy2020}, each training duration requires its own training run starting from scratch, which would be an inefficient protocol.
+
+Inspired by~\cite{instagram}, we address this issue by exploring learning-rate schedules that, similar to the \emph{warmup} phase in the beginning, include a \emph{cooldown} phase at the end of training, where the learning-rate is linearly annealed toward zero.
+Between the warmup and the cooldown phases, the learning-rate should not decay too quickly to zero.
+This can be achieved by using either a constant, or a reciprocal square-root schedule for the main part of training.
+Figure~\ref{fig:schedules}~(bottom) depicts several of these options, with a cooldown after approximately 200\,k, 400\,k, and 500\,k steps.
+The upper half of Figure~\ref{fig:schedules} shows the validation score (higher is better) for each of these options and their cooldowns, together with two linear schedules for reference.
+While the linear schedule is still preferable when one knows the training duration in advance and does not intend to train any longer, all three alternatives come reasonably close, with the advantage of allowing indefinite training \emph{and} evaluating multiple training durations from just one run.
+For each of the schedules, we optimized the learning-rate and the exact shape.
+We have also briefly tried cyclic learning-rate schedules, however they seemed to perform much worse and we have not investigated further.
+We therefore opt for the reciprocal square-root schedule.
+
+\begin{figure}[t]
+  \begin{center}
+  \vspace{-0.5em}
+    \includegraphics[width=0.45\textwidth]{figs/schedules.pdf}
+  \end{center}
+  \vspace{-1.2em}
+  \caption{Various ``infinite'' learning-rate schedules, along with the finite linear one for reference.}\label{fig:schedules}
+  % \vspace{-1em}
+\end{figure}
+
+\subsection{Selecting model dimensions}\label{sec:shape}
+
+
+\begin{figure*}[t]
+  \begin{center}
+    \includegraphics[width=0.92\linewidth]{figs/shapefinder.pdf}
+  \end{center}
+  \vspace{-1.5em}
+  \caption{Combined results of the ``Shapefinder'' simulation for the original ViT in orange, our improvements together with half-precision Adam (\eg ViT-g) in green, and finally with our modified AdaFactor in blue. White areas ran out of memory. The brightness of the dot corresponds to its relative training speed.}
+  \label{fig:shapefinder}
+\end{figure*}
+
+ViT models have many parameters that control the model's shape, and we refer to the original publication for full details.
+Briefly, these include the \emph{patch-size}, the number of encoder blocks (\emph{depth}), the dimensionality of patch embeddings and self-attention (\emph{width}), the number of attention \emph{heads}, and the hidden dimension of MLP blocks (\emph{MLP-width}).
+On top of this, we rely on the XLA compiler to optimize our models for runtime speed and memory footprint.
+Behind the scenes, XLA uses complex heuristics to compile a model into code for a specific hardware that trades off memory and speed optimally.
+As a result, it is hard to predict which model configurations will fit into memory on a single device.
+
+Therefore we run an extensive simulation, where we instantiate a large amount of ViTs of various shapes, and attempt to train them for a few steps, without considering the quality.
+We vary the depth, width, heads, and MLP-width, but keep the patch-size at 14\,px. 
+In this way, we measure their speed and whether or not a given model fits into the device's memory.
+Figure~\ref{fig:shapefinder} summarizes the result of this simulation.
+Each block corresponds to one model configuration, the shade of the block corresponds to its training speed (brighter is faster). 
+Orange blocks show which original ViT models, without any of our modifications, fit.
+Green blocks then further include the memory savings described in Section~\ref{sec:head} coupled with the half-precision Adam described in Section~\ref{sec:optims}.
+Finally, blue blocks are with our modified AdaFactor optimizer.
+The shapes in the white area were not able to fit into memory in any setting.
+For space reasons, we show here only the models pertaining to the experiments presented, but note that with our modifications we were able to fit thin ViT models of a depth up to 100 encoder blocks.
+
+\begin{table}
+  \setlength{\tabcolsep}{5pt}
+  \setlength{\extrarowheight}{5pt}
+  \renewcommand{\arraystretch}{0.75}
+  \centering
+  % \vspace{-2em}
+  \caption{Model architecture details.}\label{tbl:models}
+  \vspace{0.5em}
+  \begin{tabulary}{1.0\linewidth}{LCCCCRRR}
+    \toprule
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Name}}} &
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Width}}} &
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Depth}}} &
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{MLP}}} &
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\bf{Heads}}} &
+    \multirow{3}{=}[3pt]{\centering \rotatebox{90}{\shortstack[c]{\bf{Mio.} \\ \bf{Param}}}} &
+    \multicolumn{2}{c}{\bf{GFLOPs}} \\
+    \cmidrule[0.5pt]{7-8}
+     &  &  &  &  & & \multicolumn{1}{c}{$224^2$} & \multicolumn{1}{c}{$384^2$} \\
+    \cmidrule[0.5pt]{1-8}
+    s/28  & 256  & 6  & 1024 & 8  &  5.4 & 0.7   & 2.0 \\
+    s/16  & 256  & 6  & 1024 & 8  &  5.0 & 2.2   & 7.8 \\
+    S/32  & 384  & 12 & 1536 & 6  &   22 & 2.3   & 6.9 \\
+    Ti/16 & 192  & 12 & 768  & 3  &  5.5 & 2.5   & 9.5 \\
+    B/32  & 768  & 12 & 3072 & 12 &   87 & 8.7   & 26.0 \\
+    S/16  & 384  & 12 & 1536 & 6  &   22 & 9.2   & 31.2 \\
+    B/28  & 768  & 12 & 3072 & 12 &   87 & 11.3  & 30.5 \\
+    B/16  & 768  & 12 & 3072 & 12 &   86 & 35.1  & 111.3 \\
+    L/16  & 1024 & 24 & 4096 & 16 &  303 & 122.9 & 382.8 \\
+    g/14  & 1408 & 40 & 6144 & 16 & 1011 & 533.1 & 1596.4 \\
+    G/14  & 1664 & 48 & 8192 & 16 & 1843 & 965.3 & 2859.9 \\
+    \bottomrule
+  \end{tabulary}
+  %\vspace{-2em}
+\end{table}
+
+The original Vision Transformer publication contains a study in Appendix~D2 about the trade-offs between scaling the different components, concluding that it is most effective to scale all aspects (depth, width, MLP-width, and patch-size) simultaneously and by a similar amount.
+We follow this recommendation, and select shapes for ViT-g and ViT-G at the limit of what fits in memory accordingly, as shown in Figure~\ref{fig:shapefinder} and summarized in Table~\ref{tbl:models}.
+
+% =========================================================
+\section{Related Work}\label{sec:relwork}
+% =========================================================
+
+\textbf{Smaller Vision Transformers\,\,}
+Early work on Transformers for vision focused on  small networks for CIFAR-10~\cite{cordonnier2020}.
+The Vision Transformer~\cite{dosovitskiy2020}, however, was proposed in the context of state-of-the-art medium and large-scale image recognition; the smallest model (ViT-B) containing 86M parameters.
+\cite{touvron2020training} present smaller ViT sizes for training from-scratch, down to ViT-Ti, with 5M parameters.
+New variants of ViT introduce smaller and cheaper architectures.
+For example, T2T-ViT~\cite{yuan2021tokens} reduces the number of parameters and compute using a new tokenization and narrower networks.
+Pyramidal ViTs~\cite{wang2021pyramid}, designed for dense prediction tasks, follow a CNN-like pyramidal structure, that also reduces the size of the model.
+Hybrids of CNNs and Transformers typically allow smaller models to perform well, such as the ViT-CNN hybrid in \cite{dosovitskiy2020}, BoTNet~\cite{srinivas2021bottleneck}, and HaloNet~\cite{vaswani2021scaling}.
+However, the other direction, increasing the scale of ViT, is less explored.
+While language Transformers are still much larger than Vision Transformers, understanding the scaling properties and the improvements introduced in this paper represent a step in this direction.
+
+\textbf{Scaling Laws\,\,}
+\cite{kaplan2020scaling} present a thorough study of the empirical scaling laws of neural language models.
+The authors fit power laws that describe the relationships between compute, data size, model size, and performance. 
+Following these laws, GPT-3, a 175B parameter language model was successfully trained~\cite{brown2020language}.
+\cite{henighan2020scaling} presents laws for autoregressive generative modelling in other modalities, including the generation of images.
+Our paper contains the first study of scaling laws for the discriminative modelling of images.
+
+\textbf{Scaling-up Vision Models\,\,}
+Many papers scale up CNNs to attain improved performance.
+EfficientNets~\cite{efficientnet,efficientnet_v2} present a scaling strategy that balances compute between depth, width, and resolution and apply it to MobileNets.
+This strategy is revisited in \cite{bello2021revisiting,resnet_strikes} to further improve the performance of ResNets~\cite{he2016deep}.
+Large CNNs have attained excellent performance in visual recognition, such as AmoebaNet-B(18, 512) (557M parameters) trained using GPipe pipeline parallelism~\cite{gpipe}, ResNeXt-101 32×48d (829M parameters) pre-trained on weakly-labelled Instagram images~\cite{instagram}, EfficientNet-L2 (480M parameters) trained with ImageNet pseudo-labels on JFT-300M~\cite{noisystudent}, and BiT-L-ResNet152x4 (928M parameters) pre-trained on JFT-300M~\cite{kolesnikov2019big}.
+Recently, ~\cite{deepvit,cait} explore strategies to scale the depth of ViTs. 
+We are the first to scale Vision Transformers to even larger size and reache new state-of-the-art results doing so.
+The concurrent work ~\cite{coatnet} focuses on CNN and ViT hybrid architectures.
+ 
+
+% =========================================================
+\section{Discussion}\label{sec:discussion}
+% =========================================================
+
+\textbf{Limitations.} This work uses the proprietary JFT-3B dataset for the scaling laws study. To make our insights more reliable and generalizable, we verify that the scaling laws also apply on the public ImageNet-21k dataset. 
+
+\textbf{Societal  impact.} A potential broader cost of this work is the energy required to perform the experiments in our scaling study, especially in training the largest ViT-G model.
+However, this cost may be amortized in two ways.
+First, such studies of scaling laws need only be performed once; We hope future developers of ViT models may use our results to design models that can be trained with fewer compute resources.
+Second, the models trained are designed primarily for transfer learning.
+Transfer of pre-trained weights is much less expensive than training from scratch on a downstream task, and typically reaches higher accuracy.
+Therefore, by transferring our models to many tasks, the pre-training compute is further amortized.
+
+% =========================================================
+\section{Conclusion}\label{sec:conclusion}
+% =========================================================
+
+We demonstrate that the performance-compute frontier for ViT models with enough training data roughly follows a (saturating) power law. 
+Crucially, in order to stay on this frontier one has to simultaneously scale compute and model size; that is, not increasing a model's size when extra compute becomes available is suboptimal. 
+We also demonstrate that larger models are much more sample efficient and are great few-shot learners. 
+Finally, we present a new training recipe, which allows one to efficiently train large and high-performing ViT models. Note, that our conclusions may not necessarily generalize beyond the scale we have studied and they may not generalize beyond the ViT family of models.
+\paragraph{Acknowledgements} We thank James Bradbury and Vivek Sharma for their help on using large-scale infrastructure; Alexey Dosovitskiy, Joan Puigcerver, Basil Mustafa, Carlos Riquelme for insightful discussions; Tom Duerig, Austin Tarango, Daniel Keysers, Howard Zhou, Wenlei Zhou, Yanan Bao for discussions on JFT; the Google Brain team at large for providing a supportive research environment.
