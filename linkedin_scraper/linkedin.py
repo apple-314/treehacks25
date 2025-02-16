@@ -42,7 +42,7 @@ def format_info(about, experiences, education):
     educaiton_s = "\n".join(education_lines)[:-1]
     return about_s, experience_s, educaiton_s
 
-def get_info(client, link):
+def get_info(client, link, fn):
     client.get(link)
     time.sleep(1)
 
@@ -55,7 +55,7 @@ def get_info(client, link):
     # IMG
     # ---
 
-    pfp_start = '''class="top-card-background-hero-image'''
+    pfp_start = '''pv-top-card__non-self-photo-wrapper ml0'''
     s = soup.find(pfp_start) + len(pfp_start)
     pfp_s = soup.find("https://media.licdn.com", s)
     pfp_e = soup.find("\"", pfp_s)
@@ -237,7 +237,7 @@ def scrape(fn, ln, headless = True, log = False):
                 if name != "Unknown":
                     if log:
                         print("LOG: found person")
-                    pfp, about, experiences, education = get_info(client, pf)
+                    pfp, about, experiences, education = get_info(client, pf, fn)
                     return pfp, pf, about, experiences, education
 
 first_name = "Sai"
@@ -257,7 +257,7 @@ headers = {
 }
 
 a, b, c = format_info(about, experiences, education)
-prompt = f"Summarize this person's interest in 7-8 words. ONLY include a list of interests, nothing else. DON'T SAY ANYTHING BEFORE THE INTERESTS!! JUST THE LIST!!\n\nBio:\n{a}\n\nExperiences:\n{b}\n\nEducation:\n{c}\n\n"
+prompt = f"Summarize this person's interest in at most 5 words. ONLY include a list of interests, nothing else. DON'T SAY ANYTHING BEFORE THE INTERESTS!! JUST THE LIST!! THIS MEANS YOUR FINAL RESPONSE SHOULD BE AT MOST 5 WORDS!! Don't include any special characters in your final response (commas ok).\n\nBio:\n{a}\n\nExperiences:\n{b}\n\nEducation:\n{c}\n\n"
 print(prompt)
 
 data = {
