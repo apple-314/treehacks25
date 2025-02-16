@@ -236,6 +236,32 @@ last_name = "Konkimalla"
 
 img, link, about, experiences, education = scrape(first_name, last_name)#, headless=False)
 
+import requests
+
+API_KEY = "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"
+ENDPOINT = "https://api.groq.com/openai/v1/chat/completions"
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json",
+}
+
+a, b, c = format_info(about, experiences, education)
+prompt = f"Summarize this person's interest in 7-8 words. ONLY include a list of interests, nothing else.\n\nBio:\n{a}\n\nExperiences:\n{b}\n\nEducation:\n{c}\n\n"
+print(prompt)
+
+data = {
+    "model": "llama3-8b-8192",
+    "messages": [{"role": "user", "content": prompt}],
+}
+
+response = requests.post(ENDPOINT, headers=headers, json=data)
+
+json_response = response.json()
+
+interests = json_response["choices"][0]["message"]["content"]
+print(interests)
+
 # a, b, c = format_info(about, experiences, education)
 # print(a)
 # print()
@@ -262,6 +288,9 @@ for item in experiences:
 for item in education:
     data_dict = {"type": "edu", "description": "\n".join(item)}
     db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
+
+data_dict = {"type": "interests", "description": interests}
+db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
 
 # input()
 # img.show()
