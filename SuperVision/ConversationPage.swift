@@ -73,6 +73,7 @@ class ContactManager: ObservableObject {
                 if !didFindMatch {
                     contactDifferences.append(secondContact.givenName)
                     contactDifferences.append(secondContact.familyName)
+                    try await saveContact(firstName: secondContact.givenName, lastName: secondContact.familyName, phoneNumber: secondContact.normalizedPhoneNumbers.first ?? "")
                 }
             }
             
@@ -102,6 +103,35 @@ class ContactManager: ObservableObject {
         }
         task.resume()
     }
+
+    private func saveContact(firstName: String, lastName: String, phoneNumber: String) async throws {
+        let endpoint = "https://normal-guiding-orca.ngrok-free.app/save_contact"
+        guard let url = URL(string: endpoint) else {
+            throw URLError(.badURL)
+        }
+        
+        // Create a JSON payload with the provided contact details
+        let payload: [String: String] = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "phoneNumber": phoneNumber
+        ]
+        
+        // Convert the payload dictionary to JSON data
+        let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let (_, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+    }
+
     
     private func sendName(with body: String) async throws {
         let contactsCountString = "https://normal-guiding-orca.ngrok-free.app/obtain_name"
