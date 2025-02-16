@@ -51,16 +51,11 @@ def main():
 
     x = 1
     for id in id_title:
-        # f = open(f"arxiv_tex_text/{id}.txt", "r", encoding="utf-8")
-        # l = f.readlines()
-        # s = "\n".join(l)
-        # f.close()
-
         s = preprocess_tex_file(f"arxiv_tex_text/{id}.txt")
         d = {"title": id_title[id], "arxiv_id": id}
         print(f"paper {x}: {d}")
         x += 1
 
-        db.add_text_to_table("TechnicalAgent", "Documents", s, 512, d)
+        db.add_text_to_table("TechnicalAgent", "ResearchPapers", s, 512, d)
     
 main()

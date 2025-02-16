@@ -119,15 +119,14 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
     elif chosen_agent.lower() == "conversational":
         answer = invoke_agent(conversational_system, user_request)
     elif chosen_agent.lower() == "technical":
-        ret = db.vector_search("TechnicalAgent", "Documents", user_request, 3)
+        ret = db.vector_search("TechnicalAgent", "ResearchPapers", user_request, 3)
         excerpts = {}
 
         for i, x in enumerate(ret):
-            y = db.get_table_interval("TechnicalAgent", "Documents", x[0], x[1]-1, x[1]+1)
+            y = db.get_table_interval("TechnicalAgent", "ResearchPapers", x[0], x[1]-1, x[1]+1)
             s = ""
             for z in y:
                 s += z[4]
-            
             excerpts[i] = {"paper": x[2], "ex": s}
         
         technical_prompt_rag = f"""{technical_prompt}\nHere are potentially relevant excerpts from research papers:\n"""
@@ -135,8 +134,7 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
             technical_prompt_rag += f"paper title: {ex['paper']}\nexcerpt: {ex['ex']}\n\n"
         technical_prompt_rag += "DO NOT CITE ANY PAPERS AT THE END OF YOUR ANSWER. "
         technical_prompt_rag += "DO NOT CITE [...] IF IT SHOWS UP IN EXCERPT QUOTE. "
-        print(technical_prompt_rag)
-        
+                
         technical_system_rag = SystemMessage(content=f"{technical_prompt_rag}\n")
         answer = invoke_agent(technical_system_rag, user_request)
     elif chosen_agent.lower() == "healthcare":

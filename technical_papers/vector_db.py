@@ -42,15 +42,19 @@ class VectorDatabase:
         self._table_defs = {
             "LinkedIn" : "(type VARCHAR(255), description VARCHAR(2000))",
             "Conversation" : "(text_id INT, index INT, time_stamp DATETIME, sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
-            "Documents" : "(text_id INT, index INT, title VARCHAR(200), arxiv_id VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))"
+            "ResearchPapers" : "(text_id INT, index INT, title VARCHAR(200), arxiv_id VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
+            "HealthArticles" : "(text_id INT, index INT, title VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
+            "Contacts" : "(name VARCHAR(255), phone VARCHAR(15), conv_summary VARCHAR(2000))"
         }
 
         self._table_entry_types = {
             "LinkedIn" : ["type", "description"],
             "Conversation" : ["text_id", "index", "time_stamp", "sentence", "sentence_vector"],
-            "Documents" : ["text_id", "index", "title", "arxiv_id", "sentence", "sentence_vector"]
+            "ResearchPapers" : ["text_id", "index", "title", "arxiv_id", "sentence", "sentence_vector"],
+            "HealthArticles" : ["text_id", "index", "title", "sentence", "sentence_vector"],
+            "Contacts" : ["name", "phone", "conv_summary"]
         }
-
+    
     def _execute_query(self, query, params=None):
         # execute an SQL query safely
         if params is None:
@@ -109,7 +113,12 @@ class VectorDatabase:
         columns = ", ".join(self._table_entry_types[table_name])
         placeholders = ",".join(["?"] * len(self._table_entry_types[table_name]))
         
-        query = f"Insert into {schema_name}.{table_name} ({columns}) values ({placeholders})"
+        query = f"""
+            INSERT INTO {schema_name}.{table_name}
+            ({columns})
+            VALUES ({placeholders})
+        """
+
         params_list = [data_dict[c] for c in self._table_entry_types[table_name]]
         params = [tuple(params_list)]
 
