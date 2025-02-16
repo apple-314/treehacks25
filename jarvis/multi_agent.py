@@ -1,5 +1,6 @@
 from langchain.chat_models import init_chat_model
-from langchain.schema import SystemMessage, HumanMessage
+from langchain.schema import SystemMessage, HumanMessage, AIMessage
+
 from vector_db import VectorDatabase
 import requests
 import json
@@ -48,6 +49,7 @@ administrative_system = SystemMessage(
 
 conversational_prompt = (
     "You are the Conversational Agent. You have access to all of my conversation history with other people. "
+    "You will be asked a question about a person or people you may or may not have met"
     "Your job is to answer questions about past discussions, including who was involved, when they took place, and what was discussed. "
     "You should provide concise, factual responses while maintaining accuracy and relevance. "
     "DO NOT GUESS OR MAKE UP DETAILS. "
@@ -65,13 +67,16 @@ technical_prompt = (
 )
 technical_system = SystemMessage(content=technical_prompt)
 
-healthcare_system = SystemMessage(
-    content=(
-        "You are the Healthcare Agent. You have retrieval-augmented access to healthcare documents. "
-        "You should use your domain knowledge and (in a full implementation) retrieve relevant information from healthcare sources. "
-        "For now, provide a health-focused answer."
-    )
+healthcare_prompt = (
+    "You are the Healthcare Agent. You have access to excerpts of healthcare articles to use in your analysis. "
+    "You should use your domain knowledge and any relevant information from the provided excerpts. "
+    "You should include statistics and quotes in your answer if they are relevant. "
+    "While you should include sufficient details and be friendly, you should still keep responses relatively brief. "
+    "Structure your response as follows:\n"
+    "Answer: [Provide a clear and concise answer.]\n"
+    "Supporting Evidence: [Summarize insights from the retrieved healthcare articles.]\n"
 )
+healthcare_system = SystemMessage(content=healthcare_prompt)
 
 # -----------------------------------------------------------
 # 3. Set Up the Administrative Agent (Using OpenAI + a Text-Sending Tool)
@@ -203,6 +208,7 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
         # Perform a vector search for technical documents (RAG)
         ret = db.vector_search("TechnicalAgent", "ResearchPapers", user_request, 3)
         excerpts = {}
+
         for i, x in enumerate(ret):
             y = db.get_table_interval("TechnicalAgent", "ResearchPapers", x[0], x[1]-1, x[1]+1)
             s = ""
@@ -219,7 +225,24 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
         technical_system_rag = SystemMessage(content=technical_prompt_rag)
         answer = invoke_agent(technical_system_rag, user_request)
     elif chosen_agent.lower() == "healthcare":
-        answer = invoke_agent(healthcare_system, user_request)
+        # Perform a vector search for healthcare articles (RAG)
+        ret = db.vector_search("HealthcareAgent", "HealthArticles", user_request, 3)
+        excerpts = {}
+
+        for i, x in enumerate(ret):
+            y = db.get_table_interval("HealthcareAgent", "HealthArticles", x[0], x[1], x[1]+1)
+            s = ""
+            for z in y:
+                s += z[3]
+            excerpts[i] = {"article": x[2], "ex": s}
+        
+        healthcare_prompt_rag = f"""{healthcare_prompt}\nHere are potentially relevant excerpts from health articles:\n"""
+        for ex in excerpts.values():
+            healthcare_prompt_rag += f"relevant illness: {ex['article']}\nexcerpt: {ex['ex']}\n\n"
+        healthcare_prompt_rag += "DO NOT CITE ANY ARTICLES AT THE END OF YOUR ANSWER. "
+        
+        healthcare_system_rag = SystemMessage(content=healthcare_prompt_rag)
+        answer = invoke_agent(healthcare_system_rag, user_request)
     else:
         # Default to normal agent if no clear decision was made.
         answer = invoke_agent(normal_system, user_request)
@@ -249,8 +272,13 @@ if __name__ == "__main__":
         "Can you explain the rules of hockey?"
     )
 
+    # --- Example 4: Healthcare Question ---
+    healthcare_user_request = (
+        "Can you tell me some illnesses with symptoms of severe coughs?"
+    )
+
     # Choose one request to test; for instance, testing the administrative agent:
-    user_request = technical_user_request
+    user_request = healthcare_user_request
     # Alternatively, uncomment the following line to test the technical agent:
     # user_request = technical_user_request
 
