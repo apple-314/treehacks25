@@ -4,6 +4,7 @@ import AVFoundation
 // MARK: - API Response Models
 
 struct Profile: Codable {
+    let name: String
     let about: String
     let education: [[String]]
     let experiences: [[String]]
@@ -39,9 +40,10 @@ struct AudioProcessing: View {
                     VStack(alignment: .leading) {
                         if let profile = profile {
                             ProfileDescriptionView(
+                                name: profile.name,
                                 about: profile.about,
                                 education: profile.educationText,
-                                experiences: profile.experiencesText,
+                                experiences: profile.experiences,
                                 profileURL: profile.profile_url
                             )
                         } else {
@@ -67,6 +69,7 @@ struct AudioProcessing: View {
                                 switch result {
                                 case .success(let profileData):
                                     DispatchQueue.main.async {
+                                        print(profileData)
                                         self.profile = profileData
                                     }
                                 case .failure(let error):
@@ -117,19 +120,28 @@ struct AudioProcessing: View {
 }
 
 struct ProfileDescriptionView: View {
+    let name: String
     let about: String
     let education: String
-    let experiences: String
+    let experiences: [[String]]  // Use the original array of arrays
     let profileURL: String
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 8) {
-                Text(about)
+                // Name
+                Text(name)
                     .foregroundColor(.black)
                     .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
                     .padding(.bottom, 5)
                 
+                // About
+                Text(about)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                    .padding(.leading, 13)
+                
+                // Education Section
                 Text("Education")
                     .foregroundColor(.black)
                     .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
@@ -139,37 +151,61 @@ struct ProfileDescriptionView: View {
                     .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                     .padding(.leading, 20)
                 
+                // Experiences Section
                 Text("Experiences")
                     .foregroundColor(.black)
                     .font(.system(size: 30, weight: .semibold, design: .default))
                 
-                ForEach(experiences.components(separatedBy: "\n"), id: \.self) { exp in
-                    DisclosureGroup {
-                        Text(exp)
+                ForEach(experiences, id: \.self) { experience in
+                    if experience.count == 2 {
+                        // For two-item experiences, display both items in one line without a toggle.
+                        HStack {
+                            Text(experience[0])
+                            Text("•")
+                            Text(experience[1])
+                        }
+                        .foregroundColor(.black)
+                        .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    } else if experience.count == 3 {
+                        // For three-item experiences, display the first two items as the title,
+                        // with the third item hidden inside a disclosure group.
+                        DisclosureGroup {
+                            Text(experience[2])
+                                .foregroundColor(.black)
+                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                                .padding(.leading, 13)
+                        } label: {
+                            HStack {
+                                Text(experience[0])
+                                Text("•")
+                                Text(experience[1])
+                            }
                             .foregroundColor(.black)
-                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                            .padding(.leading, 13)
-                    } label: {
-                        Text(exp)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                        }
+                    } else {
+                        // Fallback for unexpected formats.
+                        Text(experience.joined(separator: " • "))
                             .foregroundColor(.black)
                             .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                     }
-                    .foregroundColor(.black)
                 }
                 
+                // Profile URL
                 Text("Profile URL: \(profileURL)")
                     .foregroundColor(.blue)
                     .underline()
             }
-            .frame(width: 500)
+            .frame(width: 800)
             .padding(40)
             .background(
                 RoundedRectangle(cornerRadius: 30)
-                    .fill(Color(hex: "E2E2E2E2").opacity(0.6))
+                    .fill(Color(hex: "E2E2E2").opacity(0.6))
             )
         }
     }
 }
+
 
 
 class AudioProcessor: ObservableObject {

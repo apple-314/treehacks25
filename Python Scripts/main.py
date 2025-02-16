@@ -110,7 +110,9 @@ async def capture_gesture(data: dict):
     app.timestamps.append(data["timestamp"])
 
     screenshot_file = capture_single_screenshot()
-    orig_img, pf, about, experiences, education = await scrape("James", "Chen", screenshot_file)
+    first_name = "Kaival"
+    last_name = "Shah"
+    orig_img, pf, about, experiences, education = await scrape(first_name, last_name, screenshot_file)
     
     if pf is None:
         return {
@@ -127,6 +129,7 @@ async def capture_gesture(data: dict):
         "message": f"Received timestamp: {data['timestamp']}. Total gestures captured: {len(app.timestamps)}.",
         "screenshot": screenshot_file,
         "profile": {
+            "name": first_name + " " + last_name,
             "about": about,
             "experiences": experiences,
             "education": education,
