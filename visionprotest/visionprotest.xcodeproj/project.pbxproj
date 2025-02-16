@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E89B3042D617CAB004547FC /* RealityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E89B3022D617CAB004547FC /* RealityFoundation.framework */; };
+		9E89B3052D617CAB004547FC /* RealityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E89B3032D617CAB004547FC /* RealityKit.framework */; };
 		EA26F4C52D6037F500550426 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = EA26F4C42D6037F500550426 /* RealityKitContent */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +23,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E89B3022D617CAB004547FC /* RealityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityFoundation.framework; path = System/Library/Frameworks/RealityFoundation.framework; sourceTree = SDKROOT; };
+		9E89B3032D617CAB004547FC /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		EA26F4BF2D6037F500550426 /* visionprotest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visionprotest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA26F4C32D6037F500550426 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		EA26F4D42D6037F700550426 /* visionprotestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = visionprotestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E89B3052D617CAB004547FC /* RealityKit.framework in Frameworks */,
+				9E89B3042D617CAB004547FC /* RealityFoundation.framework in Frameworks */,
 				EA26F4C52D6037F500550426 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,12 +77,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E89B3012D617CAB004547FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E89B3022D617CAB004547FC /* RealityFoundation.framework */,
+				9E89B3032D617CAB004547FC /* RealityKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EA26F4B62D6037F500550426 = {
 			isa = PBXGroup;
 			children = (
 				EA26F4C12D6037F500550426 /* visionprotest */,
 				EA26F4C22D6037F500550426 /* Packages */,
 				EA26F4D72D6037F700550426 /* visionprotestTests */,
+				9E89B3012D617CAB004547FC /* Frameworks */,
 				EA26F4C02D6037F500550426 /* Products */,
 			);
 			sourceTree = "<group>";

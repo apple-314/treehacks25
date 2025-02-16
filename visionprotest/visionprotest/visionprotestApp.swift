@@ -5,6 +5,7 @@ import SwiftUI
 struct visionprotestApp: App {
     var body: some Scene {
         WindowGroup {
+<<<<<<< HEAD
 //            ContentView()
 //            AudioProcessing()
             TabView {
@@ -22,6 +23,10 @@ struct visionprotestApp: App {
                     .background(.clear)
 
             }
+=======
+            ContentView()
+//            AudioProcessing()
+>>>>>>> aaa0e8989485401348d08f45075b63a296c2a197
         }
         .windowStyle(.plain)
         .defaultSize(width: .infinity, height: .infinity)
