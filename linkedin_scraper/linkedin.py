@@ -51,6 +51,15 @@ def get_info(client, link):
     with open("out.txt", "w") as f:
         f.write(soup)
 
+    # ---
+    # IMG
+    # ---
+
+    pfp_start = '''class="top-card-background-hero-image'''
+    s = soup.find(pfp_start) + len(pfp_start)
+    pfp_s = soup.find("https://media.licdn.com", s)
+    pfp_e = soup.find("\"", pfp_s)
+    pfp = soup[pfp_s:pfp_e].replace("amp;", "").replace("<!-- -->", "").replace("<br/>", "\n")
 
     # -----
     # ABOUT
@@ -138,7 +147,7 @@ def get_info(client, link):
 
             education.append(cur_edu)
 
-    return about, experiences, education
+    return pfp, about, experiences, education
 
 def scrape(fn, ln, headless = True, log = False):
     options = Options()
@@ -228,13 +237,14 @@ def scrape(fn, ln, headless = True, log = False):
                 if name != "Unknown":
                     if log:
                         print("LOG: found person")
-                    about, experiences, education = get_info(client, pf)
-                    return orig_img, pf, about, experiences, education
+                    pfp, about, experiences, education = get_info(client, pf)
+                    return pfp, pf, about, experiences, education
 
 first_name = "Sai"
 last_name = "Konkimalla"
 
-img, link, about, experiences, education = scrape(first_name, last_name)#, headless=False)
+pfp, link, about, experiences, education = scrape(first_name, last_name)#, headless=False)
+print(pfp)
 
 import requests
 
@@ -247,7 +257,7 @@ headers = {
 }
 
 a, b, c = format_info(about, experiences, education)
-prompt = f"Summarize this person's interest in 7-8 words. ONLY include a list of interests, nothing else.\n\nBio:\n{a}\n\nExperiences:\n{b}\n\nEducation:\n{c}\n\n"
+prompt = f"Summarize this person's interest in 7-8 words. ONLY include a list of interests, nothing else. DON'T SAY ANYTHING BEFORE THE INTERESTS!! JUST THE LIST!!\n\nBio:\n{a}\n\nExperiences:\n{b}\n\nEducation:\n{c}\n\n"
 print(prompt)
 
 data = {
@@ -290,6 +300,9 @@ for item in education:
     db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
 
 data_dict = {"type": "interests", "description": interests}
+db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
+
+data_dict = {"type": "pfp", "description": pfp}
 db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
 
 # input()
