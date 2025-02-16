@@ -1,13 +1,18 @@
 from datetime import datetime
 from vector_db import VectorDatabase
 
-ppl = ["JamesChen", "AaravWattal", "KaivalShah"]
+contacts = {
+    0 : {"fname": "James", "lname": "Chen", "id_name": "JamesChen", "phone": "1234567890", "conv_summary": "likes to play chess"},
+    1 : {"fname": "Aarav", "lname": "Wattal", "id_name": "AaravWattal", "phone": "0987654321", "conv_summary": "likes ee stuff"},
+    2 : {"fname": "Kaival", "lname": "Shah", "id_name": "KaivalShah", "phone": "7125364908", "conv_summary": "is a freshman"}
+}
 
 db = VectorDatabase()
 db.create_connection()
 
-for p in ppl:
-    db.delete_schema(p)
+# adding text to conversation tables for each person schema
+for i in contacts.keys():
+    db.delete_table(contacts[i]["id_name"], "Conversation")
 
 dir = "example_convos/"
 for i in range(1, 11):
@@ -20,4 +25,10 @@ for i in range(1, 11):
         "time_stamp" : str(datetime.now().replace(microsecond=0))
     }
 
-    db.add_text_to_table(ppl[i % 3], "Conversation", s, 256, data)
+    db.add_text_to_table(contacts[i % 3]["id_name"], "Conversation", s, 256, data)
+
+# adding people to contacts 
+db.delete_schema("General")
+
+for i in contacts.keys():
+    db.write_data_dict("General", "Contacts", contacts[i])
