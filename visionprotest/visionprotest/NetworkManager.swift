@@ -1,4 +1,5 @@
 import SwiftUI
+// MARK: - NetworkManager for Capture Gesture
 
 class NetworkManager {
     static func captureGesture(completion: @escaping (Result<Profile, Error>) -> Void) {
