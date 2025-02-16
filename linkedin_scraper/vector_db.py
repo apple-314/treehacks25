@@ -44,7 +44,7 @@ class VectorDatabase:
             "Conversation" : "(text_id INT, index INT, time_stamp DATETIME, sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
             "ResearchPapers" : "(text_id INT, index INT, title VARCHAR(200), arxiv_id VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
             "HealthArticles" : "(text_id INT, index INT, title VARCHAR(200), sentence VARCHAR(2000), sentence_vector VECTOR(DOUBLE, 384))",
-            "Contacts" : "(name VARCHAR(255), phone VARCHAR(15), conv_summary VARCHAR(2000))"
+            "Contacts" : "(fname VARCHAR(255), lname VARCHAR(255), id_name VARCHAR(255), phone VARCHAR(15), conv_summary VARCHAR(2000), most_recent_conv_summary VARCHAR(2000))"
         }
 
         self._table_entry_types = {
@@ -52,7 +52,7 @@ class VectorDatabase:
             "Conversation" : ["text_id", "index", "time_stamp", "sentence", "sentence_vector"],
             "ResearchPapers" : ["text_id", "index", "title", "arxiv_id", "sentence", "sentence_vector"],
             "HealthArticles" : ["text_id", "index", "title", "sentence", "sentence_vector"],
-            "Contacts" : ["name", "phone", "conv_summary"]
+            "Contacts" : ["fname", "lname", "id_name", "phone", "conv_summary", "most_recent_conv_summary"]
         }
     
     def _execute_query(self, query, params=None):
@@ -118,7 +118,7 @@ class VectorDatabase:
             ({columns})
             VALUES ({placeholders})
         """
-
+        
         params_list = [data_dict[c] for c in self._table_entry_types[table_name]]
         params = [tuple(params_list)]
 
@@ -260,3 +260,40 @@ class VectorDatabase:
         """
         self._execute_query(query)
         return self._cursor.fetchall()
+
+    # extract column from table
+    def get_column_from_table(self, schema_name, table_name, col_name):
+        query = f"""
+            SELECT {col_name}
+            FROM {schema_name}.{table_name}
+        """
+        self._execute_query(query)
+        return self._cursor.fetchall()
+
+    # extract row from table
+    def get_row_from_table(self, schema_name, table_name, col_name, value):
+        query = f"""
+            SELECT *
+            FROM {schema_name}.{table_name}
+            WHERE {col_name} = '{value}'
+        """
+        self._execute_query(query)
+        return self._cursor.fetchall()
+    
+    # delete row from table
+    def delete_row_from_table(self, schema_name, table_name, col_name, value):
+        query = f"""
+            DELETE FROM {schema_name}.{table_name}
+            WHERE {col_name} = '{value}'
+        """
+        self._execute_query(query)
+    
+    # updated row in table
+    def update_row_from_table(self, schema_name, table_name, col, value, new_col, new_value):
+        query = f"""
+            UPDATE {schema_name}.{table_name}
+            SET {new_col} = '{new_value}'
+            WHERE {col} = '{value}'
+        """
+        self._execute_query(query)
+    

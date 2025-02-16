@@ -25,6 +25,14 @@ for name in names:
     edu_results = db.get_entries_w_col_match(name, "LinkedIn", "type", "edu")
     education = [entry[1] for entry in edu_results] if edu_results else []
 
+    # get image from "pfp" type under LinkedIn
+    img_results = db.get_row_from_table(name, "LinkedIn", "type", "pfp")
+    image = img_results[0][1] if img_results else ""
+
+    # get interests from "interests" type under LinkedIn
+    interests_results = db.get_row_from_table(name, "LinkedIn", "type", "interests")
+    interests = interests_results[0][1] if interests_results else ""
+
     # Structure data
     data[formatted_name] = {
         "LinkedIn": {
@@ -32,7 +40,9 @@ for name in names:
             "experiences": experiences,
             "education": education
         },
-        "Convos": []  # Empty conversations list for now
+        "convos": [],
+        "interests": interests,
+        "img": image
     }
 
 # Convert to JSON
@@ -46,3 +56,5 @@ with open("people_data.json", "w") as f:
 print(json_output)
 
 print(time.time() - start_time)
+
+# get_profiles
