@@ -17,18 +17,16 @@ struct SuperVisionApp: App {
                         Image(systemName: "speaker.wave.3")
                         Text("Audio")
                     }
-                    .background(.clear)
+                
                 HistoryPage()
                     .tabItem {
                         Image(systemName: "list.bullet")
                         Text("History")
                     }
-                    .background(.clear)
-
             }
+            .accentColor(.blue)  // Add accent color for better visibility
         }
         .windowStyle(.plain)
         .defaultSize(width: .infinity, height: .infinity)
-
     }
 }

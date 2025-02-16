@@ -1,4 +1,7 @@
 import SwiftUI
+import Contacts
+
+// MARK: - Models
 
 struct LinkedInProfile: Codable {
     let bio: String
@@ -23,6 +26,8 @@ struct PersonProfile: Identifiable {
     let img: String
 }
 
+// MARK: - ViewModel
+
 class ProfilesViewModel: ObservableObject {
     @Published var profiles: [PersonProfile] = []
     @Published var errorMessage: String? = nil
@@ -46,11 +51,13 @@ class ProfilesViewModel: ObservableObject {
                 }
                 return
             }
+            
+            // Print the raw data regardless of decoding success
+            if let rawJSON = String(data: data, encoding: .utf8) {
+                print("Raw JSON: \(rawJSON)")
+            }
+            
             do {
-                if let rawJSON = String(data: data, encoding: .utf8) {
-                    print("Raw JSON on success: \(rawJSON)")
-                }
-                
                 let decoded = try JSONDecoder().decode([String: APIProfile].self, from: data)
                 print("Decoded dictionary: \(decoded)")
                 
@@ -69,7 +76,11 @@ class ProfilesViewModel: ObservableObject {
                     self.profiles = profiles
                 }
             } catch {
-                print("Decoding error: \(error)")
+                // If decoding fails, print out the raw data so you can inspect the format.
+                if let rawData = String(data: data, encoding: .utf8) {
+                    print("Decoding error: \(error)")
+                    print("Raw data received: \(rawData)")
+                }
                 DispatchQueue.main.async {
                     self.errorMessage = "Error decoding data: \(error.localizedDescription)"
                 }
@@ -78,41 +89,53 @@ class ProfilesViewModel: ObservableObject {
     }
 }
 
+
+// MARK: - HistoryPage
+
 struct HistoryPage: View {
     @StateObject private var viewModel = ProfilesViewModel()
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(viewModel.profiles) { profile in
-                        VStack(alignment: .center, spacing: 8) {
-                            AsyncImage(url: URL(string: profile.img)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                            } placeholder: {
-                                Color.gray
+        VStack {
+            if let error = viewModel.errorMessage {
+                Text("Error: \(error)")
+                    .foregroundColor(.red)
+            } else if viewModel.profiles.isEmpty {
+                Text("No profiles found")
+                    .foregroundColor(.gray)
+            } else {
+                GeometryReader { geometry in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(viewModel.profiles) { profile in
+                                VStack(alignment: .center, spacing: 8) {
+                                    AsyncImage(url: URL(string: profile.img)) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                    } placeholder: {
+                                        Color.gray
+                                    }
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                                    
+                                    Text(profile.name)
+                                        .font(.headline)
+                                        .lineLimit(1)
+                                    
+                                    Text(profile.interests)
+                                        .font(.subheadline)
+                                        .lineLimit(1)
+                                        .foregroundColor(.white)
+                                }
+                                .frame(maxWidth: .infinity)  // Use maxWidth here
+                                .frame(height: geometry.size.height * 0.8)
+                                .padding(.vertical)
                             }
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                            
-                            Text(profile.name)
-                                .font(.headline)
-                                .lineLimit(1)
-                            
-                            Text(profile.interests)
-                                .font(.subheadline)
-                                .lineLimit(1)
-                                .foregroundColor(.white)
                         }
-                        .frame(width: .infinity)
-                        .frame(height: geometry.size.height * 0.8)
-                        .padding(.vertical)
+                        .padding(.horizontal, 40)
                     }
                 }
-                .frame(minHeight: geometry.size.height)
-                .padding(.horizontal, 40)
             }
         }
         .navigationTitle("History")
