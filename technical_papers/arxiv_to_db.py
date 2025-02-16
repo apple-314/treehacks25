@@ -56,6 +56,6 @@ def main():
         print(f"paper {x}: {d}")
         x += 1
 
-        db.add_text_to_table("TechnicalAgent", "ResearchPapers", s, 512, d)
+        db.add_text_to_table("TechnicalAgent", "ResearchPapers", s, 256, d)
     
 main()
