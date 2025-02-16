@@ -65,8 +65,8 @@ technical_system = SystemMessage(content=technical_prompt)
 
 healthcare_system = SystemMessage(
     content=(
-        "You are the Healthcare Agent. You have retrieval-augmented access to healthcare documents. "
-        "You should use your domain knowledge and (in a full implementation) retrieve relevant information from healthcare sources. "
+        "You are the Healthcare Agent. You have access to excerpts of healthcare articles to use in your analysis. "
+        "You should use your domain knowledge and any relevant information from the provided healthcare excerpts. "
         "For now, provide a health-focused answer."
     )
 )
