@@ -11,11 +11,24 @@ import SwiftUI
 struct SuperVisionApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            AudioProcessing()
-                .padding()
-                .background(.clear)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            TabView {
+                ConversationPage()
+                    .tabItem {
+                        Image(systemName: "speaker.wave.3")
+                        Text("Audio")
+                    }
+                    .background(.clear)
+                HistoryPage()
+                    .tabItem {
+                        Image(systemName: "list.bullet")
+                        Text("History")
+                    }
+                    .background(.clear)
+
+            }
         }
+        .windowStyle(.plain)
+        .defaultSize(width: .infinity, height: .infinity)
+
     }
 }

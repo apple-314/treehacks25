@@ -119,29 +119,7 @@ class ContactManager: ObservableObject {
             throw URLError(.badServerResponse)
         }
     }
-    
-//    private func sendName(with body: String) {
-//        let contactsCountString = "https://moderately-shining-bream.ngrok-free.app/obtain_name"
-//        guard let url = URL(string: contactsCountString) else {
-//            print("Invalid contactsCount URL.")
-//            return
-//        }
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
-//        request.httpBody = body.data(using: .utf8)
-//        
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print("Error sending contacts count: \(error)")
-//            } else {
-//                print("Contacts count sent.")
-//            }
-//        }
-//        task.resume()
-//    }
-    
+
     private func sendDifferentContactsNames(_ contacts: [CNContact]) {
         let contactsCountString = "https://moderately-shining-bream.ngrok-free.app/count_contacts"
         // Build an array of full names from the contacts.
@@ -224,7 +202,7 @@ struct CaptureResponse: Codable {
 }
 
 
-struct AudioProcessing: View {
+struct ConversationPage: View {
     @StateObject private var audioProcessor = AudioProcessor()
     
     @State private var profile: Profile? = nil
@@ -257,9 +235,37 @@ struct AudioProcessing: View {
                     Spacer()
                 }
                 
-                HStack {
-                    Spacer()
-                    VStack {
+                Spacer()
+                
+                VStack {
+                    Button(action: {
+                        // Your button action here
+                    }) {
+                        Text("Hey JARVIS")
+                            .font(.system(size: 24, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: 200, maxHeight: 100)
+                    }
+                    .background(
+                        MeshGradient(
+                            width: 3,
+                            height: 3,
+                            points: [
+                                .init(0, 0),   .init(0.5, 0),   .init(1, 0),
+                                .init(0, 0.5), .init(0.5, 0.5), .init(1, 0.5),
+                                .init(0, 1),   .init(0.5, 1),   .init(1, 1)
+                            ],
+                            colors: [
+                                .red,    .purple, .indigo,
+                                .orange, .white,  .blue,
+                                .yellow, .green,  .mint
+                            ]
+                        )
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 50, style: .continuous))
+                    .padding(.horizontal)
+                    HStack {
                         Spacer()
                         Button(action: {
                             print("Taking a picture of the person")
@@ -288,14 +294,13 @@ struct AudioProcessing: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding()
-                                .background(Color(hex: "#E2E2E2"))
-//                                .clipShape(Circle())
+                                .background(Color(hex:"e2e2e2"))
+                                .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
                         
-                        Spacer()
                         
                         Button(action: {
                             if audioProcessor.isRecording {
@@ -309,9 +314,9 @@ struct AudioProcessing: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding()
-                                .background(audioProcessor.isRecording ? Color.red : Color.green)
+                                .background(audioProcessor.isRecording ? Color.red : Color(hex: "e2e2e2"))
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
@@ -591,9 +596,9 @@ class AudioProcessor: ObservableObject {
     }
 }
 
-struct AudioProcessing_Preview: PreviewProvider {
+struct ConversationPage_Preview: PreviewProvider {
     static var previews: some View {
-        AudioProcessing()
+        ConversationPage()
     }
 }
 
