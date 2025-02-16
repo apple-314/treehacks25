@@ -2,6 +2,7 @@ import SwiftUI
 import AVFoundation
 import Contacts
 
+// MARK: - ContactButton
 struct ContactButton: View {
     let color: Color
     let size: CGFloat = 100
@@ -22,6 +23,7 @@ struct ContactButton: View {
     }
 }
 
+// MARK: - ContactManager
 class ContactManager: ObservableObject {
     @Published var firstContactList: [CNContact] = []
     @Published var secondContactList: [CNContact] = []
@@ -37,7 +39,6 @@ class ContactManager: ObservableObject {
         }
         
         let store = CNContactStore()
-        
         let granted = try await store.requestAccess(for: .contacts)
         guard granted else {
             throw NSError(domain: "ContactManagerError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Access to contacts was not granted"])
@@ -81,7 +82,7 @@ class ContactManager: ObservableObject {
     }
     
     private func sendContactsCount(with body: String) {
-        let contactsCountString = "https://moderately-shining-bream.ngrok-free.app/count_contacts"
+        let contactsCountString = "https://normal-guiding-orca.ngrok-free.app/count_contacts"
         guard let url = URL(string: contactsCountString) else {
             print("Invalid contactsCount URL.")
             return
@@ -103,7 +104,7 @@ class ContactManager: ObservableObject {
     }
     
     private func sendName(with body: String) async throws {
-        let contactsCountString = "https://moderately-shining-bream.ngrok-free.app/obtain_name"
+        let contactsCountString = "https://normal-guiding-orca.ngrok-free.app/obtain_name"
         guard let url = URL(string: contactsCountString) else {
             throw URLError(.badURL)
         }
@@ -121,11 +122,8 @@ class ContactManager: ObservableObject {
     }
 
     private func sendDifferentContactsNames(_ contacts: [CNContact]) {
-        let contactsCountString = "https://moderately-shining-bream.ngrok-free.app/count_contacts"
-        // Build an array of full names from the contacts.
+        let contactsCountString = "https://normal-guiding-orca.ngrok-free.app/count_contacts"
         let names = contacts.map { "\($0.givenName) \($0.familyName)" }
-        
-        // Create a JSON payload.
         let jsonPayload: [String: Any] = ["contacts": names]
         
         guard let url = URL(string: contactsCountString) else {
@@ -156,28 +154,18 @@ class ContactManager: ObservableObject {
     }
     
     func normalizePhoneNumber(_ phone: String) -> String {
-        // Remove all non-digit characters.
         let digits = phone.filter { $0.isWholeNumber }
-        
-        // If it's 11 digits and starts with "1", drop the country code.
         if digits.count == 11 && digits.first == "1" {
             return String(digits.dropFirst())
         }
-        
-        // If it's more than 10 digits (e.g. an international number), take the last 10 digits.
         if digits.count > 10 {
             return String(digits.suffix(10))
         }
-        
-        // Otherwise, return what you have (which may be less than 10 digits).
         return digits
     }
-
-
 }
 
 // MARK: - API Response Models
-
 struct Profile: Codable {
     let name: String
     let about: String
@@ -185,7 +173,6 @@ struct Profile: Codable {
     let experiences: [[String]]
     let profile_url: String
         
-    // Optional computed properties to format the arrays for display
     var educationText: String {
         education.map { $0.joined(separator: " - ") }.joined(separator: "\n")
     }
@@ -201,241 +188,7 @@ struct CaptureResponse: Codable {
     let profile: Profile
 }
 
-
-struct ConversationPage: View {
-    @StateObject private var audioProcessor = AudioProcessor()
-    
-    @State private var profile: Profile? = nil
-    
-    @StateObject private var contactManager = ContactManager()
-
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                        if let profile = profile {
-                            ProfileDescriptionView(
-                                name: profile.name,
-                                about: profile.about,
-                                education: profile.educationText,
-                                experiences: profile.experiences,
-                                profileURL: profile.profile_url
-                            )
-                        } else {
-                            // A placeholder view until data is available.
-                            Text("No profile data available.\nTap the capture button to load profile.")
-                                .foregroundColor(.black)
-                                .font(.system(size: 24, weight: .medium))
-                                .padding()
-                        }
-                        Spacer()
-                    }
-                    Spacer()
-                }
-                
-                Spacer()
-                
-                VStack {
-                    Button(action: {
-                        // Your button action here
-                    }) {
-                        Text("Hey JARVIS")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: 200, maxHeight: 100)
-                    }
-                    .background(
-                        MeshGradient(
-                            width: 3,
-                            height: 3,
-                            points: [
-                                .init(0, 0),   .init(0.5, 0),   .init(1, 0),
-                                .init(0, 0.5), .init(0.5, 0.5), .init(1, 0.5),
-                                .init(0, 1),   .init(0.5, 1),   .init(1, 1)
-                            ],
-                            colors: [
-                                .red,    .purple, .indigo,
-                                .orange, .white,  .blue,
-                                .yellow, .green,  .mint
-                            ]
-                        )
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 50, style: .continuous))
-                    .padding(.horizontal)
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            print("Taking a picture of the person")
-                            Task {
-                                do {
-                                    // First fetch and process contacts
-                                    try await contactManager.fetchContacts(isFirstCapture: false)
-                                    
-                                    // Then capture the gesture
-                                    let profileData = try await withCheckedThrowingContinuation { continuation in
-                                        NetworkManager.captureGesture { result in
-                                            continuation.resume(with: result)
-                                        }
-                                    }
-                                    
-                                    // Update the UI on the main thread
-                                    await MainActor.run {
-                                        self.profile = profileData
-                                    }
-                                } catch {
-                                    print("Error in capture process: \(error)")
-                                }
-                            }
-                        }) {
-                            Image(systemName: "camera")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(.black)
-                                .padding()
-                                .background(Color(hex:"e2e2e2"))
-                                .clipShape(Circle())
-                        }
-                        .padding(.trailing, 20)
-                        
-                        
-                        Button(action: {
-                            if audioProcessor.isRecording {
-                                audioProcessor.stopRecording()
-                            } else {
-                                audioProcessor.startRecording()
-//                                try await contactManager.fetchContacts(isFirstCapture: true)
-                            }
-                        }) {
-                            Image(systemName: audioProcessor.isRecording ? "mic.fill" : "mic")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(.black)
-                                .padding()
-                                .background(audioProcessor.isRecording ? Color.red : Color(hex: "e2e2e2"))
-                                .clipShape(Circle())
-                        }
-                        .padding(.trailing, 20)
-                        
-                        Spacer()
-                    }
-                }
-            }
-        }
-        .onAppear {
-            audioProcessor.setupAudioSession()
-            // Use Task for async operation in onAppear
-            Task {
-                do {
-                    let store = CNContactStore()
-                    let granted = try await store.requestAccess(for: .contacts)
-                    if granted {
-                        try await contactManager.fetchContacts(isFirstCapture: true)
-                    } else {
-                        print("Contacts permission denied.")
-                    }
-                } catch {
-                    print("Contacts permission error: \(error.localizedDescription)")
-                }
-            }
-        }
-
-    }
-}
-
-struct ProfileDescriptionView: View {
-    let name: String
-    let about: String
-    let education: String
-    let experiences: [[String]]  // Use the original array of arrays
-    let profileURL: String
-
-    var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 8) {
-                // Name
-                Text(name)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
-                    .padding(.bottom, 5)
-                
-                // About
-                Text(about)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                    .padding(.leading, 13)
-                
-                // Education Section
-                Text("Education")
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
-                
-                Text(education)
-                    .foregroundColor(.black)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                    .padding(.leading, 20)
-                
-                // Experiences Section
-                Text("Experiences")
-                    .foregroundColor(.black)
-                    .font(.system(size: 30, weight: .semibold, design: .default))
-                
-                ForEach(experiences, id: \.self) { experience in
-                    if experience.count == 2 {
-                        // For two-item experiences, display both items in one line without a toggle.
-                        HStack {
-                            Text(experience[0])
-                            Text("•")
-                            Text(experience[1])
-                        }
-                        .foregroundColor(.black)
-                        .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                    } else if experience.count == 3 {
-                        // For three-item experiences, display the first two items as the title,
-                        // with the third item hidden inside a disclosure group.
-                        DisclosureGroup {
-                            Text(experience[2])
-                                .foregroundColor(.black)
-                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                                .padding(.leading, 13)
-                        } label: {
-                            HStack {
-                                Text(experience[0])
-                                Text("•")
-                                Text(experience[1])
-                            }
-                            .foregroundColor(.black)
-                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                        }
-                    } else {
-                        // Fallback for unexpected formats.
-                        Text(experience.joined(separator: " • "))
-                            .foregroundColor(.black)
-                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                    }
-                }
-                
-                // Profile URL
-                Text("Profile URL: \(profileURL)")
-                    .foregroundColor(.blue)
-                    .underline()
-            }
-            .frame(width: 800)
-            .padding(40)
-            .background(
-                RoundedRectangle(cornerRadius: 30)
-                    .fill(Color(hex: "E2E2E2").opacity(0.6))
-            )
-        }
-    }
-}
-
-
-
+// MARK: - AudioProcessor (with custom endpoint support and finalize callback)
 class AudioProcessor: ObservableObject {
     private var audioEngine = AVAudioEngine()
     private var inputNode: AVAudioInputNode?
@@ -447,9 +200,18 @@ class AudioProcessor: ObservableObject {
     @Published var isRecording = false
     @Published var audioLevel: Float = 0.0
     
-    private let uploadURLString = "https://moderately-shining-bream.ngrok-free.app/upload_samples"
-    private let finalizeString = "https://moderately-shining-bream.ngrok-free.app/finalize"
+    private let uploadURLString: String
+    private let finalizeString: String
     
+    /// Optional callback that is called when finalizeSamples() gets a response.
+    var onFinalize: ((String, String) -> Void)?
+    
+    /// Initialize with custom endpoints. The default endpoints are used if none are provided.
+    init(uploadEndpoint: String = "https://normal-guiding-orca.ngrok-free.app/upload_samples",
+         finalizeEndpoint: String = "https://normal-guiding-orca.ngrok-free.app/finalize") {
+        self.uploadURLString = uploadEndpoint
+        self.finalizeString = finalizeEndpoint
+    }
     
     func setupAudioSession() {
         let session = AVAudioSession.sharedInstance()
@@ -474,6 +236,7 @@ class AudioProcessor: ObservableObject {
         self.inputNode = inputNode
         self.audioFormat = format
         
+        // Optional: saving to file (if needed)
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileName = "recording.wav"
         let fileURL = directory.appendingPathComponent(fileName)
@@ -533,12 +296,13 @@ class AudioProcessor: ObservableObject {
             self.audioLevel = level
         }
         
+        // Log samples for debugging.
         let sampleValues = channelDataArray.map { String(format: "%.5f", $0) }
         print("[\(sampleValues.joined(separator: ", "))]")
+        
         sendSamplesToServer(samples: channelDataArray)
     }
     
-
     private func finalizeSamples() {
         guard let url = URL(string: finalizeString) else {
             print("Invalid finalize URL.")
@@ -556,7 +320,19 @@ class AudioProcessor: ObservableObject {
                       httpResponse.statusCode != 200 {
                 print("Server returned status code: \(httpResponse.statusCode)")
             } else {
-                print("Successfully finalized.")
+                // If this is the Jarvis endpoint, we expect a JSON response.
+                if let data = data,
+                   let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let answer = json["answer"] as? String,
+                   let agent = json["agent"] as? String {
+                    print("Jarvis finalize response: \(json)")
+                    print("Agent: \(agent) | Answer: \(answer)")
+                    DispatchQueue.main.async {
+                        self.onFinalize?(agent, answer)
+                    }
+                } else {
+                    print("Successfully finalized audio samples.")
+                }
             }
         }
         task.resume()
@@ -596,13 +372,268 @@ class AudioProcessor: ObservableObject {
     }
 }
 
+// MARK: - ConversationPage (with two audio processors)
+struct ConversationPage: View {
+    // Regular audio processor (for the mic button)
+    @StateObject private var audioProcessor = AudioProcessor()
+    // Jarvis audio processor with custom endpoints for Jarvis audio
+    @StateObject private var jarvisAudioProcessor = AudioProcessor(
+        uploadEndpoint: "https://normal-guiding-orca.ngrok-free.app/upload_samples_jarvis",
+        finalizeEndpoint: "https://normal-guiding-orca.ngrok-free.app/finalize_jarvis"
+    )
+    
+    @State private var profile: Profile? = nil
+    @StateObject private var contactManager = ContactManager()
+    
+    // State to hold the Jarvis response text.
+    @State private var jarvisResponse: String = ""
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                // Left-side Profile View
+                HStack {
+                    VStack(alignment: .leading) {
+                        if let profile = profile {
+                            ProfileDescriptionView(
+                                name: profile.name,
+                                about: profile.about,
+                                education: profile.educationText,
+                                experiences: profile.experiences,
+                                profileURL: profile.profile_url
+                            )
+                        } else {
+                            Text("")
+                                .foregroundColor(.black)
+                                .font(.system(size: 24, weight: .medium))
+                                .padding()
+                        }
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                VStack {
+                    // Hey JARVIS button uses jarvisAudioProcessor.
+                    Button(action: {
+                        if jarvisAudioProcessor.isRecording {
+                            jarvisAudioProcessor.stopRecording()
+                        } else {
+                            jarvisAudioProcessor.startRecording()
+                        }
+                    }) {
+                        Text("Hey JARVIS")
+                            .font(.system(size: 24, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: 200, maxHeight: 100)
+                    }
+                    .background(
+                        MeshGradient(
+                            width: 3,
+                            height: 3,
+                            points: [
+                                .init(0, 0),   .init(0.5, 0),   .init(1, 0),
+                                .init(0, 0.5), .init(0.5, 0.5), .init(1, 0.5),
+                                .init(0, 1),   .init(0.5, 1),   .init(1, 1)
+                            ],
+                            colors: [
+                                .red,    .purple, .indigo,
+                                .orange, .white,  .blue,
+                                .yellow, .green,  .mint
+                            ]
+                        )
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 50, style: .continuous))
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Spacer()
+                        // Camera button.
+                        Button(action: {
+                            print("Taking a picture of the person")
+                            Task {
+                                do {
+                                    try await contactManager.fetchContacts(isFirstCapture: false)
+                                    let profileData = try await withCheckedThrowingContinuation { continuation in
+                                        NetworkManager.captureGesture { result in
+                                            continuation.resume(with: result)
+                                        }
+                                    }
+                                    await MainActor.run {
+                                        self.profile = profileData
+                                    }
+                                } catch {
+                                    print("Error in capture process: \(error)")
+                                }
+                            }
+                        }) {
+                            Image(systemName: "camera")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(Color(hex:"e2e2e2"))
+                                .clipShape(Circle())
+                        }
+                        .padding(.trailing, 20)
+                        
+                        // Mic button uses regular audioProcessor.
+                        Button(action: {
+                            if audioProcessor.isRecording {
+                                audioProcessor.stopRecording()
+                            } else {
+                                audioProcessor.startRecording()
+                            }
+                        }) {
+                            Image(systemName: audioProcessor.isRecording ? "mic.fill" : "mic")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .foregroundColor(.black)
+                                .padding()
+                                .font(.subheadline)
+                                .background(audioProcessor.isRecording ? Color.red : Color(hex: "e2e2e2"))
+                                .clipShape(Circle())
+                        }
+                        .padding(.trailing, 20)
+                        Spacer()
+                    }
+                    
+                    // Display Jarvis's response (if any)
+                    if !jarvisResponse.isEmpty {
+                        Text(jarvisResponse)
+                            .font(.system(size: 24, weight: .semibold))
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(Color.gray.opacity(0.5))
+                            .cornerRadius(10)
+                            .padding(.top, 20)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            audioProcessor.setupAudioSession()
+            jarvisAudioProcessor.setupAudioSession()
+            
+            // Set the onFinalize callback for Jarvis processor.
+            jarvisAudioProcessor.onFinalize = { agent, answer in
+                jarvisResponse = "Jarvis's \(agent) responds: \(answer)"
+            }
+            
+            Task {
+                do {
+                    let store = CNContactStore()
+                    let granted = try await store.requestAccess(for: .contacts)
+                    if granted {
+                        try await contactManager.fetchContacts(isFirstCapture: true)
+                    } else {
+                        print("Contacts permission denied.")
+                    }
+                } catch {
+                    print("Contacts permission error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+}
+
+// MARK: - ProfileDescriptionView
+struct ProfileDescriptionView: View {
+    let name: String
+    let about: String
+    let education: String
+    let experiences: [[String]]
+    let profileURL: String
+
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 8) {
+                // Name
+                Text(name)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
+                    .padding(.bottom, 5)
+                
+                // About
+                Text(about)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                    .padding(.leading, 13)
+                
+                // Education Section
+                Text("Education")
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
+                
+                Text(education)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    .padding(.leading, 20)
+                
+                // Experiences Section
+                Text("Experiences")
+                    .foregroundColor(.black)
+                    .font(.system(size: 30, weight: .semibold, design: .default))
+                
+                ForEach(experiences, id: \.self) { experience in
+                    if experience.count == 2 {
+                        HStack {
+                            Text(experience[0])
+                            Text("•")
+                            Text(experience[1])
+                        }
+                        .foregroundColor(.black)
+                        .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    } else if experience.count == 3 {
+                        DisclosureGroup {
+                            Text(experience[2])
+                                .foregroundColor(.black)
+                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                                .padding(.leading, 13)
+                        } label: {
+                            HStack {
+                                Text(experience[0])
+                                Text("•")
+                                Text(experience[1])
+                            }
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                        }
+                    } else {
+                        Text(experience.joined(separator: " • "))
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    }
+                }
+                
+                // Profile URL
+                Text("Profile URL: \(profileURL)")
+                    .foregroundColor(.blue)
+                    .underline()
+            }
+            .frame(width: 800)
+            .padding(40)
+            .background(
+                RoundedRectangle(cornerRadius: 30)
+                    .fill(Color(hex: "E2E2E2").opacity(0.6))
+            )
+        }
+    }
+}
+
+// MARK: - Preview
 struct ConversationPage_Preview: PreviewProvider {
     static var previews: some View {
         ConversationPage()
     }
 }
 
-
+// MARK: - Extensions
 extension Color {
     init(hex: String) {
         let sanitizedHex = hex
@@ -640,20 +671,16 @@ extension CNContact {
     var normalizedPhoneNumbers: [String] {
         return phoneNumbers.map { phone in
             let rawNumber = phone.value.stringValue
-            // Remove all non-digit characters.
             let digits = rawNumber.filter { $0.isWholeNumber }
             
-            // If it's 11 digits and starts with "1", drop the country code.
             if digits.count == 11 && digits.first == "1" {
                 return String(digits.dropFirst())
             }
             
-            // If it's more than 10 digits (e.g. some international numbers), take the last 10 digits.
             if digits.count > 10 {
                 return String(digits.suffix(10))
             }
             
-            // Otherwise, return whatever digits remain.
             return digits
         }
     }
@@ -662,4 +689,3 @@ extension CNContact {
         return emailAddresses.map { ($0.value as String).lowercased() }
     }
 }
-

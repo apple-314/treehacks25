@@ -2,7 +2,7 @@ import SwiftUI
 
 class NetworkManager {
     static func captureGesture(completion: @escaping (Result<Profile, Error>) -> Void) {
-        guard let url = URL(string: "https://moderately-shining-bream.ngrok-free.app/capture_gesture") else {
+        guard let url = URL(string: "https://normal-guiding-orca.ngrok-free.app/capture_gesture") else {
             completion(.failure(URLError(.badURL)))
             return
         }
