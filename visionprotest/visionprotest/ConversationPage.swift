@@ -10,12 +10,6 @@ struct ContactButton: View {
     var body: some View {
         Circle()
             .fill(color)
-            .frame(width: size, height: size)
-            .overlay(
-                Circle()
-                    .stroke(Color.white, lineWidth: 2)
-            )
-            .shadow(radius: 5)
             .onTapGesture {
                 onTap()
             }
@@ -114,14 +108,14 @@ class ContactManager: ObservableObject {
 
 //struct ContentView: View {
 //    @StateObject private var contactManager = ContactManager()
-//    
+//
 //    var body: some View {
 //        NavigationView {
 //            VStack {
 //                Text(contactManager.statusMessage)
 //                    .padding()
 //                    .multilineTextAlignment(.center)
-//                
+//
 //                HStack(spacing: 40) {
 //                    VStack {
 //                        Text("First Capture")
@@ -130,7 +124,7 @@ class ContactManager: ObservableObject {
 //                            contactManager.fetchContacts(isFirstCapture: true)
 //                        }
 //                    }
-//                    
+//
 //                    VStack {
 //                        Text("Second Capture")
 //                            .font(.caption)
@@ -140,7 +134,7 @@ class ContactManager: ObservableObject {
 //                    }
 //                }
 //                .padding()
-//                
+//
 //                List {
 //                    Section(header: Text("New Contacts Found")) {
 //                        if contactManager.diffContacts.isEmpty {
@@ -214,7 +208,7 @@ struct CaptureResponse: Codable {
 }
 
 
-struct AudioProcessing: View {
+struct ConversationalPage: View {
     @StateObject private var audioProcessor = AudioProcessor()
     
     @State private var profile: Profile? = nil
@@ -247,13 +241,44 @@ struct AudioProcessing: View {
                     Spacer()
                 }
                 
-                HStack {
-                    Spacer()
-                    VStack {
+                VStack {
+                    // Wrap the "Hey JARVIS" button in an HStack to push it to the right
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            // Your button action here
+                        }) {
+                            Text("Hey JARVIS")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: 100)
+                        }
+                        .background(
+                            MeshGradient(
+                                width: 3,
+                                height: 3,
+                                points: [
+                                    .init(0, 0),   .init(0.5, 0),   .init(1, 0),
+                                    .init(0, 0.5), .init(0.5, 0.5), .init(1, 0.5),
+                                    .init(0, 1),   .init(0.5, 1),   .init(1, 1)
+                                ],
+                                colors: [
+                                    .red,    .purple, .indigo,
+                                    .orange, .white,  .blue,
+                                    .yellow, .green,  .mint
+                                ]
+                            )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 50, style: .continuous))
+                        .padding(.horizontal)
+                    }
+                    
+                    // HStack for the camera and mic buttons
+                    HStack {
                         Spacer()
                         Button(action: {
                             print("Taking a picture of the person")
-
                             NetworkManager.captureGesture { result in
                                 switch result {
                                 case .success(let profileData):
@@ -270,14 +295,12 @@ struct AudioProcessing: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding()
-                                .background(Color.black)
+                                .background(Color(hex:"e2e2e2"))
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
-                        
-                        Spacer()
                         
                         Button(action: {
                             if audioProcessor.isRecording {
@@ -291,14 +314,12 @@ struct AudioProcessing: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding()
-                                .background(audioProcessor.isRecording ? Color.red : Color.green)
+                                .background(audioProcessor.isRecording ? Color.red : Color(hex: "e2e2e2"))
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
-                        
-                        Spacer()
                     }
                 }
             }
@@ -325,82 +346,87 @@ struct ProfileDescriptionView: View {
     let name: String
     let about: String
     let education: String
-    let experiences: [[String]]
+    let experiences: [[String]]  // Use the original array of arrays
     let profileURL: String
-    
+
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                // Floating name label: larger, slightly higher, and shifted to the left.
+            VStack(alignment: .leading, spacing: 8) {
+                // Name
                 Text(name)
-                    .foregroundColor(.white)
-                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 72))
-                    .padding(.leading, 40)
-                    .offset(x: -20, y: -20) // Adjust this to position it precisely.
-                    .padding(.bottom, -10)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Bold", size: 45))
+                    .padding(.bottom, 5)
                 
-                // Main content container with rounded background.
-                VStack(alignment: .leading, spacing: 13) {
-                    // Education section
-                    Text("Education")
-                        .foregroundColor(.black)
-                        .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 42))
-                    
-                    Text(education)
+                // About
+                Text(about)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                    .padding(.leading, 13)
+                
+                // Education Section
+                Text("Education")
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_SemiBold", size: 30))
+                
+                Text(education)
+                    .foregroundColor(.black)
+                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                    .padding(.leading, 20)
+                
+                // Experiences Section
+                Text("Experiences")
+                    .foregroundColor(.black)
+                    .font(.system(size: 30, weight: .semibold, design: .default))
+                
+                ForEach(experiences, id: \.self) { experience in
+                    if experience.count == 2 {
+                        // For two-item experiences, display both items in one line without a toggle.
+                        HStack {
+                            Text(experience[0])
+                            Text("•")
+                            Text(experience[1])
+                        }
                         .foregroundColor(.black)
                         .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
-                        .padding(.leading, 20)
-                    
-                    // Experiences section
-                    Text("Experiences")
-                        .foregroundColor(.black)
-                        .font(.system(size: 42, weight: .semibold))
-                    
-                    ForEach(experiences, id: \.self) { experience in
-                        if experience.count >= 2 {
-                            DisclosureGroup {
-                                ForEach(Array(experience.dropFirst(2)), id: \.self) { extraField in
-                                    HStack(alignment: .top) {
-                                        Text("•")
-                                        Text(extraField)
-                                    }
-                                    .foregroundColor(.black)
-                                    .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
-                                    .padding(.leading, 20)
-                                }
-                            } label: {
-                                HStack {
-                                    Text(experience[0])
-                                    Text("•")
-                                    Text(experience[1])
-                                }
+                    } else if experience.count == 3 {
+                        // For three-item experiences, display the first two items as the title,
+                        // with the third item hidden inside a disclosure group.
+                        DisclosureGroup {
+                            Text(experience[2])
                                 .foregroundColor(.black)
-                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 20))
+                                .padding(.leading, 13)
+                        } label: {
+                            HStack {
+                                Text(experience[0])
+                                Text("•")
+                                Text(experience[1])
                             }
-                        } else {
-                            Text(experience.joined(separator: " • "))
-                                .foregroundColor(.black)
-                                .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                         }
+                    } else {
+                        // Fallback for unexpected formats.
+                        Text(experience.joined(separator: " • "))
+                            .foregroundColor(.black)
+                            .font(.custom("BricolageGrotesque-96ptExtraBold_Light", size: 30))
                     }
-                    
-                    // Profile URL
-                    Text("Profile URL: \(profileURL)")
-                        .foregroundColor(.blue)
-                        .underline()
                 }
-                .frame(width: 800)
-                .padding(40)
-                .background(
-                    RoundedRectangle(cornerRadius: 30)
-                        .fill(Color(hex: "E2E2E2").opacity(0.6))
-                )
+                
+                // Profile URL
+                Text("Profile URL: \(profileURL)")
+                    .foregroundColor(.blue)
+                    .underline()
             }
-            // Add extra padding at the top to ensure the name isn't cut off.
-            .padding(.top, 30)
+            .frame(width: 800)
+            .padding(40)
+            .background(
+                RoundedRectangle(cornerRadius: 30)
+                    .fill(Color(hex: "E2E2E2").opacity(0.6))
+            )
         }
     }
-
 }
 
 
@@ -563,34 +589,41 @@ class AudioProcessor: ObservableObject {
     }
 }
 
-struct AudioProcessing_Preview: PreviewProvider {
+struct ConversationalPage_Preview: PreviewProvider {
     static var previews: some View {
-        AudioProcessing()
+        ConversationalPage()
     }
 }
 
 
 extension Color {
     init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        let sanitizedHex = hex
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "#", with: "")
+        var rgbValue: UInt64 = 0
+        Scanner(string: sanitizedHex).scanHexInt64(&rgbValue)
+
+        let r, g, b, a: UInt64
+        switch sanitizedHex.count {
+        case 6:
+            r = (rgbValue >> 16) & 0xFF
+            g = (rgbValue >> 8) & 0xFF
+            b = rgbValue & 0xFF
+            a = 0xFF
+        case 8:
+            r = (rgbValue >> 24) & 0xFF
+            g = (rgbValue >> 16) & 0xFF
+            b = (rgbValue >> 8) & 0xFF
+            a = rgbValue & 0xFF
         default:
-            (a, r, g, b) = (255, 0, 0, 0)
+            r = 255; g = 255; b = 255; a = 255
         }
         self.init(
             .sRGB,
             red: Double(r) / 255,
             green: Double(g) / 255,
-            blue:  Double(b) / 255,
+            blue: Double(b) / 255,
             opacity: Double(a) / 255
         )
     }

@@ -1,6 +1,5 @@
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.responses import JSONResponse
-from fastapi import timestamps 
 from pydantic import BaseModel
 from typing import List
 import numpy as np
@@ -138,7 +137,7 @@ async def capture_gesture(data: dict):
     
     if pf is None:
         return {
-            "message": f"Received timestamp: {data['timestamp']}. Total gestures captured: {len(app.timestamps)}. No matching LinkedIn profile found.",
+            "message": f"Received timestamp: {data['timestamp']}. Total gestures captured: 1. No matching LinkedIn profile found.",
             "screenshot": screenshot_file
         }
         
@@ -148,7 +147,7 @@ async def capture_gesture(data: dict):
     print(f"Education: {education}")
     
     return {
-        "message": f"Received timestamp: {data['timestamp']}. Total gestures captured: {len(app.timestamps)}.",
+        "message": f"Received timestamp: {data['timestamp']}. Total gestures captured: 1.",
         "screenshot": screenshot_file,
         "profile": {
             "name": first_name + " " + last_name,
@@ -292,7 +291,7 @@ async def scrape(fn, ln, file, headless = True, log = False):
     client = webdriver.Chrome(options=options)
 
     # liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
-    liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
+    liat = "AQEDAVfBjbMCGjz2AAABlQ4Q3SgAAAGVMh1hKE4ApVIpMIJnh2ClzonkXaMz9pnqOS5B1krHwPYxnYanrv8mNe5mjHFbEZ__I9KaIDeFdQfwnUzXjtvWFl2qsF6a6-0kPKpskJiPIjbsy3T_08pW9hUC"
 
     print("Loading face image...")
     fr_image = np.ascontiguousarray(face_recognition.load_image_file(f"{file}"))
@@ -391,3 +390,67 @@ async def scrape(fn, ln, file, headless = True, log = False):
     print("No matching profile found")
     client.quit()
     return None, None, None, None, None
+
+@app.get("/get_profiles")
+async def get_profiles():
+    """
+    Returns a JSON object containing profile information for specific individuals.
+    """
+    profiles = {
+        "Sai Konkimalla": {
+            "LinkedIn": {
+                "bio": "I am an undergrad at Stanford studying math and computer science. I am passionate about mathematics, robotics, computer systems, parallel computing, and machine learning, and I am interested to work/research in the intersection of these fields.\n\nI would love to chat about any of topics above, so feel free to reach out! I am also actively looking for summer work/research opportunities in the above fields.",
+                "experiences": [
+                    "R&D Software and Robotics Intern\nReazon Holdings, inc.\nTokyo, Japan\nDeveloped software for teleoperated humanoid bartending robot",
+                    "Guidance, Navigation, and Controls (GNC) and Embedded Systems Intern\nRaytheon · Internship\nTucson, Arizona, United States · On-site\nDesigned and verified functionality of GPS M-code receiver",
+                    "Student Researcher, Applied Math\nUniversity of Arizona · Part-time\nTucson, Arizona, United States\nResearched physics-based reinforcement learning algorithms in energy environments",
+                    "Lead Teaching Assistant\nRandom Math Inc. · Part-time\nRemote\nHelped high school students prepare for national math competitions (AMC 12/AIME)"
+                ],
+                "education": [
+                    "Stanford University\nBachelor of Science - BS, Mathematics and Computer Science\nActivities and societies: Stanford University Mathematical Organization (SUMO), Stanford Math Tournament (SMT)",
+                    "University of Arizona\nDual Enrollment, Mathematics\nSelected coursework: MATH 223: Vector Calculus, MATH 254: Differential Equations, and MATH 313: Linear Algebra"
+                ]
+            },
+            "convos": [],
+            "interests": "Math, Robotics, Computer Science",
+            "img": "https://media.licdn.com/dms/image/v2/D4D03AQEPcYIdcOsMJA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1698282810114?e=1745452800&v=beta&t=UvqvxyAtsd009IzoR-2-MOY-vxWPmhDRTe-ky84gtGo"
+        },
+        "James Chen": {
+            "LinkedIn": {
+                "bio": "",
+                "experiences": [
+                    "Software Engineering Intern\nReazon Holdings, inc. · Internship\nTokyo, Japan",
+                    "Undergraduate Researcher (NLP, LLMs, Conversational Agents)\nStanford University Department of Computer Science\nProfessor Monica Lam's Lab",
+                    "First Place Grand Prize & Reazon Holdings Prize\nTreeHacks\nStanford University\nBaymax, Your Personal Healthcare Companion",
+                    "Research Intern (Data Science Project)\nU.S. Naval Research Laboratory\nMonterey, California",
+                    "Research Intern (Machine Learning Project)\nNASA Ames Research Center\nMountain View, California"
+                ],
+                "education": [
+                    "Stanford University\nBachelor of Science - BS, Computer Science\nGPA: 4.07"
+                ]
+            },
+            "convos": [],
+            "interests": "Physics, English, Robotics",
+            "img": "https://media.licdn.com/dms/image/v2/D4D03AQEPcYIdcOsMJA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1698282810114?e=1745452800&v=beta&t=UvqvxyAtsd009IzoR-2-MOY-vxWPmhDRTe-ky84gtGo"
+        },
+        "Kaival Shah": {
+            "LinkedIn": {
+                "bio": "Hey! I'm Kaival, a student at Northwestern University studying Applied Mathematics and Computer Science. I love design thinking and software that changes lives.\n• kaival@u.northwestern.edu\n• https://github.com/kaivalsshah",
+                "experiences": [
+                    "Resident Founder\nThe Garage at Northwestern University",
+                    "Co-Founder\nStealth\nRestaurant deals & rewards; sold to Quill Payments, Inc.",
+                    "Mathematical Biology Researcher @ Research Mentorship Program\nUC Santa Barbara\nOn-site\n• Selected as 1 among 77 students from 4,000+ applicants (~2% admit rate) to conduct graduate-level research at UC Santa Barbara\n• Optimized offspring resource distribution models for Gaussian survivorship functions, contributing to existing literature on concave, convex, and mixed-function survivorship curves\n• Applied nonlinear optimization techniques and probabilistic annealing algorithms to enhance the theoretical model\n• Conducted research under the guidance of Dr. Sakal at UC Santa Barbara's Department of Ecology, Evolution, and Marine Biology\n• Delineated resource distribution optimization techniques and biological underpinnings in a paper, poster, and Research Symposium talk",
+                    "FRC Software Lead, FTC Mentor\nFIRST\nOn-site\n• Led team in Robot Java Object Oriented Programming workshops & development of an iOS robot scouting app with real-time match analysis, processing 1000+ data entries to foster a competitive advantage during alliance selection\n• Organized logistics using Gantt Charts and Notion Taskboards; encouraged regular check-ins, documentation, and test-driven programming lessons\n• Developed robot autonomous routines with spline trajectory generation, feedback, and odometry\n• Mentored middle school FIRST Tech Challenge teams, helping students foster a passion for engineering\n• Qualified for FIRST Robotics Challenge World Championships 2x, receiving school-wide recognition",
+                    "Computational Physics Researcher\nPioneer Academics\nRemote\n• Collaborated with NYU Associate Professor of Physics Dr. Haas to model oscillatory chaos computationally\n• Developed dynamic models with multiple parameters using Python and advanced graphing techniques\n• Explored Monte Carlo simulations, numerical integration applications, and the Ising model to deepen understanding of computational physics methods\n• Documented research findings and model results in an extensive research paper"
+                ],
+                "education": [
+                    "Northwestern University\nBachelor of Science - BS, Computer Science, Mathematics\nGrade: 4.0",
+                    "UC Santa Barbara\nGrade: 4.0\nINT 93P: Presentation Techniques in Interdisciplinary University Research\nINT 93R: Introduction to Interdisciplinary University Research Techniques"
+                ]
+            },
+            "convos": [],
+            "interests": "Film Studies, Biology, Basket Weaving",
+            "img": "https://media.licdn.com/dms/image/v2/D4D03AQEPcYIdcOsMJA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1698282810114?e=1745452800&v=beta&t=UvqvxyAtsd009IzoR-2-MOY-vxWPmhDRTe-ky84gtGo"
+        }
+    }
+    return profiles
