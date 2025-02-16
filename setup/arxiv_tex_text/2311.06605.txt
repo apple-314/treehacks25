@@ -1,0 +1,1054 @@
+
+%%% FILE: arxiv_sources/2311.06605/IPCO_2024_Aliev_Celaya_Henk_1503.tex %%%
+%%%%%%%	   New bound combining the integrality gap and optimal solution entries
+
+
+\documentclass[runningheads]{llncs}
+
+%\textwidth15cm \textheight20cm \oddsidemargin1cm
+%\evensidemargin1cm
+%\frenchspacing
+
+\pagestyle{plain}
+
+\usepackage{url, hyperref}
+
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{amsmath,color}
+\usepackage{enumerate}
+\usepackage{algpseudocode} 
+\usepackage{lmodern}
+\usepackage{todonotes}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+%\usepackage{refcheck}
+
+
+\newcommand{\excise}[1]{}%{$\star$\textsc{#1}$\star$}
+\newcommand{\comment}[1]{{$\star$\sf\textbf{#1}$\star$}}
+\newcommand{\ve}{\boldsymbol}
+\newcommand{\Hex}{{\mathcal H}}
+
+\newtheorem{thm}{Theorem}
+%\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{prob}[thm]{Problem}
+
+%\theoremstyle{definition}
+%\newtheorem{alg}{Algorithm}
+%\newtheorem{example}[thm]{Example}{\bfseries}{\normalfont}
+%\newtheorem{remark}[thm]{Remark}{\bfseries}{\normalfont}
+%\newtheorem{obs}[thm]{Observation}
+%\newtheorem{defn}[thm]{Definition}{\bfseries}{\normalfont}
+
+\renewcommand\labelenumi{\theenumi.}
+
+%\newcounter{separated}
+
+\newcommand{\be}{\begin{eqnarray}}
+\newcommand{\bea}{\begin{eqnarray*}}
+\newcommand{\ee}{\end{eqnarray}}
+\newcommand{\eea}{\end{eqnarray*}}
+
+
+
+\newcommand{\ring}[1]{\ensuremath{\mathbb{#1}}}
+
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\spn}{\mathrm{span}}
+\newcommand{\lin}{\mathrm{lin}}
+\newcommand{\lattice}{\mathcal{L}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\rank}{\mathrm{rank}}
+%\newcommand{\ker}{\mathrm{ker}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\sg}{{Sg}}
+\newcommand{\GCD}{\mbox{\rm GCD}\,}
+\newcommand{\frob}{\mbox{\rm F}}
+\newcommand{\dfrob}{\mbox{\rm g}}
+\newcommand{\interior}{\mbox{\rm int}}
+\newcommand{\C}{\mathbb C}
+\newcommand\sail{{E}}
+\newcommand{\Sp}{{H}}
+\newcommand{\KP}{{P}}
+\newcommand{\PKP}{{Q}}
+\newcommand{\idist}{{d}}
+\newcommand{\gap}{\mathrm{Gap}}
+\newcommand{\SP}{\mathrm{\Pi}}
+
+
+\renewcommand\>{\rangle}
+\newcommand\<{\langle}
+\newcommand\0{\mathbf{0}}
+\newcommand\CC{\ring{C}}
+\newcommand\CP{{C}}
+\newcommand\KK{{\mathcal K}}
+\newcommand\VV{{\mathcal G}}
+\newcommand{\M}{{\rm M}}
+\newcommand\NN{\ring{N}}
+%\newcommand\OO{{\mathcal O}}
+\newcommand\QQ{\ring{Q}}
+\newcommand\Q{\ring{Q}}
+\newcommand\RR{\ring{R}}
+\newcommand\TT{{\mathcal T}}
+\newcommand\ZZ{\ring{Z}}
+\newcommand\kk{\Bbbk}
+\newcommand\mm{{\mathfrak m}}
+\newcommand\nn{{\mathfrak n}}
+\newcommand\pp{{\mathfrak p}}
+\newcommand\cA{{\mathcal A}}
+\newcommand\cB{{\mathcal B}}
+\newcommand\cC{{\mathcal C}}
+\newcommand\cG{{\mathcal G}}
+\newcommand\cP{{\mathcal P}}
+\newcommand\cW{{\mathcal W}}
+\newcommand\oA{\hspace{.35ex}\ol{\hspace{-.35ex}A\hspace{-.2ex}}\hspace{.2ex}}
+\newcommand\oJ{{\hspace{.45ex}\overline{\hspace{-.45ex}J}}}
+\newcommand\oQ{\hspace{.15ex}\ol{\hspace{-.15ex}Q\hspace{-.25ex}}\hspace{.25ex}}
+\newcommand\ttt{\mathbf{t}}
+\newcommand\vv[1]{{\mathbf{#1}}}
+
+\newcommand{\size}{\mbox{\rm size}}
+\newcommand\free{{\mathcal F}}
+\newcommand\qq{{\boldsymbol q}}
+
+\newcommand\gp{\mathrm{gp}}
+\newcommand\emb{\mathrm{emb}}
+\newcommand\supp{\mathrm{supp}}
+\newcommand\cone{\mathrm{cone}}
+\newcommand\icone{{Sg}}
+\newcommand\lcm{\mathrm{lcm}}
+\newcommand\tor{\mathrm{tor}}
+\renewcommand\th{\mathrm{th}}
+\newcommand{\modulo}{\,\mathrm{mod}\;}
+%\newcommand{\interior}{\,\mathrm{int}\;}
+
+\newcommand\app{\mathord\approx}
+\newcommand\can{0}
+\newcommand\iso{\cong}
+\newcommand\nil{\infty}
+\newcommand\ott{\ol\ttt{}}
+\newcommand\til{\mathord\sim}
+\newcommand\too{\longrightarrow}
+\newcommand\Iqp{I_q{}^{\hspace{-.7ex}P}}
+\newcommand\Irp{I_{\rho,P}}
+\newcommand\Isp{I_{\sigma,P}}
+\newcommand\Mwp{M_\ww^P}
+\newcommand\rqp{\rho_q^{\hspace{.2ex}P}}
+\newcommand\Iaug{I_{\mathrm{aug}}}
+\newcommand\Irpp{I_{\rho',P'}}
+\newcommand\MipI{M_\infty^P(I)}
+\newcommand\MrpI{M_\rho^P(I)}
+\newcommand\MspI{M_\sigma^P(I)}
+\newcommand\MwpI{M_\ww^P(I)}
+\newcommand\Qlqp{Q_{\preceq q}^P}
+\newcommand\Qlwp{Q_{\preceq w}^P}
+\newcommand\WwpI{W_\ww^P(I)}
+\newcommand\appq{\begin{array}{@{}c@{}} \\[-4ex]\scriptstyle\app%
+					\\[-1.6ex]q\\[-.3ex]\end{array}}
+\newcommand\appw{\begin{array}{@{}c@{}} \\[-4ex]\scriptstyle\app%
+					\\[-1.6ex]w\\[-.3ex]\end{array}}
+\newcommand\into{\hookrightarrow}
+\newcommand\onto{\twoheadrightarrow}
+\newcommand\rqpP{\rho_q^{\hspace{.2ex}P'}}
+\newcommand\rpqP{\rho_{p+q}^{\hspace{.2ex}P}}
+\newcommand\spot{{\hbox{\raisebox{1.7pt}{\large\bf .}}\hspace{-.5pt}}}
+\newcommand\void{{\{\}}}
+%newcommand\defas{:=}
+\newcommand\minus{\smallsetminus}
+\newcommand\nothing{\varnothing}
+\newcommand\appqscript{{\begin{array}{@{}c@{}}%
+			\\[-4.8ex]\scriptscriptstyle\app%
+			\\[-1.9ex]\scriptstyle q\\[-1ex]%
+			\end{array}}}
+\renewcommand\iff{\Leftrightarrow}
+%\renewcommand\implies{\Rightarrow}
+
+
+
+\newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}}
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+
+\renewcommand\aa{\ve a}%
+\newcommand\bb{\ve b}%
+\newcommand\cc{\ve c}%
+\newcommand\ccproj{\bar{\cc}}%
+\newcommand\dd{\ve d}%
+\newcommand\ww{\ve w}%
+\newcommand\xx{\ve x}%
+\newcommand\yy{\ve y}%
+\newcommand\rr{\ve r}%
+\newcommand\ff{\ve f}%
+\newcommand\uu{\ve u}%
+\newcommand\zz{\ve z}%
+
+\newcommand\BB{\ve B}%
+\renewcommand\AA{\ve A}%
+\renewcommand\SS{\ve S}
+
+\newcommand\MM{\ve M}
+\newcommand\LL{\ve L}
+
+
+\newcommand\DD{\ve D}%
+\newcommand\OO{\ve O}%
+\newcommand\II{\ve I}%
+
+\newcommand\UU{\ve U}%
+
+
+
+\newcommand\IG{\mathrm{IG}}%
+\newcommand\IP{\mathrm{IP}}%
+\newcommand\LP{\mathrm{LP}}%
+\newcommand\Supp{\mathrm{supp}}%
+\newcommand{\norm}[1]{\left\Vert #1\right\Vert }%
+\newcommand\AAhat{\hat{\AA\;}\negthickspace}%
+
+\def\udots{\mathinner{\mkern1mu\raise1pt\vbox{\kern7pt\hbox{.}}\mkern2mu
+\raise4pt\hbox{.}\mkern2mu\raise7pt\hbox{.}\mkern1mu}}
+
+%math symbols taking arguments
+\def\ol#1{{\overline {#1}}}
+\def\wh#1{{\widehat {#1}}}
+\def\wt#1{{\widetilde {#1}}}
+\newcommand\set[1]{\{#1\}}
+\newcommand\abs[1]{|#1|}
+
+\newcommand{\aoverb}[2]{{\genfrac{}{}{0pt}{1}{#1}{#2}}}
+\def\twoline#1#2{\aoverb{\scriptstyle {#1}}{\scriptstyle {#2}}}
+\def\QMod{$Q$-$\mathrm{Mod}$}
+\newcommand\cM{{\mathcal M}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{Sparsity and integrality gap transference bounds for integer programs}
+
+\author{Iskander Aliev\inst{1}, Marcel Celaya\inst{1}, and Martin Henk\inst{2}}
+
+\authorrunning{I. Aliev et al.}
+
+\institute{Cardiff University\\
+\email{{\{alievi,celayam\}@cardiff.ac.uk}}
+\and Technische Universit\"at Berlin\\
+\email{henk@math.tu-berlin.de}
+}
+
+%\thanks{The second  author was funded by the Deutsche Forschungsgemeinschaft (DFG,
+%German Research Foundation) under Germany's Excellence Strategy ---
+%The Berlin Mathematics Research Center MATH+(EXC-2046/1, project ID: 390685689).}
+\date{\today }
+
+
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+
+\begin{abstract}
+	\noindent
+	We obtain new transference bounds that connect two active areas of research: proximity and sparsity of solutions to integer programs. Specifically, we study the additive integrality gap of the integer linear programs $\min\{{\ve c}\cdot{\ve x}: {\ve x}\in P\cap\Z^n\}$, where $P=\{{\ve x}\in\R^n: \AA{\ve x}={\ve b}, {\ve x}\ge {\ve 0}\}$ is a polyhedron in the standard form determined by an integer $m\times n$ matrix $\AA$ and an integer vector ${\ve b}$. The main result of the paper gives an upper bound for the integrality gap that drops exponentially in the size of support of the optimal solutions corresponding to the vertices of the integer hull of $P$. Additionally, we obtain a new proximity bound that estimates the $\ell_2$-distance from a vertex of $P$ to its nearest integer point in the polyhedron $P$. The proofs make use of the results from the geometry of numbers and convex geometry.
+
+
+\keywords{Integrality gap  \and Proximity \and Sparsity.}
+\end{abstract}
+
+
+
+\section{Introduction and main results}
+
+The proximity and sparsity of solutions to integer programs are two active areas of research in the theory of mathematical programming.
+
+%The distance-sparsity transference bounds obtained in \cite{ACHW} link two active directions of research in the theory of integer programming: {\em proximity} and {\em sparsity} of solutions to integer programs. 
+%%
+
+Proximity-type results study the quality of approximation of the solutions to integer programs by the solutions of linear programming relaxations. This is a traditional research topic with the first contributions dated back at least to Gomory \cite{Gomory_sensitivity,Gomory_polyhedra}. The most influential results in this area also include the proximity bounds by Cook et al. \cite{MR839604} and by Eisenbrand and Weismantel \cite{MR3775840}. For more recent contributions, we refer the reader to Celaya et al. \cite{CKPW}, Lee et al. \cite{LPSX,LPSX1}, and Paat, Weismantel and Weltge \cite{PWW}.
+
+Sparsity-type results study the size of support of solutions to integer programs. This area of research takes its origin from the integer Carath\'eodory theorems of Cook, Fonlupt and Schrijver \cite{MR830593} and Seb\H{o} \cite{Sebo} and later major contributions by Eisenbrand and Shmonin \cite{EisenbrandShmonin2006}.  In recent years, this topic has been studied in numerous papers, including Abdi et al. \cite{ACGT}, Aliev et al. \cite{AADO,Support,ADON2017}, Berndt, Jansen and Klein \cite{BJK}, Dubey and Liu \cite{DL} and Oertel, Paat and Weismantel \cite{OPW}.  
+
+Recent works of Lee et al. \cite{LPSX} and Aliev et al. \cite{ACHW} show that the proximity and sparsity areas are highly interconnected. The paper \cite{ACHW} establishes {\em transference bounds} that link both areas in two {\em special cases}: for  corner polyhedra and knapsacks with positive entries. Remarkably, this gives a drastic improvement on the previously known proximity bounds for knapsacks obtained in \cite{AHO}. 
+
+
+%Given any vertex $\ve x^*$  of $\KP(\AA, {\ve b})$,  %
+%%
+%Gomory  \cite{Gomory_polyhedra}  introduced a {\em corner polyhedron} $\CP(\AA, {\ve b}, \ve x^*)$ associated with $\ve x^*$. The polyhedron $\CP(\AA, {\ve b}, \ve x^*)$ is the convex hull of the integer points in an affine polyhedral cone obtained from $\KP(\AA, {\ve b})$ by relaxing nonnegativity constraints for basic variables of the vertex $\ve x^*$. 
+
+%Take any vertex ${\ve z}^*$ of $\CP(A, {\ve b}, \ve x^*)$. The transference bounds obtained in  \cite{ACHW} link the distance  
+%between $\ve x^*$ and $\ve z^*$ measured by the $\ell_{\infty}$-norm $\|\cdot\|_{\infty}$ with the size of support of $\ve z^*$ measured by the $0$-norm $\|{\ve x}\|_0=|\{i: x_i\neq 0\}|$. In what follow, for $1\le r\le n$ we let
+%\bea
+%\Delta_r(\AA)=\max\{|\det \BB|: \BB \mbox{ is a }r\times r\mbox{ submatrix of }\AA\}\,.
+%\eea
+%We will also denote by $\gcd(\AA)$ the greatest common divisor of all $m\times m$ subdeterminants of $\AA$. Avoiding technical details, \cite[Theorem 1]{ACHW} provides a bound of the form
+%\be\label{IPTP_general}
+%\|{\ve x}^{*}-{\ve z}^{*}\|_{\infty} < \frac{p(m,n)\Delta_m(\AA)}{ 2^{\| {\ve z}^{*}\|_0}\gcd(\AA)}\,,
+%\ee
+%with $p(m,n)=2^{m+1} (n-m)$. %
+%%
+%On a high level, the bound \eqref{IPTP_general} implies that the distance from ${\ve x}^{*}$ to any vertex ${\ve z}^{*}$ of $\CP(A, {\ve b}, \ve x^*)$ drops exponentially in the support size $\| {\ve z}^{*}\|_0$. %
+
+%In general, one cannot guarantee that the set of integer points in $\KP(\AA, {\ve b})$ contains any of the vertices of a corner polyhedron.  Nevertheless, for knapsack problems with positive entries %that is for $\AA\in \Z_{>0}^{1\times n}$, 
+%\cite[Theorem 3]{ACHW} shows that  \eqref{IPTP_general} holds for at least one integer point ${\ve z}^{*}\in \KP(\AA, {\ve b})$. Remarkably, this gives an exponential in $\| {\ve z}^{*}\|_0$ improvement on the previously known optimal proximity bounds obtained in \cite{AHO}. 
+
+In this paper, we establish the first transference bounds that involve the integrality gap of integer linear programs and hold in the {\em general case}, addressing a future research question posed in  \cite{ACHW}. The proofs explore a new geometric approach that combines Minkowski's geometry of numbers and box slicing inequalities.
+
+
+Specifically, 
+for a matrix $\AA \in \Z^{m\times n}$ with $m<n$ and $\ve b \in \Z^m$,
+%Without loss of generality, we may assume that $\AA$ has rank $m$.
+%
+%\be\label{matrix_partition}
+%\rank(A)=m\,.
+%\ee
+we define the polyhedron
+%
+\bea
+\KP(\AA, {\ve b})=\{{\ve x}\in \R^n_{\ge 0}: \AA{\ve x}={\ve b}\}\,
+\eea
+%
+and assume that $\KP(\AA, {\ve b})$ contains integer points. 
+%
+Given a cost vector $\cc\in\R^{n}$, we consider the integer linear programming
+problem 
+\begin{eqnarray}
+\min\{\cc\cdot\xx:\xx\in\KP(\AA,\bb)\cap\Z^{n}\}\,,\label{initial_IP}
+\end{eqnarray}
+where $\cc\cdot\xx$ stands for the standard inner product.
+A very successful and traditional approach for solving optimisation problems 
+of the form \eqref{initial_IP} is based on solving its
+linear programming relaxation %to (\ref{initial_IP}) is the problem
+\begin{eqnarray}
+\min\{\cc\cdot\xx:\xx\in\KP(\AA,\bb)\}\,,\label{initial_LP}
+\end{eqnarray}
+obtained
+by dropping the integrality constraint. Subsequently,  various methods are used to construct a feasible integer solution to \eqref{initial_IP} from a fractional solution of \eqref{initial_LP}.
+
+Suppose that (\ref{initial_IP}) is feasible and bounded. Let $\IP(\AA,\bb,\cc)$ and $\LP(\AA,\bb,\cc)$ denote the optimal
+values of (\ref{initial_IP}) and (\ref{initial_LP}), respectively.
+We will focus on estimating the  \emph{(additive) integrality gap} $\IG(\AA,\bb,\cc)$ defined as
+%
+\begin{eqnarray*}
+\IG(\AA,\bb,\cc)=\IP(\AA,\bb,\cc)-\LP(\AA,\bb,\cc)\,.
+\end{eqnarray*}
+The integrality gap is a fundamental proximity characteristic of the problem (\ref{initial_IP}) extensively studied in the literature. The upper bounds for $\IG(\AA,\bb,\cc)$ appear already in the work of Blair and Jeroslow \cite{B_and_J_value_1,B_and_J_value}. To state the best currently known estimates, we will need to introduce the following notation. By $\|\cdot\|_1$ and $\|\cdot\|_\infty$ we denote the $\ell_1$ and $\ell_\infty$
+norms, respectively. Without loss of generality, we assume that $\AA$ has rank $m$ and, for $1\le r\le m$, denote by $\Delta_r(\AA)$ the maximum absolute $r\times r$ subdeterminant of $A$, that is 
+%
+\bea
+\Delta_r(\AA)=\max\{|\det \BB|: \BB \mbox{ is a }r\times r\mbox{ submatrix of }\AA\}\,.
+\eea
+%
+The sensitivity theorems of Cook et al. 
+\cite{MR839604} (see also Celaya et al. \cite{CKPW} for further improvements) imply the bound
+%
+\be\label{IG_C}
+\IG(\AA,\bb,\cc)\le \|{\ve c}\|_1 (n-m) \Delta_m(\AA)\,.
+\ee
+%
+More recently, Eisenbrand and Weismantel \cite{MR3775840} obtained the estimate
+%
+\be\label{IG_EW}
+\IG(\AA,\bb,\cc)\le \|{\ve c}\|_\infty m (2m\Delta_1(\AA)+1)^m\,,
+\ee
+which is, remarkably, independent of the dimension $n$. 
+
+%Assuming that $\KP(\AA,\bb)$ contains integer points, 
+Given a set $K\subset \R^n$ we will denote by $\conv(K)$ the convex hull of $K$. The polyhedron 
+\bea
+\KP_I(\AA,\bb)=\conv(\KP(\AA,\bb)\cap \Z^n)\,
+\eea
+is traditionally referred to as the {\em integer hull} of $\KP(\AA,\bb)$. Clearly, the problem (\ref{initial_IP}) has at least one optimal solution which is a vertex of the integer hull $\KP_I(\AA,\bb)$. 
+%We obtain transference bounds that apply to the vertices of $\KP_I(\AA,\bb)$ that correspond to optimal solutions of  (\ref{initial_IP}). 
+Given such a solution $\ve z^*$, we obtain transference bounds that link the integrality gap $\IG(\AA,\bb,\cc)$ with the size of the support of  $\ve z^*$. 
+
+Observe  that the integrality gap is positive homogeneous of degree one in ${\ve c}$, that is for $t>0$
+\be\label{homogenity}
+\IG(\AA,\bb,t\cc)=t\,\IG(\AA,\bb,\cc)\,.
+\ee
+In what follows, we also use the notation $\|\cdot\|_2$ for the $\ell_2$ norm.
+In view of \eqref{homogenity}, we may assume without loss of generality that ${\ve c}$ is a unit vector, that is $\|{\ve c}\|_2=1$.
+
+Given a vector ${\ve x}=(x_1,\ldots, x_n)^\top\in \R^n$, we will denote by $\supp({\ve x})$ the {\em support} of ${\ve x}$, that is $\supp({\ve x})=\{i: x_i\neq 0\}$. To measure the size of the support, we use the {\em $0$-norm} $\|{\ve x}\|_0=|\supp({\ve x})|$. The first result makes use of the quantity
+\bea
+\Delta(\AA)=\sqrt{\det \AA\AA^\top}\,.
+\eea
+Geometrically, $\Delta(\AA)$ is the $m$-dimensional volume of the parallelepiped determined by the rows of $\AA$.
+We will also denote by $\gcd(\AA)$ the greatest common divisor of all $m\times m$ subdeterminants of $\AA$. 
+
+%
+
+%
+\begin{thm} \label{thm_transference_gap_integer_hull} Let $\AA\in \Z^{m\times n}$ be a matrix of rank $m$, $\bb\in \Z^m$ and $\cc\in \R^n$ be a unit cost vector. Suppose that (\ref{initial_IP}) is feasible and bounded. Let $\zz^*$ be an optimal solution to (\ref{initial_IP}) which is a vertex of $\KP_I(\AA,\bb)$. Then 
+%
+ \be\label{Gap_transference_integer_hull} 
+\IG(\AA,\bb,\cc)\le \frac{s}{2^{s-m-1}}\cdot\frac{\Delta(\AA)}{\gcd(\AA)}\,,
+\ee
+ where $s=\| {\ve z}^*\|_0$.
+\end{thm}
+%
+Hence, we obtain an upper bound for the integrality gap that drops {\em exponentially} in the size of support of any optimal solution to (\ref{initial_IP}) which is a vertex of the integer hull $\KP_I(\AA,\bb)$.  We remark that  \cite{ACHW} gives optimal transference bounds for positive knapsacks and corner polyhedra that connect the $\ell_\infty$-distance proximity and the size of the support of integer feasible solutions. Theorem \ref{thm_transference_gap_integer_hull} applies in the general case and a different setting; it connects the integrality gap and the size of the support of optimal solutions to \eqref{initial_IP}.
+
+Next, we obtain from Theorem \ref{thm_transference_gap_integer_hull}  transference bounds in terms of the maximum absolute $m\times m$ subdeterminant $\Delta_m(\AA)$ and the maximum absolute entry $\Delta_1(\AA)$.
+%
+\begin{cor}
+\label{cor_gap_immediate} Assume the conditions of Theorem~\ref{thm_transference_gap_integer_hull}.  Then
+the bounds
+\begin{equation}
+\IG(\AA,\bb,\cc)\le \frac{\; s\binom{s+m}{m}^{1/2}}{2^{s-m-1}}\cdot\frac{\Delta_m(\AA)}{\gcd(\AA)}\label{eq:Gap_transference_Delta_m}
+\end{equation}
+and 
+\begin{equation}
+\IG(\AA,\bb,\cc)\le \frac{\; s(s+m)^{m/2}}{2^{s-m-1}}\cdot\frac{\,(\Delta_1(\AA))^m}{\gcd(\AA)}\label{eq:Gap_transference_Delta_1}
+\end{equation}
+hold.
+\end{cor}
+%
+For a unit cost vector ${\ve c}$, the bound \eqref{eq:Gap_transference_Delta_m} improves on \eqref{IG_C} when $s\geq 4m$, and the bound \eqref{eq:Gap_transference_Delta_1} improves on \eqref{IG_EW} when $s \geq 6m$.
+%
+
+The proof of Theorem~\ref{thm_transference_gap_integer_hull} makes use of results from convex geometry and  Minkowski's geometry of numbers. Following a similar approach, we obtain a new upper bound for the $\ell_2$-distance from 
+a vertex of the polyhedron $\KP(\AA, {\ve b})$ to its nearest integer point in $\KP(\AA, {\ve b})$. 
+
+\begin{thm}
+\label{thm:UpperBound}
+Let $\AA \in \Z^{m\times n}$, $m<n$, be a matrix of rank $m$, $\ve b \in \Z^m $, and suppose that $ \KP(\AA, {\ve b})$ contains integer points.  Let ${\ve x}^*$ be a vertex of  $ \KP(\AA, {\ve b})$. There
+exists an integer point ${\ve z}^*\in \KP(\AA, {\ve b})$ such that
+\begin{equation}\label{t:Bound_via_pencils}
+\|{\ve x}^*-{\ve z}^*\|_2\le  \frac{\Delta(\AA)}{\gcd(\AA)}-1\,.
+\end{equation}
+\end{thm}
+%
+We remark that for certain matrices $\AA$ the bound \eqref{t:Bound_via_pencils} is smaller than the $\ell_2$-norm proximity bounds $\sqrt{n}(n-m)\Delta_m(\AA)$  and $m (2m\Delta_1(\AA)+1)^m$ that can be derived from \cite{CKPW} and \cite{MR3775840}, respectively.  It is sufficient to observe that the ratio $\Delta(\AA)/\Delta_m(\AA)$ can be arbitrarily close to one and the ratio  $\Delta(\AA)/\Delta_1(\AA)$ can be arbitrarily small.
+
+Applying Theorem \ref{thm:UpperBound} to a vertex optimal solution ${\ve x}^*$ of \eqref{initial_LP} we obtain the following estimate.
+
+\begin{cor}
+\label{cor_gap_via_length} Let $\AA\in \Z^{m\times n}$, $m<n$, be a matrix of rank $m$, $\bb\in \Z^m$ and $\cc\in \R^n$ be a unit cost vector. Suppose that (\ref{initial_IP}) is feasible and bounded. Then the bound 
+%
+\be\label{Gap_zonotope} 
+\IG(\AA,\bb,\cc)\le\frac{\Delta(\AA)}{\gcd(\AA)}-1
+\ee
+holds.
+\end{cor}
+%
+For a unit cost vector ${\ve c}$, the bound \eqref{Gap_zonotope} improves   \eqref{IG_C} when $\Delta(\AA)/\gcd(\AA)<(n-m)\Delta_m(\AA)+1$ and improves  \eqref{IG_EW}  when $\Delta(\AA)/\gcd(\AA)<mn^{-1/2} (2m\Delta_1(\AA)+1)^m+1$.
+
+
+
+\section{Volumes and linear transforms}
+
+In this section, we develop geometric tools needed for the proof of the transference bounds. 
+
+For a matrix $\AA\in \R^{l\times r}$ we denote by $\lin(\AA)$ the linear subspace of $\R^l$ spanned by the columns of $A$. Given a set $M\subset \R^r$ we let $\AA M=\{\AA{\ve x}\in \R^l: {\ve x}\in M\}$ and use the notation $[\AA]=\AA[0,1]^r$. For a set $X\subset \R^l$ and a linear subspace $L$ of $\R^l$, we denote by $X|L$ the orthogonal projection of $X$ onto $L$. Further,  $\vol_i(\cdot)$  denotes the $i$-dimensional volume.
+
+%
+Let $S$ be an $(l-k)$-dimensional subspace of $\R^l$. Consider an orthonormal basis ${\ve s}_1, \ldots, {\ve s}_{l-k}, {\ve s}_{l-k+1}, \ldots, {\ve s}_l$ of $\R^l$ such that the first $l-k$ vectors form a basis of $S$. Let further $\SS_{l-k}=({\ve s}_1, \ldots, {\ve s}_{l-k})\in \R^{l\times (l-k)}$ and $\SS_{k}=({\ve s}_{l-k+1}, \ldots, {\ve s}_{l})\in \R^{l\times k}$. 
+
+Given a measurable set  $M$ in the subspace $S$, we are interested in the $(l-k)$-dimensional volume of its image 
+$\DD M$, where we assume that $\DD\in \R^{l\times l}$ is an invertible matrix. The first result gives a general expression for $\vol_{l-k}(\DD M)$ in terms of $\vol_{l-k}(M)$.
+
+\begin{lemma} \label{section_volume_regular} Let $S$ be an $(l-k)$-dimensional subspace of $\R^l$. Let $M\subset S$ be measurable, $\DD\in \R^{l\times l}$ be nonsingular
+and let the rows of $\BB\in \R^{k\times l}$ form a basis of the subspace $(\DD S)^\bot$, the orthogonal complement of the subspace $\DD S=\lin(\DD \SS_{l-k})$. Then
+%
+\bea
+\vol_{l-k}(\DD M)= |\det(\DD)| \sqrt{\frac{\det(\BB \BB^\top)}{\det(\BB\DD\DD^\top \BB^\top)}}\vol_{l-k}(M)\,.
+\eea
+%
+\end{lemma}
+
+\begin{proof}
+
+By the elementary properties of volume, we have
+%
+\be\label{volume_as_product}
+\vol_{l-k}(\DD M)=\vol_{l-k}([\DD \SS_{l-k}])\vol_{l-k}(M)\,.
+\ee
+%
+On the other hand, we have 
+%
+\be\label{det_expression}
+\begin{aligned}
+|\det(\DD)| & =\vol_l([\DD (\SS_{l-k}, \SS_k)])\\
+& = \vol_{l-k}([\DD \SS_{l-k}])\vol_k([\DD\SS_k]| \lin(\DD\SS_{l-k})^\bot)\\
+& = \vol_{l-k}([\DD \SS_{l-k}])\vol_k([\DD\SS_k]| \lin(\BB^\top))\,.
+\end{aligned}
+\ee
+Now, according to the definition of projections, we have
+\bea
+[\DD\SS_k]|\lin(\BB^\top)=\BB^\top (\BB \BB^\top)^{-1}\BB[\DD\SS_k]
+\eea
+and hence
+\bea
+\begin{aligned}
+\vol_k([\DD\SS_k]|\lin(\BB^\top))&=\sqrt{ \det(\SS_k^\top \DD^\top\BB^\top(\BB\BB^\top)^{-1}\BB\BB^\top(\BB\BB^\top)^{-1}\BB\DD\SS_k) }\\
+&=\sqrt{\det((\BB\BB^\top)^{-1})}\sqrt{\det(\BB\DD\SS_k\SS_k^\top\DD^\top\BB^\top)}\\
+&=\sqrt{\frac{\det(\BB\DD\DD^\top\BB^\top)}{\det(\BB\BB^\top)}}\,.
+\end{aligned}
+\eea
+%
+Substituting this expression in \eqref{det_expression} gives along \eqref{volume_as_product}
+the identity.
+\qed
+\end{proof}
+
+The second result provides a lower bound for $\vol_{l-k}(\DD M)$ that involves the eigenvalues of the matrix $\DD^\top \DD$ and $\vol_{l-k}(M)$.
+
+\begin{lemma} \label{volume_via_eigenvalues}
+Let $M\subset S$ be measurable, $\DD\in\R^{l\times l}$ nonsingular and let $\lambda_1\le \lambda_2\le \cdots \le \lambda_l$
+be the positive eigenvalues of $\DD^\top \DD$. Then
+\bea \vol_{l-k}(\DD M)\ge \left(\prod_{i=1}^{l-k} \sqrt{\lambda_i}\right) \vol_{l-k}(M)\,.\eea
+\end{lemma}
+
+\begin{proof}
+According to \eqref{volume_as_product}, we need to estimate 
+\bea
+\vol_{l-k}([\DD \SS_{l-k}])=\sqrt{\det(\SS^\top_{l-k}\DD^\top\DD \SS_{l-k})}\,.
+\eea
+Let $\OO\in\R^{l\times l}$ be a matrix such that its rows form an orthonormal basis consisting of eigenvectors 
+of $\DD^\top \DD$.  For convenience, we will denote by $\diag(\lambda_i)$ the diagonal matrix with the eigenvalues $\lambda_1,\ldots, \lambda_l$ on the main diagonal. Then we have $\DD^\top \DD=\OO^\top \diag(\lambda_i)\OO$. 
+
+Let $[l]= \{1,\ldots,l\}$ and let $\binom{[l]}{r}$ be the set of all $r$-element subsets of $[l]$. 
+%
+With $\widetilde{\SS_{l-k}}=\OO\SS_{l-k}$ we get by the Cauchy-Binet formula
+\bea
+\begin{aligned}
+\det(\SS^\top_{l-k}\DD^\top \DD \SS_{l-k}) &= \det(\widetilde{\SS_{l-k}}^\top \diag(\lambda_i^{1/2})\diag(\lambda_i^{1/2})\widetilde{\SS_{l-k}})\\
+&=\sum_{I\in {[l]\choose l-k}}\det(\diag(\lambda_i^{1/2})^I)^2 (\det(\widetilde{\SS_{l-k}}^I))^2\\
+&\ge \left(\prod_{i=1}^{l-k}\lambda_i\right) \sum_{I\in {[l]\choose
+    l-k}}(\det(\widetilde{\SS_{l-k}}^I))^2\\
+&= \left(\prod_{i=1}^{l-k}\lambda_i\right) \det(\widetilde{\SS_{l-k}}^\top \widetilde{\SS_{l-k}} )= \prod_{i=1}^{l-k}\lambda_i\,.
+\end{aligned}
+\eea
+%
+Here $\diag(\lambda_i^{1/2})^I$ is the $(l-k)\times(l-k)$ diagonal matrix with $\lambda_i^{1/2}$ indexed by $I$
+and $\widetilde{\SS_{l-k}}^I$ is the $(l-k)\times(l-k)$ submatrix of
+$\widetilde{\SS_{l-k}}$ with rows indexed by $I$. In the second to
+last identity we used again the Cauchy-Binet formula.
+
+\qed\end{proof}
+
+From Lemma \ref{volume_via_eigenvalues} we  obtain the following corollary.
+
+%
+%\begin{lemma} \label{section_volume_via_B}We have
+%\bea \vol(\DD(S\cap (-1,1)^l))= |\det(\DD)|  \frac{ \Delta(\BB)}{ \Delta(\BB\DD)}\vol(S\cap (-1,1)^l)\,.\eea
+%\end{lemma}
+
+
+\begin{cor} \label{coro_section_volume_via_B} Let $S$ be an $(l-k)$-dimensional subspace of $\R^l$ and let  $\DD=\diag(d_1,\ldots, d_l)$ with $0<d_1\le d_2\le \cdots\le d_l$. Then
+\be\label{Section_volume_via_the product} \vol_{l-k}(\DD(S\cap (-1,1)^l))\ge 2^{l-k}\prod_{i=1}^{l-k} d_i\,.\ee
+\end{cor}
+
+\begin{proof}
+By Vaaler's cube slicing inequality \cite{Vaaler1979}, we have $\vol_{l-k}(S\cap (-1,1)^l)\ge 2^{l-k}$.
+Now the bound \eqref{Section_volume_via_the product} immediately follows from Lemma \ref{volume_via_eigenvalues}.
+
+\qed\end{proof}
+
+
+%
+%\noindent{\bf Addition}: Just for checking, let us calculate the volume of $L$. Let ${\ve h}\in \ker(A)$ be the vector orthogonal to $\ker(B)=\ker({\ve c}^\top)\cap\ker(A)$ such that 
+%${\ve c}\cdot{\ve h}={\ve c}\cdot ({\ve x}^*-{\ve z}^*)$. Since $K\subset \ker(B)$, we have
+%\bea
+%\vol(L)=\frac{2\vol(K)\|{\ve h}\|_2}{n-m}\,.
+%\eea
+%We can write ${\ve h}=t{\ve c}|_{\ker(\AA)}$, so it remains to find $t$. We have
+%\bea
+%{\ve c}\cdot(t{\ve c}|_{\ker(\AA)})={\ve c}\cdot ({\ve x}^*-{\ve z}^*)=IG(A, {\ve b}, {\ve c})\,.
+%\eea
+%Hence
+%\bea
+%t=\frac{IG(A, {\ve b}, {\ve c})}{{\ve c}\cdot{\ve c}|_{\ker(\AA)}}=\frac{IG(A, {\ve b}, {\ve c})}{\|{\ve c}|_{\ker(\AA)}\|^2_2}\,
+%\eea
+%and
+%\bea
+%\vol(L)=\frac{2 IG(A, {\ve b}, {\ve c})\vol(K)}{(n-m)\|{\ve c}|_{\ker(\AA)}\|_2}\,.
+%\eea
+
+
+
+
+
+\section{Proofs of the transference bounds}
+
+
+We will derive Theorem  \ref{thm_transference_gap_integer_hull} from Corollary \ref{cor_gap_via_length}  and from the following result. %for $n>m+1$.
+%
+\begin{thm} \label{thm_gap_integer_hull} Let $\AA\in \Z^{m\times n}$, with $n>m+1$, be a matrix of rank $m$, $\bb\in \Z^m$ and $\cc\in \R^n$ be a unit cost vector. Suppose that (\ref{initial_IP}) is feasible and bounded. Let $\zz^*=(z_1^*,\ldots, z_n^*)^\top$ be an optimal solution of (\ref{initial_IP}) which is a vertex of $\KP_I(\AA,\bb)$. Assuming without loss of generality $z_1^*\le\cdots\le z_n^*$, the bound
+\be\label{Gap_transference_integer_hull_advanced} 
+\IG(\AA,\bb,\cc)\le\frac{(n-m)}{\prod_{i=1}^{n-m-1}(z_i^*+1)}\cdot\frac{\Delta(\AA)}{\gcd(\AA)}
+\ee
+holds.
+\end{thm}
+
+\begin{proof}
+
+%For convenience, we will work with an open polyhedron 
+%\bea
+%\PKP(\AA, {\ve b})=\KP(\AA, {\ve b})+(-1,1)^n\cap \ker(\AA)\,.
+%\eea
+%Notice that $\KP(\AA, {\ve b})\cap\Z^n=\PKP(\AA, {\ve b})\cap\Z^n$.
+
+Let  ${\ve c}|{\ker(\AA)}$  denote the orthogonal projection of the vector $\cc$ on the kernel subspace $\ker(\AA)=\{{\ve x}\in\R^n: \AA{\ve x}={\ve 0}\}$ of the matrix $\AA$. Observe first that if ${\ve c}$ is orthogonal to $\ker(\AA)$, then $\IG(\AA,\bb,\cc)=0$ and the bound \eqref{Gap_transference_integer_hull_advanced} holds. Hence, we may assume without loss of generality that ${\ve c}|{\ker(\AA)}$ is a nonzero vector.
+
+
+Suppose, to derive a contradiction, that the bound \eqref{Gap_transference_integer_hull_advanced} does not hold. Then there exists a vertex ${\ve x}^*$ of $\KP(\AA,\bb)$ and
+a vertex ${\ve z}^*$ of $P_I(\AA, {\ve b})$ optimising \eqref{initial_IP}, such that, assuming $z_1^*\le\cdots\le z_n^*$, we have
+\be\label{opposite_bound_integer_hull} 
+{\ve c}\cdot({\ve z}^*-{\ve x}^*)> \frac{(n-m)}{\prod_{i=1}^{n-m-1}(z_i^*+1)}\cdot\frac{\Delta(\AA)}{\gcd(\AA)}\,.
+\ee
+
+
+Let $d_i=z_i^*+1$, $i\in[n]$, $\DD=\diag(d_1,\ldots, d_n)$ and let $\BB\in\Z^{(m+1)\times n}$ be the matrix obtained by adding the $(m+1)$-st row ${\ve c}^\top$ to the matrix $\AA$. Let further $V=\ker(\BB)$. Consider the box section
+\bea
+K=V\cap (-d_1, d_1)\times\cdots\times (-d_n, d_n)\,.
+\eea
+We can write $K=\DD M$, where $M$ is a $(n-m-1)$-dimensional section of the cube $(-1,1)^n$.
+Hence, by Corollary \ref{coro_section_volume_via_B},
+\be\label{vol_K_lower_bound}
+\vol_{n-m-1}(K)\ge 2^{n-m-1}\prod_{i=1}^{n-m-1} d_i\,.
+\ee
+%Notice that the polyhedron $\PKP(\AA, {\ve b})$ contains the set
+%\bea
+%K={\ve z}^*+S\,.
+%\eea
+%%
+Consider
+the origin-symmetric convex set
+\bea
+L=\conv({\ve x}^*-{\ve z}^*, K, {\ve z}^*-{\ve x}^*)\subset \ker(\AA)\,.
+\eea
+%
+The set $L$ is a bi-pyramid with apexes $\pm ({\ve x}^*-{\ve z}^*)$ and 
+$(n-m-1)$-dimensional basis $K$. As $K\subset \ker(\AA)\cap\ker(\ve c)$
+the height of ${\ve x}^*-{\ve z}^*$ over $K$ is given by
+\bea
+ \frac{{\ve c}|\ker(\AA)\cdot({\ve z}^*-{\ve x}^*)}{\|{\ve c}|{\ker(\AA)}\|_2} =\frac{{\ve c}\cdot({\ve z}^*-{\ve x}^*)}{\|{\ve c}|{\ker(\AA)}\|_2}.
+\eea 
+Hence, we have 
+%
+\bea
+\vol_{n-m}(L)=\frac{2 \,{\ve c}\cdot({\ve z}^*-{\ve x}^*)\,\vol_{n-m-1}(K)}{(n-m)\|{\ve c}|{\ker(\AA)}\|_2}\,.\eea
+Then, using \eqref{vol_K_lower_bound} and \eqref{opposite_bound_integer_hull} and noting that the assumption $\|{\ve c}\|_2= 1$ implies $\|{\ve c}|{\ker(\AA)}\|_2\le 1$, we obtain the lower bound
+\be\label{volume_bound_for_L}
+%\vol(L)\ge \frac{2^{n-m} {\ve c}\cdot({\ve z}^*-{\ve x}^*)\prod_{i=1}^{n-m-1} d_i}{(n-m)}
+\vol_{n-m}(L)>2^{n-m}\frac{\Delta(\AA)}{\gcd(\AA)}\,.
+\ee
+Observe that the lattice $\Lambda(\AA)=\ker(\AA)\cap\Z^n$ has determinant 
+\be\label{lat_det_lambda}
+\det(\Lambda(\AA))=\frac{\Delta(\AA)}{\gcd(\AA)}\,
+\ee
+(see e. g. \cite[Chapter~1, \S 1]{Skolem}). The $(n-m)$-dimensional subspace $\ker(\AA)$ can be considered as a usual Euclidean $(n-m)$-dimensional space.  Therefore, by \eqref{volume_bound_for_L}, \eqref{lat_det_lambda} and Minkowski's first fundamental theorem (in the form of Theorem II in Chapter III of \cite{cassels1996introduction}), applied to the set $L$ and the lattice $\Lambda(\AA)$,  there is a nonzero point ${\ve y}\in L \cap \Lambda(\AA)$. 
+
+Suppose first that ${\ve c}\cdot{\ve y}=0$. Consider the points ${\ve y}^+={\ve z}^*+ {\ve y}$ and ${\ve y}^-={\ve z}^*- {\ve y}$. We have  ${\ve y}^+, {\ve y}^-\in ({\ve z}^*+K)$ and, consequently,  ${\ve y}^+, {\ve y}^-\in \KP(\AA, {\ve b})$.  Further, ${\ve z}^*$ is the midpoint of the segment with endpoints ${\ve y}^+$ and ${\ve y}^-$, contradicting the choice of ${\ve z}^*$ as a vertex of the integer hull $P_I(\AA, {\ve b})$. 
+
+It remains to consider the case ${\ve c}\cdot{\ve y}\neq 0$. Since $L$ is origin-symmetric, we may assume without loss of generality that ${\ve c}\cdot{\ve y}<0$. Observe that the point ${\ve y}^+={\ve z}^*+ {\ve y}$ is in the set $\conv({\ve z}^*+K,{\ve x}^*)$ and hence ${\ve y}^+\in  \KP(\AA, {\ve b})$. Now, it is sufficient to notice that  ${\ve c}\cdot{\ve y}^+<{\ve c}\cdot {\ve z}^*$, contradicting the optimality of ${\ve z}^*$.
+%Therefore, we derive the desired contradiction.
+
+\qed\end{proof}
+
+\subsection{Proof of Theorem \ref{thm_transference_gap_integer_hull} }
+
+ Let $I=\{i_1,\ldots, i_k\} \subset  [n]$ with $i_1<i_2<\cdots<i_k$. We will use the notation  $\AA_I$ for the $m \times k$ submatrix  of $\AA$ with columns indexed by $I$.  In the same manner, given ${\ve x}\in \R^n$, we will denote by ${\ve x}_I$ the vector $(x_{i_1}, \ldots, x_{i_k})^{\top}$. By $\R^I$ we denote the $k$-dimensional real space with coordinates indexed by $I$. %The complement of $I$ in $[n]$ will be denoted as $\bar I$.
+
+Let $\xx^{*}$ be a vertex optimal solution to (\ref{initial_LP}). Clearly, we may assume that $\xx^{*}\neq \zz^{*}$.
+Let $I\subset[n]$ denote the set of indices $i$ for which at least one of $z_i^*,x_i^*$ is non-zero. We consider a new linear program
+\be\label{new_linear_prog}
+\min\{\cc_I\cdot\xx_I:\AAhat_I\xx_I=\hat{\bb},\xx_I\geq 0\}\,,
+\ee
+where ${\AAhat}_I\in\Z^{\hat{m}\times\hat{n}}$ is a full-row-rank matrix with $\gcd({\AAhat}_I)=1$ and $\hat{\bb}\in\Z^{\hat{m}}$ such that ${\AAhat}_I\xx_I=\hat{\bb}$ and $\AA_I\xx_I=\bb$ decribe the same affine subspace in $\R^I$. Note that $\xx_I^*$ and $\zz_I^*$ are optimal fractional and integral solutions, respectively, and that $\zz_I^*$ is a vertex of the integer hull of $\KP({\AAhat}_I,\hat{\bb})$. Note also that
+\be\label{new_delta_lower_bound}
+\Delta({\AAhat}_I)\leq\frac{\Delta(\AA)}{\gcd(\AA)}\,,
+\ee
+one can see this by observing that the quantity on the left is a divisor of the volume of the orthogonal projection of a parallelepiped whose volume is given by the quantity on the right. 
+
+If $\hat{n}=\hat{m}+1$, then the bound \eqref{Gap_transference_integer_hull} immediately follows from the bound 
+\eqref{Gap_zonotope} in Corollary \ref{cor_gap_via_length}. Otherwise, suppose that $\hat{n}>\hat{m}+1$. We have then that ${\AAhat}_I$, $\hat{\bb}$, $\cc_I/\norm{\cc_I}_2$, $\xx_I^*$, $\zz_I^*$ satisfy the hypotheses of Theorem~\ref{thm_gap_integer_hull}. We therefore get
+\be\label{new_IG_bound}
+\IG(\AA,\bb,\cc)=\IG(\AAhat_I,\hat{\bb},\cc_I)\leq\norm{\cc_I}_2\cdot\frac{\hat{n}-\hat{m}}{\prod_i (z_i^*+1)}\cdot\Delta(\AAhat_I),
+\ee
+where the product in the denominator is over the $\hat{n}-\hat{m}-1$ smallest coordinates of $\zz_I^*$.
+
+Now, $\hat{n}$ is equal to $\norm{\zz^*+\xx^*}_0$. Also, $\xx^*$ has support of size at most $\hat{m}$, since $\norm{\xx^*}_0=\norm{\xx_I^*}_0$ and $\xx_I^*$ is a vertex of the new linear program \eqref{new_linear_prog}. Thus we get
+\be
+\label{numerator_upper_bound}
+\hat{n}-\hat{m}\leq\norm{\zz^*+\xx^*}_0-\norm{\xx^*}_0\leq\norm{\zz^*}_0=s.
+\ee
+On the other hand, we have the following lower bound for the product in the denominator of \eqref{new_IG_bound}:
+\be
+\label{denominator_lower_bound}
+\prod_i (z_i^*+1)\geq 2^{\hat{n}-\hat{m}-1-\left|I\,\backslash\,\text{Supp}(\zz_I^*)\right|}
+=2^{s-\hat{m}-1}
+\geq 2^{s-m-1}\,.
+\ee
+Combining together \eqref{new_IG_bound}, \eqref{numerator_upper_bound}, \eqref{denominator_lower_bound}, and the fact that $\norm{\cc_I}_2\leq1$, we get
+\be\label{new_IG_bound_combined}
+\IG(\AA,\bb,\cc)\leq\frac{s}{2^{s-m-1}}\cdot\Delta(\AAhat_I)\,.
+\ee
+The desired conclusion \eqref{Gap_transference_integer_hull} then follows from \eqref{new_delta_lower_bound} and \eqref{new_IG_bound_combined}. 
+
+\subsection{Proof of Corollary \ref{cor_gap_immediate}}
+
+
+Let $I$ and $\AAhat_I$ be as in the proof of Theorem~\ref{thm_transference_gap_integer_hull}. We will derive the bounds \eqref{eq:Gap_transference_Delta_m} and \eqref{eq:Gap_transference_Delta_1}
+from the bound \eqref{new_IG_bound_combined}. Choose any $J\subset [n]\backslash I$ that is minimal with respect to the property that $\AA_{I\cup J}$ has rank $m$. Thus, $\left|J\right|=m-\hat{m}$, and \be
+\label{size_of_I_cup_J}
+\left|I\cup J\right| = \hat{n}+(m-\hat{m}) \leq s+\hat{m} +(m-\hat{m}) = s+m.
+\ee
+As with \eqref{new_delta_lower_bound}, we have
+\be\label{new_delta_lower_bound_I_cup_J}
+\Delta({\AAhat}_I)\leq\frac{\Delta(\AA_{I\cup J})}{\gcd(\AA_{I\cup J})}\leq\frac{\Delta(\AA_{I\cup J})}{\gcd(\AA)}\,.
+\ee
+%
+By \eqref{size_of_I_cup_J} and the Cauchy-Binet formula, we have
+%
+\be\label{Cauchy-Binet-cor}
+\Delta(\AA_{I\cup J})\le {\left|I\cup J\right|\choose m}^{1/2}\Delta_m(\AA_{I\cup J})\le {s+m\choose m}^{1/2}\Delta_m(\AA)\,. % <\left( \frac{n e}{m}\right)^{m/2}\Delta_m(\AA)\,.
+\ee
+%
+Combining \eqref{new_IG_bound_combined}, \eqref{new_delta_lower_bound_I_cup_J}, and \eqref{Cauchy-Binet-cor}, we obtain the bound \eqref{eq:Gap_transference_Delta_m}. On the other hand, if we use \eqref{size_of_I_cup_J} and Hadamard's inequality, we get
+%
+\be\label{Hadamard-cor}
+\Delta(\AA_{I\cup J})\le (\sqrt{\left|I\cup J\right|}\cdot\Delta_1(\AA_{I\cup J}))^m\le (\sqrt{s+m}\cdot\Delta_1(\AA))^m\,.
+\ee
+%
+Combining \eqref{new_IG_bound_combined}, \eqref{new_delta_lower_bound_I_cup_J}, and \eqref{Hadamard-cor}, we obtain the bound \eqref{eq:Gap_transference_Delta_1}.
+
+
+
+\section{Proof of the $\ell_2$-distance proximity bound}
+
+First, we will prove two lemmas needed for the proof of Theorem \ref{thm:UpperBound}.
+
+Let ${\ve y} \in\R^n$ and let
+\bea
+C^n({\ve y})=\{{\ve x}\in  \R^n: \|{\ve x}-{\ve y} \|_{\infty} < 1 \}
+\eea
+be an open cube in $\R^n$ with edge length $2$ centered at the point ${\ve y}$. 
+%Given a set $K\subset\R^n$, we will also use the notation $\interior\, K$ for the interior of $K$. 
+Given two points ${\ve u}, {\ve v}\in \R^n$ we will
+consider an open set $D({\ve u}, {\ve v})$ defined as
+%
+\bea
+D({\ve u}, {\ve v})=\conv(C^n({\ve u}), C^n({\ve v}))\,.
+\eea
+
+\begin{lemma}
+\label{D_property} Let ${\ve u}, {\ve v}\in\R^n_{\ge 0}$. Then
+$D({\ve u}, {\ve v})\cap\Z^n=D({\ve u}, {\ve v})\cap\Z^n_{\ge 0}\,.$
+\end{lemma}
+\begin{proof}
+Suppose, to derive a contradiction, that there exists an integer point ${\ve z}=(z_1,\ldots, z_n)^\top \in D({\ve u}, {\ve v})$ such that $z_j\le -1$ for some $j\in [n]$.
+Then there exist points ${\ve x}=(x_1,\ldots, x_n)^\top\in C^n({\ve u})$ and  ${\ve y}=(y_1,\ldots, y_n)^\top\in  C^n({\ve v})$ such that for some $\lambda\in [0,1]$ 
+\bea
+z_j=\lambda x_j + (1-\lambda) y_j\,.
+\eea
+Therefore, since $x_j > -1$ and $y_j> -1$, we must have $z_j>-1$. 
+\qed\end{proof}
+
+Next, we consider an origin-symmetric open convex set $E=E({\ve u}, {\ve v})$ defined as
+\bea
+E=\conv(C^n({\ve u}-{\ve v}), C^n({\ve v}-{\ve u}))\,.
+\eea
+Notice that
+\be\label{zonotope_union}
+E= (D({\ve u}, {\ve v})-{\ve v})\cup(-D({\ve u}, {\ve v})+{\ve v})\,.
+\ee
+
+
+
+
+\begin{lemma}
+\label{E_property} Suppose that ${\ve u},{\ve v}\in \KP(\AA, {\ve b})$. Then the bound 
+\be\label{E_property_bound} 
+\vol_{n-m}(E\cap\ker(\AA))\ge 2^{n-m}(1+\|{\ve u}-{\ve v}\|_2)
+\ee
+holds.
+\end{lemma}
+\begin{proof}
+First, we will separately consider the case $n=m+1$. Then $\ker(\AA)$ has dimension one
+and, noticing that ${\ve u}-{\ve v}\in \ker(\AA)$ we can write
+\bea
+\vol_{1}(E\cap\ker(\AA))=\vol_{1}(C^n({\ve 0})\cap\ker(\AA))+2\|{\ve u}-{\ve v} \|_2\,.
+\eea
+Since $\vol_{1}(C^n({\ve 0})\cap\ker(\AA))\ge 2$, we obtain the bound \eqref{E_property_bound}.
+
+For the rest of the proof we assume that $n>m+1$. 
+If ${\ve u}={\ve v}$, then $E=C^n({\ve 0})$ and the bound \eqref{E_property_bound} immediately follows from Vaaler's cube slicing inequality \cite{Vaaler1979}. Hence, we may also assume without loss of generality that ${\ve u}-{\ve v}\neq {\ve 0}$.
+
+Let
+\bea
+S=C^n({\ve 0})\cap \ker(\AA)\cap \ker(({\ve u}-{\ve v})^\top)\,.
+\eea
+The set $S$ is a section of the open cube $C^n({\ve 0})$. Since ${\ve u}-{\ve v}\in \ker(\AA)\setminus \{\ve 0\}$, the section $S$ has dimension  $n-m-1$.
+Let further 
+\bea
+S^+=\{{\ve x}\in C^n({\ve 0})\cap \ker(\AA): ({\ve u}-{\ve v})\cdot{\ve x}>0\}
+\eea
+and 
+\bea
+S^-=\{{\ve x}\in C^n({\ve 0})\cap \ker(\AA): ({\ve u}-{\ve v})\cdot{\ve x}<0\}\,.
+\eea
+By construction, $S^+$, $S^-$ and $S$ do not overlap and $C^n({\ve 0})\cap \ker(\AA)=S^+\cup S^-\cup S$. Further, by Vaaler's cube slicing inequality \cite{Vaaler1979}, we have
+\be\label{volume_of_union}
+\vol_{n-m}(S^+)+\vol_{n-m}(S^-)=\vol_{n-m}(C^n({\ve 0})\cap \ker(\AA))\ge 2^{n-m}
+\ee
+and
+\be\label{volume_of_section_S}
+\vol_{n-m-1}(S)\ge 2^{n-m-1}\,.
+\ee
+Observe that $E\cap\ker(\AA)$ contains the sets $S^+ + {\ve u}-{\ve v}$,  $S^- + {\ve v}-{\ve u}$ and the cylinder
+$\conv( {\ve u}-{\ve v} +S,   {\ve v}-{\ve u}+S)$. These three sets do not overlap and, using \eqref{volume_of_union} and \eqref{volume_of_section_S},
+we have
+\bea\begin{aligned}
+\vol_{n-m}(E\cap\ker(\AA))& \ge \vol_{n-m}(S^+)+\vol_{n-m}(S^-)\\
+&+ \vol_{n-m}(\conv( {\ve u}-{\ve v} +S,   {\ve v}-{\ve u}+S))\\
+& =\vol_{n-m}(  C^n({\ve 0})\cap \ker(\AA)) + 2\,\vol_{n-m-1}(S)\,\|{\ve u}-{\ve v} \|_2\\
+& \ge 2^{n-m}(1+\|{\ve u}-{\ve v} \|_2)\,.
+\end{aligned}
+\eea
+Hence, we obtain the bound \eqref{E_property_bound}.
+\qed
+
+\end{proof}
+
+
+
+\subsection{Proof of Theorem \ref{thm:UpperBound}}
+
+
+
+We will say that $B\subset [n]$ is a {\em basis} of $\AA$ if $|B|=m$ and the submatrix $\AA_B$  is nonsingular. %
+Take any vertex ${\ve x}^*\in \KP(\AA, {\ve b})$. There is a basis $B$ of $\AA$ such that, denoting by $N$ the complement of $B$ in $[n]$, we have
+%
+\bea %\label{vertex_assumption}
+ {\ve x}^*_B = \AA_B^{-1}{\ve b} \mbox{ and }{\ve x}^*_{N}={\ve 0}_{N}\,.
+\eea
+%
+
+
+Choose an integer point ${\ve z}^*\in \KP(\AA, {\ve b})$ with the minimum possible distance between the points ${\ve x}^*_N={\ve 0}_{N}$ and ${\ve z}^*_N$. Then
+\be\label{minimum_distance_choice}
+\|{\ve z}^*_N\|_2=\min \{\|{\ve y}_N\|_2: {\ve y}\in \KP(\AA, {\ve b})\cap\Z^n\}\,.
+\ee 
+%
+Suppose, to derive a contradiction, that the bound \eqref{t:Bound_via_pencils} does not hold for the point ${\ve z}^*$. Then, using \eqref{lat_det_lambda},
+\be\label{lower_bound_distance}
+\|{\ve x}^*-{\ve z}^*\|_2> \frac{\Delta(\AA)}{\gcd(\AA)}-1 = \det(\Lambda(\AA))-1\,.
+\ee
+Recall that we denote by $\Lambda(\AA)$ the  lattice formed by all integer points in the kernel subspace of the matrix $\AA$.
+
+The lower bound \eqref{lower_bound_distance} and Lemma \ref{E_property}  imply that for $E=E({\ve x}^*, {\ve z}^*)$
+we have
+\be\label{vol_E_kerA_bound}
+\vol(E\cap\ker(\AA))> 2^{n-m} \det(\Lambda(\AA))\,.
+\ee
+The $(n-m)$-dimensional subspace $\ker(\AA)$ can be considered as a usual Euclidean $(n-m)$-dimensional space. 
+ Noting the bound \eqref{vol_E_kerA_bound}, Minkowski's first fundamental theorem (in the form of Theorem II in Chapter III of \cite{cassels1996introduction}) implies that the set $E\cap\ker(\AA)$
+ contains nonzero points $\pm {\ve z}$ of the lattice $\Lambda(\AA)$. Using \eqref{zonotope_union}, we may assume without loss of generality
+ that we have  ${\ve z}\in D({\ve x}^*, {\ve z}^*)-{\ve z}^*$. Therefore, the point ${\ve w}={\ve z}+{\ve z}^*$ is in the set $D({\ve x}^*, {\ve z}^*)\cap (\ker(\AA)+{\ve z}^*)$. By Lemma \ref{D_property}, ${\ve w}\in \Z^n_{\ge 0}$ and, hence, ${\ve w}\in \KP(\AA, {\ve b})$. 
+ 
+ Next, we will show that
+ $\|{\ve w}_N\|_2< \|{\ve z}^*_N\|_2$, contradicting \eqref{minimum_distance_choice}.
+%
+Notice first that for any ${\ve x}\in \KP(\AA, {\ve b})$ we have ${\ve x}_B=\AA_B^{-1}({\ve b}-\AA_N{\ve x}_N)$. Hence ${\ve w}_N = {\ve z}^*_N$ implies that  ${\ve w}={\ve z}^*$.
+%
+Therefore, we may assume that ${\ve w}_N \neq {\ve z}^*_N$. 
+%
+%Let us denote by $\pi$ the coordinate projection map that forgets coordinates indexed by $B$. Then 
+%\be\label{projected_zonotope}
+%\pi(D)=\conv(\pi(C^n({\ve 0})), \pi(C^n({\ve z}^*)))\,.
+%\ee
+
+Take any index $j\in N$. Since ${\ve w}\in D({\ve x}^*, {\ve z}^*)$, %and \eqref{projected_zonotope} holds, 
+we have $w_j\le z^*_j$. Hence there is at least one index $j_0\in N$ with $w_{j_0}< z^*_{j_0}$. Therefore  $\|{\ve w}_N\|_2< \|{\ve z}^*_N\|_2$ and we obtain a contradiction with \eqref{minimum_distance_choice}.
+
+
+% % 
+%Next, take any $j\in \bar \gamma$. Then, by construction of the set $D$, we have $\|x^*_j-w_j\|_2=w_j\le z_j^*$.
+
+
+ 
+ 
+%  Let $A_\gamma$ be a basis of $A$ corresponding to the vertex ${\ve x}^*$. Take any index $j\in \gamma$. By construction of the set $D$, if $x^*_j\ge z^*_j$ then $x^*_j\ge w_j\ge z^*_j$ and if  $x^*_j\le z^*_j$, then $x^*_j\le w_j\le z^*_j$.
+% % 
+%Next, take any $j\in \bar \gamma$. Then, by construction of the set $D$, we have $\|x^*_j-w_j\|_2=w_j\le z_j^*$.
+
+
+
+\section{Acknowledgement}
+
+The authors thank the anonymous referees for their valuable comments and suggestions.
+
+
+\begin{thebibliography}{99}
+
+
+\bibitem{ACGT}
+Abdi, A., Cornu\'ejols, G., Guenin, B., Tun\c cel, L.:
+Dyadic linear programming and extensions.
+arXiv:2309.04601 (2023)
+
+
+\bibitem{AADO}
+Aliev, I., Averkov, G., De~Loera, J.~A., Oertel, T.:
+Sparse representation of vectors in lattices and semigroups.
+ Math. Program. \textbf{192}, 519--546 (2022)
+
+
+\bibitem{ACHW} 
+Aliev, I., Celaya, M., Henk, M., Williams, A.:
+Distance-sparsity transference for vertices of corner polyhedra.
+SIAM J. Optim.  \textbf{31}(1), 200--216 (2021)
+
+
+\bibitem{Support}
+Aliev, I., De~Loera, J.~A., Eisenbrand, F., Oertel, T., Weismantel, R.:
+The support of integer optimal solutions.
+SIAM J. Optim.  \textbf{28}(3), 2152--2157 (2018)
+
+\bibitem{ADON2017}
+Aliev, I., De~Loera, J.~A., Oertel, T., O'Neill, C.:
+Sparse solutions of linear {D}iophantine equations.
+SIAM J. Appl. Algebra Geom. \textbf{1}(1), 239--253 (2017)
+
+
+\bibitem{AHO}
+Aliev, I., Henk, M., Oertel, T.:
+Distances to lattice points in knapsack polyhedra.
+Math. Program. \textbf{182}(1-2), 175--198 (2020)
+
+
+\bibitem{BJK}
+Berndt, S., Jansen, K., Klein, K.-M.:
+New bounds for the vertices of the integer hull. In: 
+Symposium on Simplicity in Algorithms (SOSA),  pp. 25--36.
+Society for Industrial and Applied Mathematics (SIAM), Philadelphia (2021)
+
+\bibitem{B_and_J_value_1}
+Blair, C.~E., Jeroslow, R.~G.:
+The value function of a mixed integer program. {I}.
+Discrete Math. \textbf{19}(2), 121--138 (1977)
+
+
+\bibitem{B_and_J_value}
+Blair, C.~E., Jeroslow, R.~G.:
+The value function of an integer program.
+Math. Program.   \textbf{23}(3), 237--273 (1982)
+
+
+\bibitem{cassels1996introduction}
+Cassels, J.~W.~S.:
+An Introduction to the Geometry of Numbers.
+Classics in Mathematics. Springer Berlin Heidelberg (1996)
+
+
+
+\bibitem{CKPW}
+Celaya, M.,  Kuhlmann, S., Paat, J., Weismantel, R.:
+Improving the Cook et al. proximity bound given integral valued constraints.
+In: Integer programming and combinatorial optimization. Lecture Notes in Comput. Sci, vol. 13265,  pp. 84–97.
+Springer, Cham (2022)
+
+
+\bibitem{MR830593}
+Cook, W., Fonlupt, J., Schrijver, A.:
+An integer analogue of {C}arath\'eodory's theorem.
+J. Combin. Theory Ser. B. \textbf{40}(1), 63--70 (1986)
+
+\bibitem{MR839604}
+Cook, W., Gerards, A.~M.~H., Schrijver, A., Tardos, \'{E}.:
+Sensitivity theorems in integer linear programming.
+Math. Program. \textbf{34}(3), 251--264 (1986)
+
+\bibitem{DL}
+Dubey, Y., Liu, S.:
+A short proof of tight bounds on the smallest support size of integer solutions to linear equations.
+arXiv:2307.08826 (2023)
+
+
+
+
+\bibitem{EisenbrandShmonin2006}
+Eisenbrand, F., Shmonin, G.:
+Carath\'eodory bounds for integer cones.
+Oper. Res. Lett. \textbf{34}(5), 564--568 (2006)
+
+\bibitem{MR3775840}
+Eisenbrand, F., Weismantel, R.:
+Proximity results and faster algorithms for integer programming using
+ the Steinitz lemma.
+In: Proceedings of the Twenty-Ninth Annual ACM-SIAM
+ Symposium on Discrete Algorithms, pp. 808--816. Society for Industrial and Applied Mathematics (SIAM), Philadelphia (2018)
+
+\bibitem{Gomory_sensitivity}
+Gomory, R.~E.:
+On the relation between integer and noninteger solutions to linear programs.
+Proc. Nat. Acad. Sci. U.S.A.. \textbf{53}, 260--265 (1965)
+
+
+\bibitem{Gomory_polyhedra}
+Gomory, R.~E.:
+Some polyhedra related to combinatorial problems.
+Linear Algebra Appl., \textbf{2}, 451--558 (1969)
+
+\bibitem{LPSX}
+Lee, J., Paat, J., Stallknecht, I., Xu, L.:
+Improving proximity bounds using sparsity.
+In: Ba\"iou M., Gendron B., G\"unl\"uk O., Mahjoub A. (eds) Combinatorial optimization. ISCO 2020. Lecture Notes in Computer Science, vol 12176, pp. 115--127, Springer, Cham (2020)
+%\newblock {\em arXiv:2001.04659}.
+
+
+\bibitem{LPSX1}
+Lee, J., Paat, J., Stallknecht, I., Xu, L.:
+Polynomial upper bounds on the number of differing columns of {$\Delta$}-modular integer programs.
+Math. Oper. Res. \textbf{48}, 2267--2286 (2023)
+
+
+\bibitem{OPW}
+Oertel, T., Paat, J., Weismantel, R.:
+The distributions of functions related to parametric integer optimization.
+SIAM J. Appl. Algebra Geom. \textbf{4}(3), 422--440 (2020)
+
+
+\bibitem{PWW}
+Paat, J., Weismantel, R., Weltge, S.:
+Distances between optimal solutions of mixed-integer programs.
+Math. Program.  \textbf{179}(1-2), 455–468 (2020)
+
+
+\bibitem{Sebo}
+Seb\H{o}, A.:
+{H}ilbert bases, {C}arath\'eodory's theorem and combinatorial optimization.
+In: Proceedings of the 1st Integer Programming and Combinatorial
+  Optimization Conference, pp. 431--455. University of Waterloo Press (1990)
+
+\bibitem{Skolem}
+Skolem, T.:
+Diophantische Gleichungen. Ergebnisse der Mathematik, Vol 5. Berlin, Springer (1938)
+
+
+\bibitem{Vaaler1979}
+Vaaler, J.~D.:
+A geometric inequality with applications to linear forms.
+Pacific J. Math.  \textbf{83}(2), 543--553 (1979)
+
+
+\end{thebibliography}
+
+
+
+\end{document}
+
