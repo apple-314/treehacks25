@@ -1,6 +1,8 @@
 from langchain.chat_models import init_chat_model
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
+from vector_db import VectorDatabase
+
 # Initialize the base LLM model (this can be replaced with your RAG-enabled chain later)
 llm = init_chat_model("llama3-8b-8192", model_provider="groq")
 
@@ -116,6 +118,9 @@ def jarvis_handle(user_request: str, conversation_context: str = "") -> str:
 # ============================
 
 if __name__ == "__main__":
+    db = VectorDatabase()
+    db.create_connection()
+
     # Example conversation context. This could be maintained externally.
     conversation_context = "Previous conversation context could be stored here for RAG."
 

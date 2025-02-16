@@ -5,6 +5,7 @@ llama-iris
 llama-index-legacy
 sentence-transformers
 langchain
+langchain-groq
 fastembed 
 openai 
 tiktoken
@@ -16,6 +17,9 @@ fastapi
 pyngrok
 uvicorn
 opencv-python
-face_recognition
+# face_recognition
 selenium
 lxml
+langchain_community
+arxiv
+pymupdf
