@@ -1,8 +1,11 @@
 import json
 from vector_db import VectorDatabase
+import time
 
 db = VectorDatabase()
 db.create_connection()
+
+start_time = time.time()
 
 names = ["SaiKonkimalla", "JamesChen", "KaivalShah"]
 
@@ -41,3 +44,5 @@ with open("people_data.json", "w") as f:
 
 # Print result
 print(json_output)
+
+print(time.time() - start_time)
