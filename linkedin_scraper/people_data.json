@@ -1,0 +1,51 @@
+{
+    "Sai Konkimalla": {
+        "LinkedIn": {
+            "bio": "I am an undergrad at Stanford studying math and computer science. I am passionate about mathematics, robotics, computer systems, parallel computing, and machine learning, and I am interested to work/research in the intersection of these fields.\n\nI would love to chat about any of topics above, so feel free to reach out! I am also actively looking for summer work/research opportunities in the above fields.",
+            "experiences": [
+                "R&D Software and Robotics Intern\nReazon Holdings, inc.\nTokyo, Japan\nDeveloped software for teleoperated humanoid bartending robot",
+                "Guidance, Navigation, and Controls (GNC) and Embedded Systems Intern\nRaytheon \u00b7 Internship\nTucson, Arizona, United States \u00b7 On-site\nDesigned and verified functionality of GPS M-code receiver",
+                "Student Researcher, Applied Math\nUniversity of Arizona \u00b7 Part-time\nTucson, Arizona, United States\nResearched physics-based reinforcement learning algorithms in energy environments",
+                "Lead Teaching Assistant\nRandom Math Inc. \u00b7 Part-time\nRemote\nHelped high school students prepare for national math competitions (AMC 12/AIME)"
+            ],
+            "education": [
+                "Stanford University\nBachelor of Science - BS, Mathematics and Computer Science\nActivities and societies: Stanford University Mathematical Organization (SUMO), Stanford Math Tournament (SMT)",
+                "University of Arizona\nDual Enrollment, Mathematics\nSelected coursework: MATH 223: Vector Calculus, MATH 254: Differential Equations, and MATH 313: Linear Algebra"
+            ]
+        },
+        "convos": []
+    },
+    "James Chen": {
+        "LinkedIn": {
+            "bio": "",
+            "experiences": [
+                "Software Engineering Intern\nReazon Holdings, inc. \u00b7 Internship\nTokyo, Japan",
+                "Undergraduate Researcher (NLP, LLMs, Conversational Agents)\nStanford University Department of Computer Science\nProfessor Monica Lam's Lab",
+                "First Place Grand Prize & Reazon Holdings Prize\nTreeHacks\nStanford University\nBaymax, Your Personal Healthcare Companion",
+                "Research Intern (Data Science Project)\nU.S. Naval Research Laboratory\nMonterey, California",
+                "Research Intern (Machine Learning Project)\nNASA Ames Research Center\nMountain View, California"
+            ],
+            "education": [
+                "Stanford University\nBachelor of Science - BS, Computer Science\nGPA: 4.07"
+            ]
+        },
+        "convos": []
+    },
+    "Kaival Shah": {
+        "LinkedIn": {
+            "bio": "Hey! I'm Kaival, a student at Northwestern University studying Applied Mathematics and Computer Science. I love design thinking and software that changes lives.\n\u2022 kaival@u.northwestern.edu\n\u2022 https://github.com/kaivalsshah",
+            "experiences": [
+                "Resident Founder\nThe Garage at Northwestern University",
+                "Co-Founder\nStealth\nRestaurant deals & rewards; sold to Quill Payments, Inc.",
+                "Mathematical Biology Researcher @ Research Mentorship Program\nUC Santa Barbara\nOn-site\n\u2022 Selected as 1 among 77 students from 4,000+ applicants (~2% admit rate) to conduct graduate-level research at UC Santa Barbara\n\u2022 Optimized offspring resource distribution models for Gaussian survivorship functions, contributing to existing literature on concave, convex, and mixed-function survivorship curves\n\u2022 Applied nonlinear optimization techniques and probabilistic annealing algorithms to enhance the theoretical model\n\u2022 Conducted research under the guidance of Dr. Sakal at UC Santa Barbara\u2019s Department of Ecology, Evolution, and Marine Biology\n\u2022 Delineated resource distribution optimization techniques and biological underpinnings in a paper, poster, and Research Symposium talk",
+                "FRC Software Lead, FTC Mentor\nFIRST\nOn-site\n\u2022 Led team in Robot Java Object Oriented Programming workshops & development of an iOS robot scouting app with real-time match analysis, processing 1000+ data entries to foster a competitive advantage during alliance selection\n\u2022 Organized logistics using Gantt Charts and Notion Taskboards; encouraged regular check-ins, documentation, and test-driven programming lessons\n\u2022 Developed robot autonomous routines with spline trajectory generation, feedback, and odometry\n\u2022 Mentored middle school FIRST Tech Challenge teams, helping students foster a passion for engineering\n\u2022 Qualified for FIRST Robotics Challenge World Championships 2x, receiving school-wide recognition",
+                "Computational Physics Researcher\nPioneer Academics\nRemote\n\u2022 Collaborated with NYU Associate Professor of Physics Dr. Haas to model oscillatory chaos computationally\n\u2022 Developed dynamic models with multiple parameters using Python and advanced graphing techniques\n\u2022 Explored Monte Carlo simulations, numerical integration applications, and the Ising model to deepen understanding of computational physics methods\n\u2022 Documented research findings and model results in an extensive research paper"
+            ],
+            "education": [
+                "Northwestern University\nBachelor of Science - BS, Computer Science, Mathematics\nGrade: 4.0",
+                "UC Santa Barbara\nGrade: 4.0\nINT 93P: Presentation Techniques in Interdisciplinary University Research\nINT 93R: Introduction to Interdisciplinary University Research Techniques"
+            ]
+        },
+        "convos": []
+    }
+}

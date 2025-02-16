@@ -148,7 +148,7 @@ def scrape(fn, ln, headless = True, log = False):
 
     client = webdriver.Chrome(options=options)
 
-    liat = "AQEDAVZo6gAFBmSCAAABlEAQG4YAAAGVLCXhPlYAv0yz1MRZNE6ZbykySX83XA5fgvAc9IPI-bixNWy5VFBuYTK0LcxnrORHE2bf44ByN-ZIeBcIRDEf4eDAvvEYPSQ4D2vrrP5aK3llXXcznU-Gi7rN"
+    liat = "AQEDAVfBjbMCGjz2AAABlQ4Q3SgAAAGVMh1hKE4ApVIpMIJnh2ClzonkXaMz9pnqOS5B1krHwPYxnYanrv8mNe5mjHFbEZ__I9KaIDeFdQfwnUzXjtvWFl2qsF6a6-0kPKpskJiPIjbsy3T_08pW9hUC"
 
     fr_image = face_recognition.load_image_file(f"../imgs/{fn}{ln}.png")
     fr_face_encoding = face_recognition.face_encodings(fr_image)[0]
@@ -231,8 +231,10 @@ def scrape(fn, ln, headless = True, log = False):
                     about, experiences, education = get_info(client, pf)
                     return orig_img, pf, about, experiences, education
 
-# img, link = scrape("James", "Chen")
-# img, link, about, experiences, education = scrape("James", "Chen", headless=False)
+first_name = "Sai"
+last_name = "Konkimalla"
+
+img, link, about, experiences, education = scrape(first_name, last_name)#, headless=False)
 
 # a, b, c = format_info(about, experiences, education)
 # print(a)
@@ -242,6 +244,24 @@ def scrape(fn, ln, headless = True, log = False):
 # print()
 # print()
 # print(c)
+
+from vector_db import VectorDatabase
+
+db = VectorDatabase()
+db.create_connection()
+db.delete_table(f"{first_name}{last_name}", "LinkedIn")
+
+for item in about:
+    data_dict = {"type": "bio", "description": "\n".join(item)}
+    db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
+
+for item in experiences:
+    data_dict = {"type": "exp", "description": "\n".join(item)}
+    db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
+
+for item in education:
+    data_dict = {"type": "edu", "description": "\n".join(item)}
+    db.write_data_dict(f"{first_name}{last_name}", "LinkedIn", data_dict)
 
 # input()
 # img.show()
